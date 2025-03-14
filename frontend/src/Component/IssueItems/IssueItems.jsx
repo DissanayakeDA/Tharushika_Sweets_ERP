@@ -40,6 +40,8 @@ function IssueItems() {
     fetchStockData();
   }, []);
 
+  
+
   const handleBuyerIdChange = (e) => {
     setBuyerId(e.target.value);
   };
