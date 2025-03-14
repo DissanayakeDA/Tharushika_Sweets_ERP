@@ -1,0 +1,208 @@
+/* Import Noto Sans font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+/* Global reset to remove unwanted margins */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensures the navbar background spans full height */
+  }
+  
+  /* Sidenav container */
+.sidenav {
+  width: 80px;
+  background-color: #FFFF;
+  height: 75vh;
+  margin-top: 5%;
+  margin-left: 2%;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  color: #5D4037;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: "Noto Sans", sans-serif;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.sidenav.open {
+  transform: translateX(-260px);
+}
+  /* Styling for buttons with icons */
+  .center-icon-btn {
+    display: flex;
+    justify-content: center; /* Center icon horizontally */
+    align-items: center; /* Center icon vertically */
+    color: #37474F;
+    width: 60px; /* Adjust size */
+    height: 60px;
+    background-color: #FFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto; /* Center within its container */
+  }
+  .nav-label{
+    color: #37474F;
+    font-weight: bold;
+    font-size: small;
+  }
+  /* Positioning the profile icon */
+.profile-icon-btn {
+  color: #37474F;
+  background-color: #EFEFEF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: fixed; /* Fix the button's position relative to the viewport */
+  top: 15px; /* Adjust as needed for spacing from the top */
+  right: 20px; /* Adjust as needed for spacing from the right */
+  padding: 5px; /* Add some padding for better appearance */
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+
+  /* Ensure the SVG is properly centered */
+  .center-icon-btn svg {
+    display: block;
+  }
+  
+
+
+ /* Adjusting branding */
+.brand {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center; /* Center the logo text */
+}
+
+  
+ /* Navigation items */
+.sidenav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidenav ul li {
+  margin: 10px 0;
+  text-align: center; /* Center text below the icon */
+}
+
+.sidenav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  display: block; /* Ensure full clickable area */
+}
+
+.sidenav ul hr {
+  border: 0;
+  height: 1px;
+  opacity: 0.5;
+  margin: 10px 0;
+}
+/* Navigation items */
+  .sidenav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidenav ul li {
+    margin: 10px 0;
+    text-align: center; /* Center text below the icon */
+  }
+  
+  .sidenav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: block; /* Ensure full clickable area */
+  }
+  
+  .sidenav ul hr {
+    border: 0;
+    height: 1px;
+    background-color: white;
+    opacity: 0.5;
+    margin: 10px 0;
+  }
+  /* Ensure the page layout works well with the fixed navbar */
+main {
+  margin-left: 220px; /* Account for navbar width */
+  padding: 20px;
+}
+/* Add this to your existing Nav.css */
+
+/* Shadow effect for active icon */
+.center-icon-btn.active {
+  background-color: rgba(154, 195, 221, 0.2); /* Light blue background */
+  border-radius: 50%; /* Circular background */
+  box-shadow: 0 0 15px rgba(154, 195, 221, 0.7); /* Blue shadow */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Animation for the active icon */
+@keyframes shadowPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(154, 195, 221, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
+  }
+}
+.center-icon-btn:hover{
+  background-color: rgba(154, 195, 221, 0.2); /* Light blue background */
+  border-radius: 50%; /* Circular background */
+  box-shadow: 0 0 15px #9ac3dd; /* Blue shadow */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+
+}
+.center-icon-btn.active {
+  animation: shadowPulse 1.5s infinite; /* Apply the animation */
+}
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  .sidenav {
+    transform: translateX(-220px); /* Hide sidenav by default */
+  }
+
+  .sidenav.open {
+    transform: translateX(0); /* Show sidenav when open */
+  }
+
+  /* Show the hamburger menu on small screens */
+  .list-icon-btn {
+    display: block; /* Display hamburger icon */
+  }
+
+  /* Adjust navbar for mobile */
+  .sidenav {
+    width: 200px; /* Reduce navbar size */
+  }
+
+  /* When the sidenav is open, shift content */
+  main {
+    margin-left: 0; /* Remove left margin when navbar is hidden */
+  }
+}
+
+/* Small screens (phone landscape) */
+@media (max-width: 480px) {
+  /* Adjust navbar size and font for smaller screens */
+  .sidenav {
+    width: 180px;
+  }
+
+  .sidenav ul li a {
+    font-size: 14px;
+  }
+}

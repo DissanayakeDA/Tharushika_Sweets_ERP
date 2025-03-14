@@ -1,0 +1,127 @@
+/* Import Noto Sans font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+html,body{
+  background-color: #EFEFEF;
+  color: #EFEFEF;
+}
+.form-container {
+  margin-left: 150px; /* Adjust based on sidenav width */
+  padding: 30px;
+  font-family: "Noto Sans", sans-serif;
+  margin-top: 50px;
+  background-color: #EFEFEF;
+}
+
+.form-title {
+  font-size: 28px;
+  color: #37474F;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: 1px;
+  margin-top: 0.1px;
+}
+
+.form-group {
+  margin-bottom: 50px;
+  align-items: center;
+  margin-left: 33%;
+  margin-top: 5%;
+}
+
+.form-group label {
+    margin-top: 5%;
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 50%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #EFEFEF;
+}
+
+.save-btn {
+  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 47%;
+  margin-top: 10px;
+  background-size: 200%; /* Makes gradient movement more noticeable */
+  transition: background-position 0.5s ease; /* Adds animation effect */
+}
+
+.save-btn:hover {
+  background-position: right center; /* Animate gradient on hover */
+}
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  /* Adjust the form container for smaller screens */
+  .form-container {
+    margin-left: 0; /* Remove left margin to fit on smaller screens */
+    padding: 20px;
+  }
+
+  .form-title {
+    font-size: 24px;
+    margin-left: 0; /* Center the title */
+  }
+
+  /* Adjust form group (label and input) alignment */
+  .form-group {
+    margin-left: 0; /* Remove left margin for responsiveness */
+    width: 100%;
+  }
+
+  .form-group label {
+    font-size: 14px; /* Reduce label size */
+  }
+
+  /* Adjust input fields for smaller screens */
+  .form-group input {
+    width: 100%; /* Make input fields take the full width */
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Adjust the save button */
+  .save-btn {
+    margin-left: 0; /* Remove left margin */
+    width: 100%; /* Make button full width on small screens */
+    padding: 12px;
+    font-size: 16px;
+  }
+}
+
+/* Media Queries for Extra Small Devices (Phones in portrait mode) */
+@media (max-width: 480px) {
+  .form-title {
+    font-size: 20px;
+  }
+
+  .form-group input {
+    font-size: 13px; /* Reduce font size for inputs on very small screens */
+  }
+
+  .save-btn {
+    font-size: 14px; /* Reduce button font size */
+  }
+}
+
+  
