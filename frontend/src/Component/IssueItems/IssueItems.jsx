@@ -36,11 +36,9 @@ function IssueItems() {
         setLoading(false); // Stop loading
       }
     };
-    
+
     fetchStockData();
   }, []);
-
-  
 
   const handleBuyerIdChange = (e) => {
     setBuyerId(e.target.value);
@@ -108,7 +106,9 @@ function IssueItems() {
       localStorage.removeItem("totalBill");
       localStorage.removeItem("clearDataFlag");
       setBuyerId("");
-      setRows([{ selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 }]);
+      setRows([
+        { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
+      ]);
     }
   }, []);
 
@@ -198,7 +198,11 @@ function IssueItems() {
         <button className="add-row-btn" onClick={addNewRow} disabled={loading}>
           +
         </button>
-        <button className="checkout-btn" onClick={goToCheckout} disabled={loading}>
+        <button
+          className="checkout-btn"
+          onClick={goToCheckout}
+          disabled={loading}
+        >
           Go To Checkout
         </button>
       </div>
