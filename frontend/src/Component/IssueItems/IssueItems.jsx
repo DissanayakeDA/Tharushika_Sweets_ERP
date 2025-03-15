@@ -13,6 +13,7 @@ function IssueItems() {
     ]
   );
   const [stockItems, setStockItems] = useState([]); // State to hold fetched stock data
+  const [buyers, setBuyers] = useState([]); // State to hold fetched buyers
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
   const navigate = useNavigate();
@@ -36,11 +37,29 @@ function IssueItems() {
         setLoading(false); // Stop loading
       }
     };
-    
+
     fetchStockData();
   }, []);
 
-  
+  // Fetch buyer IDs from the backend
+  useEffect(() => {
+    const fetchBuyers = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/buyers"); // Adjust URL if needed
+        console.log("Buyers Response:", response.data); // Log the response to debug
+        if (response.data.buyers) {
+          setBuyers(response.data.buyers); // Update state with the buyer data
+        } else {
+          setError("Failed to fetch buyer data.");
+        }
+      } catch (error) {
+        console.error("Error fetching buyer data:", error);
+        setError("Error fetching buyer data. Check the console for details.");
+      }
+    };
+
+    fetchBuyers();
+  }, []);
 
   const handleBuyerIdChange = (e) => {
     setBuyerId(e.target.value);
@@ -119,15 +138,21 @@ function IssueItems() {
       <hr className="hr-issue" />
 
       <div className="buyer-id-section">
-        <input
-          type="text"
+        <select
+          
           name="buyer_id"
-          placeholder="Enter Buyer ID"
-          className="id-input"
           value={buyerId}
           onChange={handleBuyerIdChange}
+          className="id-input"
           required
-        />
+        >
+          <option value="">Select Buyer ID</option>
+          {buyers.map((buyer) => (
+            <option key={buyer._id} value={buyer._id}>
+              {buyer._id}
+            </option>
+          ))}
+        </select>
       </div>
 
       {loading && <p>Loading stock data...</p>}

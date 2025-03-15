@@ -26,7 +26,7 @@ html, body{
   }
 
 
-  .buyer-id-section input {
+  .buyer-id-section {
     width: 30%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -35,7 +35,7 @@ html, body{
     margin: 50px auto;
     display: block;
     background-color: #EFEFEF;
-    margin-left: 15%;
+    margin-left: 10%;
   }
   
   .issue-items-table {
