@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Ensure axios is installed
 
 function IssueItems() {
-  const [buyerId, setBuyerId] = useState(localStorage.getItem("issuebuyerId") || "");
+  const [buyerId, setBuyerId] = useState(
+    localStorage.getItem("issuebuyerId") || ""
+  );
   const [rows, setRows] = useState(
     JSON.parse(localStorage.getItem("issueinvoiceData")) || [
       { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
@@ -39,7 +41,25 @@ function IssueItems() {
   useEffect(() => {
     fetchStockData();
   }, []);
+  // Fetch buyer IDs from the backend
+  useEffect(() => {
+    const fetchBuyers = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/buyers"); // Adjust URL if needed
+        console.log("Buyers Response:", response.data); // Log the response to debug
+        if (response.data.buyers) {
+          setBuyers(response.data.buyers); // Update state with the buyer data
+        } else {
+          setError("Failed to fetch buyer data.");
+        }
+      } catch (error) {
+        console.error("Error fetching buyer data:", error);
+        setError("Error fetching buyer data. Check the console for details.");
+      }
+    };
 
+    fetchBuyers();
+  }, []);
 
   useEffect(() => {
     // Reset the state when necessary
@@ -114,7 +134,6 @@ function IssueItems() {
     navigate("/invoice");
   };
 
-
   useEffect(() => {
     if (localStorage.getItem("clearDataFlag") === "true") {
       localStorage.removeItem("buyerId");
@@ -127,7 +146,6 @@ function IssueItems() {
       ]);
     }
   }, []);
-
 
   return (
     <div className="issue-items-container">
