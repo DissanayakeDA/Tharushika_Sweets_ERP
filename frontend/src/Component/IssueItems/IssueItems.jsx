@@ -40,25 +40,6 @@ function IssueItems() {
     fetchStockData();
   }, []);
 
-  // Fetch buyer IDs from the backend
-  useEffect(() => {
-    const fetchBuyers = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/buyers"); // Adjust URL if needed
-        console.log("Buyers Response:", response.data); // Log the response to debug
-        if (response.data.buyers) {
-          setBuyers(response.data.buyers); // Update state with the buyer data
-        } else {
-          setError("Failed to fetch buyer data.");
-        }
-      } catch (error) {
-        console.error("Error fetching buyer data:", error);
-        setError("Error fetching buyer data. Check the console for details.");
-      }
-    };
-
-    fetchBuyers();
-  }, []);
 
   useEffect(() => {
     // Reset the state when necessary
@@ -132,6 +113,21 @@ function IssueItems() {
 
     navigate("/invoice");
   };
+
+
+  useEffect(() => {
+    if (localStorage.getItem("clearDataFlag") === "true") {
+      localStorage.removeItem("buyerId");
+      localStorage.removeItem("invoiceData");
+      localStorage.removeItem("totalBill");
+      localStorage.removeItem("clearDataFlag");
+      setBuyerId("");
+      setRows([
+        { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
+      ]);
+    }
+  }, []);
+
 
   return (
     <div className="issue-items-container">

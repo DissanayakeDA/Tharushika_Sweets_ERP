@@ -10,6 +10,8 @@ import router from "./routes/directbuyer.route.js";
 import multer from "multer";
 import fs from "fs";
 import "./models/directinvoice.model.js";
+import IngredientRoutes from "./routes/ingredient.route.js";
+import supplierRoutes from "./routes/supplier.route.js";
 
 import salesRoutes from "./routes/directsales.route.js";
 
@@ -29,6 +31,8 @@ app.use(
 app.use("/api/products", productRoutes);
 
 app.use("/api/stocks", stockRoutes);
+app.use("/api/ingredients", IngredientRoutes);
+app.use("/api/suppliers", supplierRoutes);
 
 app.use(cors());
 
@@ -46,7 +50,9 @@ app.post("/api/sales/add", async (req, res) => {
     console.log("Received Data:", req.body); // Debugging log
     const { buyerId, items, totalAmount } = req.body;
 
-    if (!buyerId || !items || items.length === 0 || !totalAmount) {
+
+
+      if (!buyerId || !items || items.length === 0 || !totalAmount) {
       return res.status(400).json({ success: false, message: "Missing data" });
     }
 
@@ -82,8 +88,8 @@ app.post("/api/returns/add", async (req, res) => {
   }
 });
 
-//InvoicePdf
-
+  
+  //InvoicePdf
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./files");
@@ -93,6 +99,7 @@ const storage = multer.diskStorage({
     cb(null, uniqueSuffix + file.originalname);
   },
 });
+
 
 app.listen(PORT, () => {
   connectDB();
