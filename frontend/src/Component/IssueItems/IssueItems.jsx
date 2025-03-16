@@ -41,25 +41,6 @@ function IssueItems() {
     fetchStockData();
   }, []);
 
-  // Fetch buyer IDs from the backend
-  useEffect(() => {
-    const fetchBuyers = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/buyers"); // Adjust URL if needed
-        console.log("Buyers Response:", response.data); // Log the response to debug
-        if (response.data.buyers) {
-          setBuyers(response.data.buyers); // Update state with the buyer data
-        } else {
-          setError("Failed to fetch buyer data.");
-        }
-      } catch (error) {
-        console.error("Error fetching buyer data:", error);
-        setError("Error fetching buyer data. Check the console for details.");
-      }
-    };
-
-    fetchBuyers();
-  }, []);
 
   const handleBuyerIdChange = (e) => {
     setBuyerId(e.target.value);
@@ -127,7 +108,9 @@ function IssueItems() {
       localStorage.removeItem("totalBill");
       localStorage.removeItem("clearDataFlag");
       setBuyerId("");
-      setRows([{ selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 }]);
+      setRows([
+        { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
+      ]);
     }
   }, []);
 
@@ -223,7 +206,11 @@ function IssueItems() {
         <button className="add-row-btn" onClick={addNewRow} disabled={loading}>
           +
         </button>
-        <button className="checkout-btn" onClick={goToCheckout} disabled={loading}>
+        <button
+          className="checkout-btn"
+          onClick={goToCheckout}
+          disabled={loading}
+        >
           Go To Checkout
         </button>
       </div>
