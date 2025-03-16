@@ -76,6 +76,7 @@ const AddBuyers = () => {
     await axios.post("http://localhost:5000/buyers", {
       name: String(inputs.name),
       contact: Number(inputs.contact),
+      address: Number(inputs.address),
       date: inputs.date,
     }).then(res => res.data);
   };
@@ -111,6 +112,7 @@ const AddBuyers = () => {
           />
           {errors.contact && <span className="error">{errors.contact}</span>}
         </div>
+        
         <div className="form-group">
           <label>Date</label>
           <input

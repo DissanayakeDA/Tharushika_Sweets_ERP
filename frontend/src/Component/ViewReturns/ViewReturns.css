@@ -5,21 +5,21 @@ html, body{
   background-color: #efefef;
 }
 
-.sales-container {
+.returns-container {
   padding: 20px;
   background-color: #efefef;
   border-radius: 8px;
   font-family: "Noto Sans", sans-serif;
 }
 
-.sales-table {
+.returns-table {
   width: 80%;
   border-collapse: collapse;
   text-align: center;
   margin-left: 15%;
   margin-top: 3%;
 }
-.sales-title {
+.returns-title {
   font-size: 28px;
   color: #37474F;
   margin-bottom: 20px;
@@ -29,29 +29,29 @@ html, body{
 
 }
 
-.hr-sales{
+.hr-returns{
   margin-left: 10%;
   margin-right: 2%;
   margin-top: 2.9%;
 }
 
 
-.sales-table th, .sales-table td {
+.returns-table th, .returns-table td {
   padding: 12px 15px;
   border-bottom: 2px solid #ccc;
 }
 
-.sales-table th {
+.returns-table th {
   background-color: #efefef;
   color: #4e4a4a;
   text-align: center;
 }
-.sales-table td {
+.returns-table td {
   font-size: 0.9rem;
   color: #555;
 }
 
-.view-btn {
+.returnsview-btn {
   padding: 5px 10px;
   background-color: #37474F;
   color: white;
@@ -59,54 +59,65 @@ html, body{
   cursor: pointer;
 }
 
-.view-btn:hover {
+.returnsview-btn:hover {
   background-color: #113051;
 }
 
-.modal {
+/* Add this CSS to your 'ViewReturns.css' */
+
+.returnsmodal {
+  display: none; /* Initially hidden */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   justify-content: center;
   align-items: center;
+  z-index: 9999; /* Ensure it's on top */
 }
 
-.modal-content {
-  background: rgb(255, 255, 255);
-  border: #113051;
+.returnsmodal-content {
+  background-color: white;
   padding: 20px;
+  border-radius: 8px;
   color: black;
-  border-radius: 5px;
-  width: 50%;
   max-width: 600px;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.returnsmodal.show {
+  display: flex; /* Show modal when showModal is true */
 }
 
 .close-btn {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: rgb(121, 27, 27);
-  color: rgb(255, 255, 255);
+  background-color: #ff4b5c;
+  color: white;
   border: none;
+  padding: 10px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.items-table {
+.close-btn:hover {
+  background-color: #f84e55;
+}
+
+.returnsitems-table {
   width: 100%;
   margin-top: 10px;
   border-collapse: collapse;
 }
 
-.items-table th, .items-table td {
+.returnsitems-table th, .returnsitems-table td {
   border: 1px solid #828282;
   padding: 8px;
   text-align: center;
 }
 
-.items-table th {
+.returnsitems-table th {
   background-color: #828282;
   color: #4e4a4a;
 }

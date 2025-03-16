@@ -23,26 +23,31 @@ export const getAllBuyers = async (req, res, next) => {
 
 //data insert
 
-export const addBuyers = async (req, res, next) =>{
+export const addBuyers = async (req, res, next) => {
+  const { name, contact, date } = req.body;
 
-    const {name, contact, date} = req.body;
+  let buyer;
 
-    let buyers;
-
-    try{
-        buyers = new Buyer({name, contact, date });
-        await buyers.save();
-    }catch(err){
-        console.log(err);
+  try {
+    // Check for missing required fields
+    if (!name || !contact || !date) {
+      return res.status(400).json({ message: "All fields are required" });
     }
 
-    //if not inserting buyers
-    if(!buyers){
-        return res.status(404).send({message:"Unable to add users"});
-    }
-    return res.status(200).json({ buyers });
+    // Create a new Buyer instance
+    buyer = new Buyer({ name, contact, date });
 
+    // Save the new buyer to the database
+    await buyer.save();
+
+  } catch (err) {
+    console.error("Error while saving buyer:", err);
+    return res.status(500).json({ message: "Unable to add buyer due to server error" });
+  }
+
+  return res.status(201).json({ buyer });
 };
+
 
 //getbyid
 export const getById = async (req, res, next) => {

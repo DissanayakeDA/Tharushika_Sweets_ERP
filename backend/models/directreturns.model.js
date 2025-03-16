@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const SaleSchema = new Schema({
-  invoiceId: { type: String, required: true, unique: true }, // Added invoice ID
+const ReturnsSchema = new Schema({
+  returnId: { type: String, required: true, unique: true },
   buyerId: { type: String, required: true },
   items: [
     {
@@ -14,8 +14,9 @@ const SaleSchema = new Schema({
   ],
   totalAmount: { type: Number, required: true },
   date: { type: Date, default: Date.now },
+  returnMethod: { type: String, required: true }, // Add returnMethod field
 });
 
-const Sales = mongoose.model("Sales", SaleSchema);
+const Returns = mongoose.model("Returns", ReturnsSchema);
 
-export default Sales;
+export default Returns;

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import React from "react";
+
 import Home from "@/Component/Home/Home";
 import AddStock from "@/Component/AddStock/AddStock";
 import IssueItems from "@/Component/IssueItems/IssueItems";
@@ -15,6 +16,9 @@ import Invoice from "@/Component/Invoice_DBuyers/Invoice";
 import DirectBuyerReturns from "./Component/DirectBuyerReturns/DirectBuyerReturns";
 import AddSuppliers from "./Component/AddSupplier/AddSupplier";
 import HomeGM from "./Component/GMDashboard/GMDashboard";
+import ReturnInvoice from './Component/ReturnInvoice/ReturnInvoice';
+import ViewReturns from './Component/ViewReturns/ViewReturns';
+
 function App() {
   return (
     <div>
@@ -35,6 +39,9 @@ function App() {
           <Route path="/directreturns" element={<DirectBuyerReturns />} />
           <Route path="/addsuppliers" element={<AddSuppliers />} />
           <Route path="/home-gm" element={<HomeGM />} />
+            <Route path="/returninvoice" element={<ReturnInvoice/>}/>
+          <Route path="/viewReturns" element={<ViewReturns/>}/>
+
         </Routes>
       </React.Fragment>
     </div>
