@@ -16,6 +16,6 @@ const buyerSchema = new Schema({
     },
     
 });
-const Buyer = mongoose.model("Buyer", buyerSchema);
+const Return = mongoose.model("Buyer", buyerSchema);
 
-export default Buyer;
+export default Return;

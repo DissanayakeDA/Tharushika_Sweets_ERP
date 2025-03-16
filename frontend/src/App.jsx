@@ -13,7 +13,8 @@ import Requests from '@/Component/Requests/Requests';
 import UpdateBuyers from '@/Component/UpdateBuyers/UpdateBuyers';
 import Invoice from '@/Component/Invoice_DBuyers/Invoice';
 import DirectBuyerReturns from './Component/DirectBuyerReturns/DirectBuyerReturns';
-
+import ReturnInvoice from './Component/ReturnInvoice/ReturnInvoice';
+import ViewReturns from './Component/ViewReturns/ViewReturns';
 function App() {
 
   return (
@@ -34,6 +35,9 @@ function App() {
           <Route path="/viewbuyers/:id" element={<UpdateBuyers/>}/>
           <Route path="/invoice" element={<Invoice />} />
           <Route path="/directreturns" element={<DirectBuyerReturns />} />
+          <Route path="/returninvoice" element={<ReturnInvoice/>}/>
+          <Route path="/viewReturns" element={<ViewReturns/>}/>
+
         </Routes>
 
       </React.Fragment>

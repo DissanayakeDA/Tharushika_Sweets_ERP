@@ -41,7 +41,15 @@ function Home() {
               <label className="dash-btn-text-req">Requests</label>
             </div>
           </Link>
+          
+
         </div>
+        <Link to="/viewReturns" className="dashboard-link">
+            <div className="dashboard-btn-returns">
+            <div className="dash-btn-icon-returns"><i className="bi bi-bell"></i></div>
+              <label className="dash-btn-text-req">Returns</label>
+            </div>
+          </Link>
       </div>
       
     </div>

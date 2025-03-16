@@ -3,27 +3,24 @@ import Nav from "../Nav/Nav";
 import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf"; 
 import html2canvas from "html2canvas"; 
-import "./Invoice.css";
+import "./ReturnInvoice.css";
 import axios from "axios";
 
-function Invoice() {
+function ReturnInvoice() {
   const [invoiceData, setInvoiceData] = useState([]);
   const [totalBill, setTotalBill] = useState(0);
   const [buyerId, setBuyerId] = useState(""); 
+  const [returnMethod, setReturnMethod] = useState(""); // Store return method
   const [currentTime, setCurrentTime] = useState(new Date()); // State for real-time
 
   const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch data from localStorage
-    const data = JSON.parse(localStorage.getItem("issueinvoiceData")) || [];
-    const bill = localStorage.getItem("issuetotalBill") || 0;
-    const buyer = localStorage.getItem("issuebuyerId") || "";
-
-    setInvoiceData(data);
-    setTotalBill(parseFloat(bill));
-    setBuyerId(buyer);
-
+    setInvoiceData(JSON.parse(localStorage.getItem("returninvoiceData")) || []);
+    setTotalBill(parseFloat(localStorage.getItem("returntotalBill")) || 0);
+    setBuyerId(localStorage.getItem("returnbuyerId") || "");
+    setReturnMethod(localStorage.getItem("returnMethod") || ""); // Fetch return method
     // Update time every second
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -34,7 +31,7 @@ function Invoice() {
   }, []);
 
   const handleBack = () => {
-    navigate("/issueitems");
+    navigate("/directreturns");
   };
 
   const generatePDF = () => {
@@ -56,37 +53,44 @@ function Invoice() {
   };
 
   const handleSubmit = async () => {
-    generatePDF();
+    console.log("Starting handleSubmit"); // Debug log
+    generatePDF(); // Generate the invoice PDF
   
-    const saleData = {
+    const returnData = {
       buyerId,
-      items: invoiceData.map(item => ({
+      returnMethod,
+      items: invoiceData.map((item) => ({
         itemName: item.selectedItem,
         quantity: item.quantity,
         price: item.price,
         total: item.total,
       })),
-      totalAmount: totalBill , // Total amount including tax
+      totalAmount: returnMethod === "issueMoney" ? totalBill : 0, // No price change if issuing product
     };
   
-    console.log("Sending Sale Data:", saleData); // Debugging log
+    console.log("Return Data:", returnData); // Debug log
   
     try {
-      const response = await axios.post('http://localhost:5000/api/sales/add', saleData);
-      console.log("Response:", response.data); // Log response from backend
+      const response = await axios.post("http://localhost:5000/api/returns/add", returnData);
+      console.log("API Response:", response.data); // Debug log
+  
       if (response.data.success) {
-        console.log("Sale recorded successfully");
+        console.log("Return recorded successfully");
+  
+        // Clear localStorage data
+        localStorage.removeItem("returninvoiceData");
+        localStorage.removeItem("returnbuyerId");
+        localStorage.removeItem("returntotalBill");
+        localStorage.removeItem("returnMethod");
+  
+        console.log("Navigating to /viewReturns"); // Debug log
+        navigate("/viewReturns");
       } else {
-        console.log("Error recording sale");
+        console.log("Error recording return");
       }
     } catch (error) {
-      console.error("Error submitting sale:", error.response ? error.response.data : error.message);
+      console.error("Error submitting return:", error.response ? error.response.data : error.message);
     }
-  
-    localStorage.removeItem("issueinvoiceData");
-    localStorage.removeItem("issuetotalBill");
-    localStorage.removeItem("issuebuyerId");
-    navigate("/viewsales");
   };
   
 
@@ -152,4 +156,4 @@ function Invoice() {
   );
 }
 
-export default Invoice;
+export default ReturnInvoice;

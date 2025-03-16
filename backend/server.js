@@ -11,15 +11,21 @@ import multer from "multer";
 import fs from "fs";
 import "./models/directinvoice.model.js";
 
+import salesRoutes from "./routes/directsales.route.js";
+
+import returnRoutes from "./routes/directreturns.route.js";
+
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:5173'  // Allow requests from this origin
-  }));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allow requests from this origin
+  })
+);
 app.use("/api/products", productRoutes);
 
 app.use("/api/stocks", stockRoutes);
@@ -29,55 +35,66 @@ app.use(cors());
 app.use("/buyers", router);
 const dir = "./files";
 if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
+  fs.mkdirSync(dir);
 }
-app.use("/files",express.static("files"));
+app.use("/files", express.static("files"));
+
+//direct sales
+app.use("/api/sales", salesRoutes);
+app.post("/api/sales/add", async (req, res) => {
+  try {
+    console.log("Received Data:", req.body); // Debugging log
+    const { buyerId, items, totalAmount } = req.body;
+
+    if (!buyerId || !items || items.length === 0 || !totalAmount) {
+      return res.status(400).json({ success: false, message: "Missing data" });
+    }
+
+    const newSale = { buyerId, items, totalAmount, date: new Date() };
+    const result = await db.collection("sales").insertOne(newSale);
+
+    res.json({ success: true, insertedId: result.insertedId });
+  } catch (error) {
+    console.error("Database Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+//directreturns
+
+app.use("/api/returns", returnRoutes);
+app.post("/api/returns/add", async (req, res) => {
+  try {
+    console.log("Received Data:", req.body); // Debugging log
+    const { buyerId, items, totalAmount } = req.body;
+
+    if (!buyerId || !items || items.length === 0 || !totalAmount) {
+      return res.status(400).json({ success: false, message: "Missing data" });
+    }
+
+    const newReturn = { buyerId, items, totalAmount, date: new Date() };
+    const result = await db.collection("returns").insertOne(newReturn);
+
+    res.json({ success: true, insertedId: result.insertedId });
+  } catch (error) {
+    console.error("Database Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
 
 //InvoicePdf
 
-
 const storage = multer.diskStorage({
-    destination:function(req,file, cb) {
-        cb(null, "./files");
-    },
-    filename: function(req, file, cb) {
-        const uniqueSuffix = Date.now();
-        cb(null, uniqueSuffix + file.originalname);
-    },
-});
-
-//Insert Model Part(pdf)
-
-const pdfSchema = mongoose.model("InvoiceDetails");
-const upload = multer({storage})
-
-app.post("/uploadfile", upload.single("file"),async(req, res) =>{
-    console.log(res.file);
-    const title = req.body.title;
-    const pdf = req.file.filename;
-    try{
-        await pdfSchema.create({ title: title,pdf: pdf});
-        console.log("Pdf Upload Successfully");
-        res.send({status:200});
-    }catch(err){
-        console.log(err);
-        res.status(500).send({status:"error"});
-    }
-});
-
-app.get("/getFile", async (req, res) => {
-    try{
-        const data = await pdfSchema.find({});
-        res.send({ status: 200, data: data});
-
-    }catch(err){
-        console.log(err);
-        res.status(500).send({status: "error"});
-    }
+  destination: function (req, file, cb) {
+    cb(null, "./files");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
 });
 
 app.listen(PORT, () => {
   connectDB();
   console.log("Server is running on http://localhost:" + PORT);
 });
-
