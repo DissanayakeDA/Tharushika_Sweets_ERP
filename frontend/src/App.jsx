@@ -14,7 +14,7 @@ import UpdateBuyers from "@/Component/UpdateBuyers/UpdateBuyers";
 import Invoice from "@/Component/Invoice_DBuyers/Invoice";
 import DirectBuyerReturns from "./Component/DirectBuyerReturns/DirectBuyerReturns";
 import AddSuppliers from "./Component/AddSupplier/AddSupplier";
-
+import HomeGM from "./Component/GMDashboard/GMDashboard";
 function App() {
   return (
     <div>
@@ -34,6 +34,7 @@ function App() {
           <Route path="/invoice" element={<Invoice />} />
           <Route path="/directreturns" element={<DirectBuyerReturns />} />
           <Route path="/addsuppliers" element={<AddSuppliers />} />
+          <Route path="/home-gm" element={<HomeGM />} />
         </Routes>
       </React.Fragment>
     </div>

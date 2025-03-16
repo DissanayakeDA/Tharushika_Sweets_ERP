@@ -10,6 +10,8 @@ import router from "./routes/directbuyer.route.js";
 import multer from "multer";
 import fs from "fs";
 import "./models/directinvoice.model.js";
+import IngredientRoutes from "./routes/ingredient.route.js";
+import supplierRoutes from "./routes/supplier.route.js";
 
 dotenv.config();
 
@@ -25,6 +27,8 @@ app.use(
 app.use("/api/products", productRoutes);
 
 app.use("/api/stocks", stockRoutes);
+app.use("/api/ingredients", IngredientRoutes);
+app.use("/api/suppliers", supplierRoutes);
 
 app.use(cors());
 

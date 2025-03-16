@@ -68,12 +68,36 @@ html {
   font-weight: bold;
   text-decoration: none;
 }
+.dashboard-btn-emp {
+  display: flex;
+  flex-direction: column; /* Stack the icon and text vertically */
+  align-items: center; /* Center the content horizontally */
+  justify-content: center; /* Center the content vertically */
+  background: #9ac3dd;
+  color: white;
+  padding: 30px 20px;
+  border-radius: 18px;
+  cursor: pointer;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 10%;
+  margin-top: 2%;
+}
 .dashboard-link {
   text-decoration: none;
   width: 100%;
 }
 
 .dashboard-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+  background: #fff;
+}
+.dashboard-btn-emp:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
   background: #fff;

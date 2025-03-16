@@ -3,7 +3,7 @@ import Nav from "../Nav/Nav";
 import "./GMDashboard.css";
 import { Link } from "react-router-dom";
 
-function Home() {
+function GMDashboard() {
   return (
     <div className="home-container">
       <Nav />
@@ -49,15 +49,15 @@ function Home() {
               <label className="dash-btn-text-req">Requests</label>
             </div>
           </Link>
-          <Link to="/viewrequests" className="dashboard-link">
-            <div className="dashboard-btn">
-              <div className="dash-btn-icon">
-                <i className="bi bi-bell"></i>
-              </div>
-              <label className="dash-btn-text-req">Employees</label>
-            </div>
-          </Link>
         </div>
+        <Link to="/viewrequests" className="dashboard-link">
+          <div className="dashboard-btn-emp">
+            <div className="dash-btn-icon">
+              <i className="bi bi-bell"></i>
+            </div>
+            <label className="dash-btn-text-req">Employees</label>
+          </div>
+        </Link>
       </div>
     </div>
   );
