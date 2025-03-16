@@ -13,6 +13,7 @@ function IssueItems() {
     ]
   );
   const [stockItems, setStockItems] = useState([]); // State to hold fetched stock data
+  const [buyers, setBuyers] = useState([]); // State to hold fetched buyers
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ function IssueItems() {
 
     fetchStockData();
   }, []);
+
 
   const handleBuyerIdChange = (e) => {
     setBuyerId(e.target.value);
@@ -119,15 +121,21 @@ function IssueItems() {
       <hr className="hr-issue" />
 
       <div className="buyer-id-section">
-        <input
-          type="text"
+        <select
+          
           name="buyer_id"
-          placeholder="Enter Buyer ID"
-          className="id-input"
           value={buyerId}
           onChange={handleBuyerIdChange}
+          className="id-input"
           required
-        />
+        >
+          <option value="">Select Buyer ID</option>
+          {buyers.map((buyer) => (
+            <option key={buyer._id} value={buyer._id}>
+              {buyer._id}
+            </option>
+          ))}
+        </select>
       </div>
 
       {loading && <p>Loading stock data...</p>}
