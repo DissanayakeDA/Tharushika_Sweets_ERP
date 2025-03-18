@@ -15,43 +15,50 @@ function Home() {
 
         {/* Dashboard Buttons */}
         <div className="dashboard-buttons">
-          <Link to="/viewstocks" className="dashboard-link">
+          <Link to="/viewstock" className="dashboard-link">
             <div className="dashboard-btn">
-            <div className="dash-btn-icon"><i class="bi bi-box-seam"></i></div>
+              <div className="dash-btn-icon">
+                <i class="bi bi-box-seam"></i>
+              </div>
               <label className="dash-btn-text">Stocks</label>
             </div>
           </Link>
           <Link to="/viewbuyers" className="dashboard-link">
-          <div className="dashboard-btn">
-            <div className="dash-btn-icon"><i className="bi bi-people-fill"></i></div>
+            <div className="dashboard-btn">
+              <div className="dash-btn-icon">
+                <i className="bi bi-people-fill"></i>
+              </div>
               <label className="dash-btn-text"> Buyers</label>
-          </div>
+            </div>
           </Link>
-          
+
           <Link to="/viewsales" className="dashboard-link">
             <div className="dashboard-btn">
-              <div className="dash-btn-icon"><i className="bi bi-receipt"></i></div>
-              
+              <div className="dash-btn-icon">
+                <i className="bi bi-receipt"></i>
+              </div>
+
               <label className="dash-btn-text-sales"> Sales</label>
             </div>
           </Link>
           <Link to="/viewrequests" className="dashboard-link">
             <div className="dashboard-btn">
-            <div className="dash-btn-icon"><i className="bi bi-bell"></i></div>
+              <div className="dash-btn-icon">
+                <i className="bi bi-bell"></i>
+              </div>
               <label className="dash-btn-text-req">Requests</label>
             </div>
           </Link>
-          
-
         </div>
         <Link to="/viewReturns" className="dashboard-link">
-            <div className="dashboard-btn-returns">
-            <div className="dash-btn-icon-returns"><i className="bi bi-bell"></i></div>
-              <label className="dash-btn-text-req">Returns</label>
+          <div className="dashboard-btn-returns">
+            <div className="dash-btn-icon-returns">
+              <i className="bi bi-bell"></i>
             </div>
-          </Link>
+            <label className="dash-btn-text-req">Returns</label>
+          </div>
+        </Link>
       </div>
-      
     </div>
   );
 }

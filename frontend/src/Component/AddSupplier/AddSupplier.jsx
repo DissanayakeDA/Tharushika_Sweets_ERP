@@ -32,7 +32,7 @@ const AddSupplier = () => {
 
     // Validate Buyer Name
     if (!inputs.supplier_name) {
-      formErrors.name = "Supplier name is required.";
+      formErrors.supplier_name = "Supplier name is required.";
       isValid = false;
     } else if (!/^[A-Za-z\s]+$/.test(inputs.supplier_name)) {
       formErrors.supplier_name =
@@ -74,13 +74,13 @@ const AddSupplier = () => {
 
     console.log(inputs);
     await sendRequest();
-    history("/viewsupplier"); // Navigate to 'viewbuyers' when submission is successful
+    history("/viewsuppliers"); // Navigate to 'viewbuyers' when submission is successful
   };
 
   // Send request to backend
   const sendRequest = async () => {
     await axios
-      .post("http://localhost:5000/supplier", {
+      .post("http://localhost:5000/api/suppliers", {
         supplier_name: String(inputs.supplier_name),
         supplier_address: String(inputs.supplier_address),
         supplier_phone: String(inputs.supplier_phone),
@@ -92,7 +92,7 @@ const AddSupplier = () => {
   return (
     <div className="form-container">
       <Nav />
-      <h2 className="form-title">Add Buyers</h2>
+      <h2 className="form-title">Add Suppliers</h2>
       <hr />
       <form onSubmit={handleSubmit}>
         <div className="form-group">
