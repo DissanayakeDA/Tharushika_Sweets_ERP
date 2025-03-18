@@ -12,7 +12,6 @@ import fs from "fs";
 import "./models/directinvoice.model.js";
 import IngredientRoutes from "./routes/ingredient.route.js";
 import supplierRoutes from "./routes/supplier.route.js";
-
 import salesRoutes from "./routes/directsales.route.js";
 
 import returnRoutes from "./routes/directreturns.route.js";
