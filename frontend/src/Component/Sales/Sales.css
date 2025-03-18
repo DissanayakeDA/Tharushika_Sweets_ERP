@@ -1,277 +1,112 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
-html, body {
-  margin: 0;
-  font-family: "Noto Sans", sans-serif;
-  background-color: #EFEFEF;
-}
-
-.sales-title {
-  font-size: 28px;
-  color: #37474F;
-  text-align: center;
-  margin-left: 10%;
-  font-family: "Noto Sans", sans-serif;
-}
-
-.hr-sales {
-  position: relative;
-  width: 88vw; /* Full viewport width */
-  margin-left: 150px;
-  margin-top: 3%;
+html, body{
+  background-color: #efefef;
 }
 
 .sales-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
-}
-
-.content-container {
-  display: flex; /* Align items side by side */
-  justify-content: space-between; /* Push items to opposite sides */
-  align-items: flex-start; /* Align items at the top */
-  gap: 20px; /* Add spacing between sections */
-  margin-top: 20px; /* Add some top margin if needed */
-  width: 100%; /* Ensure it takes the full width */
-}
-/* Upload Invoice Section */
-.upload-section {
-  flex: 1; /* Make it flexible and take up available space */
-  max-width: 30%; /* Restrict the width of the section */
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #efefef;
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  margin-left: 20%;
-  margin-top: 2%;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.sales-table {
+  width: 80%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+.sales-title {
+  font-size: 28px;
+  color: #37474F;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: 10%;
+  font-family: "Noto Sans", sans-serif;
+
+}
+
+.hr-sales{
+  margin-left: 10%;
+  margin-right: 2%;
+  margin-top: 2.9%;
 }
 
 
-.upload-title {
-  color: #5D4037;
-  margin-bottom: 15px;
+.sales-table th, .sales-table td {
+  padding: 12px 15px;
+  border-bottom: 2px solid #ccc;
 }
 
-.upload-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+.sales-table th {
+  background-color: #efefef;
   color: #4e4a4a;
+  text-align: center;
 }
-
-.upload-form input[type="text"],
-.upload-form input[type="file"] {
-  width: 90%;
-  padding: 8px;
-  margin-bottom: 15px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.submit-button {
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 1rem;
-  background-size: 200%; /* Makes gradient movement more noticeable */
-  transition: background-position 0.5s ease; /* Adds animation effect */
-}
-
-.submit-button:hover {
-  background: linear-gradient(to right, #3d5c6b, #37474F, #37474F);
-}
-
-.recent-invoice {
-  margin-top: 10px;
-  font-size: 14px;
+.sales-table td {
+  font-size: 0.9rem;
   color: #555;
 }
 
-/* PDF Details Section */
-.invoice-list {
-  flex: 1; /* Make it flexible and take up available space */
-  max-width: 30%; /* Restrict the width of the section */
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  margin-top: 2%;
-  margin-right: 5%;
-}
-.invoice-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.invoice-item:last-child {
-  border-bottom: none;
-}
-
-.invoice-item h5 {
-  margin: 0;
-  color: #333;
-}
-
-.show-pdf-button {
-  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+.view-btn {
+  padding: 5px 10px;
+  background-color: #37474F;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-position 0.5s ease; /* Adds animation effect */
-
 }
 
-.show-pdf-button:hover {
-  background: linear-gradient(to right, #3d5c6b, #37474F, #37474F);
+.view-btn:hover {
+  background-color: #113051;
 }
-
-
 
 .modal {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Bring to front */
 }
 
 .modal-content {
-  background: #fff;
+  background: rgb(255, 255, 255);
+  border: #113051;
   padding: 20px;
-  border-radius: 8px;
-  max-width: 90%;
-  max-height: 90%;
-  overflow: auto; /* Scroll if content exceeds */
-  position: relative;
-  z-index: 1; /* Keeps the modal content below the close button */
-
+  color: black;
+  border-radius: 5px;
+  width: 50%;
+  max-width: 600px;
 }
 
-.close-modal-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: white;
-  color: rgb(113, 111, 111);
+.close-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: rgb(121, 27, 27);
+  color: rgb(255, 255, 255);
   border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 1.2rem;
   cursor: pointer;
-  z-index: 9999; /* Ensures the button is on top of other content */
 }
 
+.items-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
 
+.items-table th, .items-table td {
+  border: 1px solid #828282;
+  padding: 8px;
+  text-align: center;
+}
 
-.close-modal-button:hover {
+.items-table th {
+  background-color: #828282;
   color: #4e4a4a;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .sales-title {
-    font-size: 24px;
-    margin-left: 5%; /* Adjust margin for smaller screens */
-  }
-
-  .content-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .upload-section, .invoice-list {
-    width: 80%; /* Make sections take up more space on smaller screens */
-    margin-left: 10%; /* Center the sections */
-  }
-
-  .submit-button {
-    font-size: 0.9rem;
-    padding: 8px 16px;
-  }
-
-  .show-pdf-button {
-    font-size: 0.8rem;
-    padding: 6px 12px;
-  }
-}
-
-@media (max-width: 768px) {
-  .sales-title {
-    font-size: 22px;
-    margin-left: 0; /* Center title for mobile */
-  }
-
-  .content-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .upload-section, .invoice-list {
-    width: 90%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .submit-button {
-    font-size: 0.85rem;
-    padding: 8px 14px;
-  }
-
-  .show-pdf-button {
-    font-size: 0.75rem;
-    padding: 5px 10px;
-  }
-
-  .invoice-item {
-    flex-direction: column;
-    text-align: center; /* Stack items vertically on mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .sales-title {
-    font-size: 20px;
-    margin-left: 0; /* Center title */
-  }
-
-  .upload-section, .invoice-list {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .submit-button {
-    font-size: 0.8rem;
-    padding: 6px 12px;
-  }
-
-  .show-pdf-button {
-    font-size: 0.7rem;
-    padding: 4px 8px;
-  }
-
-  .invoice-item {
-    flex-direction: column;
-    text-align: center; /* Ensure items stack vertically */
-    padding: 5px 0; /* Reduce padding for mobile */
-  }
 }

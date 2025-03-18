@@ -6,41 +6,74 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Ensure axios is installed
 
 function IssueItems() {
-  const [buyerId, setBuyerId] = useState(localStorage.getItem("buyerId") || "");
+  const [buyerId, setBuyerId] = useState(
+    localStorage.getItem("issuebuyerId") || ""
+  );
   const [rows, setRows] = useState(
-    JSON.parse(localStorage.getItem("invoiceData")) || [
+    JSON.parse(localStorage.getItem("issueinvoiceData")) || [
       { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
     ]
   );
   const [stockItems, setStockItems] = useState([]); // State to hold fetched stock data
+  const [buyers, setBuyers] = useState([]); // State to hold fetched buyers
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
   const navigate = useNavigate();
 
   // Fetch stock data from the backend
-  useEffect(() => {
-    const fetchStockData = async () => {
-      try {
-        setLoading(true); // Start loading
-        const response = await axios.get("http://localhost:5000/api/stocks"); // Adjust URL if needed
-        console.log("API Response:", response.data); // Log the response to debug
-        if (response.data.success) {
-          setStockItems(response.data.data); // Update state with the stock data array
-        } else {
-          setError("Failed to fetch stock data.");
-        }
-      } catch (error) {
-        console.error("Error fetching stock data:", error);
-        setError("Error fetching stock data. Check the console for details.");
-      } finally {
-        setLoading(false); // Stop loading
+
+  const fetchStockData = async () => {
+    try {
+      setLoading(true); // Start loading
+      const response = await axios.get("http://localhost:5000/api/stocks"); // Adjust URL if needed
+      if (response.data.success) {
+        setStockItems(response.data.data); // Update state with the stock data array
+      } else {
+        setError("Failed to fetch stock data.");
       }
-    };
-    
+    } catch (error) {
+      console.error("Error fetching stock data:", error);
+      setError("Error fetching stock data.");
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
+  useEffect(() => {
     fetchStockData();
   }, []);
+  // Fetch buyer IDs from the backend
+  useEffect(() => {
+    const fetchBuyers = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/buyers"); // Adjust URL if needed
+        console.log("Buyers Response:", response.data); // Log the response to debug
+        if (response.data.buyers) {
+          setBuyers(response.data.buyers); // Update state with the buyer data
+        } else {
+          setError("Failed to fetch buyer data.");
+        }
+      } catch (error) {
+        console.error("Error fetching buyer data:", error);
+        setError("Error fetching buyer data. Check the console for details.");
+      }
+    };
 
-  
+    fetchBuyers();
+  }, []);
+
+  useEffect(() => {
+    // Reset the state when necessary
+    if (localStorage.getItem("clearDataFlag") === "true") {
+      localStorage.removeItem("issuebuyerId");
+      localStorage.removeItem("issueinvoiceData");
+      localStorage.removeItem("issuetotalBill");
+      localStorage.removeItem("clearDataFlag");
+      setBuyerId("");
+      setRows([
+        { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
+      ]);
+    }
+  }, []);
 
   const handleBuyerIdChange = (e) => {
     setBuyerId(e.target.value);
@@ -94,9 +127,9 @@ function IssueItems() {
     const filteredRows = rows.filter((row) => row.selectedItem);
     const totalBill = filteredRows.reduce((sum, row) => sum + row.total, 0);
 
-    localStorage.setItem("buyerId", buyerId);
-    localStorage.setItem("invoiceData", JSON.stringify(filteredRows));
-    localStorage.setItem("totalBill", totalBill);
+    localStorage.setItem("issuebuyerId", buyerId);
+    localStorage.setItem("issueinvoiceData", JSON.stringify(filteredRows));
+    localStorage.setItem("issuetotalBill", totalBill);
 
     navigate("/invoice");
   };
@@ -108,7 +141,9 @@ function IssueItems() {
       localStorage.removeItem("totalBill");
       localStorage.removeItem("clearDataFlag");
       setBuyerId("");
-      setRows([{ selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 }]);
+      setRows([
+        { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
+      ]);
     }
   }, []);
 
@@ -119,15 +154,20 @@ function IssueItems() {
       <hr className="hr-issue" />
 
       <div className="buyer-id-section">
-        <input
-          type="text"
+        <select
           name="buyer_id"
-          placeholder="Enter Buyer ID"
-          className="id-input"
           value={buyerId}
           onChange={handleBuyerIdChange}
+          className="id-input"
           required
-        />
+        >
+          <option value="">Select Buyer ID</option>
+          {buyers.map((buyer) => (
+            <option key={buyer._id} value={buyer._id}>
+              {buyer._id}
+            </option>
+          ))}
+        </select>
       </div>
 
       {loading && <p>Loading stock data...</p>}
@@ -198,7 +238,11 @@ function IssueItems() {
         <button className="add-row-btn" onClick={addNewRow} disabled={loading}>
           +
         </button>
-        <button className="checkout-btn" onClick={goToCheckout} disabled={loading}>
+        <button
+          className="checkout-btn"
+          onClick={goToCheckout}
+          disabled={loading}
+        >
           Go To Checkout
         </button>
       </div>

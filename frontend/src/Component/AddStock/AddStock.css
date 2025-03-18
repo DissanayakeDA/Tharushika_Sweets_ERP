@@ -1,0 +1,250 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+html,
+body {
+  background-color: #efefef;
+}
+.issue-items-container {
+  padding: 20px;
+  background-color: #efefef;
+  border-radius: 8px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.title {
+  font-size: 28px;
+  color: #37474f;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: 10%;
+}
+
+.hr-issue {
+  margin-left: 10%;
+  margin-right: 2%;
+  margin-top: 2.9%;
+}
+
+.buyer-id-section input {
+  width: 30%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin: 50px auto;
+  display: block;
+  background-color: #efefef;
+  margin-left: 15%;
+}
+
+.issue-items-table {
+  width: 80%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+
+.issue-items-table th,
+.issue-items-table td {
+  padding: 12px 15px;
+  border-bottom: 2px solid #ccc;
+}
+
+.issue-items-table th {
+  background-color: #efefef;
+  color: #4e4a4a;
+  text-align: center;
+}
+
+.issue-items-table td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.issue-items-table td button {
+  margin: 0 5px;
+  padding: 5px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.qty-input {
+  background-color: #efefef;
+}
+.issue-items-table select {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  background-color: #efefef;
+}
+
+.issue-btn-container {
+  display: flex; /* Aligns buttons horizontally */
+  justify-content: flex-end; /* Aligns buttons to the right */
+  gap: 10px; /* Small space between buttons */
+  margin-top: 5%; /* Keeps vertical position */
+  margin-right: 5%; /* Moves buttons slightly to the right */
+}
+
+/* Button styling */
+.add-row-btn {
+  background-color: #37474f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Add a small hover effect */
+  margin-left: 77%;
+}
+
+.add-row-btn:hover {
+  transform: scale(1.1);
+}
+
+.remove-row-btn {
+  background-color: #37474f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.remove-row-btn:hover {
+  transform: scale(1.1);
+}
+
+.addstock-btn {
+  background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  background-size: 200%;
+  transition: background-position 0.5s ease, transform 0.2s ease;
+  padding: 10px 20px;
+  font-family: "Noto Sans", sans-serif;
+  margin-left: 85%;
+}
+
+.checkout-btn:hover {
+  background-position: right;
+  transform: scale(1.05);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  /* Adjust title font size and alignment for tablets and smaller devices */
+  .title {
+    font-size: 24px;
+    margin-left: 10%;
+  }
+
+  .hr-issue {
+    margin-left: 10%;
+  }
+
+  .buyer-id-section input {
+    width: 80%; /* Adjust input width */
+  }
+
+  .issue-items-table {
+    width: 90%; /* Reduce table width */
+    margin-left: 5%;
+  }
+
+  .issue-btn-container {
+    margin-top: 5%;
+    margin-right: 5%;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center align buttons */
+  }
+
+  .add-row-btn,
+  .remove-row-btn {
+    width: 35px; /* Adjust button size */
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .checkout-btn {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 22px;
+    margin-left: 5%;
+  }
+
+  .buyer-id-section input {
+    width: 90%; /* Make input fields nearly full-width */
+  }
+
+  .issue-items-table {
+    width: 100%;
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .issue-items-table th,
+  .issue-items-table td {
+    font-size: 0.8rem; /* Make table text smaller */
+  }
+
+  .issue-btn-container {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 15px;
+    align-items: center; /* Center align buttons */
+  }
+
+  .add-row-btn,
+  .remove-row-btn {
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .checkout-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 20px;
+    margin-left: 0; /* Center title */
+  }
+
+  .issue-items-table {
+    width: 100%;
+    margin-left: 0; /* No margin */
+    font-size: 0.75rem; /* Smaller table text */
+  }
+
+  .issue-btn-container {
+    gap: 10px;
+    align-items: center;
+  }
+
+  .add-row-btn,
+  .remove-row-btn {
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .checkout-btn {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+  }
+}

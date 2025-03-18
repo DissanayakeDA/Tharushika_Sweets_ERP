@@ -1,4 +1,11 @@
 import express from "express";
+import {
+  addSupplier,
+  getAllSuppliers,
+  getSupplierById,
+  updateSupplier,
+  deleteSupplier,
+} from "../controllers/supplier.controller.js";
 
 const router = express.Router();
 

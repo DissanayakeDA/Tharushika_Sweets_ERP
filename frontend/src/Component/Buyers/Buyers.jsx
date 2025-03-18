@@ -72,7 +72,7 @@ function Buyers() {
       doc.setTextColor(0, 0, 0); // Black color for regular text
       doc.text(`ID: ${buyer._id}`, 20, yOffset + 7);
       doc.text(`Name: ${buyer.name}`, 20, yOffset + 14);
-      doc.text(`Email: ${buyer.contact}`, 20, yOffset + 21);
+      doc.text(`Contact: ${buyer.contact}`, 20, yOffset + 21);
     });
 
     doc.save("Direct_Buyers_Report.pdf");

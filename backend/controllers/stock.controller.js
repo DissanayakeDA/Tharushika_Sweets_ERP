@@ -3,27 +3,64 @@ import mongoose from "mongoose";
 
 // Add Stock to System
 export const addStock = async (req, res) => {
-  const stock = req.body;
+  // console.log("Received Request Body:", req.body); // Log the request data
 
-  if (
-    !stock.product_id ||
-    !stock.product_name ||
-    !stock.product_quantity ||
-    !stock.product_price
-  ) {
+  const { product_name, product_quantity, product_price } = req.body;
+
+  if (!product_name || product_quantity == null) {
     return res
       .status(400)
-      .json({ success: false, message: "Please provide all details" });
+      .json({ success: false, message: "Missing required fields" });
   }
 
-  const newStock = new Stock(stock);
+  try {
+    let stock = await Stock.findOne({ product_name });
+
+    if (stock) {
+      stock.product_quantity += product_quantity;
+      await stock.save();
+      return res.status(200).json({
+        success: true,
+        message: "Stock updated successfully",
+        data: stock,
+      });
+    }
+
+    const newStock = new Stock({
+      product_name,
+      product_quantity,
+      product_price: product_price || 0, // Ensure price is set
+    });
+
+    await newStock.save();
+    res.status(201).json({
+      success: true,
+      message: "Stock added successfully",
+      data: newStock,
+    });
+  } catch (error) {
+    console.error("Error in adding/updating stock:", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+
+//update stock
+export const updateStock = async (req, res) => {
+  const { id } = req.params;
+  const stock = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid stock ID" });
+  }
 
   try {
-    await newStock.save();
-    res.status(201).json({ success: true, data: newStock });
+    await Stock.findByIdAndUpdate(id, stock, { new: true });
+    res.status(200).json({ success: true, message: "Product Updated" });
   } catch (error) {
-    console.error("Error in create stock", error.message);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    console.log("error in updating stock", error);
+    res.status(404).json({ success: false, message: "Product not found" });
   }
 };
 

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf"; 
 import html2canvas from "html2canvas"; 
 import "./Invoice.css";
+import axios from "axios";
 
 function Invoice() {
   const [invoiceData, setInvoiceData] = useState([]);
@@ -15,9 +16,9 @@ function Invoice() {
 
   useEffect(() => {
     // Fetch data from localStorage
-    const data = JSON.parse(localStorage.getItem("invoiceData")) || [];
-    const bill = localStorage.getItem("totalBill") || 0;
-    const buyer = localStorage.getItem("buyerId") || "";
+    const data = JSON.parse(localStorage.getItem("issueinvoiceData")) || [];
+    const bill = localStorage.getItem("issuetotalBill") || 0;
+    const buyer = localStorage.getItem("issuebuyerId") || "";
 
     setInvoiceData(data);
     setTotalBill(parseFloat(bill));
@@ -54,13 +55,40 @@ function Invoice() {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     generatePDF();
-    localStorage.removeItem("invoiceData");
-    localStorage.removeItem("totalBill");
-    localStorage.removeItem("buyerId");
+  
+    const saleData = {
+      buyerId,
+      items: invoiceData.map(item => ({
+        itemName: item.selectedItem,
+        quantity: item.quantity,
+        price: item.price,
+        total: item.total,
+      })),
+      totalAmount: totalBill , // Total amount including tax
+    };
+  
+    console.log("Sending Sale Data:", saleData); // Debugging log
+  
+    try {
+      const response = await axios.post('http://localhost:5000/api/sales/add', saleData);
+      console.log("Response:", response.data); // Log response from backend
+      if (response.data.success) {
+        console.log("Sale recorded successfully");
+      } else {
+        console.log("Error recording sale");
+      }
+    } catch (error) {
+      console.error("Error submitting sale:", error.response ? error.response.data : error.message);
+    }
+  
+    localStorage.removeItem("issueinvoiceData");
+    localStorage.removeItem("issuetotalBill");
+    localStorage.removeItem("issuebuyerId");
     navigate("/viewsales");
   };
+  
 
   return (
     <div className="invoice-container">
@@ -105,11 +133,9 @@ function Invoice() {
           <p className="final-bill">
             <strong>SubTotal:</strong> ${totalBill.toFixed(2)}
           </p>
-          <p className="final-bill">
-            <strong>Tax (12%):</strong> ${(totalBill * 0.12).toFixed(2)}
-          </p>
+          
           <h3 className="final-total">
-            <strong>Total:</strong> ${(totalBill * 1.12).toFixed(2)}
+            <strong>Total:</strong> ${totalBill.toFixed(2)}
           </h3>
         </div>
       </div>
