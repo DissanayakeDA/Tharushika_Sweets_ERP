@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+html, body{
+  background-color: #efefef;
+}
+/* General Styling */
+.buyers-container {
+  padding: 20px;
+  background-color: #efefef;
+  border-radius: 8px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+/* Table Styling */
+.buyers-table {
+  width: 80%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+
+.buyer-title {
+  font-size: 28px;
+  color: #37474F;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: 10%;
+  font-family: "Noto Sans", sans-serif;
+
+}
+
+.hr-buyer{
+  margin-left: 10%;
+  margin-right: 2%;
+  margin-top: 2.9%;
+}
+
+.buyers-table th, .buyers-table td {
+  padding: 12px 15px;
+  border-bottom: 2px solid #ccc;
+
+}
+
+.buyers-table th {
+  background-color: #efefef;
+  color: #4e4a4a;
+  text-align: center;
+}
+
+.buyers-table td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Action Icons */
+.action-icons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.action-icons i {
+  cursor: pointer;
+  color: #37474F;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.action-icons i:hover {
+  transform: scale(1.2);
+}
+
+.action {
+  background-color: transparent;
+  border: none;
+}
+
+/* Input Fields */
+.search-input {
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin: 10px auto;
+  display: block;
+  background-color: #efefef;
+}
+
+/* Table Checkbox */
+.buyers-table th input[type="checkbox"],
+.buyers-table td input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.new-buyer-btn {
+  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  background-size: 200%; /* Makes gradient movement more noticeable */
+  transition: background-position 0.5s ease; /* Adds animation effect */
+  margin-left: 90%;
+  font-family: "Noto Sans", sans-serif;
+
+}
+
+.new-buyer-btn:hover {
+  background-position: right center; /* Animate gradient on hover */
+}
+
+.report-btn {
+  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  background-size: 200%;
+  transition: background-position 0.5s ease, transform 0.2s ease;
+  padding: 10px 20px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.report-btn:hover {
+  background-position: right;
+  transform: scale(1.05);
+}
+
+.report-btn-container{
+  display: flex; /* Aligns buttons horizontally */
+justify-content: flex-end; /* Aligns buttons to the right */
+gap: 10px; /* Small space between buttons */
+margin-top: 5%; /* Keeps vertical position */
+margin-right: 5%; /* Moves buttons slightly to the right */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .buyers-table {
+    width: 100%;
+    margin-left: 0; /* Remove left margin */
+    margin-top: 20px;
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
+  }
+
+  .buyers-table th, .buyers-table td {
+    padding: 8px; /* Reduce padding for smaller screens */
+  }
+
+  .buyers-table td {
+    font-size: 0.8rem; /* Adjust text size */
+  }
+
+  .new-buyer-btn, .report-btn {
+    width: 100%; /* Make buttons full width */
+    font-size: 0.9rem;
+    padding: 12px;
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .buyers-table th {
+    font-size: 14px;
+  }
+
+  .buyers-table td {
+    font-size: 12px;
+  }
+
+  /* Stack action icons vertically on smaller screens */
+  .action-icons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-icons i {
+    font-size: 1rem;
+  }
+
+  .report-btn-container {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons */
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buyers-table th, .buyers-table td {
+    padding: 6px; /* Further reduce padding */
+  }
+
+  .buyers-table td {
+    font-size: 0.7rem;
+  }
+
+  .new-buyer-btn, .report-btn {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+
+  .buyer-title {
+    font-size: 24px;
+  }
+}

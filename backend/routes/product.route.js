@@ -1,3 +1,4 @@
+//product route
 import {
   addProduct,
   deleteProduct,

@@ -48,12 +48,12 @@ function UpdateBuyers() {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container-buyers">
       <Nav />
       <h2 className="form-title">Update Buyers</h2>
       <hr />
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group-buyers">
           <label>Buyer Name</label>
           <input
             type="text"
@@ -63,7 +63,7 @@ function UpdateBuyers() {
             placeholder="Enter Name"
           />
         </div>
-        <div className="form-group">
+        <div className="form-group-buyers">
           <label>Buyer Contact</label>
           <input
             type="number"
@@ -73,7 +73,7 @@ function UpdateBuyers() {
             placeholder="Enter Contact Number"
           />
         </div>
-        <div className="form-group">
+        <div className="form-group-buyers">
           <label>Date</label>
           <input
             type="date"

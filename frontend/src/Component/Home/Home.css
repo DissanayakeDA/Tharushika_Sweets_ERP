@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 /* General Reset */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: "Noto Sans", sans-serif;
@@ -10,27 +11,29 @@ body, html {
 
 /* Main container */
 .home-container {
-  display:block;
+  display: block;
   height: 100vh;
-  background-color: #EFEFEF;
+  background-color: #efefef;
 }
 
 /* Main content styling */
 .main-content {
   flex: 2;
-  background-color: #EFEFEF; /* Set background to white */
+  background-color: #efefef; /* Set background to white */
   padding: 20px;
 }
 .dash-title {
-    font-size: 28px;
-    color: #37474F;
-    margin-bottom: 20px;
-    text-align: center;
-    margin-left: 10%;
-    font-family: "Noto Sans", sans-serif;
-    
-  }
-  
+  font-size: 28px;
+  font-weight: 400;
+  color: #37474f;
+  padding: 5px;
+  margin-top: 5px;
+  margin-left: 10%;
+  text-align: left;
+  margin-bottom: 20px;
+  font-family: "Noto Sans", sans-serif;
+}
+
 /* Dashboard buttons */
 .dashboard-buttons {
   display: flex;
@@ -43,16 +46,16 @@ body, html {
 .dash-btn-text,
 .dash-btn-text-sales,
 .dash-btn-text-req {
-  color: #37474F;
+  color: #37474f;
   text-align: center; /* Center the text horizontally */
   margin-top: 10px; /* Add some spacing between the icon and text */
 }
 .dash-btn-icon {
-  color: #37474F;
+  color: #37474f;
   font-size: 2.5rem; /* Adjust the icon size */
 }
-.dash-btn-icon-returns{
-  color: #37474F;
+.dash-btn-icon-returns {
+  color: #37474f;
   font-size: 2.5rem;
 }
 .dashboard-btn {
@@ -60,7 +63,7 @@ body, html {
   flex-direction: column; /* Stack the icon and text vertically */
   align-items: center; /* Center the content horizontally */
   justify-content: center; /* Center the content vertically */
-  background: #9ac3dd;
+  background: #54b2e8;
   color: white;
   padding: 30px 20px;
   border-radius: 18px;
@@ -72,12 +75,12 @@ body, html {
   font-weight: bold;
   text-decoration: none;
 }
-.dashboard-btn-returns{
+.dashboard-btn-returns {
   display: flex;
   flex-direction: column; /* Stack the icon and text vertically */
   align-items: center; /* Center the content horizontally */
   justify-content: center; /* Center the content vertically */
-  background: #9ac3dd;
+  background: #54b2e8;
   color: white;
   padding: 30px 20px;
   border-radius: 18px;
@@ -110,7 +113,7 @@ body, html {
   font-size: 1.5rem;
   padding: 0;
 }
-.hr-dash{
+.hr-dash {
   margin-left: 10%;
   margin-right: 2%;
 }

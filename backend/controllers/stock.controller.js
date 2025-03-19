@@ -3,21 +3,23 @@ import mongoose from "mongoose";
 
 // Add Stock to System
 export const addStock = async (req, res) => {
-  // console.log("Received Request Body:", req.body); // Log the request data
-
+  console.log("Received Request Body:", req.body); // Log the request data for debugging
   const { product_name, product_quantity, product_price } = req.body;
 
   if (!product_name || product_quantity == null) {
     return res
       .status(400)
-      .json({ success: false, message: "Missing required fields" });
+      .json({
+        success: false,
+        message: "Missing required fields: product_name or product_quantity",
+      });
   }
 
   try {
     let stock = await Stock.findOne({ product_name });
 
     if (stock) {
-      stock.product_quantity += product_quantity;
+      stock.product_quantity += Number(product_quantity); // Ensure quantity is a number
       await stock.save();
       return res.status(200).json({
         success: true,
@@ -28,8 +30,8 @@ export const addStock = async (req, res) => {
 
     const newStock = new Stock({
       product_name,
-      product_quantity,
-      product_price: product_price || 0, // Ensure price is set
+      product_quantity: Number(product_quantity),
+      product_price: product_price ? Number(product_price) : 0, // Convert to number, default to 0
     });
 
     await newStock.save();
@@ -39,12 +41,21 @@ export const addStock = async (req, res) => {
       data: newStock,
     });
   } catch (error) {
-    console.error("Error in adding/updating stock:", error.message);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    console.error(
+      "Error in adding/updating stock:",
+      error.message,
+      error.stack
+    );
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Internal Server Error: " + error.message,
+      });
   }
 };
 
-//update stock
+// Update Stock
 export const updateStock = async (req, res) => {
   const { id } = req.params;
   const stock = req.body;
@@ -56,11 +67,20 @@ export const updateStock = async (req, res) => {
   }
 
   try {
-    await Stock.findByIdAndUpdate(id, stock, { new: true });
-    res.status(200).json({ success: true, message: "Product Updated" });
+    const updatedStock = await Stock.findByIdAndUpdate(id, stock, {
+      new: true,
+    });
+    if (!updatedStock) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Stock not found" });
+    }
+    res
+      .status(200)
+      .json({ success: true, message: "Stock updated", data: updatedStock });
   } catch (error) {
-    console.log("error in updating stock", error);
-    res.status(404).json({ success: false, message: "Product not found" });
+    console.error("Error in updating stock:", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -70,7 +90,7 @@ export const getAllStock = async (req, res) => {
     const stocks = await Stock.find({});
     res.status(200).json({ success: true, data: stocks });
   } catch (error) {
-    console.log("error in fetching stocks", error.message);
+    console.error("Error in fetching stocks:", error.message);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
@@ -81,14 +101,17 @@ export const getStockById = async (req, res) => {
 
   try {
     const stock = await Stock.findById(id);
+    if (!stock) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Stock not found" });
+    }
     res.status(200).json({ success: true, data: stock });
   } catch (error) {
-    console.log("error in fetching stock", error.message);
+    console.error("Error in fetching stock:", error.message);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
-
-// Update Stock
 
 // Delete stock
 export const deleteStock = async (req, res) => {
@@ -96,14 +119,19 @@ export const deleteStock = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res
       .status(400)
-      .json({ success: false, message: "Invalid Product ID" });
+      .json({ success: false, message: "Invalid Stock ID" });
   }
 
   try {
-    await Stock.findByIdAndDelete(id);
-    res.status(200).json({ success: true, message: "Stock Deleted" });
+    const deletedStock = await Stock.findByIdAndDelete(id);
+    if (!deletedStock) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Stock not found" });
+    }
+    res.status(200).json({ success: true, message: "Stock deleted" });
   } catch (error) {
-    console.log("error in deleting stock", error);
-    res.status(500).json({ success: false, message: "Server Error" });
+    console.error("Error in deleting stock:", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };

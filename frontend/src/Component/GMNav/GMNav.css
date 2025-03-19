@@ -6,15 +6,16 @@ body,
 html {
   margin: 0;
   padding: 0;
-  height: 100%; /* Ensures the navbar background spans full height */
+  height: 100vh;
+  /* Ensures the navbar background spans full height */
 }
 
 /* Sidenav container */
-.sidenav {
+.sidenav-gm {
   width: 80px;
   background-color: #ffff;
-  height: 70vh;
-  margin-top: 8%;
+  height: 63vh;
+  margin-top: 10%;
   margin-left: 2%;
   padding: 20px;
   border-radius: 10px;
@@ -29,7 +30,7 @@ html {
   transform: translateX(0);
 }
 
-.sidenav.open {
+.sidenav-gm.open {
   transform: translateX(-260px);
 }
 /* Styling for buttons with icons */
@@ -79,50 +80,50 @@ html {
 }
 
 /* Navigation items */
-.sidenav ul {
+.sidenav-gm ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.sidenav ul li {
+.sidenav-gm ul li {
   margin: 10px 0;
   text-align: center; /* Center text below the icon */
 }
 
-.sidenav ul li a {
+.sidenav-gm ul li a {
   text-decoration: none;
   color: white;
   font-size: 16px;
   display: block; /* Ensure full clickable area */
 }
 
-.sidenav ul hr {
+.sidenav-gm ul hr {
   border: 0;
   height: 1px;
   opacity: 0.5;
   margin: 10px 0;
 }
 /* Navigation items */
-.sidenav ul {
+.sidenav-gm ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.sidenav ul li {
+.sidenav-gm ul li {
   margin: 10px 0;
   text-align: center; /* Center text below the icon */
 }
 
-.sidenav ul li a {
+.sidenav-gm ul li a {
   text-decoration: none;
   color: white;
   font-size: 16px;
   display: block; /* Ensure full clickable area */
 }
 
-.sidenav ul hr {
+.sidenav-gm ul hr {
   border: 0;
   height: 1px;
   background-color: white;
@@ -167,11 +168,11 @@ main {
 }
 /* Media Queries for Mobile Devices */
 @media (max-width: 768px) {
-  .sidenav {
+  .sidenav-gm {
     transform: translateX(-220px); /* Hide sidenav by default */
   }
 
-  .sidenav.open {
+  .sidenav-gm.open {
     transform: translateX(0); /* Show sidenav when open */
   }
 
@@ -181,7 +182,7 @@ main {
   }
 
   /* Adjust navbar for mobile */
-  .sidenav {
+  .sidenav-gm {
     width: 200px; /* Reduce navbar size */
   }
 
@@ -194,11 +195,11 @@ main {
 /* Small screens (phone landscape) */
 @media (max-width: 480px) {
   /* Adjust navbar size and font for smaller screens */
-  .sidenav {
+  .sidenav-gm {
     width: 180px;
   }
 
-  .sidenav ul li a {
+  .sidenav-gm ul li a {
     font-size: 14px;
   }
 }
