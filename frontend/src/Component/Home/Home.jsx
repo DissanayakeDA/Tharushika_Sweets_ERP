@@ -8,12 +8,10 @@ function Home() {
     <div className="home-container">
       <Nav />
 
-      {/* Main Content */}
       <div className="main-content">
         <h2 className="dash-title">Stock Manager Dashboard</h2>
         <hr className="hr-dash" />
 
-        {/* Dashboard Buttons */}
         <div className="dashboard-buttons">
           <Link to="/viewstock" className="dashboard-link">
             <div className="dashboard-btn">

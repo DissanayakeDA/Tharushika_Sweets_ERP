@@ -10,8 +10,8 @@ function ReturnInvoice() {
   const [invoiceData, setInvoiceData] = useState([]);
   const [totalBill, setTotalBill] = useState(0);
   const [buyerId, setBuyerId] = useState(""); 
-  const [returnMethod, setReturnMethod] = useState(""); // Store return method
-  const [currentTime, setCurrentTime] = useState(new Date()); // State for real-time
+  const [returnMethod, setReturnMethod] = useState(""); 
+  const [currentTime, setCurrentTime] = useState(new Date()); 
 
   const navigate = useNavigate();
 
@@ -20,13 +20,12 @@ function ReturnInvoice() {
     setInvoiceData(JSON.parse(localStorage.getItem("returninvoiceData")) || []);
     setTotalBill(parseFloat(localStorage.getItem("returntotalBill")) || 0);
     setBuyerId(localStorage.getItem("returnbuyerId") || "");
-    setReturnMethod(localStorage.getItem("returnMethod") || ""); // Fetch return method
-    // Update time every second
+    setReturnMethod(localStorage.getItem("returnMethod") || ""); 
+    
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
 
-    // Cleanup on unmount
     return () => clearInterval(timer);
   }, []);
 
@@ -43,7 +42,7 @@ function ReturnInvoice() {
       const pdfWidth = 200; 
       const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-      const fileName = `Invoice_${buyerId}.pdf`; 
+      const fileName = `ReturnInvoice_${buyerId}.pdf`; 
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save(fileName);
 
@@ -53,8 +52,8 @@ function ReturnInvoice() {
   };
 
   const handleSubmit = async () => {
-    console.log("Starting handleSubmit"); // Debug log
-    generatePDF(); // Generate the invoice PDF
+    console.log("Starting handleSubmit");
+    generatePDF(); 
   
     const returnData = {
       buyerId,
@@ -65,25 +64,21 @@ function ReturnInvoice() {
         price: item.price,
         total: item.total,
       })),
-      totalAmount: returnMethod === "issueMoney" ? totalBill : 0, // No price change if issuing product
+      totalAmount: returnMethod === "issueMoney" ? totalBill : 0,
     };
   
-    console.log("Return Data:", returnData); // Debug log
+    console.log("Return Data:", returnData);
   
     try {
       const response = await axios.post("http://localhost:5000/api/returns/add", returnData);
-      console.log("API Response:", response.data); // Debug log
+      console.log("API Response:", response.data);
   
       if (response.data.success) {
         console.log("Return recorded successfully");
   
-        // Clear localStorage data
-        localStorage.removeItem("returninvoiceData");
-        localStorage.removeItem("returnbuyerId");
-        localStorage.removeItem("returntotalBill");
-        localStorage.removeItem("returnMethod");
+        localStorage.setItem("clearDataFlag", "true");
   
-        console.log("Navigating to /viewReturns"); // Debug log
+        console.log("Navigating to /viewReturns");
         navigate("/viewReturns");
       } else {
         console.log("Error recording return");
@@ -93,13 +88,14 @@ function ReturnInvoice() {
     }
   };
   
+  
 
   return (
     <div className="invoice-container">
       <Nav />
       <div id="invoice-content">
         <div className="invoice-header">
-          <h2 className="invoice-title">INVOICE</h2>
+          <h2 className="invoice-title">RETURN INVOICE</h2>
           <hr className="divider" />
           <img src="/images/logo.png" alt="Logo" className="invoice-logo" />
           <hr className="divider" />

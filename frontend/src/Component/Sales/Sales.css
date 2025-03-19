@@ -62,7 +62,25 @@ html, body{
 .view-btn:hover {
   background-color: #113051;
 }
-
+.search-input {
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin: 10px auto;
+  display: block;
+  background-color: #efefef;
+}
+.filter-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  margin-left: 20%;
+  color: #858080;
+}
 .modal {
   position: fixed;
   top: 0;

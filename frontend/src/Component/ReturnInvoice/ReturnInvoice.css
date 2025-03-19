@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
-/* Invoice Container */
 .invoice-container {
     width: 60%;
     margin-left: 27%;
@@ -12,37 +11,34 @@
     font-family: "Noto Sans", sans-serif;
 }
   
-  /* Title */
   .invoice-title {
     font-size: 2rem;
     font-weight: bold;
-    color: #5D4037;
-    margin: 0 0 10px; /* Add space between title and the lines */
-}
+    color: #37474F;
+    margin: 0 0 10px; 
+  }
 .final-bill{
   color: rgb(46, 45, 45);
 }
 .divider {
   border: none;
   height: 2px;
-  background: #e17055;
+  background: #37474F;
   width: 100%;
   margin: 0;
 }
-  /* Buyer Details */
   .buyer-details {
     font-size: 1rem;
     color: #333;
     margin-bottom: 20px;
   }
   .final-total{
-    color: #5D4037;
+    color: #37474F;
   }
   .buyer-details p {
     margin: 5px 0;
   }
   
-  /* Items Section */
   .items-section {
     background: #f9f9f9;
     padding: 15px;
@@ -97,7 +93,6 @@
     color: #333;
   }
   
-  /* Total Section */
   .total-section {
     text-align: right;
     font-size: 1.1rem;
@@ -111,11 +106,10 @@
   .total-section h3 {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #e17055;
+    color: #37474F;
     margin-top: 10px;
   }
   
-  /* Buttons */
   .button-container {
     display: flex;
     justify-content: space-between;
@@ -138,8 +132,8 @@
     background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
     color: white;
     cursor: pointer;
-    background-size: 200%; /* Makes gradient movement more noticeable */
-  transition: background-position 0.5s ease; /* Adds animation effect */
+    background-size: 200%; 
+  transition: background-position 0.5s ease; 
   }
   .back-button {
     background-color: #b2bec3;
@@ -151,41 +145,40 @@
   }
   
   .submit-button:hover {
-    background-position: right center; /* Animate gradient on hover */
+    background-position: right center; 
 }
 
 .invoice-logo {
   position: relative;
   display: block;
   margin-left: 5px;
-  width: 20%; /* Adjust size as needed */
+  width: 20%; 
   height: 45px; 
-  z-index: 1; /* Make sure it stays above the lines */
-  background: white; /* Optional: Add a background to the logo */
-  padding: 5px; /* Optional: Add padding around the logo */
+  z-index: 1; 
+  background: white; 
+  padding: 5px; 
 }
 
 #invoice-content {
   position: relative;
-  margin-top: 50px; /* Adjust to avoid content overlapping with the logo */
+  margin-top: 50px; 
 }
 
 .invoice-header {
   text-align: center;
-  margin-bottom: 20px; /* Adjust as needed */
+  margin-bottom: 20px; 
   position: relative;
 }
 
   
-/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .invoice-container {
-      width: 90%; /* Adjust container width for smaller screens */
+      width: 90%; 
       margin-left: 5%;
   }
 
   .invoice-title {
-      font-size: 1.5rem; /* Adjust title font size */
+      font-size: 1.5rem; 
   }
 
   .buyer-details {
@@ -197,15 +190,15 @@
   }
 
   .item-description {
-      width: 60%; /* Adjust width for smaller screens */
+      width: 60%; 
   }
 
   .item-total {
-      width: 35%; /* Adjust width for smaller screens */
+      width: 35%; 
   }
 
   .button-container {
-      flex-direction: column; /* Stack buttons vertically */
+      flex-direction: column; 
       gap: 10px;
       justify-content: center;
       align-items: center;
@@ -213,11 +206,11 @@
 
   .back-button,
   .submit-button {
-      width: 100%; /* Make buttons full width */
+      width: 100%; 
   }
 
   .invoice-logo {
-      width: 30%; /* Adjust logo size */
+      width: 30%; 
   }
 }
 
@@ -228,7 +221,7 @@
   }
 
   .invoice-title {
-      font-size: 1.25rem; /* Further reduce title size */
+      font-size: 1.25rem; 
   }
 
   .buyer-details {
@@ -240,15 +233,15 @@
   }
 
   .item-description {
-      width: 50%; /* Adjust description width */
+      width: 50%; 
   }
 
   .item-total {
-      width: 45%; /* Adjust total section width */
+      width: 45%; 
   }
 
   .button-container {
-      flex-direction: column; /* Stack buttons vertically */
+      flex-direction: column; 
       gap: 10px;
       justify-content: center;
   }
@@ -260,6 +253,6 @@
   }
 
   .invoice-logo {
-      width: 40%; /* Adjust logo size */
+      width: 40%; 
   }
 }

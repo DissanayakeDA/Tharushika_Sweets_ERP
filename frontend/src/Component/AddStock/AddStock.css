@@ -85,7 +85,32 @@ body {
   margin-top: 5%; /* Keeps vertical position */
   margin-right: 5%; /* Moves buttons slightly to the right */
 }
+.select-type{
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  color: #37474f;
+  margin-left: 2%;
+}
 
+.select-item{
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  color: #37474f;
+}
+.quantity-input{
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  color: #37474f;
+}
 /* Button styling */
 .add-row-btn {
   background-color: #37474f;

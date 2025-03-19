@@ -1,10 +1,9 @@
 import express from "express";
 import Returns from "../models/directreturns.model.js";
-import Stock from "../models/stock.model.js"; // Ensure correct import
+import Stock from "../models/stock.model.js"; 
 
 const router = express.Router();
 
-// Generate unique return ID
 const generateReturnId = () => {
   return "Ret-" + Date.now();
 };
@@ -12,27 +11,25 @@ const generateReturnId = () => {
 // Save return record
 router.post("/add", async (req, res) => {
   try {
-    const { buyerId, items, totalAmount, returnMethod } = req.body; // Added returnMethod
+    const { buyerId, items, totalAmount, returnMethod } = req.body; 
     const returnId = generateReturnId();
 
-    // Create the return document
     const returnRecord = new Returns({
       returnId,
       buyerId,
       items,
       totalAmount,
-      returnMethod, // Store return method in DB for reference
+      returnMethod, 
     });
 
-    // If return method is "issueProduct", reduce stock quantity
     if (returnMethod === "issueProduct") {
       for (const item of items) {
         const stock = await Stock.findOne({ product_name: item.itemName });
 
         if (stock) {
           if (stock.product_quantity >= item.quantity) {
-            stock.product_quantity -= item.quantity; // Reduce stock quantity
-            await stock.save(); // Save the updated stock back to the database
+            stock.product_quantity -= item.quantity; 
+            await stock.save(); 
           } else {
             return res.status(400).json({
               success: false,
@@ -80,7 +77,7 @@ router.get("/:returnId", async (req, res) => {
     if (!returnRecord) {
       return res.status(404).json({ success: false, message: "Return record not found" });
     }
-    res.status(200).json({ success: true, returnRecord }); // Ensure this matches the frontend expectation
+    res.status(200).json({ success: true, returnRecord }); 
   } catch (error) {
     console.error("Error fetching return record:", error);
     res.status(500).json({ success: false, message: "Server error" });

@@ -152,7 +152,7 @@ function AddStock() {
           await axios.post("http://localhost:5000/api/ingredients", {
             supplier_name: row.supplier,
             invoice_id: row.invoiceId,
-            ingredient_name: row.ingredientName, // Fix: ensure this is 'ingredient_name' not 'product_name'
+            ingredient_name: row.ingredientName, 
             ingredient_quantity: row.quantity,
             lot_price: row.lotPrice,
           });
@@ -180,7 +180,7 @@ function AddStock() {
       <hr className="hr-issue" />
 
       <label>Select Stock Type: </label>
-      <select value={selection} onChange={handleSelectionChange}>
+      <select className="select-type" value={selection} onChange={handleSelectionChange}>
         <option value="addProducts">Add Products</option>
         <option value="addIngredients">Add Ingredients</option>
       </select>
@@ -219,6 +219,7 @@ function AddStock() {
                 <>
                   <td>
                     <select
+                      className="select-item"
                       value={row.selectedItem}
                       onChange={(e) => handleItemChange(index, e.target.value)}
                     >
@@ -234,6 +235,7 @@ function AddStock() {
                   <td>{row.price}</td>
                   <td>
                     <input
+                      className="quantity-input"
                       type="number"
                       value={row.quantity}
                       onChange={(e) =>

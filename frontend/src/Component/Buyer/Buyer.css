@@ -104,15 +104,15 @@ html, body{
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  background-size: 200%; /* Makes gradient movement more noticeable */
-  transition: background-position 0.5s ease; /* Adds animation effect */
+  background-size: 200%; 
+  transition: background-position 0.5s ease; 
   margin-left: 90%;
   font-family: "Noto Sans", sans-serif;
 
 }
 
 .new-buyer-btn:hover {
-  background-position: right center; /* Animate gradient on hover */
+  background-position: right center; 
 }
 
 .report-btn {
@@ -134,35 +134,34 @@ html, body{
 }
 
 .report-btn-container{
-  display: flex; /* Aligns buttons horizontally */
-justify-content: flex-end; /* Aligns buttons to the right */
-gap: 10px; /* Small space between buttons */
-margin-top: 5%; /* Keeps vertical position */
-margin-right: 5%; /* Moves buttons slightly to the right */
+  display: flex; 
+justify-content: flex-end; 
+gap: 10px; 
+margin-top: 5%; 
+margin-right: 5%; 
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .buyers-table {
     width: 100%;
-    margin-left: 0; /* Remove left margin */
+    margin-left: 0; 
     margin-top: 20px;
-    font-size: 0.8rem; /* Adjust font size for smaller screens */
+    font-size: 0.8rem; 
   }
 
   .buyers-table th, .buyers-table td {
-    padding: 8px; /* Reduce padding for smaller screens */
+    padding: 8px;
   }
 
   .buyers-table td {
-    font-size: 0.8rem; /* Adjust text size */
+    font-size: 0.8rem; 
   }
 
   .new-buyer-btn, .report-btn {
-    width: 100%; /* Make buttons full width */
+    width: 100%;
     font-size: 0.9rem;
     padding: 12px;
-    margin-left: 0; /* Remove left margin */
+    margin-left: 0;
   }
 
   .buyers-table th {
@@ -173,7 +172,6 @@ margin-right: 5%; /* Moves buttons slightly to the right */
     font-size: 12px;
   }
 
-  /* Stack action icons vertically on smaller screens */
   .action-icons {
     flex-direction: column;
     align-items: center;
@@ -184,15 +182,15 @@ margin-right: 5%; /* Moves buttons slightly to the right */
   }
 
   .report-btn-container {
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center buttons */
+    flex-direction: column;
+    align-items: center; 
     margin-top: 10px;
   }
 }
 
 @media (max-width: 480px) {
   .buyers-table th, .buyers-table td {
-    padding: 6px; /* Further reduce padding */
+    padding: 6px; 
   }
 
   .buyers-table td {
