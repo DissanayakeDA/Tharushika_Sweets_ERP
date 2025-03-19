@@ -2,27 +2,40 @@
 
 html,
 body {
+  margin: 0;
+  padding: 0;
   background-color: #efefef;
 }
-.issue-items-container {
-  padding: 20px;
+.add-stock-container {
+  padding: 0px;
   background-color: #efefef;
   border-radius: 8px;
   font-family: "Noto Sans", sans-serif;
 }
 
-.title {
+.title-stock {
   font-size: 28px;
+  font-weight: 400;
   color: #37474f;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: 16%;
+  text-align: left;
   margin-bottom: 20px;
-  text-align: center;
-  margin-left: 10%;
+  font-family: "Noto Sans", sans-serif;
 }
 
-.hr-issue {
-  margin-left: 10%;
+.selection-stock {
+  width: 15%;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #000000;
+  background-color: #efefef;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  margin-left: 9%;
   margin-right: 2%;
-  margin-top: 2.9%;
+  margin-top: 0.9%;
 }
 
 .buyer-id-section input {
@@ -112,7 +125,7 @@ body {
   color: #37474f;
 }
 /* Button styling */
-.add-row-btn {
+.add-row-btn-stock {
   background-color: #37474f;
   color: white;
   border: none;
@@ -122,7 +135,10 @@ body {
   height: 40px;
   cursor: pointer;
   transition: transform 0.2s ease; /* Add a small hover effect */
-  margin-left: 77%;
+  margin-left: 80%;
+  margin-right: -25px;
+  margin-top: 1%;
+  transition: transform 0.2s ease;
 }
 
 .add-row-btn:hover {
@@ -156,12 +172,19 @@ body {
   transition: background-position 0.5s ease, transform 0.2s ease;
   padding: 10px 20px;
   font-family: "Noto Sans", sans-serif;
-  margin-left: 85%;
+  align-items: right;
+  margin-top: 5%;
+  margin-left: 5%;
 }
 
 .checkout-btn:hover {
   background-position: right;
   transform: scale(1.05);
+}
+
+.stock-qty-input {
+  padding: 5px;
+  border: 1px solid #ccc;
 }
 
 /* Media Queries for Responsiveness */

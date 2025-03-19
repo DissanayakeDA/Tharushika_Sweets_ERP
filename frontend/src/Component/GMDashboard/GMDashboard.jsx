@@ -1,21 +1,22 @@
 import React from "react";
-import Nav from "../Nav/Nav";
+import GMNav from "../GMNav/GMNav";
 import "./GMDashboard.css";
 import { Link } from "react-router-dom";
-
+import HeadBar from "../HeadBar/HeadBar";
 function GMDashboard() {
   return (
     <div className="home-container">
-      <Nav />
+      <HeadBar />
+      <GMNav />
 
       {/* Main Content */}
       <div className="main-content">
-        <h2 className="dash-title">General Manager Dashboard</h2>
-        <hr className="hr-dash" />
-
+        <br />
+        <h2 className="dash-title-GM">General Manager Dashboard</h2>
         {/* Dashboard Buttons */}
+
         <div className="dashboard-buttons">
-          <Link to="/viewstocks" className="dashboard-link">
+          <Link to="/viewstock-gm" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
                 <i class="bi bi-box-seam"></i>
@@ -23,7 +24,7 @@ function GMDashboard() {
               <label className="dash-btn-text">Stocks</label>
             </div>
           </Link>
-          <Link to="/viewbuyers" className="dashboard-link">
+          <Link to="/viewbuyers-gm" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
                 <i className="bi bi-people-fill"></i>

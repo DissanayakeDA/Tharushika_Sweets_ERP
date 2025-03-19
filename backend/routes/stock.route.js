@@ -1,3 +1,4 @@
+//stock.route.js
 import express from "express";
 import {
   addStock,

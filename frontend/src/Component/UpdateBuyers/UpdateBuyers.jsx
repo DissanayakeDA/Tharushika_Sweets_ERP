@@ -85,12 +85,12 @@ function UpdateBuyers() {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container-buyers">
       <Nav />
       <h2 className="form-title">Update Buyers</h2>
       <hr />
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group-buyers">
           <label>Buyer Name</label>
           <input
             type="text"
@@ -101,7 +101,7 @@ function UpdateBuyers() {
           />
           {errors.name && <span className="error">{errors.name}</span>}
         </div>
-        <div className="form-group">
+        <div className="form-group-buyers">
           <label>Buyer Contact</label>
           <input
             type="text"
@@ -112,8 +112,11 @@ function UpdateBuyers() {
           />
           {errors.contact && <span className="error">{errors.contact}</span>}
         </div>
-        <div className="form-group">
+
+
+          <div className="form-group-buyers">
           <label>Address</label>
+
           <input
             type="text"
             name="address"
