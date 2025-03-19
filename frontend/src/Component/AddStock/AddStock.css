@@ -85,7 +85,32 @@ body {
   margin-top: 5%; /* Keeps vertical position */
   margin-right: 5%; /* Moves buttons slightly to the right */
 }
+.select-type{
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  color: #37474f;
+  margin-left: 2%;
+}
 
+.select-item{
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  color: #37474f;
+}
+.quantity-input{
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  color: #37474f;
+}
 /* Button styling */
 .add-row-btn {
   background-color: #37474f;
@@ -97,6 +122,7 @@ body {
   height: 40px;
   cursor: pointer;
   transition: transform 0.2s ease; /* Add a small hover effect */
+  margin-left: 77%;
 }
 
 .add-row-btn:hover {
@@ -119,7 +145,7 @@ body {
   transform: scale(1.1);
 }
 
-.checkout-btn {
+.addstock-btn {
   background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
   color: white;
   border: none;
@@ -130,6 +156,7 @@ body {
   transition: background-position 0.5s ease, transform 0.2s ease;
   padding: 10px 20px;
   font-family: "Noto Sans", sans-serif;
+  margin-left: 85%;
 }
 
 .checkout-btn:hover {

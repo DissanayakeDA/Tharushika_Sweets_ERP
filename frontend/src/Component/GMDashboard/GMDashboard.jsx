@@ -58,6 +58,14 @@ function GMDashboard() {
             <label className="dash-btn-text-req">Employees</label>
           </div>
         </Link>
+        <Link to="/addsuppliers" className="dashboard-link">
+          <div className="dashboard-btn-emp">
+            <div className="dash-btn-icon">
+              <i className="bi bi-bell"></i>
+            </div>
+            <label className="dash-btn-text-req">Supplier</label>
+          </div>
+        </Link>
       </div>
     </div>
   );

@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Buyer({ buyer, onDelete }) {
-  const { _id, name, contact, date } = buyer;
+  const { _id, name, contact, address } = buyer;
 
   const deleteHandler = async () => {
     if (window.confirm("Are you sure you want to delete this buyer?")) {
       try {
         await axios.delete(`http://localhost:5000/buyers/${_id}`);
-        onDelete(_id); // Notify the parent to remove the buyer from the list
+        onDelete(_id); 
       } catch (error) {
         console.error("Error deleting buyer:", error);
         alert("Failed to delete the buyer. Please try again.");
@@ -20,12 +20,9 @@ function Buyer({ buyer, onDelete }) {
 
   return (
     <tr>
-      <td>
-        <input type="checkbox" />
-      </td>
       <td>{_id}</td>
       <td>{name}</td>
-      <td>{date}</td>
+      <td>{address}</td>
       <td>{contact}</td>
       <td>
         <div className="action-icons">

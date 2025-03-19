@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+html,
+body {
+  background-color: #efefef;
+}
+
+.view-stock-container {
+  padding: 20px;
+  background-color: #efefef;
+  border-radius: 8px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.hr-view-stock {
+  margin-left: 10%;
+  margin-right: 2%;
+  margin-top: 2.9%;
+}
+
+.view-stock-table {
+  width: 80%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+
+.view-stock-title {
+  font-size: 28px;
+  color: #37474f;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: 10%;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.view-stock-table th,
+.view-stock-table td {
+  padding: 12px 15px;
+  border-bottom: 2px solid #ccc;
+}
+
+.view-stock-table th {
+  background-color: #efefef;
+  color: #4e4a4a;
+  text-align: center;
+}
+.view-stock-table td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Action Icons */
+.action-icons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Action Icons */
+.action-icons i {
+  cursor: pointer;
+  color: #37474f;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.action-icons i:hover {
+  transform: scale(1.2);
+}
+
+.action {
+  background-color: transparent;
+  border: none;
+}

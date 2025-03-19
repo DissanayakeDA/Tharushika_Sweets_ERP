@@ -1,9 +1,9 @@
 import express from "express";
 import Sales from "../models/directsales.model.js";
-import Stock from "../models/stock.model.js"; // Make sure this import is added
+import Stock from "../models/stock.model.js"; 
 const router = express.Router();
 
-// Generate unique invoice ID
+
 const generateInvoiceId = () => {
   return "INV-" + Date.now();
 };
@@ -14,7 +14,7 @@ router.post("/add", async (req, res) => {
     const { buyerId, items, totalAmount } = req.body;
     const invoiceId = generateInvoiceId();
 
-    // Create the sale document
+   
     const sale = new Sales({
       invoiceId,
       buyerId,
@@ -22,14 +22,14 @@ router.post("/add", async (req, res) => {
       totalAmount,
     });
 
-    // Loop through each item in the sale and reduce stock quantity
+    
     for (const item of items) {
       const stock = await Stock.findOne({ product_name: item.itemName });
 
       if (stock) {
         if (stock.product_quantity >= item.quantity) {
-          stock.product_quantity -= item.quantity;  // Reduce stock quantity
-          await stock.save();  // Save the updated stock back to the database
+          stock.product_quantity -= item.quantity;  
+          await stock.save();  
         } else {
           return res.status(400).json({
             success: false,

@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
-html, body{
+html,
+body {
   background-color: #efefef;
 }
 /* General Styling */
@@ -23,24 +24,23 @@ html, body{
 
 .buyer-title {
   font-size: 28px;
-  color: #37474F;
+  color: #37474f;
   margin-bottom: 20px;
   text-align: center;
   margin-left: 10%;
   font-family: "Noto Sans", sans-serif;
-
 }
 
-.hr-buyer{
+.hr-buyer {
   margin-left: 10%;
   margin-right: 2%;
   margin-top: 2.9%;
 }
 
-.buyers-table th, .buyers-table td {
+.buyers-table th,
+.buyers-table td {
   padding: 12px 15px;
   border-bottom: 2px solid #ccc;
-
 }
 
 .buyers-table th {
@@ -63,7 +63,7 @@ html, body{
 
 .action-icons i {
   cursor: pointer;
-  color: #37474F;
+  color: #37474f;
   font-size: 1.2rem;
   transition: transform 0.2s ease;
 }
@@ -97,26 +97,25 @@ html, body{
 }
 
 .new-buyer-btn {
-  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+  background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  background-size: 200%; 
-  transition: background-position 0.5s ease; 
+  background-size: 200%; /* Makes gradient movement more noticeable */
+  transition: background-position 0.5s ease; /* Adds animation effect */
   margin-left: 90%;
   font-family: "Noto Sans", sans-serif;
-
 }
 
 .new-buyer-btn:hover {
-  background-position: right center; 
+  background-position: right center; /* Animate gradient on hover */
 }
 
 .report-btn {
-  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+  background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
   color: white;
   border: none;
   border-radius: 5px;
@@ -133,35 +132,38 @@ html, body{
   transform: scale(1.05);
 }
 
-.report-btn-container{
-  display: flex; 
-justify-content: flex-end; 
-gap: 10px; 
-margin-top: 5%; 
-margin-right: 5%; 
+.report-btn-container {
+  display: flex; /* Aligns buttons horizontally */
+  justify-content: flex-end; /* Aligns buttons to the right */
+  gap: 10px; /* Small space between buttons */
+  margin-top: 5%; /* Keeps vertical position */
+  margin-right: 5%; /* Moves buttons slightly to the right */
 }
 
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .buyers-table {
     width: 100%;
-    margin-left: 0; 
+    margin-left: 0; /* Remove left margin */
     margin-top: 20px;
-    font-size: 0.8rem; 
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
   }
 
-  .buyers-table th, .buyers-table td {
-    padding: 8px;
+  .buyers-table th,
+  .buyers-table td {
+    padding: 8px; /* Reduce padding for smaller screens */
   }
 
   .buyers-table td {
-    font-size: 0.8rem; 
+    font-size: 0.8rem; /* Adjust text size */
   }
 
-  .new-buyer-btn, .report-btn {
-    width: 100%;
+  .new-buyer-btn,
+  .report-btn {
+    width: 100%; /* Make buttons full width */
     font-size: 0.9rem;
     padding: 12px;
-    margin-left: 0;
+    margin-left: 0; /* Remove left margin */
   }
 
   .buyers-table th {
@@ -172,6 +174,7 @@ margin-right: 5%;
     font-size: 12px;
   }
 
+  /* Stack action icons vertically on smaller screens */
   .action-icons {
     flex-direction: column;
     align-items: center;
@@ -182,22 +185,24 @@ margin-right: 5%;
   }
 
   .report-btn-container {
-    flex-direction: column;
-    align-items: center; 
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons */
     margin-top: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .buyers-table th, .buyers-table td {
-    padding: 6px; 
+  .buyers-table th,
+  .buyers-table td {
+    padding: 6px; /* Further reduce padding */
   }
 
   .buyers-table td {
     font-size: 0.7rem;
   }
 
-  .new-buyer-btn, .report-btn {
+  .new-buyer-btn,
+  .report-btn {
     font-size: 0.8rem;
     padding: 10px;
   }

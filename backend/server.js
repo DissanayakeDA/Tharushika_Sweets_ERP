@@ -7,7 +7,6 @@ import productRoutes from "./routes/product.route.js";
 import stockRoutes from "./routes/stock.route.js";
 import cors from "cors";
 import router from "./routes/directbuyer.route.js";
-import multer from "multer";
 import fs from "fs";
 import "./models/directinvoice.model.js";
 import IngredientRoutes from "./routes/ingredient.route.js";
@@ -46,7 +45,7 @@ app.use("/files", express.static("files"));
 app.use("/api/sales", salesRoutes);
 app.post("/api/sales/add", async (req, res) => {
   try {
-    console.log("Received Data:", req.body); // Debugging log
+    console.log("Received Data:", req.body); 
     const { buyerId, items, totalAmount } = req.body;
 
 
@@ -70,7 +69,7 @@ app.post("/api/sales/add", async (req, res) => {
 app.use("/api/returns", returnRoutes);
 app.post("/api/returns/add", async (req, res) => {
   try {
-    console.log("Received Data:", req.body); // Debugging log
+    console.log("Received Data:", req.body); 
     const { buyerId, items, totalAmount } = req.body;
 
     if (!buyerId || !items || items.length === 0 || !totalAmount) {
@@ -88,16 +87,7 @@ app.post("/api/returns/add", async (req, res) => {
 });
 
   
-  //InvoicePdf
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./files");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now();
-    cb(null, uniqueSuffix + file.originalname);
-  },
-});
+
 
 
 app.listen(PORT, () => {

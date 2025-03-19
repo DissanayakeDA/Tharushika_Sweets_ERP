@@ -4,7 +4,7 @@ import axios from "axios";
 import Buyer from "../Buyer/Buyer";
 import "../Buyer/Buyer.css";
 import { Link } from "react-router-dom";
-import jsPDF from "jspdf"; // Import jsPDF
+import jsPDF from "jspdf"; 
 
 const URL = "http://localhost:5000/buyers";
 
@@ -14,18 +14,17 @@ const fetchHandler = async () => {
 };
 
 function Buyers() {
-  const [buyers, setBuyers] = useState([]); // State for all buyers
-  const [filteredBuyers, setFilteredBuyers] = useState([]); // State for filtered buyers
+  const [buyers, setBuyers] = useState([]); 
+  const [filteredBuyers, setFilteredBuyers] = useState([]); 
 
-  // Fetch the list of buyers on component mount
+ 
   useEffect(() => {
     fetchHandler().then((data) => {
       setBuyers(data.buyers);
-      setFilteredBuyers(data.buyers); // Initially, display all buyers
+      setFilteredBuyers(data.buyers); 
     });
   }, []);
 
-  // Handle deleting a buyer and updating the state
   const handleDelete = (id) => {
     setBuyers((prevBuyers) => prevBuyers.filter((buyer) => buyer._id !== id));
     setFilteredBuyers((prevBuyers) =>
@@ -33,7 +32,7 @@ function Buyers() {
     );
   };
 
-  // Search functionality
+  // Search function
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e) => {
@@ -53,26 +52,22 @@ function Buyers() {
   const generatePDF = () => {
     const doc = new jsPDF();
 
-    // Set title styling
     doc.setFontSize(16);
-    doc.setTextColor(0, 102, 204); // Blue color for the title
+    doc.setTextColor(17, 48, 81); 
     doc.text("Direct Buyers Report", 105, 15, null, null, "center");
 
-    // Loop through users and format content
     filteredBuyers.forEach((buyer, i) => {
-      const yOffset = 25 + i * 40; // Increased spacing for better readability
+      const yOffset = 25 + i * 40; 
 
-      // Section header
       doc.setFontSize(12);
-      doc.setTextColor(0, 153, 76); // Green color for headers
+      doc.setTextColor(17, 48, 81); 
       doc.text(`Buyer ${i + 1}`, 15, yOffset);
 
-      // User details
       doc.setFontSize(10);
-      doc.setTextColor(0, 0, 0); // Black color for regular text
+      doc.setTextColor(0, 0, 0); 
       doc.text(`ID: ${buyer._id}`, 20, yOffset + 7);
       doc.text(`Name: ${buyer.name}`, 20, yOffset + 14);
-      doc.text(`Contact: ${buyer.contact}`, 20, yOffset + 21);
+      doc.text(`Address: ${buyer.address}`, 20, yOffset + 21);
     });
 
     doc.save("Direct_Buyers_Report.pdf");
@@ -93,27 +88,25 @@ function Buyers() {
         <div className="table-container">
           <div className="table-controls">
           
-            {/* Search Input */}
+           
             <input
               type="search"
               placeholder="Search Here"
               className="search-input"
               value={searchQuery}
-              onChange={handleSearch} // Add onChange event
+              onChange={handleSearch} 
             />
             
           </div>
 
-          {/* Buyers Table */}
+         
           <table className="buyers-table">
             <thead>
               <tr>
-                <th>
-                  <input type="checkbox" />
-                </th>
+                
                 <th>Buyer ID</th>
                 <th>Buyer Name</th>
-                <th>Added Date</th>
+                <th>Address</th>
                 <th>Contact</th>
                 <th>Action</th>
               </tr>
@@ -133,7 +126,7 @@ function Buyers() {
             </tbody>
           </table>
 
-          {/* Download Report Button */}
+         
           <div className="report-btn-container">
             <button onClick={generatePDF} className="report-btn">
               Download Report

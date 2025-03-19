@@ -3,16 +3,16 @@ const Schema = mongoose.Schema;
 
 const buyerSchema = new Schema({
     name:{
-        type:String,//datatype
-        required:true,//vaidate
+        type:String,
+        required:true,
     },
     contact:{
-        type:Number,//datatype
-        required:true,//vaidate
+        type:Number,
+        required:true,
     },
-    date:{
-        type:Date,//datatype
-        required:true,//vaidate
+    address:{
+        type:String,
+        required:true,
     },
     
 });

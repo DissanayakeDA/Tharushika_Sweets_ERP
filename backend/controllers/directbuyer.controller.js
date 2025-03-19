@@ -12,7 +12,6 @@ export const getAllBuyers = async (req, res, next) => {
         console.log(err);
         return res.status(500).json({ message: "Server error occurred" });
     }
-    //if not found any buyer
     if(!buyers){
         return res.status(404).json({message:"User Not Found"})
     }
@@ -24,18 +23,16 @@ export const getAllBuyers = async (req, res, next) => {
 //data insert
 
 export const addBuyers = async (req, res, next) => {
-  const { name, contact, date } = req.body;
+  const { name, contact, address } = req.body;
 
   let buyer;
 
   try {
-    // Check for missing required fields
-    if (!name || !contact || !date) {
+    if (!name || !contact || !address) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Create a new Buyer instance
-    buyer = new Buyer({ name, contact, date });
+    buyer = new Buyer({ name, contact, address });
 
     // Save the new buyer to the database
     await buyer.save();
@@ -62,7 +59,6 @@ export const getById = async (req, res, next) => {
         console.log(err);
     }
 
-    //if not available buyers
     if(!buyer){
         return res.status(404).send({message:"Buyer Not Found"});
     }
@@ -77,13 +73,13 @@ export const getById = async (req, res, next) => {
 export const updateBuyer = async(req, res, next) => {
 
     const id = req.params.id;
-    const {name, contact, date } = req.body;
+    const {name, contact, address } = req.body;
 
     let buyers;
 
     try{
         buyers = await Buyer.findByIdAndUpdate(id,
-            {name: name, contact: contact, date: date});
+            {name: name, contact: contact, address: address});
             buyers = await buyers.save();
     }catch(err){
         console.log(err);

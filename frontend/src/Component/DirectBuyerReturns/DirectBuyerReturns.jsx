@@ -11,26 +11,27 @@ function DirectBuyerReturns() {
       { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
     ]
   );
-  const [selection, setSelection] = useState(""); // New state for selection
-  const [stockItems, setStockItems] = useState([]); // State to hold fetched stock data
-  const [buyers, setBuyers] = useState([]); // State to hold fetched buyers
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [selection, setSelection] = useState(""); 
+  const [stockItems, setStockItems] = useState([]); 
+  const [buyers, setBuyers] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
   const navigate = useNavigate();
 
 
   useEffect(() => {
-    // Reset state when the component mounts
+    // Reset state 
     setBuyerId("");
     setRows([{ selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 }]);
     setSelection("");
   
-    // Clear localStorage data if the clearDataFlag is set
+   
     if (localStorage.getItem("clearDataFlag") === "true") {
       localStorage.removeItem("returnbuyerId");
       localStorage.removeItem("returninvoiceData");
       localStorage.removeItem("returntotalBill");
-      localStorage.removeItem("clearDataFlag");
+      localStorage.removeItem("returnMethod");
+      localStorage.removeItem("clearDataFlag"); 
     }
   }, []);
 
@@ -38,11 +39,11 @@ function DirectBuyerReturns() {
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        setLoading(true); // Start loading
-        const response = await axios.get("http://localhost:5000/api/stocks"); // Adjust URL if needed
-        console.log("API Response:", response.data); // Log the response to debug
+        setLoading(true); 
+        const response = await axios.get("http://localhost:5000/api/stocks"); 
+        console.log("API Response:", response.data); 
         if (response.data.success) {
-          setStockItems(response.data.data); // Update state with the stock data array
+          setStockItems(response.data.data);
         } else {
           setError("Failed to fetch stock data.");
         }
@@ -50,7 +51,7 @@ function DirectBuyerReturns() {
         console.error("Error fetching stock data:", error);
         setError("Error fetching stock data. Check the console for details.");
       } finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
       }
     };
 
@@ -61,10 +62,10 @@ function DirectBuyerReturns() {
   useEffect(() => {
     const fetchBuyers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/buyers"); // Adjust URL if needed
-        console.log("Buyers Response:", response.data); // Log the response to debug
+        const response = await axios.get("http://localhost:5000/buyers"); 
+        console.log("Buyers Response:", response.data); 
         if (response.data.buyers) {
-          setBuyers(response.data.buyers); // Update state with the buyer data
+          setBuyers(response.data.buyers); 
         } else {
           setError("Failed to fetch buyer data.");
         }
@@ -81,7 +82,7 @@ function DirectBuyerReturns() {
     setBuyerId(e.target.value);
   };
 
-  //selection navigate
+ 
   const handleSelectionChange = (event) => {
     setSelection(event.target.value);
   };
@@ -144,7 +145,7 @@ function DirectBuyerReturns() {
     localStorage.setItem("returnbuyerId", buyerId);
     localStorage.setItem("returninvoiceData", JSON.stringify(filteredRows));
     localStorage.setItem("returntotalBill", totalBill);
-    localStorage.setItem("returnMethod", selection); // Save return method
+    localStorage.setItem("returnMethod", selection); 
   
     navigate("/returnInvoice");
   };
@@ -157,14 +158,14 @@ function DirectBuyerReturns() {
       <hr className="hr-issue" />
       <div className="selection-container">
   <label>Select Return Type: </label>
-  <select value={selection} onChange={handleSelectionChange}>
+  <select className="select-type" value={selection} onChange={handleSelectionChange}>
     <option value="">Select an option</option>
     <option value="issueProduct">Issue Product</option>
     <option value="issueMoney">Issue Money</option>
   </select>
 </div>
 
-      <div className="buyer-id-section">
+      
         <select
           
           name="buyer_id"
@@ -180,7 +181,7 @@ function DirectBuyerReturns() {
             </option>
           ))}
         </select>
-      </div>
+      
 
       {loading && <p>Loading stock data...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -206,6 +207,7 @@ function DirectBuyerReturns() {
       <tr key={index}>
         <td>
           <select
+            className="select-item"
             value={row.selectedItem}
             onChange={(e) => handleItemChange(index, e.target.value)}
             disabled={loading}
@@ -222,6 +224,7 @@ function DirectBuyerReturns() {
 
         <td>
           <input
+            className="qty-input"
             type="number"
             value={row.quantity}
             onChange={(e) => handleQuantityChange(index, e.target.value)}
