@@ -1,20 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-
 import { connectDB } from "./config/db.js";
 import productRoutes from "./routes/product.route.js";
 import stockRoutes from "./routes/stock.route.js";
 import cors from "cors";
 import router from "./routes/directbuyer.route.js";
-import multer from "multer";
 import fs from "fs";
 import "./models/directinvoice.model.js";
 import IngredientRoutes from "./routes/ingredient.route.js";
 import supplierRoutes from "./routes/supplier.route.js";
-
 import salesRoutes from "./routes/directsales.route.js";
-
 import returnRoutes from "./routes/directreturns.route.js";
 
 dotenv.config();
@@ -50,9 +45,7 @@ app.post("/api/sales/add", async (req, res) => {
     console.log("Received Data:", req.body); // Debugging log
     const { buyerId, items, totalAmount } = req.body;
 
-
-
-      if (!buyerId || !items || items.length === 0 || !totalAmount) {
+    if (!buyerId || !items || items.length === 0 || !totalAmount) {
       return res.status(400).json({ success: false, message: "Missing data" });
     }
 
@@ -87,19 +80,6 @@ app.post("/api/returns/add", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
-
-  
-  //InvoicePdf
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./files");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now();
-    cb(null, uniqueSuffix + file.originalname);
-  },
-});
-
 
 app.listen(PORT, () => {
   connectDB();

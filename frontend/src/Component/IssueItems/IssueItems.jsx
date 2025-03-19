@@ -1,6 +1,7 @@
 // issueitems.jsx
 import React, { useState, useEffect } from "react";
 import Nav from "../Nav/Nav";
+import HeadBar from "../HeadBar/HeadBar";
 import "./IssueItems.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Ensure axios is installed
@@ -149,6 +150,7 @@ function IssueItems() {
 
   return (
     <div className="issue-items-container">
+      <HeadBar />
       <Nav />
       <h2 className="title">Issue Items</h2>
       <hr className="hr-issue" />

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./AddBuyers.css";
 import Nav from "../Nav/Nav";
-import { useNavigate } from 'react-router-dom';
+import HeadBar from "../HeadBar/HeadBar";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AddBuyers = () => {
@@ -13,7 +14,7 @@ const AddBuyers = () => {
     contact: "",
     date: "",
   });
-  
+
   const [errors, setErrors] = useState({}); // State for error messages
 
   // Handle input change
@@ -68,30 +69,33 @@ const AddBuyers = () => {
 
     console.log(inputs);
     await sendRequest();
-    history('/viewbuyers');  // Navigate to 'viewbuyers' when submission is successful
+    history("/viewbuyers"); // Navigate to 'viewbuyers' when submission is successful
   };
 
   // Send request to backend
   const sendRequest = async () => {
-    await axios.post("http://localhost:5000/buyers", {
-      name: String(inputs.name),
-      contact: Number(inputs.contact),
-      address: Number(inputs.address),
-      date: inputs.date,
-    }).then(res => res.data);
+    await axios
+      .post("http://localhost:5000/buyers", {
+        name: String(inputs.name),
+        contact: Number(inputs.contact),
+        address: Number(inputs.address),
+        date: inputs.date,
+      })
+      .then((res) => res.data);
   };
 
   // Get the current date in YYYY-MM-DD format for the min date attribute
   const currentDate = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="form-container">
+    <div className="form-container-buyers">
+      <HeadBar />
       <Nav />
       <h2 className="form-title">Add Buyers</h2>
-      <hr />
+
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Buyer Name</label>
+        <div className="form-group-buyers">
+          <label>Buyer Name:</label>
           <input
             type="text"
             name="name"
@@ -101,8 +105,8 @@ const AddBuyers = () => {
           />
           {errors.name && <span className="error">{errors.name}</span>}
         </div>
-        <div className="form-group">
-          <label>Buyer Contact</label>
+        <div className="form-group-buyers">
+          <label>Buyer Contact:</label>
           <input
             type="number"
             name="contact"
@@ -112,9 +116,9 @@ const AddBuyers = () => {
           />
           {errors.contact && <span className="error">{errors.contact}</span>}
         </div>
-        
-        <div className="form-group">
-          <label>Date</label>
+
+        <div className="form-group-buyers">
+          <label>Date:</label>
           <input
             type="date"
             name="date"
@@ -124,7 +128,9 @@ const AddBuyers = () => {
           />
           {errors.date && <span className="error">{errors.date}</span>}
         </div>
-        <button type="submit" className="save-btn">Submit</button>
+        <button type="submit" className="save-btn">
+          Submit
+        </button>
       </form>
     </div>
   );

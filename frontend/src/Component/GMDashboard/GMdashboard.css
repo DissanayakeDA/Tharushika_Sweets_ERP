@@ -2,9 +2,11 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 /* General Reset */
 body,
-html {
+html,
+h2 {
   margin: 0;
   padding: 0;
+
   font-family: "Noto Sans", sans-serif;
   box-sizing: border-box;
 }
@@ -13,21 +15,31 @@ html {
 .home-container {
   display: block;
   height: 100vh;
-  background-color: #efefef;
+  background-color: #dadada;
+}
+.home-header {
+  width: 100%;
+  height: 5%;
+  padding: 10px;
+  align-items: center;
+  background: #9ac3dd;
 }
 
 /* Main content styling */
 .main-content {
   flex: 2;
-  background-color: #efefef; /* Set background to white */
-  padding: 20px;
+  background-color: #dadada; /* Set background to white */
+  padding: 10px;
 }
-.dash-title {
+.dash-title-GM {
   font-size: 28px;
+  font-weight: 400;
   color: #37474f;
-  margin-bottom: 20px;
-  text-align: center;
+  padding: 5px;
+  margin-top: -5px;
   margin-left: 10%;
+  text-align: left;
+  margin-bottom: 20px;
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -36,9 +48,9 @@ html {
   display: flex;
   flex-direction: row;
   gap: 30px;
-  margin-top: 80px;
+  margin-top: 50px;
   margin-left: 10%;
-  margin-right: 20%;
+  margin-right: 8%;
 }
 .dash-btn-text,
 .dash-btn-text-sales,
@@ -56,10 +68,10 @@ html {
   flex-direction: column; /* Stack the icon and text vertically */
   align-items: center; /* Center the content horizontally */
   justify-content: center; /* Center the content vertically */
-  background: #9ac3dd;
+  background: #54b2e8;
   color: white;
   padding: 30px 20px;
-  border-radius: 18px;
+  border-radius: 10px;
   cursor: pointer;
   width: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -67,16 +79,17 @@ html {
   font-size: 25px;
   font-weight: bold;
   text-decoration: none;
+  margin-top: 1%;
 }
 .dashboard-btn-emp {
   display: flex;
   flex-direction: column; /* Stack the icon and text vertically */
   align-items: center; /* Center the content horizontally */
   justify-content: center; /* Center the content vertically */
-  background: #9ac3dd;
+  background: #54b2e8;
   color: white;
   padding: 30px 20px;
-  border-radius: 18px;
+  border-radius: 10px;
   cursor: pointer;
   width: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -110,7 +123,18 @@ html {
   margin-left: 10%;
   margin-right: 2%;
 }
-
+.profile-icon-btn {
+  color: #37474f;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  padding: 5px;
+  z-index: 1000;
+}
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .dash-title {

@@ -1,53 +1,66 @@
 /* Import Noto Sans font */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
-html,body{
-  background-color: #EFEFEF;
-  color: #EFEFEF;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #efefef;
+  color: #efefef;
 }
-.form-container {
-  margin-left: 150px; /* Adjust based on sidenav width */
-  padding: 30px;
+.form-container-buyers {
+  margin-left: 0px; /* Adjust based on sidenav width */
+  padding: 0px;
   font-family: "Noto Sans", sans-serif;
-  margin-top: 50px;
-  background-color: #EFEFEF;
+  margin-top: 0px;
+  background-color: #efefef;
 }
 
 .form-title {
   font-size: 28px;
-  color: #37474F;
+  font-weight: 400;
+  color: #37474f;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: 10%;
+  text-align: left;
   margin-bottom: 20px;
-  text-align: center;
-  margin-left: 1px;
-  margin-top: 0.1px;
+  font-family: "Noto Sans", sans-serif;
 }
 
-.form-group {
+.form-group-buyers {
   margin-bottom: 50px;
   align-items: center;
   margin-left: 33%;
   margin-top: 5%;
 }
 
-.form-group label {
-    margin-top: 5%;
+.form-group-buyers label {
+  margin-top: 5%;
   display: block;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 500;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
-.form-group input {
+.form-group-buyers input {
   width: 50%;
+  height: 20px;
   padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
+  font-size: 16px;
+  border: 2px solid #888888;
   border-radius: 5px;
-  background-color: #EFEFEF;
+  background-color: #ffffff;
+}
+.form-group-buyers input:active {
+  border: 2px solid #070707;
+  border-radius: 5px;
+  background-color: #ffffff;
 }
 
 .save-btn {
-  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+  background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
   color: white;
   padding: 10px 30px;
   border: none;
@@ -68,7 +81,6 @@ html,body{
   font-size: 12px;
   margin-top: 5px;
 }
-
 
 /* Media Queries for Mobile Devices */
 @media (max-width: 768px) {
@@ -123,5 +135,3 @@ html,body{
     font-size: 14px; /* Reduce button font size */
   }
 }
-
-  

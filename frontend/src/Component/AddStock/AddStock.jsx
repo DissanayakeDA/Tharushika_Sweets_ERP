@@ -3,25 +3,40 @@ import Nav from "../Nav/Nav";
 import "./AddStock.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import HeadBar from "../HeadBar/HeadBar";
 
 function AddStock() {
   const [selection, setSelection] = useState("addProducts");
   const [rows, setRows] = useState([
     { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
   ]);
-  const [stockItems, setStockItems] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [stocks, setStocks] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch stock data
-  const fetchStockData = async () => {
+  const fetchProductData = async () => {
     try {
       setLoading(true);
+      const response = await axios.get("http://localhost:5000/api/products");
+      if (response.data.success) {
+        setProducts(response.data.data);
+      } else {
+        setError("Failed to fetch product data.");
+      }
+    } catch (error) {
+      console.error("Error fetching product data:", error);
+      setError("Error fetching product data.");
+    }
+  };
+
+  const fetchStockData = async () => {
+    try {
       const response = await axios.get("http://localhost:5000/api/stocks");
       if (response.data.success) {
-        setStockItems(response.data.data);
+        setStocks(response.data.data);
       } else {
         setError("Failed to fetch stock data.");
       }
@@ -33,7 +48,6 @@ function AddStock() {
     }
   };
 
-  // Fetch supplier data
   const fetchSuppliers = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/suppliers");
@@ -49,6 +63,7 @@ function AddStock() {
   };
 
   useEffect(() => {
+    fetchProductData();
     fetchStockData();
     fetchSuppliers();
   }, []);
@@ -69,23 +84,24 @@ function AddStock() {
   };
 
   const handleItemChange = (index, value) => {
-    const item = stockItems.find((item) => item.product_name === value);
+    const product = products.find((item) => item.product_name === value);
+    const stock = stocks.find((item) => item.product_name === value);
     const updatedRows = [...rows];
     updatedRows[index] = {
       ...updatedRows[index],
       selectedItem: value,
-      currentStock: item ? item.product_quantity : 0,
-      price: item ? item.product_price : 0,
+      currentStock: stock ? stock.product_quantity : 0,
+      price: product ? product.product_price : 0,
       quantity: 1,
-      total: item ? item.product_price * 1 : 0,
+      total: product ? product.product_price * 1 : 0,
     };
     setRows(updatedRows);
   };
 
   const handleQuantityChange = (index, value) => {
     const updatedRows = [...rows];
-    const newQuantity = parseInt(value, 10);
-    if (newQuantity >= 1 && newQuantity <= updatedRows[index].currentStock) {
+    const newQuantity = parseInt(value, 10) || 1; // Default to 1 if invalid
+    if (newQuantity >= 1) {
       updatedRows[index].quantity = newQuantity;
       updatedRows[index].total = newQuantity * updatedRows[index].price;
     }
@@ -132,13 +148,21 @@ function AddStock() {
           await axios.post("http://localhost:5000/api/stocks", {
             product_name: row.selectedItem,
             product_quantity: row.quantity,
+            product_price: row.price || 0, // Ensure price is sent, default to 0 if undefined
           });
         }
         alert("Stock updated successfully!");
         navigate("/viewstock");
       } catch (error) {
-        console.error("Error updating stock:", error);
-        alert("Failed to update stock.");
+        console.error(
+          "Error updating stock:",
+          error.response ? error.response.data : error.message
+        );
+        alert(
+          `Failed to update stock: ${
+            error.response ? error.response.data.message : error.message
+          }`
+        );
       }
     } else {
       const filteredRows = rows.filter((row) => row.ingredientName);
@@ -152,7 +176,7 @@ function AddStock() {
           await axios.post("http://localhost:5000/api/ingredients", {
             supplier_name: row.supplier,
             invoice_id: row.invoiceId,
-            ingredient_name: row.ingredientName, // Fix: ensure this is 'ingredient_name' not 'product_name'
+            ingredient_name: row.ingredientName,
             ingredient_quantity: row.quantity,
             lot_price: row.lotPrice,
           });
@@ -164,23 +188,20 @@ function AddStock() {
         alert("Failed to add ingredients.");
       }
     }
-    const [row, setRow] = useState({
-      supplier: "",
-      invoiceId: "",
-      ingredientName: "",
-      quantity: "",
-      lotPrice: "",
-    });
   };
 
   return (
-    <div className="issue-items-container">
+    <div className="add-stock-container">
+      <HeadBar />
       <Nav />
-      <h2 className="title">Add Stock</h2>
-      <hr className="hr-issue" />
+      <h2 className="title-stock">Add Stock</h2>
 
       <label>Select Stock Type: </label>
-      <select value={selection} onChange={handleSelectionChange}>
+      <select
+        className="selection-stock"
+        value={selection}
+        onChange={handleSelectionChange}
+      >
         <option value="addProducts">Add Products</option>
         <option value="addIngredients">Add Ingredients</option>
       </select>
@@ -223,7 +244,7 @@ function AddStock() {
                       onChange={(e) => handleItemChange(index, e.target.value)}
                     >
                       <option value="">Select Item</option>
-                      {stockItems.map((item, i) => (
+                      {products.map((item, i) => (
                         <option key={i} value={item.product_name}>
                           {item.product_name}
                         </option>
@@ -240,7 +261,6 @@ function AddStock() {
                         handleQuantityChange(index, e.target.value)
                       }
                       min="1"
-                      max={row.currentStock}
                     />
                   </td>
                   <td>{row.total}</td>
@@ -307,6 +327,7 @@ function AddStock() {
                   </td>
                   <td>
                     <input
+                      className="stock-qty-input"
                       type="number"
                       value={row.lotPrice}
                       onChange={(e) =>
@@ -332,13 +353,14 @@ function AddStock() {
           ))}
         </tbody>
       </table>
-
-      <button className="add-row-btn" onClick={addNewRow}>
-        +
-      </button>
-      <button className="addstock-btn" onClick={addStockbtn}>
-        Add Stock
-      </button>
+      <div>
+        <button className="add-row-btn-stock" onClick={addNewRow}>
+          +
+        </button>
+        <button className="addstock-btn" onClick={addStockbtn}>
+          Add Stock
+        </button>
+      </div>
     </div>
   );
 }

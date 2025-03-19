@@ -19,6 +19,10 @@ import ReturnInvoice from "./Component/ReturnInvoice/ReturnInvoice";
 import ViewReturns from "./Component/ViewReturns/ViewReturns";
 import ViewStock from "./Component/ViewStock/ViewStock";
 import Suppliers from "./Component/Suppliers/Suppliers";
+import UpdateSuppliers from "./Component/UpdateSupplier/UpdateSupplier";
+import Products from "./Component/AddProduct/AddProduct";
+import GMViewStock from "./Component/GMViewStock/GMViewStock";
+import GMBuyers from "./Component/GMBuyers/GMBuyers";
 
 function App() {
   return (
@@ -32,6 +36,7 @@ function App() {
           <Route path="/addbuyers" element={<AddBuyers />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/viewbuyers" element={<Buyers />} />
+          <Route path="/viewbuyers-gm" element={<GMBuyers />} />
           <Route path="/viewsales" element={<Sales />} />
           <Route path="/viewrequests" element={<Requests />} />
           <Route path="/viewbuyers/:id" element={<UpdateBuyers />} />
@@ -42,7 +47,10 @@ function App() {
           <Route path="/returninvoice" element={<ReturnInvoice />} />
           <Route path="/viewReturns" element={<ViewReturns />} />
           <Route path="/viewstock" element={<ViewStock />} />
+          <Route path="/viewstock-gm" element={<GMViewStock />} />
           <Route path="/viewsuppliers" element={<Suppliers />} />
+          <Route path="/viewsuppliers/:id" element={<UpdateSuppliers />} />
+          <Route path="/products" element={<Products />} />
         </Routes>
       </React.Fragment>
     </div>
