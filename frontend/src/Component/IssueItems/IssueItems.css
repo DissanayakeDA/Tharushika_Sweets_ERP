@@ -1,29 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
-html, body{
-  background-color: #EFEFEF;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", sans-serif;
+  background-color: #efefef;
+  background-color: #efefef;
 }
 .issue-items-container {
-    padding: 20px;
-    background-color: #EFEFEF;
-    border-radius: 8px;
-    font-family: "Noto Sans", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  background-color: #efefef;
+  border-radius: 8px;
+  font-family: "Noto Sans", sans-serif;
 }
-  
-  .title {
-  font-size: 28px;
-  color: #37474F;
-  margin-bottom: 20px;
-  text-align: center;
-  margin-left: 10%;
 
-  }
-  
-  .hr-issue{
-    margin-left: 10%;
-    margin-right: 2%;
-    margin-top: 2.9%;
-  }
+.title {
+  font-size: 28px;
+  font-weight: 400;
+  color: #37474f;
+  padding: 5px;
+  margin-top: 5px;
+  margin-left: 10%;
+  text-align: left;
+  margin-bottom: 20px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.buyer-id-section {
+  width: 30%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin: 50px auto;
+  display: block;
+  background-color: #efefef;
+  margin-left: 10%;
+}
+
+.issue-items-table {
+  width: 80%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 3%;
+}
 
 
   
@@ -38,19 +61,16 @@ html, body{
   .issue-items-table th,
   .issue-items-table td {
     padding: 12px 15px;
+
   border-bottom: 2px solid #ccc;
-  }
-  
-  .issue-items-table th {
-    background-color: #EFEFEF;
+}
+
+.issue-items-table th {
+  background-color: #efefef;
   color: #4e4a4a;
   text-align: center;
-  }
-  
-  .issue-items-table td {
-    font-size: 0.9rem;
-    color: #555;
-  }
+}
+
 
   .issue-items-table td button {
     margin: 0 5px;
@@ -78,6 +98,7 @@ html, body{
 
 .add-row-btn{
   background-color: #37474F;
+
   color: white;
   border: none;
   border-radius: 50%;
@@ -85,15 +106,20 @@ html, body{
   width: 40px;
   height: 40px;
   cursor: pointer;
+
+   padding: 5px 10px;
+  margin-right: 15px;
+  transition: transform 0.2s ease;
   transition: transform 0.2s ease; 
+
 }
 
-.add-row-btn:hover{
+.add-row-btn:hover {
   transform: scale(1.1);
 }
 
 .remove-row-btn {
-  background-color: #37474F;
+  background-color: #37474f;
   color: white;
   border: none;
   border-radius: 50%;
@@ -107,6 +133,7 @@ html, body{
 .remove-row-btn:hover {
   transform: scale(1.1);
 }
+
 
 .id-input{
   padding: 8px;
@@ -135,6 +162,7 @@ html, body{
     transform: scale(1.05);
   }
 
+
 @media (max-width: 1024px) {
   .title {
     font-size: 24px;
@@ -161,8 +189,10 @@ html, body{
     align-items: center; 
   }
 
+
   .add-row-btn, .remove-row-btn {
     width: 35px; 
+
     height: 35px;
     font-size: 18px;
   }
@@ -199,7 +229,8 @@ html, body{
     align-items: center; 
   }
 
-  .add-row-btn, .remove-row-btn {
+  .add-row-btn,
+  .remove-row-btn {
     font-size: 18px;
     width: 35px;
     height: 35px;
@@ -233,7 +264,8 @@ html, body{
     align-items: center;
   }
 
-  .add-row-btn, .remove-row-btn {
+  .add-row-btn,
+  .remove-row-btn {
     font-size: 16px;
     width: 30px;
     height: 30px;

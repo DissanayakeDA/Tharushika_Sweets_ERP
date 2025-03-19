@@ -1,22 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
+
+
 body, html {
     margin: 0;
     padding: 0;
     height: 100%; 
   }
   
+
 .sidenav {
   width: 80px;
-  background-color: #FFFF;
-  height: 75vh;
-  margin-top: 5%;
+  background-color: #ffff;
+  height: 70vh;
+  margin-top: 8%;
   margin-left: 2%;
   padding: 20px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  color: #5D4037;
+  color: #5d4037;
   position: fixed;
   top: 0;
   left: 0;
@@ -46,9 +49,10 @@ body, html {
     font-weight: bold;
     font-size: small;
   }
+
 .profile-icon-btn {
-  color: #37474F;
-  background-color: #EFEFEF;
+  color: #37474f;
+  background-color: #efefef;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -59,11 +63,17 @@ body, html {
   z-index: 1000; 
 }
 
+/* Ensure the SVG is properly centered */
+.center-icon-btn svg {
+  display: block;
+}
+
 
   .center-icon-btn svg {
     display: block;
   }
   
+
 
 
 .brand {
@@ -73,7 +83,7 @@ body, html {
   text-align: center;
 }
 
-  
+
 .sidenav ul {
   list-style: none;
   padding: 0;
@@ -98,6 +108,7 @@ body, html {
   opacity: 0.5;
   margin: 10px 0;
 }
+
   .sidenav ul {
     list-style: none;
     padding: 0;
@@ -123,6 +134,7 @@ body, html {
     opacity: 0.5;
     margin: 10px 0;
   }
+
 main {
   margin-left: 220px; 
   padding: 20px;
@@ -146,11 +158,13 @@ main {
     box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
   }
 }
+
 .center-icon-btn:hover{
   background-color: rgba(154, 195, 221, 0.2); 
   border-radius: 50%; 
   box-shadow: 0 0 15px #9ac3dd; 
   transition: all 0.3s ease-in-out;
+
 
 }
 .center-icon-btn.active {

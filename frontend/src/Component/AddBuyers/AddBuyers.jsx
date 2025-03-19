@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./AddBuyers.css";
 import Nav from "../Nav/Nav";
-import { useNavigate } from 'react-router-dom';
+import HeadBar from "../HeadBar/HeadBar";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AddBuyers = () => {
@@ -12,8 +13,10 @@ const AddBuyers = () => {
     contact: "",
     address: "",
   });
+
   
   const [errors, setErrors] = useState({}); 
+
 
   // Handle input change
   const handleChange = (e) => {
@@ -60,26 +63,33 @@ const AddBuyers = () => {
 
     console.log(inputs);
     await sendRequest();
+
+
     history('/viewbuyers');  
+
   };
 
   // Send request to backend
   const sendRequest = async () => {
+
+
     await axios.post("http://localhost:5000/buyers", {
       name: String(inputs.name),
       contact: Number(inputs.contact),
       address: String(inputs.address),
     }).then(res => res.data);
+
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container-buyers">
+      <HeadBar />
       <Nav />
       <h2 className="form-title">Add Buyers</h2>
-      <hr />
+
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Buyer Name</label>
+        <div className="form-group-buyers">
+          <label>Buyer Name:</label>
           <input
             type="text"
             name="name"
@@ -89,8 +99,8 @@ const AddBuyers = () => {
           />
           {errors.name && <span className="error">{errors.name}</span>}
         </div>
-        <div className="form-group">
-          <label>Buyer Contact</label>
+        <div className="form-group-buyers">
+          <label>Buyer Contact:</label>
           <input
             type="text"
             name="contact"
@@ -100,9 +110,11 @@ const AddBuyers = () => {
           />
           {errors.contact && <span className="error">{errors.contact}</span>}
         </div>
+
         
-        <div className="form-group">
+    <div className="form-group-buyers">
           <label>Address</label>
+
           <input
             type="text"
             name="address"
@@ -112,7 +124,9 @@ const AddBuyers = () => {
           />
           {errors.address && <span className="error">{errors.address}</span>}
         </div>
-        <button type="submit" className="save-btn">Submit</button>
+        <button type="submit" className="save-btn">
+          Submit
+        </button>
       </form>
     </div>
   );

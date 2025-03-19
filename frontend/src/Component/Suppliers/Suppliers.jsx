@@ -117,9 +117,9 @@ function Suppliers() {
             </thead>
             <tbody>
               {filteredSuppliers && filteredSuppliers.length > 0 ? (
-                filteredSuppliers.map((supplier) => (
+                filteredSuppliers.map((supplier, i) => (
                   <Supplier
-                    key={supplier._id}
+                    key={i}
                     supplier={supplier}
                     onDelete={handleDelete}
                   />

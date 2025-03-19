@@ -1,7 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-
 import { connectDB } from "./config/db.js";
 import productRoutes from "./routes/product.route.js";
 import stockRoutes from "./routes/stock.route.js";
@@ -11,9 +9,7 @@ import fs from "fs";
 import "./models/directinvoice.model.js";
 import IngredientRoutes from "./routes/ingredient.route.js";
 import supplierRoutes from "./routes/supplier.route.js";
-
 import salesRoutes from "./routes/directsales.route.js";
-
 import returnRoutes from "./routes/directreturns.route.js";
 
 dotenv.config();
@@ -49,9 +45,7 @@ app.post("/api/sales/add", async (req, res) => {
     console.log("Received Data:", req.body); 
     const { buyerId, items, totalAmount } = req.body;
 
-
-
-      if (!buyerId || !items || items.length === 0 || !totalAmount) {
+    if (!buyerId || !items || items.length === 0 || !totalAmount) {
       return res.status(400).json({ success: false, message: "Missing data" });
     }
 
@@ -86,10 +80,6 @@ app.post("/api/returns/add", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
-
-  
-
-
 
 app.listen(PORT, () => {
   connectDB();

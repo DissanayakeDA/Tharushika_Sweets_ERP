@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./AddSupplier.css";
-import Nav from "../Nav/Nav";
+import GMNav from "../GMNav/GMNav";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -90,12 +90,12 @@ const AddSupplier = () => {
   };
 
   return (
-    <div className="form-container">
-      <Nav />
-      <h2 className="form-title">Add Suppliers</h2>
+    <div className="form-container-sup">
+      <GMNav />
+      <h2 className="form-title-sup">Add Suppliers</h2>
       <hr />
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group-sup">
           <label>Supplier Name</label>
           <input
             type="text"
@@ -106,7 +106,7 @@ const AddSupplier = () => {
           />
           {errors.name && <span className="error">{errors.supplier_name}</span>}
         </div>
-        <div className="form-group">
+        <div className="form-group-sup">
           <label>Supplier Address</label>
           <input
             type="text"
@@ -119,7 +119,7 @@ const AddSupplier = () => {
             <span className="error">{errors.supplier_address}</span>
           )}
         </div>
-        <div className="form-group">
+        <div className="form-group-sup">
           <label>Supplier Phone</label>
           <input
             type="number"
@@ -132,7 +132,7 @@ const AddSupplier = () => {
             <span className="error">{errors.supplier_phone}</span>
           )}
         </div>
-        <div className="form-group">
+        <div className="form-group-sup">
           <label>Supplier Email</label>
           <input
             type="email"

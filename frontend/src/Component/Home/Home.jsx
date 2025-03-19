@@ -2,15 +2,16 @@ import React from "react";
 import Nav from "../Nav/Nav";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import HeadBar from "../HeadBar/HeadBar";
 
 function Home() {
   return (
     <div className="home-container">
+      <HeadBar />
       <Nav />
 
       <div className="main-content">
         <h2 className="dash-title">Stock Manager Dashboard</h2>
-        <hr className="hr-dash" />
 
         <div className="dashboard-buttons">
           <Link to="/viewstock" className="dashboard-link">
@@ -54,6 +55,14 @@ function Home() {
               <i className="bi bi-bell"></i>
             </div>
             <label className="dash-btn-text-req">Returns</label>
+          </div>
+        </Link>
+        <Link to="/products" className="dashboard-link">
+          <div className="dashboard-btn-returns">
+            <div className="dash-btn-icon-returns">
+              <i className="bi bi-bell"></i>
+            </div>
+            <label className="dash-btn-text-req">Products</label>
           </div>
         </Link>
       </div>

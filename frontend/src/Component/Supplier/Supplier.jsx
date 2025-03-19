@@ -5,7 +5,7 @@ import axios from "axios";
 
 function Supplier({ supplier, onDelete }) {
   const {
-    id,
+    _id,
     supplier_name,
     supplier_address,
     supplier_phone,
@@ -15,8 +15,8 @@ function Supplier({ supplier, onDelete }) {
   const deleteHandler = async () => {
     if (window.confirm("Are you sure you want to delete this supplier?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/suppliers/${id}`);
-        onDelete(id);
+        await axios.delete(`http://localhost:5000/api/suppliers/${_id}`);
+        onDelete(_id);
       } catch (error) {
         console.error("Error deleting supplier:", error);
         alert("Failed to delete the supplier. Please try again.");
@@ -29,14 +29,14 @@ function Supplier({ supplier, onDelete }) {
       <td>
         <input type="checkbox" />
       </td>
-      <td>{id}</td>
+      <td>{_id}</td>
       <td>{supplier_name}</td>
       <td>{supplier_address}</td>
       <td>{supplier_phone}</td>
       <td>{supplier_email}</td>
       <td>
         <div className="action-icons">
-          <Link to={`/viewsuppliers/${id}`}>
+          <Link to={`/viewsuppliers/${_id}`}>
             <button className="action">
               <i className="bi bi-pencil-square"></i>
             </button>

@@ -1,12 +1,7 @@
-//stock.model.js
 import mongoose from "mongoose";
 
 const stockSchema = new mongoose.Schema(
   {
-    product_id: {
-      type: String,
-      required: true,
-    },
     product_name: {
       type: String,
       required: true,
@@ -14,10 +9,12 @@ const stockSchema = new mongoose.Schema(
     product_quantity: {
       type: Number,
       required: true,
+      default: 0,
     },
     product_price: {
       type: Number,
-      required: true,
+      required: false, // Optional since it defaults to 0
+      default: 0,
     },
   },
   {

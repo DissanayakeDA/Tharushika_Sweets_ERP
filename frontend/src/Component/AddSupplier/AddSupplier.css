@@ -6,7 +6,7 @@ body {
   background-color: #efefef;
   color: #efefef;
 }
-.form-container {
+.form-container-sup {
   margin-left: 150px; /* Adjust based on sidenav width */
   padding: 30px;
   font-family: "Noto Sans", sans-serif;
@@ -14,7 +14,7 @@ body {
   background-color: #efefef;
 }
 
-.form-title {
+.form-title-sup {
   font-size: 28px;
   color: #37474f;
   margin-bottom: 20px;
@@ -23,14 +23,14 @@ body {
   margin-top: 0.1px;
 }
 
-.form-group {
+.form-group-sup {
   margin-bottom: 50px;
   align-items: center;
   margin-left: 33%;
   margin-top: 5%;
 }
 
-.form-group label {
+.form-group-sup label {
   margin-top: 5%;
   display: block;
   font-size: 16px;
@@ -38,7 +38,7 @@ body {
   margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group-sup input {
   width: 50%;
   padding: 10px;
   font-size: 14px;
