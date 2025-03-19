@@ -10,11 +10,9 @@ function Home() {
       <HeadBar />
       <Nav />
 
-      {/* Main Content */}
       <div className="main-content">
         <h2 className="dash-title">Stock Manager Dashboard</h2>
 
-        {/* Dashboard Buttons */}
         <div className="dashboard-buttons">
           <Link to="/viewstock" className="dashboard-link">
             <div className="dashboard-btn">

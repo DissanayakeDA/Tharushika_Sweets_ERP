@@ -1,4 +1,3 @@
-/* Import Noto Sans font */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
 html,
@@ -8,9 +7,11 @@ body {
   background-color: #efefef;
   color: #efefef;
 }
+
 .form-container-buyers {
   margin-left: 0px; /* Adjust based on sidenav width */
   padding: 0px;
+
   font-family: "Noto Sans", sans-serif;
   margin-top: 0px;
   background-color: #efefef;
@@ -69,12 +70,12 @@ body {
   cursor: pointer;
   margin-left: 47%;
   margin-top: 10px;
-  background-size: 200%; /* Makes gradient movement more noticeable */
-  transition: background-position 0.5s ease; /* Adds animation effect */
+  background-size: 200%; 
+  transition: background-position 0.5s ease; 
 }
 
 .save-btn:hover {
-  background-position: right center; /* Animate gradient on hover */
+  background-position: right center; 
 }
 .error {
   color: red;
@@ -82,56 +83,51 @@ body {
   margin-top: 5px;
 }
 
-/* Media Queries for Mobile Devices */
+
 @media (max-width: 768px) {
-  /* Adjust the form container for smaller screens */
   .form-container {
-    margin-left: 0; /* Remove left margin to fit on smaller screens */
+    margin-left: 0; 
     padding: 20px;
   }
 
   .form-title {
     font-size: 24px;
-    margin-left: 0; /* Center the title */
+    margin-left: 0; 
   }
 
-  /* Adjust form group (label and input) alignment */
   .form-group {
-    margin-left: 0; /* Remove left margin for responsiveness */
+    margin-left: 0; 
     width: 100%;
   }
 
   .form-group label {
-    font-size: 14px; /* Reduce label size */
+    font-size: 14px; 
   }
 
-  /* Adjust input fields for smaller screens */
   .form-group input {
-    width: 100%; /* Make input fields take the full width */
+    width: 100%; 
     padding: 8px;
     font-size: 14px;
   }
 
-  /* Adjust the save button */
   .save-btn {
-    margin-left: 0; /* Remove left margin */
-    width: 100%; /* Make button full width on small screens */
+    margin-left: 0; 
+    width: 100%; 
     padding: 12px;
     font-size: 16px;
   }
 }
 
-/* Media Queries for Extra Small Devices (Phones in portrait mode) */
 @media (max-width: 480px) {
   .form-title {
     font-size: 20px;
   }
 
   .form-group input {
-    font-size: 13px; /* Reduce font size for inputs on very small screens */
+    font-size: 13px; 
   }
 
   .save-btn {
-    font-size: 14px; /* Reduce button font size */
+    font-size: 14px; 
   }
 }

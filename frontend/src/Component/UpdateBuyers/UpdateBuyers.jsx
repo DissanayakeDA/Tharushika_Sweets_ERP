@@ -5,9 +5,15 @@ import "../AddBuyers/AddBuyers.css";
 import Nav from "../Nav/Nav";
 
 function UpdateBuyers() {
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    name: "",
+    contact: "",
+    address: "",
+  });
+
+  const [errors, setErrors] = useState({});
   const history = useNavigate();
-  const { id } = useParams(); // Ensure `id` is destructured properly
+  const { id } = useParams(); 
 
   useEffect(() => {
     const fetchHandler = async () => {
@@ -21,12 +27,38 @@ function UpdateBuyers() {
     fetchHandler();
   }, [id]);
 
+  const validateForm = () => {
+    let formErrors = {};
+    let isValid = true;
+
+    if (!inputs.name) {
+      formErrors.name = "Buyer name is required.";
+      isValid = false;
+    }
+
+    if (!inputs.contact) {
+      formErrors.contact = "Contact number is required.";
+      isValid = false;
+    } else if (!/^\d{10}$/.test(inputs.contact)) {
+      formErrors.contact = "Contact number must be exactly 10 digits and contain only numbers.";
+      isValid = false;
+    }
+
+    if (!inputs.address) {
+      formErrors.address = "Address is required.";
+      isValid = false;
+    }
+
+    setErrors(formErrors);
+    return isValid;
+  };
+
   const sendRequest = async () => {
     try {
       await axios.put(`http://localhost:5000/buyers/${id}`, {
         name: inputs.name,
         contact: inputs.contact,
-        date: inputs.date, // Backend should handle the correct format
+        address: inputs.address,
       });
     } catch (err) {
       console.error("Error updating buyer:", err);
@@ -43,8 +75,13 @@ function UpdateBuyers() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return; 
+    }
+
     await sendRequest();
-    history("/viewbuyers"); // Redirect to buyers list
+    history("/viewbuyers"); 
   };
 
   return (
@@ -62,25 +99,32 @@ function UpdateBuyers() {
             value={inputs.name || ""}
             placeholder="Enter Name"
           />
+          {errors.name && <span className="error">{errors.name}</span>}
         </div>
         <div className="form-group-buyers">
           <label>Buyer Contact</label>
           <input
-            type="number"
+            type="text"
             name="contact"
             onChange={handleChange}
             value={inputs.contact || ""}
             placeholder="Enter Contact Number"
           />
+          {errors.contact && <span className="error">{errors.contact}</span>}
         </div>
-        <div className="form-group-buyers">
-          <label>Date</label>
+
+
+          <div className="form-group-buyers">
+          <label>Address</label>
+
           <input
-            type="date"
-            name="date"
+            type="text"
+            name="address"
             onChange={handleChange}
-            value={inputs.date ? inputs.date.split("T")[0] : ""}
+            value={inputs.address || ""}
+            placeholder="Enter Buyer Address"
           />
+          {errors.address && <span className="error">{errors.address}</span>}
         </div>
         <button type="submit" className="save-btn">
           Save

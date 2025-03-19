@@ -42,7 +42,7 @@ app.use("/files", express.static("files"));
 app.use("/api/sales", salesRoutes);
 app.post("/api/sales/add", async (req, res) => {
   try {
-    console.log("Received Data:", req.body); // Debugging log
+    console.log("Received Data:", req.body); 
     const { buyerId, items, totalAmount } = req.body;
 
     if (!buyerId || !items || items.length === 0 || !totalAmount) {
@@ -64,7 +64,7 @@ app.post("/api/sales/add", async (req, res) => {
 app.use("/api/returns", returnRoutes);
 app.post("/api/returns/add", async (req, res) => {
   try {
-    console.log("Received Data:", req.body); // Debugging log
+    console.log("Received Data:", req.body); 
     const { buyerId, items, totalAmount } = req.body;
 
     if (!buyerId || !items || items.length === 0 || !totalAmount) {

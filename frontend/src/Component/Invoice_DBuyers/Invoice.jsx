@@ -24,12 +24,10 @@ function Invoice() {
     setTotalBill(parseFloat(bill));
     setBuyerId(buyer);
 
-    // Update time every second
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
 
-    // Cleanup on unmount
     return () => clearInterval(timer);
   }, []);
 
@@ -66,14 +64,14 @@ function Invoice() {
         price: item.price,
         total: item.total,
       })),
-      totalAmount: totalBill , // Total amount including tax
+      totalAmount: totalBill , 
     };
   
-    console.log("Sending Sale Data:", saleData); // Debugging log
+    console.log("Sending Sale Data:", saleData); 
   
     try {
       const response = await axios.post('http://localhost:5000/api/sales/add', saleData);
-      console.log("Response:", response.data); // Log response from backend
+      console.log("Response:", response.data); 
       if (response.data.success) {
         console.log("Sale recorded successfully");
       } else {
@@ -97,7 +95,7 @@ function Invoice() {
         <div className="invoice-header">
           <h2 className="invoice-title">INVOICE</h2>
           <hr className="divider" />
-          <img src="/images/logo.png" alt="Logo" className="invoice-logo" />
+          <img src="./images/logo.png" alt="Logo" className="invoice-logo" />
           <hr className="divider" />
         </div>
 

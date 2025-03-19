@@ -25,18 +25,6 @@ html, body{
     margin-top: 2.9%;
   }
 
-
-  .buyer-id-section {
-    width: 30%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    margin: 50px auto;
-    display: block;
-    background-color: #EFEFEF;
-    margin-left: 10%;
-  }
   
   .issue-items-table {
     width: 80%;
@@ -70,7 +58,23 @@ html, body{
     cursor: pointer;
   }
   .qty-input{
-    background-color: #EFEFEF;
+    padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #EFEFEF;
+  cursor: pointer;
+  color: #37474f;
+  
+  }
+  .id-input{
+    padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #EFEFEF;
+  cursor: pointer;
+  color: #37474f;
+  margin-left: 11%;
+  margin-top: 2%;
   }
   .issue-items-table select {
     width: 100%;
@@ -80,14 +84,14 @@ html, body{
   }
   
   .issue-btn-container{
-    display: flex; /* Aligns buttons horizontally */
-  justify-content: flex-end; /* Aligns buttons to the right */
-  gap: 10px; /* Small space between buttons */
-  margin-top: 5%; /* Keeps vertical position */
-  margin-right: 5%; /* Moves buttons slightly to the right */
+    display: flex;
+  justify-content: flex-end; 
+  gap: 10px; 
+  margin-top: 5%; 
+  margin-right: 5%; 
   }
 
-  /* Button styling */
+  
 .add-row-btn{
   background-color: #37474F;
   color: white;
@@ -97,7 +101,7 @@ html, body{
   width: 40px;
   height: 40px;
   cursor: pointer;
-  transition: transform 0.2s ease; /* Add a small hover effect */
+  transition: transform 0.2s ease;
 }
 
 .add-row-btn:hover{
@@ -139,9 +143,9 @@ html, body{
     transform: scale(1.05);
   }
 
-  /* Media Queries for Responsiveness */
+  
 @media (max-width: 1024px) {
-  /* Adjust title font size and alignment for tablets and smaller devices */
+  
   .title {
     font-size: 24px;
     margin-left: 10%;
@@ -152,23 +156,23 @@ html, body{
   }
 
   .buyer-id-section input {
-    width: 80%; /* Adjust input width */
+    width: 80%; 
   }
 
   .issue-items-table {
-    width: 90%; /* Reduce table width */
+    width: 90%; 
     margin-left: 5%;
   }
 
   .issue-btn-container {
     margin-top: 5%;
     margin-right: 5%;
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center align buttons */
+    flex-direction: column; 
+    align-items: center; 
   }
 
   .add-row-btn, .remove-row-btn {
-    width: 35px; /* Adjust button size */
+    width: 35px; 
     height: 35px;
     font-size: 18px;
   }
@@ -186,23 +190,23 @@ html, body{
   }
 
   .buyer-id-section input {
-    width: 90%; /* Make input fields nearly full-width */
+    width: 90%; 
   }
 
   .issue-items-table {
     width: 100%;
-    margin-left: 0; /* Remove left margin */
+    margin-left: 0; 
   }
 
   .issue-items-table th,
   .issue-items-table td {
-    font-size: 0.8rem; /* Make table text smaller */
+    font-size: 0.8rem; 
   }
 
   .issue-btn-container {
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column; 
     gap: 15px;
-    align-items: center; /* Center align buttons */
+    align-items: center; 
   }
 
   .add-row-btn, .remove-row-btn {
@@ -220,18 +224,18 @@ html, body{
 @media (max-width: 480px) {
   .title {
     font-size: 20px;
-    margin-left: 0; /* Center title */
+    margin-left: 0; 
   }
 
   .buyer-id-section input {
-    width: 100%; /* Full width input fields */
+    width: 100%;
     font-size: 0.8rem;
   }
 
   .issue-items-table {
     width: 100%;
-    margin-left: 0; /* No margin */
-    font-size: 0.75rem; /* Smaller table text */
+    margin-left: 0; 
+    font-size: 0.75rem; 
   }
 
   .issue-btn-container {

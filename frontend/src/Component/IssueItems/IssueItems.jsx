@@ -4,7 +4,7 @@ import Nav from "../Nav/Nav";
 import HeadBar from "../HeadBar/HeadBar";
 import "./IssueItems.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Ensure axios is installed
+import axios from "axios"; 
 
 function IssueItems() {
   const [buyerId, setBuyerId] = useState(
@@ -15,20 +15,20 @@ function IssueItems() {
       { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
     ]
   );
-  const [stockItems, setStockItems] = useState([]); // State to hold fetched stock data
-  const [buyers, setBuyers] = useState([]); // State to hold fetched buyers
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [stockItems, setStockItems] = useState([]); 
+  const [buyers, setBuyers] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   // Fetch stock data from the backend
 
   const fetchStockData = async () => {
     try {
-      setLoading(true); // Start loading
-      const response = await axios.get("http://localhost:5000/api/stocks"); // Adjust URL if needed
+      setLoading(true); 
+      const response = await axios.get("http://localhost:5000/api/stocks");
       if (response.data.success) {
-        setStockItems(response.data.data); // Update state with the stock data array
+        setStockItems(response.data.data); 
       } else {
         setError("Failed to fetch stock data.");
       }
@@ -36,7 +36,7 @@ function IssueItems() {
       console.error("Error fetching stock data:", error);
       setError("Error fetching stock data.");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false); 
     }
   };
   useEffect(() => {
@@ -46,10 +46,10 @@ function IssueItems() {
   useEffect(() => {
     const fetchBuyers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/buyers"); // Adjust URL if needed
-        console.log("Buyers Response:", response.data); // Log the response to debug
+        const response = await axios.get("http://localhost:5000/buyers"); 
+        console.log("Buyers Response:", response.data);
         if (response.data.buyers) {
-          setBuyers(response.data.buyers); // Update state with the buyer data
+          setBuyers(response.data.buyers); 
         } else {
           setError("Failed to fetch buyer data.");
         }
@@ -63,7 +63,7 @@ function IssueItems() {
   }, []);
 
   useEffect(() => {
-    // Reset the state when necessary
+    // Reset the state 
     if (localStorage.getItem("clearDataFlag") === "true") {
       localStorage.removeItem("issuebuyerId");
       localStorage.removeItem("issueinvoiceData");
@@ -155,7 +155,7 @@ function IssueItems() {
       <h2 className="title">Issue Items</h2>
       <hr className="hr-issue" />
 
-      <div className="buyer-id-section">
+      
         <select
           name="buyer_id"
           value={buyerId}
@@ -170,7 +170,7 @@ function IssueItems() {
             </option>
           ))}
         </select>
-      </div>
+      
 
       {loading && <p>Loading stock data...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -191,9 +191,10 @@ function IssueItems() {
             <tr key={index}>
               <td>
                 <select
+                  className="select-item"
                   value={row.selectedItem}
                   onChange={(e) => handleItemChange(index, e.target.value)}
-                  disabled={loading} // Disable select while loading
+                  disabled={loading} 
                 >
                   <option value="">Select Item</option>
                   {!loading &&
@@ -209,14 +210,15 @@ function IssueItems() {
 
               <td>{row.price}</td>
 
-              <td className="qty-input">
+              <td className="quant-input">
                 <input
+                  className="quantity-input"
                   type="number"
                   value={row.quantity}
                   onChange={(e) => handleQuantityChange(index, e.target.value)}
                   min="1"
                   max={row.currentStock}
-                  disabled={loading || !row.selectedItem} // Disable if loading or no item selected
+                  disabled={loading || !row.selectedItem} 
                 />
               </td>
 
@@ -226,7 +228,7 @@ function IssueItems() {
                 <button
                   onClick={() => removeRow(index)}
                   className="remove-row-btn"
-                  disabled={rows.length === 1 || loading} // Disable if loading
+                  disabled={rows.length === 1 || loading} 
                 >
                   -
                 </button>

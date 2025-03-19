@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const SaleSchema = new Schema({
-  invoiceId: { type: String, required: true, unique: true }, // Added invoice ID
+  invoiceId: { type: String, required: true, unique: true }, 
   buyerId: { type: String, required: true },
   items: [
     {

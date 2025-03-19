@@ -14,7 +14,7 @@ const ReturnsSchema = new Schema({
   ],
   totalAmount: { type: Number, required: true },
   date: { type: Date, default: Date.now },
-  returnMethod: { type: String, required: true }, // Add returnMethod field
+  returnMethod: { type: String, required: true }, 
 });
 
 const Returns = mongoose.model("Returns", ReturnsSchema);
