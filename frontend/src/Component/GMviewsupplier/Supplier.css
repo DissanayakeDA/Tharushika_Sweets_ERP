@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
-html, body{
+html,
+body {
   background-color: #efefef;
 }
 /* General Styling */
@@ -22,24 +23,22 @@ html, body{
 }
 
 .buyer-title {
-  font-size: 28px;
-  font-size: 28px;
-  font-weight: 400;
-  color: #37474f;
-  padding: 5px;
-  margin-top: 5px;
-  text-align: left;
-  margin-bottom: 20px;
-  margin-left: 20%;
-  font-family: "Noto Sans", sans-serif;
-
+    font-size: 28px;
+    font-weight: 400;
+    color: #37474f;
+    padding: 5px;
+    margin-top: 5px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: "Noto Sans", sans-serif;
 }
 
 
-.buyers-table th, .buyers-table td {
+
+.buyers-table th,
+.buyers-table td {
   padding: 12px 15px;
   border-bottom: 2px solid #ccc;
-
 }
 
 .buyers-table th {
@@ -53,28 +52,6 @@ html, body{
   color: #555;
 }
 
-/* Action Icons */
-.action-icons {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.action-icons i {
-  cursor: pointer;
-  color: #37474F;
-  font-size: 1.2rem;
-  transition: transform 0.2s ease;
-}
-
-.action-icons i:hover {
-  transform: scale(1.2);
-}
-
-.action {
-  background-color: transparent;
-  border: none;
-}
 
 /* Input Fields */
 .search-input {
@@ -95,27 +72,9 @@ html, body{
   cursor: pointer;
 }
 
-.new-buyer-btn {
-  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  background-size: 200%; /* Makes gradient movement more noticeable */
-  transition: background-position 0.5s ease; /* Adds animation effect */
-  margin-left: 90%;
-  font-family: "Noto Sans", sans-serif;
-
-}
-
-.new-buyer-btn:hover {
-  background-position: right center; /* Animate gradient on hover */
-}
 
 .report-btn {
-  background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+  background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
   color: white;
   border: none;
   border-radius: 5px;
@@ -132,12 +91,12 @@ html, body{
   transform: scale(1.05);
 }
 
-.report-btn-container{
+.report-btn-container {
   display: flex; /* Aligns buttons horizontally */
-justify-content: flex-end; /* Aligns buttons to the right */
-gap: 10px; /* Small space between buttons */
-margin-top: 5%; /* Keeps vertical position */
-margin-right: 5%; /* Moves buttons slightly to the right */
+  justify-content: flex-end; /* Aligns buttons to the right */
+  gap: 10px; /* Small space between buttons */
+  margin-top: 5%; /* Keeps vertical position */
+  margin-right: 5%; /* Moves buttons slightly to the right */
 }
 
 /* Media Queries for Responsiveness */
@@ -149,7 +108,8 @@ margin-right: 5%; /* Moves buttons slightly to the right */
     font-size: 0.8rem; /* Adjust font size for smaller screens */
   }
 
-  .buyers-table th, .buyers-table td {
+  .buyers-table th,
+  .buyers-table td {
     padding: 8px; /* Reduce padding for smaller screens */
   }
 
@@ -157,7 +117,8 @@ margin-right: 5%; /* Moves buttons slightly to the right */
     font-size: 0.8rem; /* Adjust text size */
   }
 
-  .new-buyer-btn, .report-btn {
+  .new-buyer-btn,
+  .report-btn {
     width: 100%; /* Make buttons full width */
     font-size: 0.9rem;
     padding: 12px;
@@ -190,7 +151,8 @@ margin-right: 5%; /* Moves buttons slightly to the right */
 }
 
 @media (max-width: 480px) {
-  .buyers-table th, .buyers-table td {
+  .buyers-table th,
+  .buyers-table td {
     padding: 6px; /* Further reduce padding */
   }
 
@@ -198,7 +160,8 @@ margin-right: 5%; /* Moves buttons slightly to the right */
     font-size: 0.7rem;
   }
 
-  .new-buyer-btn, .report-btn {
+  .new-buyer-btn,
+  .report-btn {
     font-size: 0.8rem;
     padding: 10px;
   }

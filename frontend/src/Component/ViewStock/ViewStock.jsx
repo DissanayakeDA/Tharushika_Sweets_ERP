@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Nav from "../Nav/Nav";
 import axios from "axios";
 import "./ViewStock.css";
+import HeadBar from "../HeadBar/HeadBar";
 
 function ViewStock() {
   const [selection, setSelection] = useState("ingredients");
@@ -40,13 +41,14 @@ function ViewStock() {
   return (
     <div>
       <Nav />
+      <HeadBar/>
       <div className="view-stock-container">
         <div className="header">
           <h2 className="view-stock-title">View Stock</h2>
-          <hr className="hr-view-stock-" />
 
           <label>Select Stock Type: </label>
           <select
+            className="stock-select"
             value={selection}
             onChange={(e) => setSelection(e.target.value)}
           >

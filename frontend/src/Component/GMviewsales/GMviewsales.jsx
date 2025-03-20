@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Sales.css"; 
+import "./GMviewsales.css"; 
 import Nav from "../Nav/Nav";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf"; 
 import HeadBar from "../HeadBar/HeadBar";
-
-function Sales() {
+import GMNav from "../GMNav/GMNav";
+function GMviewsales() {
   const [sales, setSales] = useState([]);
   const [filteredSales, setFilteredSales] = useState([]);
   const [selectedSale, setSelectedSale] = useState(null);
@@ -104,7 +104,7 @@ function Sales() {
 
   return (
     <div>
-      <Nav />
+      <GMNav />
       <HeadBar />
       <div className="sales-container">
         <div className="header">
@@ -217,4 +217,4 @@ function Sales() {
   );
 }
 
-export default Sales;
+export default GMviewsales;
