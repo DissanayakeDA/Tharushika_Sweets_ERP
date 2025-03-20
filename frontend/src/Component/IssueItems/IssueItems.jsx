@@ -4,7 +4,7 @@ import Nav from "../Nav/Nav";
 import HeadBar from "../HeadBar/HeadBar";
 import "./IssueItems.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; 
+import axios from "axios";
 
 function IssueItems() {
   const [buyerId, setBuyerId] = useState(
@@ -15,9 +15,9 @@ function IssueItems() {
       { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
     ]
   );
-  const [stockItems, setStockItems] = useState([]); 
-  const [buyers, setBuyers] = useState([]); 
-  const [loading, setLoading] = useState(true); 
+  const [stockItems, setStockItems] = useState([]);
+  const [buyers, setBuyers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -25,10 +25,10 @@ function IssueItems() {
 
   const fetchStockData = async () => {
     try {
-      setLoading(true); 
+      setLoading(true);
       const response = await axios.get("http://localhost:5000/api/stocks");
       if (response.data.success) {
-        setStockItems(response.data.data); 
+        setStockItems(response.data.data);
       } else {
         setError("Failed to fetch stock data.");
       }
@@ -36,7 +36,7 @@ function IssueItems() {
       console.error("Error fetching stock data:", error);
       setError("Error fetching stock data.");
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -46,10 +46,10 @@ function IssueItems() {
   useEffect(() => {
     const fetchBuyers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/buyers"); 
+        const response = await axios.get("http://localhost:5000/buyers");
         console.log("Buyers Response:", response.data);
         if (response.data.buyers) {
-          setBuyers(response.data.buyers); 
+          setBuyers(response.data.buyers);
         } else {
           setError("Failed to fetch buyer data.");
         }
@@ -63,7 +63,7 @@ function IssueItems() {
   }, []);
 
   useEffect(() => {
-    // Reset the state 
+    // Reset the state
     if (localStorage.getItem("clearDataFlag") === "true") {
       localStorage.removeItem("issuebuyerId");
       localStorage.removeItem("issueinvoiceData");
@@ -149,28 +149,25 @@ function IssueItems() {
   }, []);
 
   return (
-    <div className="issue-items-container">
+    <div className="issue-items-container-div">
       <HeadBar />
       <Nav />
-      <h2 className="title">Issue Items</h2>
-      <hr className="hr-issue" />
+      <h2 className="title-issue">Issue Items</h2>
 
-      
-        <select
-          name="buyer_id"
-          value={buyerId}
-          onChange={handleBuyerIdChange}
-          className="id-input"
-          required
-        >
-          <option value="">Select Buyer ID</option>
-          {buyers.map((buyer) => (
-            <option key={buyer._id} value={buyer._id}>
-              {buyer._id}
-            </option>
-          ))}
-        </select>
-      
+      <select
+        name="buyer_id"
+        value={buyerId}
+        onChange={handleBuyerIdChange}
+        className="id-input-issue"
+        required
+      >
+        <option value="">Select Buyer ID</option>
+        {buyers.map((buyer) => (
+          <option key={buyer._id} value={buyer._id}>
+            {buyer._id}
+          </option>
+        ))}
+      </select>
 
       {loading && <p>Loading stock data...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -194,7 +191,7 @@ function IssueItems() {
                   className="select-item"
                   value={row.selectedItem}
                   onChange={(e) => handleItemChange(index, e.target.value)}
-                  disabled={loading} 
+                  disabled={loading}
                 >
                   <option value="">Select Item</option>
                   {!loading &&
@@ -218,7 +215,7 @@ function IssueItems() {
                   onChange={(e) => handleQuantityChange(index, e.target.value)}
                   min="1"
                   max={row.currentStock}
-                  disabled={loading || !row.selectedItem} 
+                  disabled={loading || !row.selectedItem}
                 />
               </td>
 
@@ -228,7 +225,7 @@ function IssueItems() {
                 <button
                   onClick={() => removeRow(index)}
                   className="remove-row-btn"
-                  disabled={rows.length === 1 || loading} 
+                  disabled={rows.length === 1 || loading}
                 >
                   -
                 </button>
