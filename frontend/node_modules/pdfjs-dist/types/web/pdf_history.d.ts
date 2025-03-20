@@ -51,6 +51,15 @@ export class PDFHistory {
     eventBus: import("./event_utils.js").EventBus;
     _initialized: boolean;
     _fingerprint: string;
+    _boundEvents: {
+        updateViewarea: ({ location }: {
+            location: any;
+        }) => void;
+        popState: ({ state }: {
+            state: any;
+        }) => void;
+        pageHide: () => void;
+    } | null;
     _isPagesLoaded: boolean;
     /**
      * Initialize the history for the PDF document, using either the current
@@ -112,5 +121,48 @@ export class PDFHistory {
     get popStateInProgress(): boolean;
     get initialBookmark(): any;
     get initialRotation(): any;
-    #private;
+    /**
+     * @private
+     */
+    private _pushOrReplaceState;
+    /**
+     * @private
+     */
+    private _tryPushCurrentPosition;
+    /**
+     * @private
+     */
+    private _isValidPage;
+    /**
+     * @private
+     */
+    private _isValidState;
+    /**
+     * @private
+     */
+    private _updateInternalState;
+    /**
+     * @private
+     */
+    private _parseCurrentHash;
+    /**
+     * @private
+     */
+    private _updateViewarea;
+    /**
+     * @private
+     */
+    private _popState;
+    /**
+     * @private
+     */
+    private _pageHide;
+    /**
+     * @private
+     */
+    private _bindEvents;
+    /**
+     * @private
+     */
+    private _unbindEvents;
 }

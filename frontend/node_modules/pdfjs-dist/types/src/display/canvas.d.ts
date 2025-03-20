@@ -79,8 +79,6 @@ export class CanvasGraphics {
     beginSMaskMode(): void;
     endSMaskMode(): void;
     compose(dirtyBox: any): void;
-    composeSMask(ctx: any, smask: any, layerCtx: any, layerBox: any): void;
-    genericComposeSMask(maskCtx: any, layerCtx: any, width: any, height: any, subtype: any, backdrop: any, transferMap: any, layerOffsetX: any, layerOffsetY: any, maskOffsetX: any, maskOffsetY: any): void;
     save(): void;
     restore(): void;
     transform(a: any, b: any, c: any, d: any, e: any, f: any): void;
@@ -120,9 +118,7 @@ export class CanvasGraphics {
     setStrokeColorN(...args: any[]): void;
     setFillColorN(...args: any[]): void;
     setStrokeRGBColor(r: any, g: any, b: any): void;
-    setStrokeTransparent(): void;
     setFillRGBColor(r: any, g: any, b: any): void;
-    setFillTransparent(): void;
     _getPattern(objId: any, matrix?: null): any;
     shadingFill(objId: any): void;
     beginInlineImage(): void;

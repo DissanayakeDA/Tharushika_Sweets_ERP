@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./AddSupplier.css";
 import GMNav from "../GMNav/GMNav";
+import HeadBar from "../HeadBar/HeadBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -91,9 +92,10 @@ const AddSupplier = () => {
 
   return (
     <div className="form-container-sup">
+      <HeadBar />
       <GMNav />
       <h2 className="form-title-sup">Add Suppliers</h2>
-      <hr />
+
       <form onSubmit={handleSubmit}>
         <div className="form-group-sup">
           <label>Supplier Name</label>
