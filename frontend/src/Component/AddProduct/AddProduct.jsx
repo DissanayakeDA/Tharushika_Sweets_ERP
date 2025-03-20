@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AddProduct.css"; // Added styling
 import Nav from "../Nav/Nav";
+import HeadBar from "../HeadBar/HeadBar";
 
 function AddProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -141,10 +142,10 @@ function AddProduct() {
   return (
     <div>
       <Nav />
+      <HeadBar/>
       <div className="returns-container">
         <div className="header">
           <h2 className="returns-title">Product Records</h2>
-          <hr className="hr-returns" />
           <div className="add-product-btn">
             <button className="new-returns-btn" onClick={handleOpenModal}>
               + Add Product
