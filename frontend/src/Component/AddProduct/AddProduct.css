@@ -22,15 +22,17 @@ body {
 }
 .returns-title {
   font-size: 28px;
-  font-size: 28px;
-  font-weight: 400;
   color: #37474f;
-  padding: 5px;
-  margin-top: 5px;
-  text-align: left;
   margin-bottom: 20px;
-  margin-left: 23%;
+  text-align: center;
+  margin-left: 10%;
   font-family: "Noto Sans", sans-serif;
+}
+
+.hr-returns {
+  margin-left: 10%;
+  margin-right: 2%;
+  margin-top: 2.9%;
 }
 
 .returns-table th,

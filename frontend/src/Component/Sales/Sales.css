@@ -21,15 +21,18 @@ html, body{
 }
 .sales-title {
   font-size: 28px;
-  font-weight: 400;
-  color: #37474f;
-  padding: 5px;
-  margin-top: 5px;
-  text-align: left;
+  color: #37474F;
   margin-bottom: 20px;
-  margin-left: 20%;
+  text-align: center;
+  margin-left: 10%;
   font-family: "Noto Sans", sans-serif;
 
+}
+
+.hr-sales{
+  margin-left: 10%;
+  margin-right: 2%;
+  margin-top: 2.9%;
 }
 
 

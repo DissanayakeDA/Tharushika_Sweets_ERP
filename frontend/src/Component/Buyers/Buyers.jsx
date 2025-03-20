@@ -5,7 +5,6 @@ import Buyer from "../Buyer/Buyer";
 import "../Buyer/Buyer.css";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf"; 
-import HeadBar from "../HeadBar/HeadBar";
 
 const URL = "http://localhost:5000/buyers";
 
@@ -77,10 +76,10 @@ function Buyers() {
   return (
     <div>
       <Nav />
-      <HeadBar/>
       <div className="buyers-container">
         <div className="header">
           <h2 className="buyer-title">Buyers' List</h2>
+          <hr className="hr-buyer" />
           <Link to="/addbuyers">
             <button className="new-buyer-btn">+ New Buyer</button>
           </Link>

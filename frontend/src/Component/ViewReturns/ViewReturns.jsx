@@ -3,7 +3,6 @@ import axios from "axios";
 import "./ViewReturns.css"; 
 import Nav from "../Nav/Nav";
 import jsPDF from "jspdf"; 
-import HeadBar from "../HeadBar/HeadBar";
 
 function ViewReturns() {
   const [returns, setReturns] = useState([]); 
@@ -124,10 +123,10 @@ function ViewReturns() {
   return (
     <div>
       <Nav />
-      <HeadBar/>
       <div className="returns-container">
         <div className="header">
           <h2 className="returns-title">Returns Records</h2>
+          <hr className="hr-returns" />
         </div>
 
         <div className="table-controls">

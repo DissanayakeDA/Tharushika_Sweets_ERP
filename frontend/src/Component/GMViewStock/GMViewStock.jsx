@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import GMNav from "../GMNav/GMNav";
 import axios from "axios";
 import "./GMViewStock.css";
-import HeadBar from "../HeadBar/HeadBar";
 
 function GMViewStock() {
   const [selection, setSelection] = useState("ingredients");
@@ -41,14 +40,13 @@ function GMViewStock() {
   return (
     <div>
       <GMNav />
-      <HeadBar />
       <div className="view-stock-container">
         <div className="header">
           <h2 className="view-stock-title">View Stock</h2>
+          <hr className="hr-view-stock-" />
 
           <label>Select Stock Type: </label>
           <select
-          className="stock-select"
             value={selection}
             onChange={(e) => setSelection(e.target.value)}
           >

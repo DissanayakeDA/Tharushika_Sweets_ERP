@@ -3,7 +3,6 @@ import GMNav from "../GMNav/GMNav";
 import axios from "axios";
 import Buyer from "./GMBuyer";
 import "./GMBuyer.css";
-import HeadBar from "../HeadBar/HeadBar";
 
 import jsPDF from "jspdf"; // Import jsPDF
 
@@ -82,10 +81,10 @@ function GMBuyers() {
   return (
     <div>
       <GMNav />
-      <HeadBar />
       <div className="buyers-container">
         <div className="header">
           <h2 className="buyer-title">Buyers' List</h2>
+          <hr className="hr-buyer" />
         </div>
 
         <div className="table-container">
@@ -104,9 +103,12 @@ function GMBuyers() {
           <table className="buyers-table">
             <thead>
               <tr>
+                <th>
+                  <input type="checkbox" />
+                </th>
                 <th>Buyer ID</th>
                 <th>Buyer Name</th>
-                <th>Address</th>
+                <th>Added Date</th>
                 <th>Contact</th>
               </tr>
             </thead>

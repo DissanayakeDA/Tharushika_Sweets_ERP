@@ -90,15 +90,15 @@ function GMNav() {
           <hr className="nav-hr" />
           <li>
             <Link
-              to="/GMviewrequests"
+              to="/issueitems"
               className={`home-a ${
-                activeLink === "/GMviewrequests" ? "active" : ""
+                activeLink === "/issueitems" ? "active" : ""
               }`}
-              onClick={() => handleLinkClick("/GMviewrequests")}
+              onClick={() => handleLinkClick("/issueitems")}
             >
               <button
                 className={`center-icon-btn ${
-                  activeLink === "/GMviewrequests" ? "active" : ""
+                  activeLink === "/issueitems" ? "active" : ""
                 }`}
               >
                 <svg
@@ -120,15 +120,15 @@ function GMNav() {
           <hr className="nav-hr" />
           <li>
             <Link
-              to="/GMviewreturns"
+              to="/directreturns"
               className={`home-a ${
-                activeLink === "/GMviewreturns" ? "active" : ""
+                activeLink === "/directreturns" ? "active" : ""
               }`}
-              onClick={() => handleLinkClick("/GMviewreturns")}
+              onClick={() => handleLinkClick("/directreturns")}
             >
               <button
                 className={`center-icon-btn ${
-                  activeLink === "/GMviewreturns" ? "active" : ""
+                  activeLink === "/directreturns" ? "active" : ""
                 }`}
               >
                 <svg

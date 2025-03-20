@@ -23,14 +23,18 @@ html, body{
 
 .buyer-title {
   font-size: 28px;
-  font-weight: 400;
-  color: #37474f;
-  padding: 5px;
-  margin-top: 5px;
-  text-align: left;
+  color: #37474F;
   margin-bottom: 20px;
-  margin-right: 61%;
+  text-align: center;
+  margin-left: 10%;
   font-family: "Noto Sans", sans-serif;
+
+}
+
+.hr-buyer{
+  margin-left: 10%;
+  margin-right: 2%;
+  margin-top: 2.9%;
 }
 
 .buyers-table th, .buyers-table td {

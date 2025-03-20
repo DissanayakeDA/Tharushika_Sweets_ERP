@@ -4,7 +4,6 @@ import "./Sales.css";
 import Nav from "../Nav/Nav";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf"; 
-import HeadBar from "../HeadBar/HeadBar";
 
 function Sales() {
   const [sales, setSales] = useState([]);
@@ -105,10 +104,10 @@ function Sales() {
   return (
     <div>
       <Nav />
-      <HeadBar />
       <div className="sales-container">
         <div className="header">
           <h2 className="sales-title">Sales Records</h2>
+          <hr className="hr-sales" />
         </div>
 
         <div className="table-controls">

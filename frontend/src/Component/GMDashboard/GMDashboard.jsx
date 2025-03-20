@@ -19,7 +19,7 @@ function GMDashboard() {
           <Link to="/viewstock-gm" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
-                <i class="bi bi-box-seam-fill"></i>
+                <i class="bi bi-box-seam"></i>
               </div>
               <label className="dash-btn-text">Stocks</label>
             </div>
@@ -33,38 +33,38 @@ function GMDashboard() {
             </div>
           </Link>
 
-          <Link to="/GMviewsales" className="dashboard-link">
+          <Link to="/viewsales" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
-                <i className="bi bi-cash-stack"></i>
+                <i className="bi bi-receipt"></i>
               </div>
 
               <label className="dash-btn-text-sales"> Sales</label>
             </div>
           </Link>
-          <Link to="/GMviewproducts" className="dashboard-link">
+          <Link to="/viewrequests" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
-                <i className="bi bi-inboxes-fill"></i>
+                <i className="bi bi-bell"></i>
               </div>
-              <label className="dash-btn-text-req">Products</label>
+              <label className="dash-btn-text-req">Requests</label>
             </div>
           </Link>
         </div>
-        <Link to="/GMviewemployee" className="dashboard-link">
+        <Link to="/viewrequests" className="dashboard-link">
           <div className="dashboard-btn-emp">
             <div className="dash-btn-icon">
-              <i className="bi bi-person-vcard-fill"></i>
+              <i className="bi bi-bell"></i>
             </div>
             <label className="dash-btn-text-req">Employees</label>
           </div>
         </Link>
-        <Link to="/GMviewsuppliers" className="dashboard-link">
+        <Link to="/addsuppliers" className="dashboard-link">
           <div className="dashboard-btn-emp">
             <div className="dash-btn-icon">
-              <i className="bi bi-person-lines-fill"></i>
+              <i className="bi bi-bell"></i>
             </div>
-            <label className="dash-btn-text-req">Suppliers</label>
+            <label className="dash-btn-text-req">Supplier</label>
           </div>
         </Link>
       </div>

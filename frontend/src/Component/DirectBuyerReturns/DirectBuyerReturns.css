@@ -1,108 +1,99 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
-html,
-body {
-  background-color: #efefef;
+html, body{
+  background-color: #EFEFEF;
 }
-.return-items-container {
-  padding: 0px;
-  background-color: #efefef;
-  border-radius: 8px;
-  font-family: "Noto Sans", sans-serif;
+.issue-items-container {
+    padding: 20px;
+    background-color: #EFEFEF;
+    border-radius: 8px;
+    font-family: "Noto Sans", sans-serif;
 }
-
-.title-return {
+  
+  .title {
   font-size: 28px;
-  font-weight: 400;
-  color: #37474f;
-  margin-top: 15px;
+  color: #37474F;
   margin-bottom: 20px;
-  text-align: left;
-  margin-left: 10%;
-}
-
-.hr-issue {
-  margin-left: 10%;
-  margin-right: 2%;
-  margin-top: 2.9%;
-}
-
-.issue-items-table {
-  width: 80%;
-  border-collapse: collapse;
   text-align: center;
-  margin-left: 15%;
-  margin-top: 3%;
-}
+  margin-left: 10%;
 
-.issue-items-table th,
-.issue-items-table td {
-  padding: 12px 15px;
+  }
+  
+  .hr-issue{
+    margin-left: 10%;
+    margin-right: 2%;
+    margin-top: 2.9%;
+  }
+
+  
+  .issue-items-table {
+    width: 80%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-left: 15%;
+    margin-top: 3%;
+  }
+  
+  .issue-items-table th,
+  .issue-items-table td {
+    padding: 12px 15px;
   border-bottom: 2px solid #ccc;
-}
-
-.issue-items-table th {
-  background-color: #efefef;
+  }
+  
+  .issue-items-table th {
+    background-color: #EFEFEF;
   color: #4e4a4a;
   text-align: center;
-}
+  }
+  
+  .issue-items-table td {
+    font-size: 0.9rem;
+    color: #555;
+  }
 
-.issue-items-table td {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.issue-items-table td button {
-  margin: 0 5px;
-  padding: 5px 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
-.qty-input {
-  padding: 8px;
+  .issue-items-table td button {
+    margin: 0 5px;
+    padding: 5px 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .qty-input{
+    padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #efefef;
+  background-color: #EFEFEF;
   cursor: pointer;
   color: #37474f;
-}
-.id-input {
-  padding: 8px;
+  
+  }
+  .id-input{
+    padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #efefef;
+  background-color: #EFEFEF;
   cursor: pointer;
   color: #37474f;
-  margin-left: 16%;
+  margin-left: 11%;
   margin-top: 2%;
-}
-.select-type-return {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #efefef;
-  cursor: pointer;
-  color: #37474f;
-  margin-left: 8.3%;
-  margin-top: 2%;
-}
-.issue-items-table select {
-  width: 100%;
-  padding: 5px;
-  font-size: 14px;
-  background-color: #efefef;
-}
+  }
+  .issue-items-table select {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #EFEFEF;
+  }
+  
+  .issue-btn-container{
+    display: flex;
+  justify-content: flex-end; 
+  gap: 10px; 
+  margin-top: 5%; 
+  margin-right: 5%; 
+  }
 
-.issue-btn-container {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 5%;
-  margin-right: 5%;
-}
-
-.add-row-btn {
-  background-color: #37474f;
+  
+.add-row-btn{
+  background-color: #37474F;
   color: white;
   border: none;
   border-radius: 50%;
@@ -113,12 +104,12 @@ body {
   transition: transform 0.2s ease;
 }
 
-.add-row-btn:hover {
+.add-row-btn:hover{
   transform: scale(1.1);
 }
 
 .remove-row-btn {
-  background-color: #37474f;
+  background-color: #37474F;
   color: white;
   border: none;
   border-radius: 50%;
@@ -133,25 +124,28 @@ body {
   transform: scale(1.1);
 }
 
+
 .checkout-btn {
-  background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  background-size: 200%;
-  transition: background-position 0.5s ease, transform 0.2s ease;
-  padding: 10px 20px;
-  font-family: "Noto Sans", sans-serif;
-}
+    background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    background-size: 200%;
+    transition: background-position 0.5s ease, transform 0.2s ease;
+    padding: 10px 20px;
+    font-family: "Noto Sans", sans-serif;
+  }
+  
+  .checkout-btn:hover {
+    background-position: right;
+    transform: scale(1.05);
+  }
 
-.checkout-btn:hover {
-  background-position: right;
-  transform: scale(1.05);
-}
-
+  
 @media (max-width: 1024px) {
+  
   .title {
     font-size: 24px;
     margin-left: 10%;
@@ -162,24 +156,23 @@ body {
   }
 
   .buyer-id-section input {
-    width: 80%;
+    width: 80%; 
   }
 
   .issue-items-table {
-    width: 90%;
+    width: 90%; 
     margin-left: 5%;
   }
 
   .issue-btn-container {
     margin-top: 5%;
     margin-right: 5%;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; 
+    align-items: center; 
   }
 
-  .add-row-btn,
-  .remove-row-btn {
-    width: 35px;
+  .add-row-btn, .remove-row-btn {
+    width: 35px; 
     height: 35px;
     font-size: 18px;
   }
@@ -197,27 +190,26 @@ body {
   }
 
   .buyer-id-section input {
-    width: 90%;
+    width: 90%; 
   }
 
   .issue-items-table {
     width: 100%;
-    margin-left: 0;
+    margin-left: 0; 
   }
 
   .issue-items-table th,
   .issue-items-table td {
-    font-size: 0.8rem;
+    font-size: 0.8rem; 
   }
 
   .issue-btn-container {
-    flex-direction: column;
+    flex-direction: column; 
     gap: 15px;
-    align-items: center;
+    align-items: center; 
   }
 
-  .add-row-btn,
-  .remove-row-btn {
+  .add-row-btn, .remove-row-btn {
     font-size: 18px;
     width: 35px;
     height: 35px;
@@ -232,7 +224,7 @@ body {
 @media (max-width: 480px) {
   .title {
     font-size: 20px;
-    margin-left: 0;
+    margin-left: 0; 
   }
 
   .buyer-id-section input {
@@ -242,8 +234,8 @@ body {
 
   .issue-items-table {
     width: 100%;
-    margin-left: 0;
-    font-size: 0.75rem;
+    margin-left: 0; 
+    font-size: 0.75rem; 
   }
 
   .issue-btn-container {
@@ -251,8 +243,7 @@ body {
     align-items: center;
   }
 
-  .add-row-btn,
-  .remove-row-btn {
+  .add-row-btn, .remove-row-btn {
     font-size: 16px;
     width: 30px;
     height: 30px;
