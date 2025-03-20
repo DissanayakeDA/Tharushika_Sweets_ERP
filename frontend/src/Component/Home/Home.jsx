@@ -17,7 +17,7 @@ function Home() {
           <Link to="/viewstock" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
-                <i class="bi bi-box-seam"></i>
+                <i class="bi bi-box-seam-fill"></i>
               </div>
               <label className="dash-btn-text">Stocks</label>
             </div>
@@ -34,7 +34,7 @@ function Home() {
           <Link to="/viewsales" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
-                <i className="bi bi-receipt"></i>
+                <i className="bi bi-cash-stack"></i>
               </div>
 
               <label className="dash-btn-text-sales"> Sales</label>
@@ -43,7 +43,7 @@ function Home() {
           <Link to="/viewrequests" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
-                <i className="bi bi-bell"></i>
+                <i className="bi bi-bell-fill"></i>
               </div>
               <label className="dash-btn-text-req">Requests</label>
             </div>
@@ -52,7 +52,7 @@ function Home() {
         <Link to="/viewReturns" className="dashboard-link">
           <div className="dashboard-btn-returns">
             <div className="dash-btn-icon-returns">
-              <i className="bi bi-bell"></i>
+              <i className="bi bi-arrow-counterclockwise"></i>
             </div>
             <label className="dash-btn-text-req">Returns</label>
           </div>
@@ -60,7 +60,7 @@ function Home() {
         <Link to="/products" className="dashboard-link">
           <div className="dashboard-btn-returns">
             <div className="dash-btn-icon-returns">
-              <i className="bi bi-bell"></i>
+              <i className="bi bi-inboxes-fill"></i>
             </div>
             <label className="dash-btn-text-req">Products</label>
           </div>

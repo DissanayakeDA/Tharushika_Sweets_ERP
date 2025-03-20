@@ -13,12 +13,16 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
-.hr-view-stock {
-  margin-left: 10%;
-  margin-right: 2%;
-  margin-top: 2.9%;
-}
 
+.stock-select{
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  color: #37474f;
+  margin-left: 6%;
+}
 .view-stock-table {
   width: 80%;
   border-collapse: collapse;
@@ -29,10 +33,13 @@ body {
 
 .view-stock-title {
   font-size: 28px;
+  font-weight: 400;
   color: #37474f;
+  padding: 5px;
+  margin-top: 5px;
+  text-align: left;
   margin-bottom: 20px;
-  text-align: center;
-  margin-left: 10%;
+  margin-right: 73%;
   font-family: "Noto Sans", sans-serif;
 }
 

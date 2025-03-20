@@ -23,6 +23,12 @@ import UpdateSuppliers from "./Component/UpdateSupplier/UpdateSupplier";
 import Products from "./Component/AddProduct/AddProduct";
 import GMViewStock from "./Component/GMViewStock/GMViewStock";
 import GMBuyers from "./Component/GMBuyers/GMBuyers";
+import GMSales from "./Component/GMviewsales/GMviewsales";
+import GMrequests from "./Component/GMviewrequests/GMviewrequests";
+import GMemployee from "./Component/GMviewemployee/GMviewemployee"; 
+import GMsupplier from "./Component/GMviewsupplier/Suppliers";
+import GMproducts from "./Component/GMviewproducts/GMviewproducts";
+import GMreturns from "./Component/GMviewreturns/GMreturns";
 
 function App() {
   return (
@@ -51,6 +57,13 @@ function App() {
           <Route path="/viewsuppliers" element={<Suppliers />} />
           <Route path="/viewsuppliers/:id" element={<UpdateSuppliers />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/GMviewsales" element={<GMSales />} />
+          <Route path="/GMviewrequests" element={<GMrequests />} />
+          <Route path="/GMviewemployee" element={<GMemployee />} />
+          <Route path="/GMviewsuppliers" element={<GMsupplier />} />
+          <Route path="/GMviewproducts" element={<GMproducts />} />
+          <Route path="/GMviewreturns" element={<GMreturns />} />
+          
         </Routes>
       </React.Fragment>
     </div>

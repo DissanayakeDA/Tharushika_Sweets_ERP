@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ViewReturns.css"; 
-import Nav from "../Nav/Nav";
+import "./GMreturns.css"; 
+import GMNav from "../GMNav/GMNav";
 import jsPDF from "jspdf"; 
 import HeadBar from "../HeadBar/HeadBar";
 
-function ViewReturns() {
+function GMViewReturns() {
   const [returns, setReturns] = useState([]); 
   const [filteredReturns, setFilteredReturns] = useState([]); 
   const [selectedReturn, setSelectedReturn] = useState(null);
@@ -123,7 +123,7 @@ function ViewReturns() {
 
   return (
     <div>
-      <Nav />
+      <GMNav />
       <HeadBar/>
       <div className="returns-container">
         <div className="header">
@@ -225,4 +225,4 @@ function ViewReturns() {
   );
 }
 
-export default ViewReturns;
+export default GMViewReturns;
