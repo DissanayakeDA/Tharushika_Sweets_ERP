@@ -1,0 +1,142 @@
+/* client/src/Component/HRDashboard/HRDashboard.css */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+.home-container {
+  background: #f0f4f8;
+  min-height: 100vh;
+  padding-top: 70px; /* Space for fixed header */
+}
+
+.dashboard-layout {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.left-sidebar {
+  width: 250px; /* Matches HRNav width when open */
+  flex-shrink: 0;
+  position: fixed; /* Keep sidebar fixed alongside header */
+  top: 70px; /* Align below fixed header */
+  bottom: 0;
+  overflow-y: auto; /* Scroll if content exceeds height */
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px); /* Adjust for fixed header */
+}
+
+.content-wrapper {
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+}
+
+.dash-title-HR {
+  font-size: 2rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.present-today-box {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px; /* Increased gap before graph */
+}
+
+.present-today-box h3 {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.present-count {
+  font-size: 2rem;
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.error-text {
+  color: #e74c3c;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Graph Styles */
+.attendance-graph {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px; /* Increased width for larger graph */
+  margin: 0 auto;
+}
+
+.attendance-graph h3 {
+  font-size: 1.5rem;
+  color: #34495e;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.graph-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 250px; /* Increased height for larger graph */
+  padding: 10px;
+}
+
+.graph-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 12%;
+}
+
+.graph-bar {
+  background-color: #2ecc71;
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: height 0.3s ease;
+}
+
+.bar-label {
+  position: absolute;
+  top: -25px; /* Adjusted for larger graph */
+  width: 100%;
+  text-align: center;
+  color: #34495e;
+  font-size: 1rem; /* Slightly larger for readability */
+}
+
+.date-label {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+/* Assuming HeadBar has its own CSS, but ensure it’s fixed */
+.head-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Adjust based on your HeadBar height */
+  background: #2c3e50; /* Example styling */
+  color: white;
+  z-index: 1000;
+}

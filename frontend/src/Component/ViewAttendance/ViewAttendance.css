@@ -1,0 +1,118 @@
+/* client/src/Component/ViewAttendance/ViewAttendance.css */
+.view-attendance-container {
+    background: #f0f4f8;
+    min-height: 100vh;
+    padding-top: 70px;
+  }
+  
+  .attendance-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .attendance-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .date-picker {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .date-picker label {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-right: 10px;
+  }
+  
+  .date-picker input[type="date"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .date-picker .download-btn {
+    margin-left: 15px;
+    padding: 8px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .date-picker .download-btn:hover {
+    background: #2980b9;
+  }
+  
+  .attendance-day {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .attendance-day h3 {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-bottom: 15px;
+  }
+  
+  .attendance-section {
+    margin-bottom: 20px;
+  }
+  
+  .attendance-section h4 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .attendance-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .attendance-list li {
+    padding: 8px;
+    font-size: 1rem;
+    color: #34495e;
+  }
+  
+  .present-list li {
+    background: #e8f5e9;
+    border-radius: 5px;
+    margin: 5px 0;
+  }
+  
+  .absent-list li {
+    background: #ffebee;
+    border-radius: 5px;
+    margin: 5px 0;
+  }
+  
+  .no-data {
+    color: #7f8c8d;
+    font-style: italic;
+  }
+  
+  .loading-text {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #3498db;
+  }
+  
+  .error-text {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #e74c3c;
+  }

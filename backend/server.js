@@ -12,7 +12,7 @@ import supplierRoutes from "./routes/supplier.route.js";
 import salesRoutes from "./routes/directsales.route.js";
 import returnRoutes from "./routes/directreturns.route.js";
 import employeeRoutes from "./routes/employee.route.js";
-import attendanceRoutes from "./routes/attendance.route.js";
+
 
 
 dotenv.config();
@@ -31,8 +31,6 @@ app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/ingredients", IngredientRoutes);
 app.use("/api/suppliers", supplierRoutes);
-app.use("/api/attendance", attendanceRoutes);
-
 app.use(cors());
 
 app.use("/buyers", router);

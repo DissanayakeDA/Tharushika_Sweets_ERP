@@ -29,6 +29,12 @@ import GMemployee from "./Component/GMviewemployee/GMviewemployee";
 import GMsupplier from "./Component/GMviewsupplier/Suppliers";
 import GMproducts from "./Component/GMviewproducts/GMviewproducts";
 import GMreturns from "./Component/GMviewreturns/GMreturns";
+import HRDashboard from "./Component/HRDashboard/HRDashboard";
+import AddEmployee from "./Component/AddEmployee/AddEmployee";
+import ViewEmployees from "./Component/ViewEmployee/ViewEmployee";
+import UpdateEmployee from "./Component/UpdateEmployee/UpdateEmployee";
+import AddAttendance from "./Component/AddAttendance/AddAttendance";
+import ViewAttendance from "./Component/ViewAttendance/ViewAttendace";
 
 function App() {
   return (
@@ -63,6 +69,14 @@ function App() {
           <Route path="/GMviewsuppliers" element={<GMsupplier />} />
           <Route path="/GMviewproducts" element={<GMproducts />} />
           <Route path="/GMviewreturns" element={<GMreturns />} />
+          <Route path="/hrdashboard" element={<HRDashboard />}/>
+          <Route path="/addemployee" element={<AddEmployee />} />
+          <Route path="/viewemployees" element={<ViewEmployees/>}/>
+          <Route path="/updateemployee/:id" element = {<UpdateEmployee/>}/>
+          <Route path="/addattendance" element={<AddAttendance />} />
+          <Route path="/viewattendance" element={<ViewAttendance />} />
+
+          
           
         </Routes>
       </React.Fragment>
