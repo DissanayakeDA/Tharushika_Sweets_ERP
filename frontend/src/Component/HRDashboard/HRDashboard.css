@@ -1,142 +1,163 @@
-/* client/src/Component/HRDashboard/HRDashboard.css */
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+/* HRDashboard.css - Scoped styles with unique prefixes */
 
-.home-container {
-  background: #f0f4f8;
+.hrdashboard-home-container {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  padding-top: 70px; /* Space for fixed header */
+  background: #DADADA;
 }
 
-.dashboard-layout {
+.hrdashboard-layout {
   display: flex;
-  gap: 20px;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.hrdashboard-sidebar {
+  width: 100px;
+  min-height: calc(100vh - 60px); /* Adjust for typical HeadBar height */
+  background:#DADADA;
+  color: white;
+}
+
+.hrdashboard-main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.hrdashboard-content-wrapper {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.left-sidebar {
-  width: 250px; /* Matches HRNav width when open */
-  flex-shrink: 0;
-  position: fixed; /* Keep sidebar fixed alongside header */
-  top: 70px; /* Align below fixed header */
-  bottom: 0;
-  overflow-y: auto; /* Scroll if content exceeds height */
-}
-
-.main-content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 70px); /* Adjust for fixed header */
-}
-
-.content-wrapper {
-  text-align: center;
-  width: 100%;
-  max-width: 900px;
-  padding: 20px;
-}
-
-.dash-title-HR {
-  font-size: 2rem;
+.hrdashboard-title {
+  font-size: 1.8rem;
   color: #2c3e50;
-  text-align: center;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.present-today-box {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px; /* Increased gap before graph */
-}
-
-.present-today-box h3 {
-  font-size: 1.5rem;
-  color: #34495e;
-  margin-bottom: 10px;
-}
-
-.present-count {
-  font-size: 2rem;
-  color: #2ecc71;
-  font-weight: bold;
-}
-
-.error-text {
-  color: #e74c3c;
-  font-size: 1.2rem;
-  margin-top: 10px;
-}
-
-/* Graph Styles */
-.attendance-graph {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px; /* Increased width for larger graph */
-  margin: 0 auto;
-}
-
-.attendance-graph h3 {
-  font-size: 1.5rem;
-  color: #34495e;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.graph-container {
+.hrdashboard-present-box {
+  background: white; /* Orange background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: #ffffff; /* White text for contrast */
+}
+
+.hrdashboard-present-box h3 {
+  font-family: 'Arial', sans-serif; /* Clean, modern font */
+  font-size: 1.3rem;
+  color: #2c3e50; /* White for readability on orange */
+  margin: 0 0 10px 0;
+  font-weight: 600; /* Slightly bold */
+}
+
+.hrdashboard-present-count {
+  font-family: 'Roboto', sans-serif; /* Different font for emphasis */
+  font-size: 1.6rem;
+  color: #2ecc71; /* Dark blue-gray for contrast and professionalism */
+  margin: 10px 0;
+  font-weight: 700; /* Bold for prominence */
+}
+
+.hrdashboard-error {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #c0392b; /* Darker red for error on orange */
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.hrdashboard-graphs-wrapper {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.hrdashboard-graph {
+  flex: 1;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hrdashboard-graph h3 {
+  font-size: 1.2rem;
+  color: #34495e;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.hrdashboard-graph-bars {
+  display: flex;
+  justify-content: space-around;
   align-items: flex-end;
-  height: 250px; /* Increased height for larger graph */
+  height: 200px;
+  background: #f9f9f9;
+  border-radius: 6px;
   padding: 10px;
 }
 
-.graph-bar-container {
+.hrdashboard-bar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 12%;
+  gap: 5px;
 }
 
-.graph-bar {
-  background-color: #2ecc71;
-  width: 100%;
+.hrdashboard-bar {
+  width: 30px;
   border-radius: 4px 4px 0 0;
   position: relative;
-  transition: height 0.3s ease;
+  transition: height 0.3s ease-in-out;
 }
 
-.bar-label {
+.hrdashboard-present-bar {
+  background-color: orange; /* Green for present */
+}
+
+.hrdashboard-absent-bar {
+  background-color: #e74c3c; /* Red for absent */
+}
+
+.hrdashboard-bar-value {
   position: absolute;
-  top: -25px; /* Adjusted for larger graph */
+  top: -20px;
   width: 100%;
   text-align: center;
   color: #34495e;
-  font-size: 1rem; /* Slightly larger for readability */
-}
-
-.date-label {
-  margin-top: 5px;
   font-size: 0.9rem;
-  color: #7f8c8d;
 }
 
-/* Assuming HeadBar has its own CSS, but ensure it’s fixed */
-.head-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px; /* Adjust based on your HeadBar height */
-  background: #2c3e50; /* Example styling */
-  color: white;
-  z-index: 1000;
+.hrdashboard-day-label {
+  font-size: 0.9rem;
+  color: #34495e;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hrdashboard-graphs-wrapper {
+    flex-direction: column;
+  }
+
+  .hrdashboard-graph {
+    width: 100%;
+  }
+
+  .hrdashboard-layout {
+    flex-direction: column;
+  }
+
+  .hrdashboard-sidebar {
+    width: 100%;
+    min-height: auto;
+  }
 }

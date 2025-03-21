@@ -1,24 +1,40 @@
-// client/src/Component/HRNav/HRNav.jsx
 import React, { useState } from "react";
 import "./HRNav.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function HRNav() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [showUserName, setShowUserName] = useState(false); // State to toggle username display
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
+  const navigate = useNavigate();
+
+  // Get user data from sessionStorage
+  const user = JSON.parse(sessionStorage.getItem("user")) || {};
+  const loggedInUserName = user.username || "Guest"; // Default to "Guest" if no user
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
+    setShowUserName(false); // Hide username when toggling nav
+  };
+
+  const handleProfileClick = () => {
+    setShowUserName(!showUserName); // Toggle username visibility
   };
 
   const handleLinkClick = (path) => {
     setActiveLink(path);
+    setShowUserName(false); // Hide username when clicking a link
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
     <div>
-      <button className="profile-icon-btn" onClick={toggleNav}>
+      <button className="profile-icon-btn" onClick={handleProfileClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -34,6 +50,14 @@ function HRNav() {
           />
         </svg>
       </button>
+
+      {/* Display username when showUserName is true */}
+      {showUserName && (
+        <div className="username-display">
+          Logged in as: <strong>{loggedInUserName}</strong>
+        </div>
+      )}
+
       <div className={`sidenav ${isNavOpen ? "open" : ""}`}>
         <ul>
           <li>
@@ -159,9 +183,37 @@ function HRNav() {
           <hr className="nav-hr" />
           <li>
             <Link
-              to="/signout"
+              to="/Accessdashboard"
+              className={`home-a ${activeLink === "/Accessdashboard" ? "active" : ""}`}
+              onClick={() => handleLinkClick("/Accessdashboard")}
+            >
+              <button className={`center-icon-btn ${activeLink === "/Accessdashboard" ? "active" : ""}`}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  className="bi bi-shield-lock-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24c.303-.143.662-.352 1.048-.625a11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 63 63 0 0 0-2.887-.869C9.843.266 8.69 0 8 0m0 5a1.5 1.5 0 0 0-1.5 1.5v2a1.5 1.5 0 0 0 3 0v-2A1.5 1.5 0 0 0 8 5m-1 1.5a1 1 0 1 1 2 0v2a1 1 0 1 1-2 0z"
+                  />
+                </svg>
+              </button>
+              <label className="nav-label">Access Control</label>
+            </Link>
+          </li>
+          <hr className="nav-hr" />
+          <li>
+            <Link
+              to="/login"
               className={`home-a ${activeLink === "/signout" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/signout")}
+              onClick={() => {
+                handleLinkClick("/signout");
+                handleLogout();
+              }}
             >
               <button className={`center-icon-btn ${activeLink === "/signout" ? "active" : ""}`}>
                 <svg

@@ -127,85 +127,87 @@ const UpdateEmployee = () => {
   if (loading) return <div className="loading">Loading...</div>;
 
   return (
-    <div className="form-container-buyers">
-      <HeadBar />
-      <HRNav />
-      <div className="form-content">
-        <div className="form-box">
-          <h2 className="form-title">Update Employee</h2>
+    <>
+      <HeadBar /> {/* Moved outside the container */}
+      <div className="form-container-buyers">
+        <HRNav />
+        <div className="form-content">
+          <div className="form-box">
+            <h2 className="form-title">Update Employee</h2>
 
-          {errors.fetch && (
-            <span className="error submit-error">{errors.fetch}</span>
-          )}
+            {errors.fetch && (
+              <span className="error submit-error">{errors.fetch}</span>
+            )}
 
-          <form onSubmit={handleSubmit}>
-            {/* Section: Personal Details */}
-            <div className="form-section">
-              <h3 className="section-title">Personal Details</h3>
-              <div className="form-group-buyers">
-                <label>Employee Name:</label>
-                <input type="text" name="name" onChange={handleChange} value={inputs.name} />
-                {errors.name && <span className="error">{errors.name}</span>}
+            <form onSubmit={handleSubmit}>
+              {/* Section: Personal Details */}
+              <div className="form-section">
+                <h3 className="section-title">Personal Details</h3>
+                <div className="form-group-buyers">
+                  <label>Employee Name:</label>
+                  <input type="text" name="name" onChange={handleChange} value={inputs.name} />
+                  {errors.name && <span className="error">{errors.name}</span>}
+                </div>
+                <div className="form-group-buyers">
+                  <label>Mobile Number:</label>
+                  <input type="text" name="mobileNo" onChange={handleChange} value={inputs.mobileNo} />
+                  {errors.mobileNo && <span className="error">{errors.mobileNo}</span>}
+                </div>
+                <div className="form-group-buyers">
+                  <label>NIC Number:</label>
+                  <input type="text" name="nicNo" onChange={handleChange} value={inputs.nicNo} />
+                  {errors.nicNo && <span className="error">{errors.nicNo}</span>}
+                </div>
+                <div className="form-group-buyers">
+                  <label>Date of Birth:</label>
+                  <input type="date" name="dateOfBirth" onChange={handleChange} value={inputs.dateOfBirth} />
+                  {errors.dateOfBirth && <span className="error">{errors.dateOfBirth}</span>}
+                </div>
               </div>
-              <div className="form-group-buyers">
-                <label>Mobile Number:</label>
-                <input type="text" name="mobileNo" onChange={handleChange} value={inputs.mobileNo} />
-                {errors.mobileNo && <span className="error">{errors.mobileNo}</span>}
-              </div>
-              <div className="form-group-buyers">
-                <label>NIC Number:</label>
-                <input type="text" name="nicNo" onChange={handleChange} value={inputs.nicNo} />
-                {errors.nicNo && <span className="error">{errors.nicNo}</span>}
-              </div>
-              <div className="form-group-buyers">
-                <label>Date of Birth:</label>
-                <input type="date" name="dateOfBirth" onChange={handleChange} value={inputs.dateOfBirth} />
-                {errors.dateOfBirth && <span className="error">{errors.dateOfBirth}</span>}
-              </div>
-            </div>
 
-            {/* Section: Job Details */}
-            <div className="form-section">
-              <h3 className="section-title">Job Details</h3>
-              <div className="form-group-buyers">
-                <label>Position:</label>
-                <input type="text" name="position" onChange={handleChange} value={inputs.position} />
-                {errors.position && <span className="error">{errors.position}</span>}
+              {/* Section: Job Details */}
+              <div className="form-section">
+                <h3 className="section-title">Job Details</h3>
+                <div className="form-group-buyers">
+                  <label>Position:</label>
+                  <input type="text" name="position" onChange={handleChange} value={inputs.position} />
+                  {errors.position && <span className="error">{errors.position}</span>}
+                </div>
+                <div className="form-group-buyers">
+                  <label>Salary:</label>
+                  <input type="number" name="salary" onChange={handleChange} value={inputs.salary} />
+                  {errors.salary && <span className="error">{errors.salary}</span>}
+                </div>
               </div>
-              <div className="form-group-buyers">
-                <label>Salary:</label>
-                <input type="number" name="salary" onChange={handleChange} value={inputs.salary} />
-                {errors.salary && <span className="error">{errors.salary}</span>}
-              </div>
-            </div>
 
-            {/* Section: Bank Details */}
-            <div className="form-section">
-              <h3 className="section-title">Bank Details</h3>
-              <div className="form-group-buyers">
-                <label>Bank Account No:</label>
-                <input type="text" name="bankAccountNo" onChange={handleChange} value={inputs.bankAccountNo} />
-                {errors.bankAccountNo && <span className="error">{errors.bankAccountNo}</span>}
+              {/* Section: Bank Details */}
+              <div className="form-section">
+                <h3 className="section-title">Bank Details</h3>
+                <div className="form-group-buyers">
+                  <label>Bank Account No:</label>
+                  <input type="text" name="bankAccountNo" onChange={handleChange} value={inputs.bankAccountNo} />
+                  {errors.bankAccountNo && <span className="error">{errors.bankAccountNo}</span>}
+                </div>
+                <div className="form-group-buyers">
+                  <label>Bank:</label>
+                  <input type="text" name="bank" onChange={handleChange} value={inputs.bank} />
+                  {errors.bank && <span className="error">{errors.bank}</span>}
+                </div>
+                <div className="form-group-buyers">
+                  <label>Branch:</label>
+                  <input type="text" name="branch" onChange={handleChange} value={inputs.branch} />
+                  {errors.branch && <span className="error">{errors.branch}</span>}
+                </div>
               </div>
-              <div className="form-group-buyers">
-                <label>Bank:</label>
-                <input type="text" name="bank" onChange={handleChange} value={inputs.bank} />
-                {errors.bank && <span className="error">{errors.bank}</span>}
-              </div>
-              <div className="form-group-buyers">
-                <label>Branch:</label>
-                <input type="text" name="branch" onChange={handleChange} value={inputs.branch} />
-                {errors.branch && <span className="error">{errors.branch}</span>}
-              </div>
-            </div>
 
-            {/* Submit Button */}
-            <button type="submit" className="save-btn">Update Employee</button>
-            {errors.submit && <span className="error submit-error">{errors.submit}</span>}
-          </form>
+              {/* Submit Button */}
+              <button type="submit" className="save-btn">Update Employee</button>
+              {errors.submit && <span className="error submit-error">{errors.submit}</span>}
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
