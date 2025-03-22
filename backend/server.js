@@ -10,17 +10,17 @@ import "./models/directinvoice.model.js";
 import IngredientRoutes from "./routes/ingredient.route.js";
 import supplierRoutes from "./routes/supplier.route.js";
 import salesRoutes from "./routes/directsales.route.js";
+import indirectsalesRoute from "./routes/indirectsales.route.js";
 import returnRoutes from "./routes/directreturns.route.js";
-
-  import productionRequestRoutes from './routes/productionRequest.routes.js';
+import indirectreturnRoutes from "./routes/indirectreturns.route.js";
+import productionRequestRoutes from './routes/productionRequest.routes.js';
 import employeeRoutes from "./routes/employee.route.js";
 import attendanceRoutes from "./routes/attendance.route.js";
 import userRoutes from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
-
-
 import salesRequestRoutes from "./routes/salesRequest.routes.js";
 import indirectbuyerRoutes from "./routes/indirectbuyer.route.js";
+import salesstockRoutes from "./routes/salesstock.route.js";
 
 
 dotenv.config();
@@ -40,6 +40,7 @@ app.use("/api/products", productRoutes);
   app.use("/api/sales-requests", salesRequestRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
+app.use("/api/salesstocks", salesstockRoutes);
 app.use("/api/ingredients", IngredientRoutes);
 app.use("/api/suppliers", supplierRoutes);
 app.use("/api/attendance", attendanceRoutes);
@@ -60,6 +61,28 @@ app.use("/files", express.static("files"));
 
 //direct sales
 app.use("/api/sales", salesRoutes);
+app.post("/api/sales/add", async (req, res) => {
+  try {
+    console.log("Received Data:", req.body); 
+    const { buyerId, items, totalAmount } = req.body;
+
+    if (!buyerId || !items || items.length === 0 || !totalAmount) {
+      return res.status(400).json({ success: false, message: "Missing data" });
+    }
+
+    const newSale = { buyerId, items, totalAmount, date: new Date() };
+    const result = await db.collection("sales").insertOne(newSale);
+
+    res.json({ success: true, insertedId: result.insertedId });
+  } catch (error) {
+    console.error("Database Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+
+//indirect sales
+app.use("/api/sales", indirectsalesRoute);
 app.post("/api/sales/add", async (req, res) => {
   try {
     console.log("Received Data:", req.body); 
@@ -100,6 +123,29 @@ app.post("/api/returns/add", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
+
+//directreturns
+
+app.use("/api/returns", indirectreturnRoutes);
+app.post("/api/returns/add", async (req, res) => {
+  try {
+    console.log("Received Data:", req.body); 
+    const { buyerId, items, totalAmount } = req.body;
+
+    if (!buyerId || !items || items.length === 0 || !totalAmount) {
+      return res.status(400).json({ success: false, message: "Missing data" });
+    }
+
+    const newReturn = { buyerId, items, totalAmount, date: new Date() };
+    const result = await db.collection("returns").insertOne(newReturn);
+
+    res.json({ success: true, insertedId: result.insertedId });
+  } catch (error) {
+    console.error("Database Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
 
 app.listen(PORT, () => {
   connectDB();

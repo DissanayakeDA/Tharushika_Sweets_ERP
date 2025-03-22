@@ -14,7 +14,7 @@ function SalesDashboard() {
         <h2 className="dash-title">Sales Management Dashboard</h2>
 
         <div className="dashboard-buttons">
-          <Link to="/salesdashboard" className="dashboard-link">
+          <Link to="/viewsalesstock" className="dashboard-link">
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
                 <i className="bi bi-house-door-fill"></i>

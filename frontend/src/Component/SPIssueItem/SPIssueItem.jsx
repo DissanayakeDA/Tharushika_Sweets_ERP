@@ -1,4 +1,3 @@
-// issueitems.jsx
 import React, { useState, useEffect } from "react";
 import SalesNav from "../SalesNav/SalesNav";
 import HeadBar from "../HeadBar/HeadBar";
@@ -25,7 +24,7 @@ function SPIssueItems() {
   const fetchStockData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/stocks");
+      const response = await axios.get("http://localhost:5000/api/salesrequests");
       if (response.data.success) {
         setStockItems(response.data.data);
       } else {
