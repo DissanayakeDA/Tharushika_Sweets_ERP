@@ -1,21 +1,30 @@
 import mongoose from "mongoose";
 
-const salesRequestSchema = new mongoose.Schema({
-  items: [
-    {
-      product_name: { type: String, required: true },
-      quantity: { type: Number, required: true },
-      price: { type: Number, default: 0 },
+const salesRequestSchema = new mongoose.Schema(
+  {
+    product_name: {
+      type: String,
+      required: true,
     },
-  ],
-  status: {
-    type: String,
-    enum: ["pending", "accepted", "rejected"],
-    default: "pending",
+    requested_quantity: {
+      type: Number,
+      required: true,
+    },
+    created_by: {
+      type: String,
+      required: true, // Username from login session
+    },
+    status: {
+      type: String,
+      enum: ["Pending", "Approved", "Rejected"],
+      default: "Pending",
+    },
   },
-  requestedAt: { type: Date, default: Date.now },
-  processedAt: { type: Date },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const SalesRequest = mongoose.model("SalesRequest", salesRequestSchema);
+
 export default SalesRequest;

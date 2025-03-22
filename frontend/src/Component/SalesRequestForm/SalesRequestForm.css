@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
 .sales-request-container {
-  padding: 0px;
+  padding: 0;
   background-color: #efefef;
   border-radius: 8px;
   font-family: "Noto Sans", sans-serif;
 }
 
-.title-sales {
+.title-sales-request {
   font-size: 28px;
   font-weight: 400;
   color: #37474f;
@@ -16,10 +16,41 @@
   margin-left: 16%;
   text-align: left;
   margin-bottom: 20px;
-  font-family: "Noto Sans", sans-serif;
 }
 
-.sales-items-table {
+/* New container for status messages */
+.status-messages {
+  margin-left: 16%;
+  margin-bottom: 20px;
+}
+
+.loading-message,
+.error-message,
+.success-message {
+  margin: 5px 0;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}
+
+.loading-message {
+  color: #37474f;
+}
+
+/* Debug section */
+.debug-section {
+  margin-left: 16%;
+  margin-bottom: 20px;
+}
+
+.sales-request-table {
   width: 80%;
   border-collapse: collapse;
   text-align: center;
@@ -27,37 +58,31 @@
   margin-top: 3%;
 }
 
-.sales-items-table th,
-.sales-items-table td {
+.sales-request-table th,
+.sales-request-table td {
   padding: 12px 15px;
   border-bottom: 2px solid #ccc;
 }
 
-.sales-items-table th {
+.sales-request-table th {
   background-color: #efefef;
   color: #4e4a4a;
   text-align: center;
 }
 
-.sales-items-table td {
+.sales-request-table td {
   font-size: 0.9rem;
   color: #555;
 }
 
-.sales-items-table td button {
-  margin: 0 5px;
-  padding: 5px 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.select-item {
+.select-product {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #efefef;
   cursor: pointer;
   color: #37474f;
+  width: 100%;
 }
 
 .quantity-input {
@@ -65,8 +90,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #efefef;
-  cursor: pointer;
   color: #37474f;
+  width: 80px;
 }
 
 .add-row-btn-sales {
@@ -78,10 +103,10 @@
   width: 40px;
   height: 40px;
   cursor: pointer;
-  transition: transform 0.2s ease;
   margin-left: 80%;
   margin-right: -25px;
   margin-top: 1%;
+  transition: transform 0.2s ease;
 }
 
 .add-row-btn-sales:hover {
@@ -96,7 +121,6 @@
   font-size: 20px;
   width: 40px;
   height: 40px;
-  padding: 5px 10px;
   cursor: pointer;
 }
 
@@ -104,74 +128,21 @@
   transform: scale(1.1);
 }
 
-.submit-sales-btn {
+.submit-request-btn {
   background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  background-size: 200%;
-  transition: background-position 0.5s ease, transform 0.2s ease;
   padding: 10px 20px;
-  font-family: "Noto Sans", sans-serif;
   margin-top: 5%;
   margin-left: 5%;
+  transition: background-position 0.5s ease, transform 0.2s ease;
+  background-size: 200%;
 }
 
-.submit-sales-btn:hover {
+.submit-request-btn:hover {
   background-position: right;
   transform: scale(1.05);
-}
-
-@media (max-width: 1024px) {
-  .title-sales {
-    font-size: 24px;
-    margin-left: 10%;
-  }
-
-  .sales-items-table {
-    width: 90%;
-    margin-left: 5%;
-  }
-
-  .add-row-btn-sales {
-    margin-left: 75%;
-  }
-}
-
-@media (max-width: 768px) {
-  .title-sales {
-    font-size: 22px;
-    margin-left: 5%;
-  }
-
-  .sales-items-table {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .sales-items-table th,
-  .sales-items-table td {
-    font-size: 0.8rem;
-  }
-
-  .add-row-btn-sales {
-    margin-left: 70%;
-  }
-}
-
-@media (max-width: 480px) {
-  .title-sales {
-    font-size: 20px;
-    margin-left: 0;
-  }
-
-  .sales-items-table {
-    font-size: 0.75rem;
-  }
-
-  .add-row-btn-sales {
-    margin-left: 65%;
-  }
 }

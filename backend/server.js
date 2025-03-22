@@ -13,11 +13,11 @@ import salesRoutes from "./routes/directsales.route.js";
 import returnRoutes from "./routes/directreturns.route.js";
 
   import productionRequestRoutes from './routes/productionRequest.routes.js';
-import salesRequestRouter from "./routes/salesRequest.route.js"
 import employeeRoutes from "./routes/employee.route.js";
 import attendanceRoutes from "./routes/attendance.route.js";
 import userRoutes from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
+import salesRequestRoutes from "./routes/salesRequest.routes.js";
 
 
 dotenv.config();
@@ -28,13 +28,13 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5175", // Allow requests from this origin
+    origin: "http://localhost:5173", // Allow requests from this origin
   })
 );
 app.use("/api/products", productRoutes);
 
   app.use('/api/production-requests', productionRequestRoutes);
-  app.use("/api/sales-requests", salesRequestRouter);
+  app.use("/api/sales-requests", salesRequestRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/ingredients", IngredientRoutes);

@@ -1,47 +1,47 @@
 import SalesRequest from "../models/salesRequest.model.js";
 import Stock from "../models/stock.model.js";
-import mongoose from "mongoose";
 
 // Create a new sales request
 export const createSalesRequest = async (req, res) => {
-  const { items } = req.body;
+  const { product_name, requested_quantity, created_by } = req.body;
 
-  if (!Array.isArray(items) || items.length === 0) {
+  if (!product_name || !requested_quantity || !created_by) {
     return res.status(400).json({
       success: false,
-      message: "Invalid sales request: Please provide an array of items",
+      message:
+        "Missing required fields: product_name, requested_quantity, or created_by",
     });
   }
 
   try {
-    for (const item of items) {
-      const { product_name, quantity } = item;
-      if (!product_name || !quantity || isNaN(quantity) || quantity <= 0) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid item: Missing or invalid product_name or quantity",
-        });
-      }
-
-      const stock = await Stock.findOne({ product_name });
-      if (!stock || stock.product_quantity < quantity) {
-        return res.status(400).json({
-          success: false,
-          message: `Insufficient stock for ${product_name}. Available: ${stock?.product_quantity || 0}, Requested: ${quantity}`,
-        });
-      }
+    const stock = await Stock.findOne({ product_name });
+    if (!stock) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found in stock",
+      });
+    }
+    if (stock.product_quantity < requested_quantity) {
+      return res.status(400).json({
+        success: false,
+        message: "Insufficient stock quantity",
+      });
     }
 
-    const salesRequest = new SalesRequest({ items });
-    await salesRequest.save();
+    const newSalesRequest = new SalesRequest({
+      product_name,
+      requested_quantity,
+      created_by,
+    });
 
+    await newSalesRequest.save();
     res.status(201).json({
       success: true,
       message: "Sales request created successfully",
-      data: salesRequest,
+      data: newSalesRequest,
     });
   } catch (error) {
-    console.error("Error creating sales request:", error.message, error.stack);
+    console.error("Error creating sales request:", error.message);
     res.status(500).json({
       success: false,
       message: "Internal Server Error: " + error.message,
@@ -52,58 +52,115 @@ export const createSalesRequest = async (req, res) => {
 // Get all sales requests
 export const getAllSalesRequests = async (req, res) => {
   try {
-    const salesRequests = await SalesRequest.find().sort({ requestedAt: -1 });
-    res.status(200).json({ success: true, data: salesRequests });
+    const salesRequests = await SalesRequest.find({});
+    res.status(200).json({
+      success: true,
+      data: salesRequests,
+    });
   } catch (error) {
     console.error("Error fetching sales requests:", error.message);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
   }
 };
 
-// Update sales request status (accept or reject)
+// Get sales requests by user
+export const getUserSalesRequests = async (req, res) => {
+  const { created_by } = req.query; // Expect created_by as a query parameter
+
+  if (!created_by) {
+    return res.status(400).json({
+      success: false,
+      message: "Missing required field: created_by",
+    });
+  }
+
+  try {
+    const salesRequests = await SalesRequest.find({ created_by });
+    res.status(200).json({
+      success: true,
+      data: salesRequests,
+    });
+  } catch (error) {
+    console.error("Error fetching user sales requests:", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+// Delete a sales request
+export const deleteSalesRequest = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedRequest = await SalesRequest.findByIdAndDelete(id);
+    if (!deletedRequest) {
+      return res.status(404).json({
+        success: false,
+        message: "Sales request not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Sales request deleted successfully",
+    });
+  } catch (error) {
+    console.error("Error deleting sales request:", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+// Update sales request status (approve/reject)
 export const updateSalesRequestStatus = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ success: false, message: "Invalid request ID" });
-  }
-
-  if (!["accepted", "rejected"].includes(status)) {
-    return res.status(400).json({ success: false, message: "Invalid status" });
+  if (!["Approved", "Rejected"].includes(status)) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid status. Must be 'Approved' or 'Rejected'",
+    });
   }
 
   try {
-    const salesRequest = await SalesRequest.findById(id);
-    if (!salesRequest) {
-      return res.status(404).json({ success: false, message: "Sales request not found" });
+    const updatedRequest = await SalesRequest.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
+    if (!updatedRequest) {
+      return res.status(404).json({
+        success: false,
+        message: "Sales request not found",
+      });
     }
 
-    if (salesRequest.status !== "pending") {
-      return res.status(400).json({ success: false, message: "Request already processed" });
-    }
-
-    salesRequest.status = status;
-    salesRequest.processedAt = Date.now();
-
-    if (status === "accepted") {
-      for (const item of salesRequest.items) {
-        const stock = await Stock.findOne({ product_name: item.product_name });
-        if (stock) {
-          stock.product_quantity -= item.quantity;
-          await stock.save();
-        }
+    // If approved, reduce stock quantity
+    if (status === "Approved") {
+      const stock = await Stock.findOne({ product_name: updatedRequest.product_name });
+      if (stock) {
+        stock.product_quantity -= updatedRequest.requested_quantity;
+        await stock.save();
       }
     }
 
-    await salesRequest.save();
     res.status(200).json({
       success: true,
-      message: `Sales request ${status} successfully`,
-      data: salesRequest,
+      message: `Sales request ${status.toLowerCase()} successfully`,
+      data: updatedRequest,
     });
   } catch (error) {
-    console.error("Error updating sales request:", error.message);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    console.error("Error updating sales request status:", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
   }
 };
