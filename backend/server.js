@@ -11,6 +11,9 @@ import IngredientRoutes from "./routes/ingredient.route.js";
 import supplierRoutes from "./routes/supplier.route.js";
 import salesRoutes from "./routes/directsales.route.js";
 import returnRoutes from "./routes/directreturns.route.js";
+
+  import productionRequestRoutes from './routes/productionRequest.routes.js';
+import salesRequestRouter from "./routes/salesRequest.route.js"
 import employeeRoutes from "./routes/employee.route.js";
 import attendanceRoutes from "./routes/attendance.route.js";
 import userRoutes from "./routes/user.route.js";
@@ -25,10 +28,13 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173", // Allow requests from this origin
+    origin: "http://localhost:5175", // Allow requests from this origin
   })
 );
 app.use("/api/products", productRoutes);
+
+  app.use('/api/production-requests', productionRequestRoutes);
+  app.use("/api/sales-requests", salesRequestRouter);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/ingredients", IngredientRoutes);
@@ -36,6 +42,7 @@ app.use("/api/suppliers", supplierRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRouter);
+
 
 
 app.use(cors());
