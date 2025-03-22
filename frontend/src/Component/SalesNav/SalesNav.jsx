@@ -98,17 +98,20 @@ function SalesNav() {
                   <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
                 </svg>
               </button>
-              <label className="nav-label">Requests</label>
+
+               <label className="nav-label">Request Stock</label>
+
             </Link>
           </li>
           <hr className="nav-hr" />
           <li>
             <Link
-              to="/issueitems"
-              className={`home-a ${activeLink === "/issueitems" ? "active" : ""}`}
+    to="/spissueitems"
+              className={`home-a ${activeLink === "/spissueitems" ? "active" : ""}`}
               onClick={() => handleLinkClick("/issueitems")}
             >
-              <button className={`center-icon-btn ${activeLink === "/issueitems" ? "active" : ""}`}>
+              <button className={`center-icon-btn ${activeLink === "/spissueitems" ? "active" : ""}`}>
+
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -123,28 +126,7 @@ function SalesNav() {
               <label className="nav-label">Issue Items</label>
             </Link>
           </li>
-          <hr className="nav-hr" />
-          <li>
-            <Link
-              to="/manageitems"
-              className={`home-a ${activeLink === "/manageitems" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/manageitems")}
-            >
-              <button className={`center-icon-btn ${activeLink === "/manageitems" ? "active" : ""}`}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  className="bi bi-gear-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c-1.4-.413-1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
-                </svg>
-              </button>
-              <label className="nav-label">Manage Items</label>
-            </Link>
-          </li>
+
           <hr className="nav-hr" />
           <li>
             <Link
@@ -170,9 +152,11 @@ function SalesNav() {
           <hr className="nav-hr" />
           <li>
             <Link
-              to="/returns"
-              className={`home-a ${activeLink === "/returns" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/returns")}
+
+              to="/spreturns"
+              className={`home-a ${activeLink === "/spreturns" ? "active" : ""}`}
+              onClick={() => handleLinkClick("/spreturns")}
+
             >
               <button className={`center-icon-btn ${activeLink === "/returns" ? "active" : ""}`}>
                 <svg

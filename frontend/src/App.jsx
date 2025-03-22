@@ -49,6 +49,12 @@ import AccessControlDashboard from "./Component/AccessControlDashboard/AccessCon
 import Login from "./Component/Login/Login";
 import SalesDashboard from "./Component/SalesDashboard/SalesDashboard";
 
+import AddShop from "./Component/AddShop/AddShop";
+import ManageShops from "./Component/ManageShops/ManageShops";
+import SPIssueItem from "./Component/SPIssueItem/SPIssueItem";
+import SPReturns from "./Component/SPReturns/SPReturns"
+import SPSales from "./Component/SPSales/SPSales"
+import SPviewReturns from "./Component/SPviewReturns/SPviewReturns"
 
 
 function App() {
@@ -94,6 +100,13 @@ function App() {
           <Route path="/create-user" element={<ProtectedRoute element={<CreateUser />} />} />
           <Route path="/Accessdashboard" element={<ProtectedRoute element={<AccessControlDashboard />} />} />
           <Route path="/login" element={<Login />} />
+
+             <Route path="/addshops" element={<AddShop />} />
+          <Route path="/manageshops" element={<ManageShops />} />
+          <Route path="/spissueitems" element={<SPIssueItem />} />
+          <Route path="/spreturns" element={<SPReturns />} />
+          <Route path="/spsales" element={<SPSales />} />
+          <Route path="/spviewreturns" element={<SPviewReturns />} />
           <Route path="/salesdashboard" element={<SalesDashboard />} />
           <Route path="/sales-request" element={<SalesRequestForm />} />
           <Route path="/my-requests" element={<MyRequests />} />
