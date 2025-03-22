@@ -29,6 +29,9 @@ import GMemployee from "./Component/GMviewemployee/GMviewemployee";
 import GMsupplier from "./Component/GMviewsupplier/Suppliers";
 import GMproducts from "./Component/GMviewproducts/GMviewproducts";
 import GMreturns from "./Component/GMviewreturns/GMreturns";
+import SalesRequest from "./Component/SalesRequest/SalesRequest";
+import MySalesRequests from "./Component/MySalesRequests/MySalesRequests";
+import ViewSalesRequests from "./Component/ViewSalesRequests/ViewSalesRequests";
 
 function App() {
   return (
@@ -63,7 +66,9 @@ function App() {
           <Route path="/GMviewsuppliers" element={<GMsupplier />} />
           <Route path="/GMviewproducts" element={<GMproducts />} />
           <Route path="/GMviewreturns" element={<GMreturns />} />
-          
+          <Route path="/sales-request" element={<SalesRequest />} />
+          <Route path="/view-sales-requests" element={<ViewSalesRequests />} />
+          <Route path="/my-sales-requests" element={<MySalesRequests />} />
         </Routes>
       </React.Fragment>
     </div>
