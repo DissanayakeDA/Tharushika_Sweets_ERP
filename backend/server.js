@@ -15,7 +15,7 @@ import employeeRoutes from "./routes/employee.route.js";
 import attendanceRoutes from "./routes/attendance.route.js";
 import userRoutes from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
-
+import indirectbuyerRoutes from "./routes/indirectbuyer.route.js";
 
 dotenv.config();
 
@@ -36,6 +36,7 @@ app.use("/api/suppliers", supplierRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRouter);
+app.use("/api/indirectbuyers",indirectbuyerRoutes);
 
 
 app.use(cors());
