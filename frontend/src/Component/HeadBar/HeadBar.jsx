@@ -5,7 +5,7 @@ function HeadBar() {
   return (
     <div>
       <div className="home-header-div">
-        <h2 className="headbar-title">Tharushika Sweets</h2>
+        <h2 className="headbar-title">THARUSHIKA SWEETS PVT(LTD)</h2>
       </div>
     </div>
   );
