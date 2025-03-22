@@ -55,7 +55,7 @@ import SPIssueItem from "./Component/SPIssueItem/SPIssueItem";
 import SPReturns from "./Component/SPReturns/SPReturns"
 import SPSales from "./Component/SPSales/SPSales"
 import SPviewReturns from "./Component/SPviewReturns/SPviewReturns"
-
+import SPviewstock from "./Component/viewSalesStock/viewSalesStock"
 
 function App() {
   return (
@@ -110,7 +110,8 @@ function App() {
           <Route path="/salesdashboard" element={<SalesDashboard />} />
           <Route path="/sales-request" element={<SalesRequestForm />} />
           <Route path="/my-requests" element={<MyRequests />} />
-        <Route path="/all-requests-approval" element={<AllRequestsApproval />} />
+          <Route path="/all-requests-approval" element={<AllRequestsApproval />} />
+          <Route path="/viewsalesstock" element={<SPviewstock />} />
 
 
 

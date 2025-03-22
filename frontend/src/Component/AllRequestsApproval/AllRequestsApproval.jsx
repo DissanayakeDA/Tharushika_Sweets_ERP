@@ -56,6 +56,7 @@ function AllRequestsApproval() {
         const stock = stockResponse.data.data[0]; // Assuming the first match
         const currentQuantity = parseInt(stock.product_quantity, 10);
         const requestedQuantity = parseInt(request.requested_quantity, 10);
+        const productPrice = stock.product_price; // Get price from stock
 
         console.log("Current stock quantity:", currentQuantity);
         console.log("Requested quantity:", requestedQuantity);
@@ -82,6 +83,24 @@ function AllRequestsApproval() {
 
         if (!updateStockResponse.data.success) {
           alert("Failed to update stock quantity!");
+          return;
+        }
+
+        // Add to SalesStock collection
+        const salesStockData = {
+          sp_name: request.product_name,
+          sp_quantity: requestedQuantity,
+          sp_price: productPrice || 0, // Use price from stock, default to 0 if not available
+        };
+
+        const salesStockResponse = await axios.post(
+          "http://localhost:5000/api/salesstocks",
+          salesStockData
+        );
+        console.log("SalesStock Add Response:", salesStockResponse.data);
+
+        if (!salesStockResponse.data.success) {
+          alert("Failed to add item to sales stock!");
           return;
         }
       }
