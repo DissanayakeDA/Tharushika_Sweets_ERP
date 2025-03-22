@@ -1,0 +1,163 @@
+/* HRDashboard.css - Scoped styles with unique prefixes */
+
+.hrdashboard-home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #DADADA;
+}
+
+.hrdashboard-layout {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.hrdashboard-sidebar {
+  width: 100px;
+  min-height: calc(100vh - 60px); /* Adjust for typical HeadBar height */
+  background:#DADADA;
+  color: white;
+}
+
+.hrdashboard-main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.hrdashboard-content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hrdashboard-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hrdashboard-present-box {
+  background: white; /* Orange background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: #ffffff; /* White text for contrast */
+}
+
+.hrdashboard-present-box h3 {
+  font-family: 'Arial', sans-serif; /* Clean, modern font */
+  font-size: 1.3rem;
+  color: #2c3e50; /* White for readability on orange */
+  margin: 0 0 10px 0;
+  font-weight: 600; /* Slightly bold */
+}
+
+.hrdashboard-present-count {
+  font-family: 'Roboto', sans-serif; /* Different font for emphasis */
+  font-size: 1.6rem;
+  color: #2ecc71; /* Dark blue-gray for contrast and professionalism */
+  margin: 10px 0;
+  font-weight: 700; /* Bold for prominence */
+}
+
+.hrdashboard-error {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #c0392b; /* Darker red for error on orange */
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.hrdashboard-graphs-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.hrdashboard-graph {
+  flex: 1;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hrdashboard-graph h3 {
+  font-size: 1.2rem;
+  color: #34495e;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.hrdashboard-graph-bars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.hrdashboard-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.hrdashboard-bar {
+  width: 30px;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: height 0.3s ease-in-out;
+}
+
+.hrdashboard-present-bar {
+  background-color: orange; /* Green for present */
+}
+
+.hrdashboard-absent-bar {
+  background-color: #e74c3c; /* Red for absent */
+}
+
+.hrdashboard-bar-value {
+  position: absolute;
+  top: -20px;
+  width: 100%;
+  text-align: center;
+  color: #34495e;
+  font-size: 0.9rem;
+}
+
+.hrdashboard-day-label {
+  font-size: 0.9rem;
+  color: #34495e;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hrdashboard-graphs-wrapper {
+    flex-direction: column;
+  }
+
+  .hrdashboard-graph {
+    width: 100%;
+  }
+
+  .hrdashboard-layout {
+    flex-direction: column;
+  }
+
+  .hrdashboard-sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+}

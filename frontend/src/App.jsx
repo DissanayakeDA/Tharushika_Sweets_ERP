@@ -1,6 +1,12 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import React from "react";
+
+
+const ProtectedRoute = ({ element }) => {
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  return user ? element : <Navigate to="/login" />;
+};
 
 import Home from "@/Component/Home/Home";
 import AddStock from "@/Component/AddStock/AddStock";
@@ -29,40 +35,62 @@ import GMemployee from "./Component/GMviewemployee/GMviewemployee";
 import GMsupplier from "./Component/GMviewsupplier/Suppliers";
 import GMproducts from "./Component/GMviewproducts/GMviewproducts";
 import GMreturns from "./Component/GMviewreturns/GMreturns";
+import HRDashboard from "./Component/HRDashboard/HRDashboard";
+import AddEmployee from "./Component/AddEmployee/AddEmployee";
+import ViewEmployees from "./Component/ViewEmployee/ViewEmployee";
+import UpdateEmployee from "./Component/UpdateEmployee/UpdateEmployee";
+import AddAttendance from "./Component/AddAttendance/AddAttendance";
+import ViewAttendance from "./Component/ViewAttendance/ViewAttendace";
+import CreateUser from "./Component/CreateUser/CreateUser";
+import AccessControlDashboard from "./Component/AccessControlDashboard/AccessControlDashboard";
+import Login from "./Component/Login/Login";
 
 function App() {
   return (
     <div>
       <React.Fragment>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/mainhome" element={<Home />} />
-          <Route path="/addstock" element={<AddStock />} />
-          <Route path="/issueitems" element={<IssueItems />} />
-          <Route path="/addbuyers" element={<AddBuyers />} />
-          <Route path="/signout" element={<SignOut />} />
-          <Route path="/viewbuyers" element={<Buyers />} />
-          <Route path="/viewbuyers-gm" element={<GMBuyers />} />
-          <Route path="/viewsales" element={<Sales />} />
-          <Route path="/viewrequests" element={<Requests />} />
-          <Route path="/viewbuyers/:id" element={<UpdateBuyers />} />
-          <Route path="/invoice" element={<Invoice />} />
-          <Route path="/directreturns" element={<DirectBuyerReturns />} />
-          <Route path="/addsuppliers" element={<AddSuppliers />} />
-          <Route path="/home-gm" element={<HomeGM />} />
-          <Route path="/returninvoice" element={<ReturnInvoice />} />
-          <Route path="/viewReturns" element={<ViewReturns />} />
-          <Route path="/viewstock" element={<ViewStock />} />
-          <Route path="/viewstock-gm" element={<GMViewStock />} />
-          <Route path="/viewsuppliers" element={<Suppliers />} />
-          <Route path="/viewsuppliers/:id" element={<UpdateSuppliers />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/GMviewsales" element={<GMSales />} />
-          <Route path="/GMviewrequests" element={<GMrequests />} />
-          <Route path="/GMviewemployee" element={<GMemployee />} />
-          <Route path="/GMviewsuppliers" element={<GMsupplier />} />
-          <Route path="/GMviewproducts" element={<GMproducts />} />
-          <Route path="/GMviewreturns" element={<GMreturns />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/mainhome" element={<ProtectedRoute element={<Home />} />} />
+          <Route path="/addstock" element={<ProtectedRoute element={<AddStock />} />} />
+          <Route path="/issueitems" element={<ProtectedRoute element={<IssueItems />} />} />
+          <Route path="/addbuyers" element={<ProtectedRoute element={<AddBuyers />} />} />
+          <Route path="/signout" element={<ProtectedRoute element={<SignOut />} />} />
+          <Route path="/viewbuyers" element={<ProtectedRoute element={<Buyers />} />} />
+          <Route path="/viewbuyers-gm" element={<ProtectedRoute element={<GMBuyers />} />} />
+          <Route path="/viewsales" element={<ProtectedRoute element={<Sales />} />} />
+          <Route path="/viewrequests" element={<ProtectedRoute element={<Requests />} />} />
+          <Route path="/viewbuyers/:id" element={<ProtectedRoute element={<UpdateBuyers />} />} />
+          <Route path="/invoice" element={<ProtectedRoute element={<Invoice />} />} />
+          <Route path="/directreturns" element={<ProtectedRoute element={<DirectBuyerReturns />} />} />
+          <Route path="/addsuppliers" element={<ProtectedRoute element={<AddSuppliers />} />} />
+          <Route path="/home-gm" element={<ProtectedRoute element={<HomeGM />} />} />
+          <Route path="/returninvoice" element={<ProtectedRoute element={<ReturnInvoice />} />} />
+          <Route path="/viewReturns" element={<ProtectedRoute element={<ViewReturns />} />} />
+          <Route path="/viewstock" element={<ProtectedRoute element={<ViewStock />} />} />
+          <Route path="/viewstock-gm" element={<ProtectedRoute element={<GMViewStock />} />} />
+          <Route path="/viewsuppliers" element={<ProtectedRoute element={<Suppliers />} />} />
+          <Route path="/viewsuppliers/:id" element={<ProtectedRoute element={<UpdateSuppliers />} />} />
+          <Route path="/products" element={<ProtectedRoute element={<Products />} />} />
+          <Route path="/GMviewsales" element={<ProtectedRoute element={<GMSales />} />} />
+          <Route path="/GMviewrequests" element={<ProtectedRoute element={<GMrequests />} />} />
+          <Route path="/GMviewemployee" element={<ProtectedRoute element={<GMemployee />} />} />
+          <Route path="/GMviewsuppliers" element={<ProtectedRoute element={<GMsupplier />} />} />
+          <Route path="/GMviewproducts" element={<ProtectedRoute element={<GMproducts />} />} />
+          <Route path="/GMviewreturns" element={<ProtectedRoute element={<GMreturns />} />} />
+          <Route path="/hrdashboard" element={<ProtectedRoute element={<HRDashboard />} />} />
+          <Route path="/addemployee" element={<ProtectedRoute element={<AddEmployee />} />} />
+          <Route path="/viewemployees" element={<ProtectedRoute element={<ViewEmployees />} />} />
+          <Route path="/updateemployee/:id" element={<ProtectedRoute element={<UpdateEmployee />} />} />
+          <Route path="/addattendance" element={<ProtectedRoute element={<AddAttendance />} />} />
+          <Route path="/viewattendance" element={<ProtectedRoute element={<ViewAttendance />} />} />
+          <Route path="/create-user" element={<ProtectedRoute element={<CreateUser />} />} />
+          <Route path="/Accessdashboard" element={<ProtectedRoute element={<AccessControlDashboard />} />} />
+          <Route path="/login" element={<Login />} />
+
+
+
+          
           
         </Routes>
       </React.Fragment>
