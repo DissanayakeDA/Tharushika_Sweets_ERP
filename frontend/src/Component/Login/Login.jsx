@@ -37,11 +37,11 @@ function Login() {
           case "Production Management":
             navigate("/productiondashboard");
             break;
-          case "Supply Management":
+          case "Sales Management":
             navigate("/supplydashboard");
             break;
           case "Stock Management":
-            navigate("/stockdashboard");
+            navigate("/mainhome");
             break;
           default:
             setError("Unknown access level");

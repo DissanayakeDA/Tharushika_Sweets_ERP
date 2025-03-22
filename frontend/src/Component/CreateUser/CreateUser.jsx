@@ -12,6 +12,9 @@ function CreateUser() {
     username: "",
     password: "",
     reenterPassword: "",
+    nicNo: "",
+    mobileNo: "",
+    email: "",
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -21,28 +24,34 @@ function CreateUser() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const validatePassword = (password) => {
-    const minLength = 8;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasNumber = /\d/.test(password);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  const validateForm = () => {
+    // Password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      return "Password must be at least 8 characters long and include one uppercase letter, one lowercase letter, one number, and one special character.";
+    }
+    if (formData.password !== formData.reenterPassword) {
+      return "Passwords do not match.";
+    }
 
-    if (password.length < minLength) {
-      return "The password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one numeric digit, and one special character.";
+    // NIC validation (Sri Lankan format)
+    const nicRegex = /^[0-9]{9}[vVxX]$|^[0-9]{12}$/;
+    if (!nicRegex.test(formData.nicNo)) {
+      return "Invalid NIC number. Use 9 digits + 'V'/'X' or 12 digits.";
     }
-    if (!hasUpperCase) {
-      return "The password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one numeric digit, and one special character.";
+
+    // Mobile number validation
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(formData.mobileNo)) {
+      return "Mobile number must be 10 digits.";
     }
-    if (!hasLowerCase) {
-      return "The password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one numeric digit, and one special character.";
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return "Invalid email address.";
     }
-    if (!hasNumber) {
-      return "The password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one numeric digit, and one special character.";
-    }
-    if (!hasSpecialChar) {
-      return "The password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one numeric digit, and one special character.";
-    }
+
     return null; // No errors
   };
 
@@ -50,16 +59,9 @@ function CreateUser() {
     e.preventDefault();
     setError(null);
 
-    // Check if passwords match
-    if (formData.password !== formData.reenterPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    // Validate password criteria
-    const passwordError = validatePassword(formData.password);
-    if (passwordError) {
-      setError(passwordError);
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
@@ -105,7 +107,7 @@ function CreateUser() {
               className="select-input"
             >
               <option value="">Select Access Level</option>
-              <option value="Supply Management">Supply Management</option>
+              <option value="Sales Management">Sales Management</option>
               <option value="Production Management">Production Management</option>
               <option value="Employee Management">Employee Management</option>
               <option value="Stock Management">Stock Management</option>
@@ -120,6 +122,42 @@ function CreateUser() {
               onChange={handleChange}
               required
               className="text-input"
+            />
+          </div>
+          <div className="form-group">
+            <label>NIC Number</label>
+            <input
+              type="text"
+              name="nicNo"
+              value={formData.nicNo}
+              onChange={handleChange}
+              required
+              className="text-input"
+              placeholder="e.g., 123456789V or 200012345678"
+            />
+          </div>
+          <div className="form-group">
+            <label>Mobile Number</label>
+            <input
+              type="text"
+              name="mobileNo"
+              value={formData.mobileNo}
+              onChange={handleChange}
+              required
+              className="text-input"
+              placeholder="e.g., 0712345678"
+            />
+          </div>
+          <div className="form-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="text-input"
+              placeholder="e.g., user@example.com"
             />
           </div>
           <div className="form-group">

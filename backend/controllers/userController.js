@@ -1,27 +1,53 @@
 import User from "../models/User.model.js";
-import { createHash } from "crypto"; // Import Node.js crypto module
+import { createHash } from "crypto";
 
-// Function to hash a password using SHA-256
 const hashPassword = (password) => {
   return createHash("sha256").update(password).digest("hex");
 };
 
 export const createUser = async (req, res) => {
   try {
-    const { employeeName, accessLevel, username, password, reenterPassword } = req.body;
+    const { 
+      employeeName, 
+      accessLevel, 
+      username, 
+      password, 
+      reenterPassword, 
+      nicNo, 
+      mobileNo, 
+      email 
+    } = req.body;
 
+    // Check if passwords match
     if (password !== reenterPassword) {
       return res.status(400).json({ success: false, message: "Passwords do not match" });
     }
 
-    const existingUser = await User.findOne({ username });
+    // Check for existing username, NIC, or email
+    const existingUser = await User.findOne({ $or: [{ username }, { nicNo }, { email }] });
     if (existingUser) {
-      return res.status(400).json({ success: false, message: "Username already exists" });
+      if (existingUser.username === username) {
+        return res.status(400).json({ success: false, message: "Username already exists" });
+      }
+      if (existingUser.nicNo === nicNo) {
+        return res.status(400).json({ success: false, message: "NIC number already exists" });
+      }
+      if (existingUser.email === email) {
+        return res.status(400).json({ success: false, message: "Email already exists" });
+      }
     }
 
     // Hash the password before saving
     const hashedPassword = hashPassword(password);
-    const user = new User({ employeeName, accessLevel, username, password: hashedPassword });
+    const user = new User({ 
+      employeeName, 
+      accessLevel, 
+      username, 
+      password: hashedPassword, 
+      nicNo, 
+      mobileNo, 
+      email 
+    });
     await user.save();
     res.status(201).json({ success: true, data: user });
   } catch (error) {
@@ -30,7 +56,7 @@ export const createUser = async (req, res) => {
   }
 };
 
-// Keep getUsers and deleteUser as they are
+// Keep getUsers and deleteUser unchanged
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
