@@ -11,11 +11,17 @@ import IngredientRoutes from "./routes/ingredient.route.js";
 import supplierRoutes from "./routes/supplier.route.js";
 import salesRoutes from "./routes/directsales.route.js";
 import returnRoutes from "./routes/directreturns.route.js";
+
+  import productionRequestRoutes from './routes/productionRequest.routes.js';
 import employeeRoutes from "./routes/employee.route.js";
 import attendanceRoutes from "./routes/attendance.route.js";
 import userRoutes from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
+
+
+import salesRequestRoutes from "./routes/salesRequest.routes.js";
 import indirectbuyerRoutes from "./routes/indirectbuyer.route.js";
+
 
 dotenv.config();
 
@@ -29,6 +35,9 @@ app.use(
   })
 );
 app.use("/api/products", productRoutes);
+
+  app.use('/api/production-requests', productionRequestRoutes);
+  app.use("/api/sales-requests", salesRequestRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/ingredients", IngredientRoutes);
@@ -37,6 +46,7 @@ app.use("/api/attendance", attendanceRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRouter);
 app.use("/api/indirectbuyers",indirectbuyerRoutes);
+
 
 
 app.use(cors());

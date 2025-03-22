@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+.my-sales-requests-container {
+  padding: 0;
+  background-color: #efefef;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.title-my-sales {
+  font-size: 28px;
+  font-weight: 400;
+  color: #37474f;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: 16%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.my-sales-requests-table {
+  width: 80%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+
+.my-sales-requests-table th,
+.my-sales-requests-table td {
+  padding: 12px 15px;
+  border-bottom: 2px solid #ccc;
+}
+
+.my-sales-requests-table th {
+  background-color: #efefef;
+  color: #4e4a4a;
+}
+
+.my-sales-requests-table td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.my-sales-requests-table td:first-child {
+  font-family: monospace;
+  word-break: break-all;
+  max-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .title-my-sales {
+    font-size: 22px;
+    margin-left: 5%;
+  }
+
+  .my-sales-requests-table {
+    width: 95%;
+    margin-left: 2.5%;
+    font-size: 0.8rem;
+  }
+
+  .my-sales-requests-table td:first-child {
+    max-width: 100px;
+  }
+}

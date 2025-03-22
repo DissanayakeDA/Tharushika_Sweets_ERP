@@ -35,6 +35,9 @@ import GMemployee from "./Component/GMviewemployee/GMviewemployee";
 import GMsupplier from "./Component/GMviewsupplier/Suppliers";
 import GMproducts from "./Component/GMviewproducts/GMviewproducts";
 import GMreturns from "./Component/GMviewreturns/GMreturns";
+import AllRequestsApproval from "./Component/AllRequestsApproval/AllRequestsApproval";
+import SalesRequestForm from "./Component/SalesRequestForm/SalesRequestForm";
+import MyRequests from "./Component/MyRequests/MyRequests";
 import HRDashboard from "./Component/HRDashboard/HRDashboard";
 import AddEmployee from "./Component/AddEmployee/AddEmployee";
 import ViewEmployees from "./Component/ViewEmployee/ViewEmployee";
@@ -45,6 +48,7 @@ import CreateUser from "./Component/CreateUser/CreateUser";
 import AccessControlDashboard from "./Component/AccessControlDashboard/AccessControlDashboard";
 import Login from "./Component/Login/Login";
 import SalesDashboard from "./Component/SalesDashboard/SalesDashboard";
+
 import AddShop from "./Component/AddShop/AddShop";
 import ManageShops from "./Component/ManageShops/ManageShops";
 import SPIssueItem from "./Component/SPIssueItem/SPIssueItem";
@@ -52,11 +56,13 @@ import SPReturns from "./Component/SPReturns/SPReturns"
 import SPSales from "./Component/SPSales/SPSales"
 import SPviewReturns from "./Component/SPviewReturns/SPviewReturns"
 
+
 function App() {
   return (
     <div>
       <React.Fragment>
         <Routes>
+
           <Route path="/" element={<Login />} />
           <Route path="/mainhome" element={<ProtectedRoute element={<Home />} />} />
           <Route path="/addstock" element={<ProtectedRoute element={<AddStock />} />} />
@@ -94,19 +100,24 @@ function App() {
           <Route path="/create-user" element={<ProtectedRoute element={<CreateUser />} />} />
           <Route path="/Accessdashboard" element={<ProtectedRoute element={<AccessControlDashboard />} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/salesdashboard" element={<SalesDashboard />} />
-          <Route path="/addshops" element={<AddShop />} />
+
+             <Route path="/addshops" element={<AddShop />} />
           <Route path="/manageshops" element={<ManageShops />} />
           <Route path="/spissueitems" element={<SPIssueItem />} />
           <Route path="/spreturns" element={<SPReturns />} />
           <Route path="/spsales" element={<SPSales />} />
           <Route path="/spviewreturns" element={<SPviewReturns />} />
-          
+          <Route path="/salesdashboard" element={<SalesDashboard />} />
+          <Route path="/sales-request" element={<SalesRequestForm />} />
+          <Route path="/my-requests" element={<MyRequests />} />
+        <Route path="/all-requests-approval" element={<AllRequestsApproval />} />
 
 
 
+
           
           
+
         </Routes>
       </React.Fragment>
     </div>

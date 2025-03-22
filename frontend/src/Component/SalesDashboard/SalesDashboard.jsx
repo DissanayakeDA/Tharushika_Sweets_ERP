@@ -19,7 +19,9 @@ function SalesDashboard() {
               <div className="dash-btn-icon">
                 <i className="bi bi-house-door-fill"></i>
               </div>
-              <label className="dash-btn-text">Stocks</label>
+
+                 <label className="dash-btn-text">Stocks</label>
+
             </div>
           </Link>
 
@@ -32,12 +34,16 @@ function SalesDashboard() {
             </div>
           </Link>
 
-          <Link to="/spsales" className="dashboard-link">
+
+            <Link to="/spsales" className="dashboard-link">
+
             <div className="dashboard-btn">
               <div className="dash-btn-icon">
                 <i className="bi bi-box-arrow-up"></i>
               </div>
-              <label className="dash-btn-text">Sales</label>
+
+               <label className="dash-btn-text">Sales</label>
+
             </div>
           </Link>
 
@@ -46,7 +52,8 @@ function SalesDashboard() {
               <div className="dash-btn-icon">
                 <i className="bi bi-gear-fill"></i>
               </div>
-              <label className="dash-btn-text">Products</label>
+  <label className="dash-btn-text">Products</label>
+
             </div>
           </Link>
         </div>
@@ -56,11 +63,13 @@ function SalesDashboard() {
             <div className="dash-btn-icon-returns">
               <i className="bi bi-shop"></i>
             </div>
-            <label className="dash-btn-text-req">Shops</label>
+
+           <label className="dash-btn-text-req">Shops</label>
           </div>
         </Link>
 
         <Link to="/spviewreturns" className="dashboard-link">
+
           <div className="dashboard-btn-returns">
             <div className="dash-btn-icon-returns">
               <i className="bi bi-arrow-return-left"></i>

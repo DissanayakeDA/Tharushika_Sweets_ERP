@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+.sales-request-container {
+  padding: 0;
+  background-color: #efefef;
+  border-radius: 8px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.title-sales-request {
+  font-size: 28px;
+  font-weight: 400;
+  color: #37474f;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: 16%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* New container for status messages */
+.status-messages {
+  margin-left: 16%;
+  margin-bottom: 20px;
+}
+
+.loading-message,
+.error-message,
+.success-message {
+  margin: 5px 0;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}
+
+.loading-message {
+  color: #37474f;
+}
+
+/* Debug section */
+.debug-section {
+  margin-left: 16%;
+  margin-bottom: 20px;
+}
+
+.sales-request-table {
+  width: 80%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+
+.sales-request-table th,
+.sales-request-table td {
+  padding: 12px 15px;
+  border-bottom: 2px solid #ccc;
+}
+
+.sales-request-table th {
+  background-color: #efefef;
+  color: #4e4a4a;
+  text-align: center;
+}
+
+.sales-request-table td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.select-product {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  cursor: pointer;
+  color: #37474f;
+  width: 100%;
+}
+
+.quantity-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  color: #37474f;
+  width: 80px;
+}
+
+.add-row-btn-sales {
+  background-color: #37474f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 80%;
+  margin-right: -25px;
+  margin-top: 1%;
+  transition: transform 0.2s ease;
+}
+
+.add-row-btn-sales:hover {
+  transform: scale(1.1);
+}
+
+.remove-row-btn {
+  background-color: #37474f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.remove-row-btn:hover {
+  transform: scale(1.1);
+}
+
+.submit-request-btn {
+  background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin-top: 5%;
+  margin-left: 5%;
+  transition: background-position 0.5s ease, transform 0.2s ease;
+  background-size: 200%;
+}
+
+.submit-request-btn:hover {
+  background-position: right;
+  transform: scale(1.05);
+}
