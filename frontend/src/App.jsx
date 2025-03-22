@@ -35,11 +35,9 @@ import GMemployee from "./Component/GMviewemployee/GMviewemployee";
 import GMsupplier from "./Component/GMviewsupplier/Suppliers";
 import GMproducts from "./Component/GMviewproducts/GMviewproducts";
 import GMreturns from "./Component/GMviewreturns/GMreturns";
-
-import SalesRequest from "./Component/SalesRequest/SalesRequest";
-import MySalesRequests from "./Component/MySalesRequests/MySalesRequests";
-import ViewSalesRequests from "./Component/ViewSalesRequests/ViewSalesRequests";
-
+import AllRequestsApproval from "./Component/AllRequestsApproval/AllRequestsApproval";
+import SalesRequestForm from "./Component/SalesRequestForm/SalesRequestForm";
+import MyRequests from "./Component/MyRequests/MyRequests";
 import HRDashboard from "./Component/HRDashboard/HRDashboard";
 import AddEmployee from "./Component/AddEmployee/AddEmployee";
 import ViewEmployees from "./Component/ViewEmployee/ViewEmployee";
@@ -49,6 +47,8 @@ import ViewAttendance from "./Component/ViewAttendance/ViewAttendace";
 import CreateUser from "./Component/CreateUser/CreateUser";
 import AccessControlDashboard from "./Component/AccessControlDashboard/AccessControlDashboard";
 import Login from "./Component/Login/Login";
+import SalesDashboard from "./Component/SalesDashboard/SalesDashboard";
+
 
 
 function App() {
@@ -94,9 +94,11 @@ function App() {
           <Route path="/create-user" element={<ProtectedRoute element={<CreateUser />} />} />
           <Route path="/Accessdashboard" element={<ProtectedRoute element={<AccessControlDashboard />} />} />
           <Route path="/login" element={<Login />} />
-            <Route path="/sales-request" element={<SalesRequest />} />
-          <Route path="/view-sales-requests" element={<ViewSalesRequests />} />
-          <Route path="/my-sales-requests" element={<MySalesRequests />} />
+          <Route path="/salesdashboard" element={<SalesDashboard />} />
+          <Route path="/sales-request" element={<SalesRequestForm />} />
+          <Route path="/my-requests" element={<MyRequests />} />
+        <Route path="/all-requests-approval" element={<AllRequestsApproval />} />
+
 
 
 
