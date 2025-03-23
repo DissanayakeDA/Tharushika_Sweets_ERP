@@ -35,9 +35,8 @@ app.use(
   })
 );
 app.use("/api/products", productRoutes);
-
-  app.use('/api/production-requests', productionRequestRoutes);
-  app.use("/api/sales-requests", salesRequestRoutes);
+app.use('/api/production-requests', productionRequestRoutes);
+app.use("/api/sales-requests", salesRequestRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/salesstocks", salesstockRoutes);
@@ -82,8 +81,8 @@ app.post("/api/sales/add", async (req, res) => {
 
 
 //indirect sales
-app.use("/api/sales", indirectsalesRoute);
-app.post("/api/sales/add", async (req, res) => {
+app.use("/api/indirectsales", indirectsalesRoute);
+app.post("/api/indirectsales/add", async (req, res) => {
   try {
     console.log("Received Data:", req.body); 
     const { buyerId, items, totalAmount } = req.body;
@@ -101,6 +100,8 @@ app.post("/api/sales/add", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
+
+
 
 //directreturns
 
@@ -124,10 +125,10 @@ app.post("/api/returns/add", async (req, res) => {
   }
 });
 
-//directreturns
+//indirectreturns
 
-app.use("/api/returns", indirectreturnRoutes);
-app.post("/api/returns/add", async (req, res) => {
+app.use("/api/indirectreturns", indirectreturnRoutes);
+app.post("/api/indirectreturns/add", async (req, res) => {
   try {
     console.log("Received Data:", req.body); 
     const { buyerId, items, totalAmount } = req.body;
@@ -137,7 +138,7 @@ app.post("/api/returns/add", async (req, res) => {
     }
 
     const newReturn = { buyerId, items, totalAmount, date: new Date() };
-    const result = await db.collection("returns").insertOne(newReturn);
+    const result = await db.collection("directreturns").insertOne(newReturn);
 
     res.json({ success: true, insertedId: result.insertedId });
   } catch (error) {

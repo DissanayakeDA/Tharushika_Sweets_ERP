@@ -16,7 +16,7 @@ function SPViewReturns() {
   useEffect(() => {
     // Fetch returns data from backend
     axios
-      .get("http://localhost:5000/api/returns")
+      .get("http://localhost:5000/api/indirectreturns")
       .then((response) => {
         if (response.data.success) {
           setReturns(response.data.returns);
@@ -30,7 +30,7 @@ function SPViewReturns() {
 
   const returnsviewDetails = async (returnId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/returns/${returnId}`);
+      const response = await axios.get(`http://localhost:5000/api/indirectreturns/${returnId}`);
       if (response.data.success) {
         setSelectedReturn(response.data.returnRecord);
         setShowModal(true);

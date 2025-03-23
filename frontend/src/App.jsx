@@ -56,6 +56,8 @@ import SPReturns from "./Component/SPReturns/SPReturns"
 import SPSales from "./Component/SPSales/SPSales"
 import SPviewReturns from "./Component/SPviewReturns/SPviewReturns"
 import SPviewstock from "./Component/viewSalesStock/viewSalesStock"
+import SPInvoice from "./Component/SPInvoice/SPInvoice";
+import SPReturnInvoice from "./Component/SPReturnInvoice/SPReturnInvoice";
 
 function App() {
   return (
@@ -112,6 +114,8 @@ function App() {
           <Route path="/my-requests" element={<MyRequests />} />
           <Route path="/all-requests-approval" element={<AllRequestsApproval />} />
           <Route path="/viewsalesstock" element={<SPviewstock />} />
+          <Route path="/spreturnInvoice" element={<SPReturnInvoice />} />
+          <Route path="/spInvoice" element={<SPInvoice />} />
 
 
 

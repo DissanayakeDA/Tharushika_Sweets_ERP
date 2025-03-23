@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./SPSales.css"; 
+import "./SPSales.css";
 import SalesNav from "../SalesNav/SalesNav";
 import { Link } from "react-router-dom";
-import jsPDF from "jspdf"; 
+import jsPDF from "jspdf";
 import HeadBar from "../HeadBar/HeadBar";
 
 function SPSales() {
-  const [sales, setSales] = useState([]);
+  const [indirectsales, setSales] = useState([]);
   const [filteredSales, setFilteredSales] = useState([]);
   const [selectedSale, setSelectedSale] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -16,11 +16,11 @@ function SPSales() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/sales")
+      .get("http://localhost:5000/api/indirectsales")
       .then((response) => {
         if (response.data.success) {
-          setSales(response.data.sales);
-          setFilteredSales(response.data.sales);
+          setSales(response.data.indirectsales);
+          setFilteredSales(response.data.indirectsales);
         }
       })
       .catch((error) => {
@@ -30,7 +30,7 @@ function SPSales() {
 
   const viewDetails = (invoiceId) => {
     axios
-      .get(`http://localhost:5000/api/sales/${invoiceId}`)
+      .get(`http://localhost:5000/api/indirectsales/${invoiceId}`)
       .then((response) => {
         if (response.data.success) {
           setSelectedSale(response.data.sale);
@@ -43,8 +43,9 @@ function SPSales() {
   };
 
   useEffect(() => {
-    let updatedSales = [...sales];
+    let updatedSales = [...indirectsales];
 
+    // Filter by search query
     if (searchQuery) {
       updatedSales = updatedSales.filter((sale) =>
         Object.values(sale).some((value) =>
@@ -53,6 +54,7 @@ function SPSales() {
       );
     }
 
+    // Apply sorting based on filter option
     if (filterOption !== "default") {
       if (filterOption === "date-newest") {
         updatedSales.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -66,41 +68,39 @@ function SPSales() {
     }
 
     setFilteredSales(updatedSales);
-  }, [searchQuery, filterOption, sales]);
+  }, [searchQuery, filterOption, indirectsales]);
 
   const generatePDF = () => {
     const doc = new jsPDF();
-    
+
     doc.setFontSize(16);
     doc.setTextColor(17, 48, 81);
-    doc.text("Direct Sales Report", 105, 15, null, null, "center");
-  
-    let yOffset = 25; 
-  
+    doc.text("Sales Report", 105, 15, null, null, "center");
+
+    let yOffset = 25;
+
     filteredSales.forEach((sale, i) => {
-      if (yOffset > 260) { 
-        doc.addPage(); 
-        yOffset = 20; 
+      if (yOffset > 260) {
+        doc.addPage();
+        yOffset = 20;
       }
-  
+
       doc.setFontSize(12);
       doc.setTextColor(17, 48, 81);
       doc.text(`Sale ${i + 1}`, 15, yOffset);
-      
+
       doc.setFontSize(10);
       doc.setTextColor(0, 0, 0);
-      doc.text(`Sales ID: ${sale._id}`, 20, yOffset + 7);
-      doc.text(`Invoice ID: ${sale.invoiceId}`, 20, yOffset + 14);
-      doc.text(`Buyer ID: ${sale.buyerId}`, 20, yOffset + 21);
-      doc.text(`Date: ${sale.date}`, 20, yOffset + 28);
-      doc.text(`Total Amount: ${sale.totalAmount}`, 20, yOffset + 35);
-  
-      yOffset += 45; 
+      doc.text(`Invoice ID: ${sale.invoiceId}`, 20, yOffset + 7);
+      doc.text(`Buyer ID: ${sale.buyerId}`, 20, yOffset + 14);
+      doc.text(`Date: ${new Date(sale.date).toLocaleString()}`, 20, yOffset + 21);
+      doc.text(`Total Amount: $${sale.totalAmount.toFixed(2)}`, 20, yOffset + 28);
+
+      yOffset += 35;
     });
-  
-    doc.save("Direct_Sales_Report.pdf");
+
+    doc.save("Sales_Report.pdf");
   };
-  
 
   return (
     <div>
@@ -138,7 +138,7 @@ function SPSales() {
             <thead>
               <tr>
                 <th>Invoice ID</th>
-                <th>BuyerID</th>
+                <th>Buyer ID</th>
                 <th>Date</th>
                 <th>Total Amount</th>
                 <th>Action</th>

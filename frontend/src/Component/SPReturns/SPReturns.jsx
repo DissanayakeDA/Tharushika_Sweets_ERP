@@ -7,10 +7,10 @@ import axios from "axios";
 
 function IndirectDirectBuyerReturns() {
   const [buyerId, setBuyerId] = useState(
-    localStorage.getItem("returnbuyerId") || ""
+    localStorage.getItem("SPreturnbuyerId") || ""
   );
   const [rows, setRows] = useState(
-    JSON.parse(localStorage.getItem("returninvoiceData")) || [
+    JSON.parse(localStorage.getItem("SPreturninvoiceData")) || [
       { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
     ]
   );
@@ -25,8 +25,7 @@ function IndirectDirectBuyerReturns() {
   const fetchStockData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/stocks");
-      console.log("API Response:", response.data);
+      const response = await axios.get("http://localhost:5000/api/salesstocks");
       if (response.data.success) {
         setStockItems(response.data.data);
       } else {
@@ -34,7 +33,9 @@ function IndirectDirectBuyerReturns() {
       }
     } catch (error) {
       console.error("Error fetching stock data:", error);
-      setError("Error fetching stock data. Check the console for details.");
+      setError("Error fetching stock data.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,11 +58,11 @@ function IndirectDirectBuyerReturns() {
   useEffect(() => {
     // Reset state
     if (localStorage.getItem("clearDataFlag") === "true") {
-      localStorage.removeItem("returnbuyerId");
-      localStorage.removeItem("returninvoiceData");
-      localStorage.removeItem("returntotalBill");
-      localStorage.removeItem("returnMethod");
-      localStorage.removeItem("clearDataFlag");
+      localStorage.removeItem("SPreturnbuyerId");
+      localStorage.removeItem("SPreturninvoiceData");
+      localStorage.removeItem("SPreturntotalBill");
+      localStorage.removeItem("SPreturnMethod");
+      localStorage.removeItem("SPclearDataFlag");
       setBuyerId("");
       setRows([
         { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
@@ -88,15 +89,15 @@ function IndirectDirectBuyerReturns() {
   };
 
   const handleItemChange = (index, value) => {
-    const item = stockItems.find((item) => item.product_name === value);
+    const item = stockItems.find((item) => item.sp_name === value);
     const updatedRows = [...rows];
     updatedRows[index] = {
       ...updatedRows[index],
       selectedItem: value,
-      currentStock: item ? item.product_quantity : 0,
-      price: item ? item.product_price : 0,
+      currentStock: item ? item.sp_quantity : 0,
+      price: item ? item.sp_price : 0,
       quantity: 1,
-      total: item ? item.product_price * 1 : 0,
+      total: item ? item.sp_price * 1 : 0,
     };
     setRows(updatedRows);
   };
@@ -140,12 +141,12 @@ function IndirectDirectBuyerReturns() {
     const filteredRows = rows.filter((row) => row.selectedItem);
     const totalBill = filteredRows.reduce((sum, row) => sum + row.total, 0);
 
-    localStorage.setItem("returnbuyerId", buyerId);
-    localStorage.setItem("returninvoiceData", JSON.stringify(filteredRows));
-    localStorage.setItem("returntotalBill", totalBill);
-    localStorage.setItem("returnMethod", selection);
+    localStorage.setItem("SPreturnbuyerId", buyerId);
+    localStorage.setItem("SPreturninvoiceData", JSON.stringify(filteredRows));
+    localStorage.setItem("SPreturntotalBill", totalBill);
+    localStorage.setItem("SPreturnMethod", selection);
 
-    navigate("/returnInvoice");
+    navigate("/spreturnInvoice");
   };
 
   return (
@@ -153,7 +154,6 @@ function IndirectDirectBuyerReturns() {
       <HeadBar />
       <SalesNav />
       <h2 className="title-return">Return Items</h2>
-      <hr className="hr-issue" />
       <div className="selection-container">
         <label>Select Return Type: </label>
         <select
@@ -214,8 +214,8 @@ function IndirectDirectBuyerReturns() {
                   <option value="">Select Item</option>
                   {!loading &&
                     stockItems.map((item, i) => (
-                      <option key={i} value={item.product_name}>
-                        {item.product_name}
+                      <option key={i} value={item.sp_name}>
+                        {item.sp_name}
                       </option>
                     ))}
                 </select>

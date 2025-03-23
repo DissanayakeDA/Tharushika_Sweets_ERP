@@ -1,8 +1,7 @@
 import express from "express";
 import indirectSales from "../models/indirectsales.model.js";
-import SalesRequest from "../models/salesRequest.model.js"; 
+import SalesStock from "../models/salesstock.model.js";
 const router = express.Router();
-
 
 const generateInvoiceId = () => {
   return "INV-" + Date.now();
@@ -14,22 +13,22 @@ router.post("/add", async (req, res) => {
     const { buyerId, items, totalAmount } = req.body;
     const invoiceId = generateInvoiceId();
 
-   
-    const sale = new indirectSales({
+    // Create a new sale record
+    const indirectsale = new indirectSales({
       invoiceId,
       buyerId,
       items,
       totalAmount,
     });
 
-    
+    // Update stock quantities
     for (const item of items) {
-      const stock = await SalesRequest.findOne({ product_name: item.itemName });
+      const salesstock = await SalesStock.findOne({ sp_name: item.itemName });
 
-      if (stock) {
-        if (stock.product_quantity >= item.quantity) {
-          stock.product_quantity -= item.quantity;  
-          await stock.save();  
+      if (salesstock) {
+        if (salesstock.sp_quantity >= item.quantity) {
+          salesstock.sp_quantity -= item.quantity;
+          await salesstock.save();
         } else {
           return res.status(400).json({
             success: false,
@@ -45,7 +44,7 @@ router.post("/add", async (req, res) => {
     }
 
     // Save the sale
-    await sale.save();
+    await indirectsale.save();
 
     res.status(201).json({ success: true, message: "Sale recorded successfully", invoiceId });
   } catch (error) {
@@ -54,11 +53,11 @@ router.post("/add", async (req, res) => {
   }
 });
 
-// Fetch all sales records (display invoices)
+// Fetch all sales records
 router.get("/", async (req, res) => {
   try {
-    const sales = await indirectSales.find().select("invoiceId buyerId date totalAmount");
-    res.status(200).json({ success: true, sales });
+    const indirectsales = await indirectSales.find().select("invoiceId buyerId date totalAmount");
+    res.status(200).json({ success: true, indirectsales});
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Server error" });
@@ -68,8 +67,8 @@ router.get("/", async (req, res) => {
 // Fetch single sale details by invoiceId
 router.get("/:invoiceId", async (req, res) => {
   try {
-    const sale = await indirectSales.findOne({ invoiceId: req.params.invoiceId });
-    if (!sale) {
+    const indirectsale = await indirectSales.findOne({ invoiceId: req.params.invoiceId });
+    if (!indirectsale) {
       return res.status(404).json({ success: false, message: "Invoice not found" });
     }
     res.status(200).json({ success: true, sale });
