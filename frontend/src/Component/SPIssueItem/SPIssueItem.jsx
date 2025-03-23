@@ -7,10 +7,10 @@ import axios from "axios";
 
 function SPIssueItems() {
   const [buyerId, setBuyerId] = useState(
-    localStorage.getItem("issuebuyerId") || ""
+    localStorage.getItem("SPissuebuyerId") || ""
   );
   const [rows, setRows] = useState(
-    JSON.parse(localStorage.getItem("issueinvoiceData")) || [
+    JSON.parse(localStorage.getItem("SPissueinvoiceData")) || [
       { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
     ]
   );
@@ -24,7 +24,7 @@ function SPIssueItems() {
   const fetchStockData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/salesrequests");
+      const response = await axios.get("http://localhost:5000/api/salesstocks");
       if (response.data.success) {
         setStockItems(response.data.data);
       } else {
@@ -62,10 +62,10 @@ function SPIssueItems() {
   useEffect(() => {
     // Reset the state
     if (localStorage.getItem("clearDataFlag") === "true") {
-      localStorage.removeItem("issuebuyerId");
-      localStorage.removeItem("issueinvoiceData");
-      localStorage.removeItem("issuetotalBill");
-      localStorage.removeItem("clearDataFlag");
+      localStorage.removeItem("SPissuebuyerId");
+      localStorage.removeItem("SPissueinvoiceData");
+      localStorage.removeItem("SPissuetotalBill");
+      localStorage.removeItem("SPclearDataFlag");
       setBuyerId("");
       setRows([
         { selectedItem: "", currentStock: 0, price: 0, quantity: 1, total: 0 },
@@ -78,15 +78,15 @@ function SPIssueItems() {
   };
 
   const handleItemChange = (index, value) => {
-    const item = stockItems.find((item) => item.product_name === value);
+    const item = stockItems.find((item) => item.sp_name === value);
     const updatedRows = [...rows];
     updatedRows[index] = {
       ...updatedRows[index],
       selectedItem: value,
-      currentStock: item ? item.product_quantity : 0,
-      price: item ? item.product_price : 0,
+      currentStock: item ? item.sp_quantity : 0,
+      price: item ? item.sp_price : 0,
       quantity: 1,
-      total: item ? item.product_price * 1 : 0,
+      total: item ? item.sp_price * 1 : 0,
     };
     setRows(updatedRows);
   };
@@ -125,11 +125,11 @@ function SPIssueItems() {
     const filteredRows = rows.filter((row) => row.selectedItem);
     const totalBill = filteredRows.reduce((sum, row) => sum + row.total, 0);
 
-    localStorage.setItem("issuebuyerId", buyerId);
-    localStorage.setItem("issueinvoiceData", JSON.stringify(filteredRows));
-    localStorage.setItem("issuetotalBill", totalBill);
+    localStorage.setItem("SPissuebuyerId", buyerId);
+    localStorage.setItem("SPissueinvoiceData", JSON.stringify(filteredRows));
+    localStorage.setItem("SPissuetotalBill", totalBill);
 
-    navigate("/invoice");
+    navigate("/spInvoice");
   };
 
   return (
@@ -180,8 +180,8 @@ function SPIssueItems() {
                   <option value="">Select Item</option>
                   {!loading &&
                     stockItems.map((item, i) => (
-                      <option key={i} value={item.product_name}>
-                        {item.product_name}
+                      <option key={i} value={item.sp_name}>
+                        {item.sp_name}
                       </option>
                     ))}
                 </select>

@@ -1,7 +1,6 @@
 import express from "express";
 import IndirectReturns from "../models/indirectreturns.model.js";
-import SalesRequest from "../models/salesRequest.model.js"; 
-
+import SalesStock from "../models/salesstock.model.js"; 
 const router = express.Router();
 
 const generateIndirectReturnId = () => {
@@ -24,12 +23,12 @@ router.post("/add", async (req, res) => {
 
     if (returnMethod === "issueProduct") {
       for (const item of items) {
-        const SalesRequest = await SalesRequest.findOne({ product_name: item.itemName });
+        const salesStock = await SalesStock.findOne({ sp_name: item.itemName });
 
-        if (SalesRequest) {
-          if (SalesRequest.product_quantity >= item.quantity) {
-            SalesRequest.product_quantity -= item.quantity; 
-            await SalesRequest.save(); 
+        if (salesStock) {
+          if (salesStock.sp_quantity >= item.quantity) {
+            salesStock.sp_quantity -= item.quantity; 
+            await salesStock.save(); 
           } else {
             return res.status(400).json({
               success: false,

@@ -14,7 +14,7 @@ const salesstockSchema = new mongoose.Schema(
     },
     sp_price: {
       type: Number,
-      required: false, // Optional since it defaults to 0
+      required: false, 
       default: 0,
     },
   },

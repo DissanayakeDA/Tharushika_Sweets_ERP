@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const IndirectReturnsSchema = new Schema({
-  indirectreturnId: { type: String, required: true, unique: true },
+  returnId: { type: String, required: true, unique: true },
   buyerId: { type: String, required: true },
   items: [
     {

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../Nav/Nav";
+import SPNav from "../SalesNav/SalesNav";
 import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf"; 
 import html2canvas from "html2canvas"; 
-import "./ReturnInvoice.css";
+import "./SPReturnInvoice.css";
 import axios from "axios";
 
-function ReturnInvoice() {
+function SPReturnInvoice() {
   const [invoiceData, setInvoiceData] = useState([]);
   const [totalBill, setTotalBill] = useState(0);
   const [buyerId, setBuyerId] = useState(""); 
@@ -70,7 +70,7 @@ function ReturnInvoice() {
     console.log("Return Data:", returnData);
   
     try {
-      const response = await axios.post("http://localhost:5000/api/returns/add", returnData);
+      const response = await axios.post("http://localhost:5000/api/indirectreturns/add", returnData);
       console.log("API Response:", response.data);
   
       if (response.data.success) {
@@ -78,8 +78,8 @@ function ReturnInvoice() {
   
         localStorage.setItem("clearDataFlag", "true");
   
-        console.log("Navigating to /viewReturns");
-        navigate("/viewReturns");
+        console.log("Navigating to /spviewReturns");
+        navigate("/spviewreturns");
       } else {
         console.log("Error recording return");
       }
@@ -92,7 +92,7 @@ function ReturnInvoice() {
 
   return (
     <div className="invoice-container">
-      <Nav />
+      <SPNav />
       <div id="invoice-content">
         <div className="invoice-header">
           <h2 className="invoice-title">RETURN INVOICE</h2>
@@ -152,4 +152,4 @@ function ReturnInvoice() {
   );
 }
 
-export default ReturnInvoice;
+export default SPReturnInvoice;
