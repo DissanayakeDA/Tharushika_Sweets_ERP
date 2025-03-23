@@ -152,13 +152,13 @@ function GMNav() {
           <hr className="nav-hr" />
           <li>
             <Link
-              to="/signout"
-              className={`home-a ${activeLink === "/signout" ? "active" : ""}`}
+              to="/login"
+              className={`home-a ${activeLink === "/login" ? "active" : ""}`}
               onClick={() => handleLinkClick("/signout")}
             >
               <button
                 className={`center-icon-btn ${
-                  activeLink === "/signout" ? "active" : ""
+                  activeLink === "/login" ? "active" : ""
                 }`}
               >
                 <svg

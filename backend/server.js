@@ -22,7 +22,6 @@ import salesRequestRoutes from "./routes/salesRequest.routes.js";
 import indirectbuyerRoutes from "./routes/indirectbuyer.route.js";
 import salesstockRoutes from "./routes/salesstock.route.js";
 
-
 dotenv.config();
 
 const app = express();
@@ -39,14 +38,15 @@ app.use('/api/production-requests', productionRequestRoutes);
 app.use("/api/sales-requests", salesRequestRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
+
 app.use("/api/salesstocks", salesstockRoutes);
+
 app.use("/api/ingredients", IngredientRoutes);
 app.use("/api/suppliers", supplierRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRouter);
 app.use("/api/indirectbuyers",indirectbuyerRoutes);
-
 
 
 app.use(cors());
@@ -62,7 +62,7 @@ app.use("/files", express.static("files"));
 app.use("/api/sales", salesRoutes);
 app.post("/api/sales/add", async (req, res) => {
   try {
-    console.log("Received Data:", req.body); 
+    console.log("Received Data:", req.body);
     const { buyerId, items, totalAmount } = req.body;
 
     if (!buyerId || !items || items.length === 0 || !totalAmount) {
@@ -108,7 +108,7 @@ app.post("/api/indirectsales/add", async (req, res) => {
 app.use("/api/returns", returnRoutes);
 app.post("/api/returns/add", async (req, res) => {
   try {
-    console.log("Received Data:", req.body); 
+    console.log("Received Data:", req.body);
     const { buyerId, items, totalAmount } = req.body;
 
     if (!buyerId || !items || items.length === 0 || !totalAmount) {

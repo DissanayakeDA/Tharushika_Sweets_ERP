@@ -1,4 +1,4 @@
-//salesstock.js
+
 import mongoose from "mongoose";
 
 const salesstockSchema = new mongoose.Schema(
@@ -26,3 +26,4 @@ const salesstockSchema = new mongoose.Schema(
 const SalesStock = mongoose.model("SalesStock", salesstockSchema);
 
 export default SalesStock;
+
