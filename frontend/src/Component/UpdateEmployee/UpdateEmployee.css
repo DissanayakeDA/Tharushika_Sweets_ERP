@@ -1,12 +1,12 @@
 .form-container-buyers {
     background: #f0f4f8;
     min-height: 100vh;
-    padding-top: 70px; /* Space for fixed HeadBar */
+    padding-top: 70px; 
     position: relative;
   }
   
   .form-content {
-    max-width: 700px; /* Consistent with AddEmployee */
+    max-width: 700px; 
     margin: 0 auto;
     padding: 30px;
   }
@@ -47,7 +47,7 @@
   }
   
   .form-group-buyers label {
-    flex: 0 0 160px; /* Consistent label width */
+    flex: 0 0 160px; 
     font-size: 1.1rem;
     color: #34495e;
     margin-right: 15px;
@@ -76,7 +76,7 @@
     font-size: 0.9rem;
     margin-top: 5px;
     display: block;
-    margin-left: 175px; /* Align with input */
+    margin-left: 175px; 
   }
   
   .submit-error {
@@ -86,7 +86,7 @@
   }
   
   .save-btn {
-    background: #2ecc71; /* Green for "Update" to differentiate from "Add" */
+    background: #2ecc71; 
     color: white;
     padding: 12px 30px;
     border: none;
@@ -115,7 +115,7 @@
     margin-top: 20px;
   }
   
-  /* Assuming HeadBar has its own CSS, but ensure it’s fixed */
+  
   .head-bar {
     position: fixed;
     top: 0;

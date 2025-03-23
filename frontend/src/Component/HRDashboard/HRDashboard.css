@@ -39,36 +39,36 @@
 }
 
 .hrdashboard-present-box {
-  background: white; /* Orange background */
+  background: white; 
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin-top: 100px;
   margin-bottom: 100px;
-  color: #ffffff; /* White text for contrast */
+  color: #ffffff; 
 }
 
 .hrdashboard-present-box h3 {
-  font-family: 'Arial', sans-serif; /* Clean, modern font */
+  font-family: 'Arial', sans-serif; 
   font-size: 1.3rem;
-  color: #2c3e50; /* White for readability on orange */
+  color: #2c3e50; 
   margin: 0 0 10px 0;
-  font-weight: 600; /* Slightly bold */
+  font-weight: 600; 
 }
 
 .hrdashboard-present-count {
-  font-family: 'Roboto', sans-serif; /* Different font for emphasis */
+  font-family: 'Roboto', sans-serif; 
   font-size: 1.6rem;
-  color: #2ecc71; /* Dark blue-gray for contrast and professionalism */
+  color: #2ecc71; 
   margin: 10px 0;
-  font-weight: 700; /* Bold for prominence */
+  font-weight: 700; 
 }
 
 .hrdashboard-error {
   font-family: 'Arial', sans-serif;
   font-size: 1rem;
-  color: #c0392b; /* Darker red for error on orange */
+  color: #c0392b; 
   margin: 10px 0;
   font-weight: 500;
 }
@@ -121,11 +121,11 @@
 }
 
 .hrdashboard-present-bar {
-  background-color: orange; /* Green for present */
+  background-color: orange; 
 }
 
 .hrdashboard-absent-bar {
-  background-color: #e74c3c; /* Red for absent */
+  background-color: #e74c3c; 
 }
 
 .hrdashboard-bar-value {

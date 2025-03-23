@@ -50,7 +50,7 @@ body {
   color: #555;
 }
 
-/* Make employee name clickable */
+
 .employee-name {
   color: #3498db;
   cursor: pointer;
@@ -61,7 +61,7 @@ body {
   color: #2980b9;
 }
 
-/* Action Icons */
+
 .action-icons {
   display: flex;
   gap: 10px;
@@ -84,7 +84,7 @@ body {
   border: none;
 }
 
-/* Search Container */
+
 .search-container {
   display: flex;
   gap: 15px;
@@ -193,10 +193,10 @@ body {
   background: #c0392b;
 }
 
-/* Printable Table Styles */
+
 .printable-table {
   position: absolute;
-  left: -9999px; /* Move off-screen instead of display: none */
+  left: -9999px; 
   top: 0;
   width: 100%;
   padding: 20px;
@@ -243,10 +243,10 @@ body {
   body.printing HRNav,
   body.printing HeadBar,
   body.printing .modal-overlay {
-    display: none; /* Hide everything except printable content */
+    display: none; 
   }
   body.printing .printable-table {
-    position: static; /* Reset position for print */
+    position: static; 
     left: 0;
     display: block;
     width: 100%;
@@ -255,6 +255,6 @@ body {
     width: 100%;
   }
   .print-table tr {
-    page-break-inside: avoid; /* Prevent row splitting */
+    page-break-inside: avoid; 
   }
 }

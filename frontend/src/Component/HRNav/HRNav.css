@@ -5,10 +5,10 @@ body, html {
   padding: 0;
   height: 100%;
 }
-/* Add this to HRNav.css */
+
 .username-display {
   position: fixed;
-  top: 50px; /* Below the profile icon */
+  top: 50px; 
   right: 20px;
   background-color: #efefef;
   padding: 10px;
@@ -77,7 +77,7 @@ body, html {
   z-index: 1000;
 }
 
-/* Ensure the SVG is properly centered */
+
 .center-icon-btn svg {
   display: block;
 }
@@ -96,7 +96,7 @@ body, html {
 }
 
 .sidenav ul li {
-  margin: 5px 0; /* Reduced from 10px 0 to 5px 0 */
+  margin: 5px 0; 
   text-align: center;
 }
 
@@ -112,7 +112,7 @@ body, html {
   height: 1px;
   background-color: white;
   opacity: 0.5;
-  margin: 5px 0; /* Reduced from 10px 0 to 5px 0 */
+  margin: 5px 0; 
 }
 
 main {

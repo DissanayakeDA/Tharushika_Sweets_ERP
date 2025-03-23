@@ -1,7 +1,7 @@
 import User from "../models/User.model.js";
 import { createHash } from "crypto"; // Import Node.js crypto module
 
-// Same hashPassword function as above
+
 const hashPassword = (password) => {
   return createHash("sha256").update(password).digest("hex");
 };

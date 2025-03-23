@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function HRNav() {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [showUserName, setShowUserName] = useState(false); // State to toggle username display
+  const [showUserName, setShowUserName] = useState(false); 
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
   const navigate = useNavigate();

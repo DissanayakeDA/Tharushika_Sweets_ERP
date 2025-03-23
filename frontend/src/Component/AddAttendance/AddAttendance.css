@@ -1,13 +1,13 @@
 .add-attendance-container {
   background: #f5f6fa;
   min-height: 100vh;
-  padding: 0; /* Remove padding to allow HeadBar to stretch fully */
-  margin: 0; /* Ensure no margin pushes content inward */
+  padding: 0; 
+  margin: 0; 
 }
 
 .attendance-content {
   max-width: 800px;
-  margin: 80px auto 0; /* Add top margin to account for fixed HeadBar height */
+  margin: 80px auto 0; 
   background: white;
   padding: 30px;
   border-radius: 10px;
@@ -120,17 +120,17 @@
   background-color: #2980b9;
 }
 
-/* HeadBar Styles */
+
 .head-bar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; /* Full viewport width */
+  width: 100vw; 
   height: 60px;
   background: #2c3e50;
   color: white;
   z-index: 1000;
-  margin: 0; /* Remove any margin */
-  padding: 0; /* Remove any padding */
-  box-sizing: border-box; /* Ensure padding doesn’t affect width */
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
 }

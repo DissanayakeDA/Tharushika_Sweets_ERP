@@ -80,7 +80,7 @@
   outline: none;
 }
 
-/* Error Alert Styles (Top Positioned) */
+
 .error-alert-top {
   position: fixed;
   top: 80px;
@@ -120,7 +120,7 @@
   line-height: 1.4;
 }
 
-/* Animations */
+
 @keyframes slideIn {
   from {
     opacity: 0;

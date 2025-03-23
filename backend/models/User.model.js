@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     type: String, 
     required: true, 
     unique: true, 
-    match: /^[0-9]{9}[vVxX]$|^[0-9]{12}$/ // Sri Lankan NIC format: 9 digits + 'v'/'V'/'x'/'X' or 12 digits
+    match: /^[0-9]{9}[vV]$|^[0-9]{12}$/ // NIC format: 9 digits + 'v'/'V'/'x'/'X' or 12 digits
   },
   mobileNo: { 
     type: String, 
