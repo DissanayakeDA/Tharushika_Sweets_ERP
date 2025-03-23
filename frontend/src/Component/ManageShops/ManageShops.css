@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+.manage-shops-container {
+  display: block;
+  min-height: 100vh;
+  background-color: #efefef;
+}
+
+.main-content {
+  flex: 2;
+  background-color: #efefef;
+  padding: 20px;
+  margin-left: 120px;
+}
+
+.manage-shops-title {
+  font-size: 28px;
+  font-weight: 400;
+  color: #37474f;
+  padding: 5px;
+  margin-top: 5px;
+  margin-left: 10%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.shops-list {
+  margin-left: 10%;
+  margin-right: 20%;
+}
+
+.shop-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.shop-details p {
+  margin: 5px 0;
+  color: #37474f;
+}
+
+.shop-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-form input,
+.edit-form textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.edit-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn,
+.save-btn,
+.cancel-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-btn {
+  background: #6ea5c5;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #54b2e8;
+}
+
+.delete-btn {
+  background: #d32f2f;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #b71c1c;
+}
+
+.save-btn {
+  background: #2e7d32;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #1b5e20;
+}
+
+.cancel-btn {
+  background: #ccc;
+  color: #37474f;
+}
+
+.cancel-btn:hover {
+  background: #bbb;
+}
+
+.success-message {
+  color: #2e7d32;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.error-message {
+  color: #d32f2f;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.delete-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.delete-confirm-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease;
+}
+
+.delete-confirm-box h3 {
+  color: #d32f2f;
+  margin-bottom: 15px;
+}
+
+.delete-confirm-box p {
+  color: #37474f;
+  margin: 5px 0;
+}
+
+.confirm-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.confirm-delete-btn,
+.cancel-delete-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.confirm-delete-btn {
+  background: #d32f2f;
+  color: white;
+}
+
+.confirm-delete-btn:hover {
+  background: #b71c1c;
+  transform: scale(1.05);
+}
+
+.cancel-delete-btn {
+  background: #6ea5c5;
+  color: white;
+}
+
+.cancel-delete-btn:hover {
+  background: #54b2e8;
+  transform: scale(1.05);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+
+  .manage-shops-title {
+    font-size: 22px;
+    margin-left: 5%;
+  }
+
+  .shops-list {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .shop-card {
+    padding: 15px;
+  }
+
+  .edit-form input,
+  .edit-form textarea {
+    font-size: 14px;
+  }
+}

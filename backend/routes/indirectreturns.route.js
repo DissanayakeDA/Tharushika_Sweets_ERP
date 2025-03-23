@@ -1,19 +1,20 @@
 import express from "express";
-import Returns from "../models/directreturns.model.js";
-import Stock from "../models/stock.model.js"; 
+import IndirectReturns from "../models/indirectreturns.model.js";
+import SalesRequest from "../models/salesRequest.model.js"; 
+
 const router = express.Router();
 
-const generateReturnId = () => {
-  return "Ret-" + Date.now();
+const generateIndirectReturnId = () => {
+  return "InRet-" + Date.now();
 };
 
 // Save return record
 router.post("/add", async (req, res) => {
   try {
     const { buyerId, items, totalAmount, returnMethod } = req.body; 
-    const returnId = generateReturnId();
+    const returnId = generateIndirectReturnId();
 
-    const returnRecord = new Returns({
+    const returnRecord = new IndirectReturns({
       returnId,
       buyerId,
       items,
@@ -23,12 +24,12 @@ router.post("/add", async (req, res) => {
 
     if (returnMethod === "issueProduct") {
       for (const item of items) {
-        const stock = await Stock.findOne({ product_name: item.itemName });
+        const SalesRequest = await SalesRequest.findOne({ product_name: item.itemName });
 
-        if (stock) {
-          if (stock.product_quantity >= item.quantity) {
-            stock.product_quantity -= item.quantity; 
-            await stock.save(); 
+        if (SalesRequest) {
+          if (SalesRequest.product_quantity >= item.quantity) {
+            SalesRequest.product_quantity -= item.quantity; 
+            await SalesRequest.save(); 
           } else {
             return res.status(400).json({
               success: false,
@@ -61,7 +62,7 @@ router.post("/add", async (req, res) => {
 // Fetch all return records
 router.get("/", async (req, res) => {
   try {
-    const returns = await Returns.find().select("returnId buyerId date totalAmount returnMethod");
+    const IndirectReturns = await IndirectReturns.find().select("returnId buyerId date totalAmount returnMethod");
     res.status(200).json({ success: true, returns });
   } catch (error) {
     console.error("Error fetching returns:", error);
@@ -72,7 +73,7 @@ router.get("/", async (req, res) => {
 // Fetch single return details by returnId
 router.get("/:returnId", async (req, res) => {
   try {
-    const returnRecord = await Returns.findOne({ returnId: req.params.returnId });
+    const returnRecord = await IndirectReturns.findOne({ returnId: req.params.returnId });
     if (!returnRecord) {
       return res.status(404).json({ success: false, message: "Return record not found" });
     }

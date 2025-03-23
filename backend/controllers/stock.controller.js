@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 // Add Stock to System
 export const addStock = async (req, res) => {
-  console.log("Received Request Body:", req.body); // Log the request data for debugging
+  console.log("Received Request Body:", req.body);
   const { product_name, product_quantity, product_price } = req.body;
 
   if (!product_name || product_quantity == null) {
@@ -19,7 +19,7 @@ export const addStock = async (req, res) => {
     let stock = await Stock.findOne({ product_name });
 
     if (stock) {
-      stock.product_quantity += Number(product_quantity); // Ensure quantity is a number
+      stock.product_quantity += Number(product_quantity);
       await stock.save();
       return res.status(200).json({
         success: true,
@@ -31,7 +31,7 @@ export const addStock = async (req, res) => {
     const newStock = new Stock({
       product_name,
       product_quantity: Number(product_quantity),
-      product_price: product_price ? Number(product_price) : 0, // Convert to number, default to 0
+      product_price: product_price ? Number(product_price) : 0,
     });
 
     await newStock.save();
@@ -41,11 +41,7 @@ export const addStock = async (req, res) => {
       data: newStock,
     });
   } catch (error) {
-    console.error(
-      "Error in adding/updating stock:",
-      error.message,
-      error.stack
-    );
+    console.error("Error in adding/updating stock:", error.message, error.stack);
     res
       .status(500)
       .json({
@@ -134,4 +130,12 @@ export const deleteStock = async (req, res) => {
     console.error("Error in deleting stock:", error.message);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
+};
+
+// Deprecated sellStock function
+export const sellStock = async (req, res) => {
+  return res.status(410).json({
+    success: false,
+    message: "This endpoint is deprecated. Use /api/sales-requests instead.",
+  });
 };
