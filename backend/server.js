@@ -16,7 +16,6 @@ import attendanceRoutes from "./routes/attendance.route.js";
 import userRoutes from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 
-
 dotenv.config();
 
 const app = express();
@@ -31,12 +30,12 @@ app.use(
 app.use("/api/products", productRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
+
 app.use("/api/ingredients", IngredientRoutes);
 app.use("/api/suppliers", supplierRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRouter);
-
 
 app.use(cors());
 
@@ -51,7 +50,7 @@ app.use("/files", express.static("files"));
 app.use("/api/sales", salesRoutes);
 app.post("/api/sales/add", async (req, res) => {
   try {
-    console.log("Received Data:", req.body); 
+    console.log("Received Data:", req.body);
     const { buyerId, items, totalAmount } = req.body;
 
     if (!buyerId || !items || items.length === 0 || !totalAmount) {
@@ -73,7 +72,7 @@ app.post("/api/sales/add", async (req, res) => {
 app.use("/api/returns", returnRoutes);
 app.post("/api/returns/add", async (req, res) => {
   try {
-    console.log("Received Data:", req.body); 
+    console.log("Received Data:", req.body);
     const { buyerId, items, totalAmount } = req.body;
 
     if (!buyerId || !items || items.length === 0 || !totalAmount) {

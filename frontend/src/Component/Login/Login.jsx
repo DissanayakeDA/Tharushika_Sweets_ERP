@@ -22,14 +22,17 @@ function Login() {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", formData);
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData
+      );
       if (response.data.success) {
         sessionStorage.setItem("user", JSON.stringify(response.data.data));
 
         const { accessLevel } = response.data.data;
         switch (accessLevel) {
           case "Executive":
-            navigate("/Accessdashboard");
+            navigate("/home-gm");
             break;
           case "Employee Management":
             navigate("/hrdashboard");
@@ -58,8 +61,10 @@ function Login() {
   return (
     <div className="login-container">
       <HeadBar />
-      <h1 className="workflow-title">Workflow Management Center</h1> {/* Added here */}
+      <h1 className="workflow-title">Workflow Management Center</h1>{" "}
+      {/* Added here */}
       <div className="login-content">
+        <img src="../images/login-bg.svg" alt="Login" className="login-image" />
         <h2 className="login-title">Login</h2>
         {error && <p className="error-text">{error}</p>}
         <form onSubmit={handleSubmit} className="login-form">
@@ -85,7 +90,9 @@ function Login() {
               className="text-input"
             />
           </div>
-          <button type="submit" className="login-btn">Login</button>
+          <button type="submit" className="login-btn">
+            Login
+          </button>
         </form>
         <Link to="/forgot-password" className="forgot-password-link">
           Forgot Password?
