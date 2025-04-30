@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -20,11 +21,11 @@ body, html {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.sidenav {
+.sidenav-hr {
   width: 80px;
   background-color: #ffff;
-  height: calc(100vh - 60px);
-  margin-top: 1cm;
+  height: 82vh;
+  margin-top: 2%;
   margin-left: 2%;
   padding: 20px;
   border-radius: 10px;
@@ -40,7 +41,7 @@ body, html {
   overflow-y: auto;
 }
 
-.sidenav.open {
+.sidenav-hr.open {
   transform: translateX(-260px);
 }
 
@@ -48,10 +49,10 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #37474F;
+  color: #37474f;
   width: 60px;
   height: 60px;
-  background-color: #FFFF;
+  background-color: #ffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -59,7 +60,7 @@ body, html {
 }
 
 .nav-label {
-  color: #37474F;
+  color: #37474f;
   font-weight: bold;
   font-size: small;
 }
@@ -89,25 +90,25 @@ body, html {
   text-align: center;
 }
 
-.sidenav ul {
+.sidenav-hr ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.sidenav ul li {
+.sidenav-hr ul li {
   margin: 5px 0; /* Reduced from 10px 0 to 5px 0 */
   text-align: center;
 }
 
-.sidenav ul li a {
+.sidenav-hr ul li a {
   text-decoration: none;
   color: white;
   font-size: 16px;
   display: block;
 }
 
-.sidenav ul hr {
+.sidenav-hr ul hr {
   border: 0;
   height: 1px;
   background-color: white;
@@ -151,15 +152,15 @@ main {
 }
 
 @media (max-width: 768px) {
-  .sidenav {
+  .sidenav-hr {
     transform: translateX(-220px);
   }
 
-  .sidenav.open {
+  .sidenav-hr.open {
     transform: translateX(0);
   }
 
-  .sidenav {
+  .sidenav-hr {
     width: 200px;
   }
 
@@ -169,11 +170,11 @@ main {
 }
 
 @media (max-width: 480px) {
-  .sidenav {
+  .sidenav-hr {
     width: 180px;
   }
 
-  .sidenav ul li a {
+  .sidenav-hr ul li a {
     font-size: 14px;
   }
 }

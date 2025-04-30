@@ -33,23 +33,6 @@ function SalesNav() {
 
   return (
     <div>
-      <button className="profile-icon-btn" onClick={handleProfileClick}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="currentColor"
-          className="bi bi-person-circle"
-          viewBox="0 0 16 16"
-        >
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-          <path
-            fillRule="evenodd"
-            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-          />
-        </svg>
-      </button>
-
       {showUserName && (
         <div className="username-display">
           Logged in as: <strong>{loggedInUserName}</strong>
@@ -61,10 +44,16 @@ function SalesNav() {
           <li>
             <Link
               to="/salesdashboard"
-              className={`home-a ${activeLink === "/salesdashboard" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/salesdashboard" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/salesdashboard")}
             >
-              <button className={`center-icon-btn ${activeLink === "/salesdashboard" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/salesdashboard" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -86,7 +75,11 @@ function SalesNav() {
               className={`home-a ${activeLink === "/requests" ? "active" : ""}`}
               onClick={() => handleLinkClick("/requests")}
             >
-              <button className={`center-icon-btn ${activeLink === "/requests" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/requests" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -95,23 +88,27 @@ function SalesNav() {
                   className="bi bi-envelope-fill"
                   viewBox="0 0 16 16"
                 >
-                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
                 </svg>
               </button>
 
-               <label className="nav-label">Request Stock</label>
-
+              <label className="nav-label">Request Stock</label>
             </Link>
           </li>
           <hr className="nav-hr" />
           <li>
             <Link
-    to="/spissueitems"
-              className={`home-a ${activeLink === "/spissueitems" ? "active" : ""}`}
+              to="/spissueitems"
+              className={`home-a ${
+                activeLink === "/spissueitems" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/issueitems")}
             >
-              <button className={`center-icon-btn ${activeLink === "/spissueitems" ? "active" : ""}`}>
-
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/spissueitems" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -120,7 +117,10 @@ function SalesNav() {
                   className="bi bi-box-arrow-up"
                   viewBox="0 0 16 16"
                 >
-                  <path fillRule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-9zm-1-5A1.5 1.5 0 0 0 1 2.5v12A1.5 1.5 0 0 0 2.5 16h11a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 13.5 1h-11zM8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                  <path
+                    fillRule="evenodd"
+                    d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-9zm-1-5A1.5 1.5 0 0 0 1 2.5v12A1.5 1.5 0 0 0 2.5 16h11a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 13.5 1h-11zM8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                  />
                 </svg>
               </button>
               <label className="nav-label">Issue Items</label>
@@ -134,7 +134,11 @@ function SalesNav() {
               className={`home-a ${activeLink === "/addshops" ? "active" : ""}`}
               onClick={() => handleLinkClick("/addshops")}
             >
-              <button className={`center-icon-btn ${activeLink === "/addshops" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/addshops" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -143,7 +147,7 @@ function SalesNav() {
                   className="bi bi-shop"
                   viewBox="0 0 16 16"
                 >
-                  <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h-4v-3z"/>
+                  <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h-4v-3z" />
                 </svg>
               </button>
               <label className="nav-label">Add Shops</label>
@@ -152,13 +156,17 @@ function SalesNav() {
           <hr className="nav-hr" />
           <li>
             <Link
-
               to="/spreturns"
-              className={`home-a ${activeLink === "/spreturns" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/spreturns" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/spreturns")}
-
             >
-              <button className={`center-icon-btn ${activeLink === "/returns" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/returns" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -167,7 +175,10 @@ function SalesNav() {
                   className="bi bi-arrow-return-left"
                   viewBox="0 0 16 16"
                 >
-                  <path fillRule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+                  <path
+                    fillRule="evenodd"
+                    d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"
+                  />
                 </svg>
               </button>
               <label className="nav-label">Returns</label>
@@ -183,7 +194,11 @@ function SalesNav() {
                 handleLogout();
               }}
             >
-              <button className={`center-icon-btn ${activeLink === "/signout" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/signout" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"

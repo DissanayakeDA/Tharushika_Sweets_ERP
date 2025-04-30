@@ -1,0 +1,599 @@
+/* General layout */
+.SRF-main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.SRF-content-wrapper {
+  max-width: 1000px;
+  /*margin: 20px auto;*/
+  margin: 100px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  position: relative;
+}
+
+/* Header section */
+.SRF-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e6e9f0;
+}
+
+.SRF-header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.SRF-title {
+  color: #2c3e50;
+  margin: 0 0 5px 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.SRF-subtitle {
+  color: #7f8c8d;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.SRF-stock-badge {
+  display: flex;
+  align-items: center;
+  background-color: #edf2f7;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  gap: 5px;
+}
+
+.SRF-badge-label {
+  color: #718096;
+  font-weight: 500;
+}
+
+.SRF-badge-value {
+  color: #2d3748;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+/* Loading and error states */
+.SRF-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #f9fafc;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.SRF-loading-spinner {
+  border: 3px solid #e2e8f0;
+  border-top: 3px solid #4299e1;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+.SRF-loading-text {
+  color: #718096;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.SRF-error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: #fff5f5;
+  border-radius: 8px;
+  border: 1px solid #fed7d7;
+  margin: 20px 0;
+}
+
+.SRF-error-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.SRF-error-message {
+  color: #e53e3e;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.SRF-retry-btn {
+  background-color: #4299e1;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+
+.SRF-retry-btn:hover {
+  background-color: #3182ce;
+}
+
+.SRF-btn-icon {
+  font-size: 1.1rem;
+}
+
+.SRF-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: #f9fafc;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e0;
+  margin: 20px 0;
+}
+
+.SRF-not-found-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  color: #a0aec0;
+}
+
+.SRF-not-found-message {
+  color: #4a5568;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.SRF-back-btn {
+  background-color: #4a5568;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.SRF-back-btn:hover {
+  background-color: #2d3748;
+}
+
+/* Two column layout */
+.SRF-two-column-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.SRF-left-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.SRF-right-column {
+  flex: 2;
+  min-width: 400px;
+}
+
+/* Stock info card */
+.SRF-stock-info-card {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 20px;
+}
+
+.SRF-card-header {
+  background-color: #edf2f7;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.SRF-card-title {
+  color: #2d3748;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.SRF-info-content {
+  padding: 16px;
+}
+
+.SRF-info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.SRF-info-row:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.SRF-info-label {
+  font-weight: 600;
+  color: #4a5568;
+  flex: 1;
+}
+
+.SRF-info-value {
+  color: #2d3748;
+  flex: 2;
+  text-align: right;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.SRF-quantity-highlight {
+  color: #2b6cb0;
+  font-weight: 700;
+}
+
+.SRF-id-display {
+  font-family: monospace;
+  background-color: #edf2f7;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* Warning panel */
+.SRF-warning-panel {
+  background-color: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.SRF-warning-icon {
+  font-size: 1.5rem;
+}
+
+.SRF-warning-content {
+  flex: 1;
+}
+
+.SRF-warning-title {
+  color: #d97706;
+  margin: 0 0 6px 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.SRF-warning-text {
+  color: #92400e;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Request form */
+.SRF-request-form {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.SRF-form-header {
+  background-color: #edf2f7;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.SRF-form-title {
+  color: #2d3748;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.SRF-form-content {
+  padding: 20px 16px;
+}
+
+.SRF-form-group {
+  margin-bottom: 20px;
+}
+
+.SRF-form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.SRF-select-wrapper {
+  position: relative;
+}
+
+.SRF-select-request-type {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #2d3748;
+  appearance: none;
+  background-color: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.SRF-select-request-type:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+}
+
+.SRF-select-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #718096;
+  font-size: 0.7rem;
+}
+
+.SRF-quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.SRF-quantity-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background-color 0.2s;
+}
+
+.SRF-quantity-btn:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.SRF-quantity-btn:hover:not(:disabled) {
+  background-color: #3182ce;
+}
+
+.SRF-quantity-input {
+  flex: 1;
+  max-width: 120px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1rem;
+  color: #2d3748;
+  font-weight: 600;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.SRF-quantity-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+}
+
+.SRF-quantity-diff {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #718096;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.SRF-increase {
+  color: #38a169;
+  font-weight: 600;
+}
+
+.SRF-decrease {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+.SRF-reason-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 100px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.SRF-reason-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+}
+
+.SRF-input-error {
+  border-color: #fc8181;
+  background-color: #fff5f5;
+}
+
+.SRF-required {
+  color: #e53e3e;
+  margin-left: 3px;
+}
+
+.SRF-form-hint {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.SRF-hint-icon {
+  font-size: 1rem;
+}
+
+/* Requester info */
+.SRF-requester-info {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  padding: 12px;
+  background-color: #f7fafc;
+  border-radius: 6px;
+  border: 1px dashed #cbd5e0;
+}
+
+.SRF-requester-label {
+  color: #718096;
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.SRF-requester-value {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* Action buttons */
+.SRF-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.SRF-cancel-btn,
+.SRF-submit-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  min-width: 140px;
+  transition: all 0.2s;
+}
+
+.SRF-cancel-btn {
+  background-color: #edf2f7;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+
+.SRF-cancel-btn:hover {
+  background-color: #e2e8f0;
+  color: #2d3748;
+}
+
+.SRF-submit-btn {
+  background-color: #4299e1;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.SRF-submit-btn:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.SRF-submit-btn:hover:not(:disabled) {
+  background-color: #3182ce;
+}
+
+.SRF-submit-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s infinite linear;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .SRF-content-wrapper {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .SRF-two-column-layout {
+    flex-direction: column;
+  }
+
+  .SRF-left-column,
+  .SRF-right-column {
+    min-width: 100%;
+  }
+
+  .SRF-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .SRF-stock-badge {
+    align-self: flex-start;
+  }
+
+  .SRF-actions {
+    flex-direction: column;
+  }
+
+  .SRF-cancel-btn,
+  .SRF-submit-btn {
+    width: 100%;
+  }
+}
