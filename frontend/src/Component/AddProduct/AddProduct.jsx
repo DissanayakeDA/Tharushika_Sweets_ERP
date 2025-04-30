@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./AddProduct.css"; // Added styling
+import "./AddProduct.css"; // Updated CSS file
 import Nav from "../Nav/Nav";
 import HeadBar from "../HeadBar/HeadBar";
 
-function AddProduct() {
+function AddProducts() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [products, setProducts] = useState([]);
@@ -142,19 +142,17 @@ function AddProduct() {
   return (
     <div>
       <Nav />
-      <HeadBar/>
-      <div className="returns-container">
-        <div className="header">
-          <h2 className="returns-title">Product Records</h2>
-          <div className="add-product-btn">
-            <button className="new-returns-btn" onClick={handleOpenModal}>
-              + Add Product
-            </button>
-          </div>
+      <HeadBar />
+      <div className="viewDB-buyers-container">
+        <div className="viewDB-header">
+          <h2 className="viewDB-buyer-title">Products List</h2>
+          <button className="viewDB-new-buyer-btn" onClick={handleOpenModal}>
+            + New Product
+          </button>
         </div>
 
-        <div className="table-container">
-          <table className="returns-table">
+        <div className="viewDB-table-container">
+          <table className="viewDB-buyers-table">
             <thead>
               <tr>
                 <th>Product ID</th>
@@ -171,25 +169,28 @@ function AddProduct() {
                     <td>{product.product_name}</td>
                     <td>{product.product_price}</td>
                     <td>
-                      <button
-                        className="submit-btn"
-                        style={{ marginRight: "10px" }}
-                        onClick={() => handleUpdate(product._id)}
-                      >
-                        Update
-                      </button>
-                      <button
-                        className="cancel-btn"
-                        onClick={() => handleDelete(product._id)}
-                      >
-                        Delete
-                      </button>
+                      <div className="viewDB-action-icons">
+                        <button
+                          className="viewDB-action"
+                          onClick={() => handleUpdate(product._id)}
+                        >
+                          <i className="bi bi-pencil-square"></i>
+                        </button>
+                        <button
+                          className="viewDB-action"
+                          onClick={() => handleDelete(product._id)}
+                        >
+                          <i className="bi bi-trash"></i>
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4">No products added yet</td>
+                  <td colSpan="4" style={{ textAlign: "center" }}>
+                    No products added yet
+                  </td>
                 </tr>
               )}
             </tbody>
@@ -199,43 +200,60 @@ function AddProduct() {
 
       {/* Add Product Modal */}
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>Add New Product</h3>
+        <div
+          className="viewDB-popup-overlay"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="viewDB-popup-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="viewDB-form-title-dbuyers-popup">Add New Product</h2>
             <form onSubmit={handleSubmit}>
-              <div className="form-group-pop">
-                <label>Product Name:</label>
+              <div className="viewDB-form-group-dbuyers-popup">
+                <label className="viewDB-lable-popup" htmlFor="name">
+                  Product Name
+                </label>
                 <input
+                  id="name"
                   type="text"
                   name="name"
                   value={newProduct.name}
                   onChange={(e) =>
                     setNewProduct({ ...newProduct, name: e.target.value })
                   }
+                  placeholder="Enter product name"
                   required
                 />
               </div>
-              <div className="form-group-pop">
-                <label>Product Price:</label>
+              <div className="viewDB-form-group-dbuyers-popup">
+                <label className="viewDB-lable-popup" htmlFor="price">
+                  Product Price
+                </label>
                 <input
+                  id="price"
                   type="number"
                   name="price"
                   value={newProduct.price}
                   onChange={(e) =>
                     setNewProduct({ ...newProduct, price: e.target.value })
                   }
+                  placeholder="Enter product price"
                   required
                   min="0"
                   step="0.01"
                 />
               </div>
-              <div className="modal-buttons-pop">
-                <button type="submit" className="submit-btn">
-                  Submit
+              <div className="viewDB-popup-buttons">
+                <button
+                  type="submit"
+                  className="viewDB-save-btn-dbuyers-popup"
+                >
+                  Add
                 </button>
                 <button
                   type="button"
-                  className="cancel-btn"
+                  className="viewDB-cancel-btn-popup"
                   onClick={handleCloseModal}
                 >
                   Cancel
@@ -248,13 +266,22 @@ function AddProduct() {
 
       {/* Update Product Modal */}
       {isUpdateModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>Update Product</h3>
+        <div
+          className="viewDB-popup-overlay"
+          onClick={() => setIsUpdateModalOpen(false)}
+        >
+          <div
+            className="viewDB-popup-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="viewDB-form-title-dbuyers-popup">Update Product</h2>
             <form onSubmit={handleUpdateSubmit}>
-              <div className="form-group-pop">
-                <label>Product Name:</label>
+              <div className="viewDB-form-group-dbuyers-popup">
+                <label className="viewDB-lable-popup" htmlFor="name">
+                  Product Name
+                </label>
                 <input
+                  id="name"
                   type="text"
                   name="name"
                   value={productToUpdate.product_name}
@@ -264,12 +291,16 @@ function AddProduct() {
                       product_name: e.target.value,
                     })
                   }
+                  placeholder="Update product name"
                   required
                 />
               </div>
-              <div className="form-group-pop">
-                <label>Product Price:</label>
+              <div className="viewDB-form-group-dbuyers-popup">
+                <label className="viewDB-lable-popup" htmlFor="price">
+                  Product Price
+                </label>
                 <input
+                  id="price"
                   type="number"
                   name="price"
                   value={productToUpdate.product_price}
@@ -279,18 +310,22 @@ function AddProduct() {
                       product_price: e.target.value,
                     })
                   }
+                  placeholder="Update product price"
                   required
                   min="0"
                   step="0.01"
                 />
               </div>
-              <div className="modal-buttons-pop">
-                <button type="submit" className="submit-btn">
+              <div className="viewDB-popup-buttons">
+                <button
+                  type="submit"
+                  className="viewDB-save-btn-dbuyers-popup"
+                >
                   Update
                 </button>
                 <button
                   type="button"
-                  className="cancel-btn"
+                  className="viewDB-cancel-btn-popup"
                   onClick={() => setIsUpdateModalOpen(false)}
                 >
                   Cancel
@@ -304,4 +339,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default AddProducts;

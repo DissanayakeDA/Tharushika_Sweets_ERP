@@ -1,7 +1,6 @@
 import express from "express";
 import Returns from "../models/directreturns.model.js";
 import Stock from "../models/stock.model.js"; 
-
 const router = express.Router();
 
 const generateReturnId = () => {

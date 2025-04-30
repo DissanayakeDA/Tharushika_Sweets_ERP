@@ -17,22 +17,6 @@ function Nav() {
 
   return (
     <div>
-      <button className="profile-icon-btn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="currentColor"
-          className="bi bi-person-circle"
-          viewBox="0 0 16 16"
-        >
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-          <path
-            fillRule="evenodd"
-            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-          />
-        </svg>
-      </button>
       <div className={`sidenav ${isNavOpen ? "open" : ""}`}>
         <ul>
           <li>
@@ -41,7 +25,11 @@ function Nav() {
               className={`home-a ${activeLink === "/mainhome" ? "active" : ""}`}
               onClick={() => handleLinkClick("/mainhome")}
             >
-              <button className={`center-icon-btn ${activeLink === "/mainhome" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/mainhome" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -63,7 +51,11 @@ function Nav() {
               className={`home-a ${activeLink === "/addstock" ? "active" : ""}`}
               onClick={() => handleLinkClick("/addstock")}
             >
-              <button className={`center-icon-btn ${activeLink === "/addstock" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/addstock" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -82,10 +74,16 @@ function Nav() {
           <li>
             <Link
               to="/issueitems"
-              className={`home-a ${activeLink === "/issueitems" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/issueitems" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/issueitems")}
             >
-              <button className={`center-icon-btn ${activeLink === "/issueitems" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/issueitems" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -104,10 +102,16 @@ function Nav() {
           <li>
             <Link
               to="/addbuyers"
-              className={`home-a ${activeLink === "/addbuyers" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/addbuyers" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/addbuyers")}
             >
-              <button className={`center-icon-btn ${activeLink === "/addbuyers" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/addbuyers" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -126,10 +130,16 @@ function Nav() {
           <li>
             <Link
               to="/directreturns"
-              className={`home-a ${activeLink === "/directreturns" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/directreturns" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/directreturns")}
             >
-              <button className={`center-icon-btn ${activeLink === "/directreturns" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/directreturns" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="40"
@@ -151,11 +161,15 @@ function Nav() {
           <hr className="nav-hr" />
           <li>
             <Link
-              to="/signout"
-              className={`home-a ${activeLink === "/signout" ? "active" : ""}`}
+              to="/login"
+              className={`home-a ${activeLink === "/login" ? "active" : ""}`}
               onClick={() => handleLinkClick("/signout")}
             >
-              <button className={`center-icon-btn ${activeLink === "/signout" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/login" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"

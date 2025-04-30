@@ -26,22 +26,19 @@ function Supplier({ supplier, onDelete }) {
 
   return (
     <tr>
-      <td>
-        <input type="checkbox" />
-      </td>
       <td>{_id}</td>
       <td>{supplier_name}</td>
       <td>{supplier_address}</td>
       <td>{supplier_phone}</td>
       <td>{supplier_email}</td>
       <td>
-        <div className="action-icons">
+        <div className="viewDB-action-icons">
           <Link to={`/viewsuppliers/${_id}`}>
-            <button className="action">
+            <button className="viewDB-action">
               <i className="bi bi-pencil-square"></i>
             </button>
           </Link>
-          <button onClick={deleteHandler} className="action">
+          <button onClick={deleteHandler} className="viewDB-action">
             <i className="bi bi-trash"></i>
           </button>
         </div>

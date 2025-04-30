@@ -1,82 +1,195 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
-
-html,
-body {
-  background-color: #efefef;
+:root {
+  --primary-color: #112e51;
+  --secondary-color: #0071bc;
+  --accent-color: #02bfe7;
+  --success-color: #2e8540;
+  --danger-color: #e31c3d;
+  --warning-color: #fdb81e;
+  --light-gray: #f1f1f1;
+  --medium-gray: #d6d7d9;
+  --dark-gray: #5b616b;
+  --text-color: #212121;
+  --white: #ffffff;
+  --border-radius: 4px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
 }
 
-.view-stock-container {
-  padding: 20px;
-  background-color: #efefef;
-  border-radius: 8px;
-  font-family: "Noto Sans", sans-serif;
+/* ===== STOCK LIST PAGE STYLES ===== */
+.viewDB-buyers-container {
+  max-width: 1450px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.view-stock-table {
-  width: 80%;
-  border-collapse: collapse;
-  text-align: center;
-  margin-left: 15%;
-  margin-top: 3%;
-}
-
-.view-stock-title {
-  font-size: 28px;
-  font-weight: 400;
-  color: #37474f;
-  padding: 5px;
-  margin-top: 5px;
-  text-align: left;
+.viewDB-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
-  margin-left: 14%;
-  font-family: "Noto Sans", sans-serif;
-}
-.stock-select{
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #efefef;
-  cursor: pointer;
-  color: #37474f;
-  margin-left: 6%;
-}
-.view-stock-table th,
-.view-stock-table td {
-  padding: 12px 15px;
-  border-bottom: 2px solid #ccc;
 }
 
-.view-stock-table th {
-  background-color: #efefef;
-  color: #4e4a4a;
+.viewDB-buyer-title {
+  color: #17304c;
+  font-size: 24px;
+  margin: 0;
+}
+
+.viewDB-advanced-filters {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.viewDB-filter-input {
+  flex: 1;
+  max-width: 200px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  transition: border-color 0.3s;
+}
+
+.viewDB-filter-input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.viewDB-loading,
+.viewDB-error {
+  font-size: 14px;
+  color: #666;
   text-align: center;
-}
-.view-stock-table td {
-  font-size: 0.9rem;
-  color: #555;
+  margin-bottom: 15px;
 }
 
-/* Action Icons */
-.action-icons {
+.viewDB-error {
+  color: #f44336;
+}
+
+.viewDB-table-container {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.viewDB-buyers-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.viewDB-buyers-table th {
+  background-color: #f8f9fa;
+  color: #17304c;
+  text-align: left;
+  padding: 14px 32px;
+  font-weight: 600;
+  border-bottom: 2px solid #e9ecef;
+  position: sticky;
+  top: 0;
+}
+
+/* Column widths for ingredients (6 columns) */
+.viewDB-buyers-table th:nth-child(1),
+.viewDB-buyers-table td:nth-child(1) {
+  width: 20%; /* Supplier */
+}
+.viewDB-buyers-table th:nth-child(2),
+.viewDB-buyers-table td:nth-child(2) {
+  width: 15%; /* Invoice ID */
+}
+.viewDB-buyers-table th:nth-child(3),
+.viewDB-buyers-table td:nth-child(3) {
+  width: 20%; /* Ingredient Name */
+}
+.viewDB-buyers-table th:nth-child(4),
+.viewDB-buyers-table td:nth-child(4) {
+  width: 15%; /* Quantity */
+}
+.viewDB-buyers-table th:nth-child(5),
+.viewDB-buyers-table td:nth-child(5) {
+  width: 15%; /* Lot Price */
+}
+.viewDB-buyers-table th:nth-child(6),
+.viewDB-buyers-table td:nth-child(6) {
+  width: 15%; /* Action */
+}
+
+/* Column widths for products (4 columns) */
+.viewDB-buyers-table:has(tbody tr td:nth-child(4):last-child) th:nth-child(1),
+.viewDB-buyers-table:has(tbody tr td:nth-child(4):last-child) td:nth-child(1) {
+  width: 40%; /* Product Name */
+}
+.viewDB-buyers-table:has(tbody tr td:nth-child(4):last-child) th:nth-child(2),
+.viewDB-buyers-table:has(tbody tr td:nth-child(4):last-child) td:nth-child(2) {
+  width: 20%; /* Quantity */
+}
+.viewDB-buyers-table:has(tbody tr td:nth-child(4):last-child) th:nth-child(3),
+.viewDB-buyers-table:has(tbody tr td:nth-child(4):last-child) td:nth-child(3) {
+  width: 20%; /* Price */
+}
+.viewDB-buyers-table:has(tbody tr td:nth-child(4):last-child) th:nth-child(4),
+.viewDB-buyers-table:has(tbody tr td:nth-child(4):last-child) td:nth-child(4) {
+  width: 20%; /* Action */
+}
+
+.viewDB-buyers-table td {
+  padding: 12px 32px;
+  border-bottom: 1px solid #e9ecef;
+  color: #17304c;
+}
+
+.viewDB-buyers-table tbody tr {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.viewDB-buyers-table tbody tr:hover {
+  background-color: #f9fbfd;
+}
+
+.viewDB-action-icons {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
-/* Action Icons */
-.action-icons i {
+.viewDB-action {
+  background-color: transparent;
+  border: none;
   cursor: pointer;
-  color: #37474f;
+}
+
+.viewDB-action-icons i {
+  color: #17304c;
   font-size: 1.2rem;
   transition: transform 0.2s ease;
 }
 
-.action-icons i:hover {
+.viewDB-action-icons i:hover {
   transform: scale(1.2);
 }
 
-.action {
-  background-color: transparent;
-  border: none;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .viewDB-advanced-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .viewDB-filter-input {
+    width: 100%;
+    max-width: none;
+  }
 }

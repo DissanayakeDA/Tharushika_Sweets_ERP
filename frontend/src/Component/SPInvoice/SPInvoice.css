@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+.invoice-container {
+    width: 60%;
+    margin-left: 27%;
+    margin-top: 0%;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: "Noto Sans", sans-serif;
+}
+  
+  .invoice-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #37474F;
+    margin: 0 0 10px; 
+}
+.final-bill{
+  color: rgb(46, 45, 45);
+}
+.divider {
+  border: none;
+  height: 2px;
+  background: #37474F;
+  width: 100%;
+  margin: 0;
+}
+  .buyer-details {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .final-total{
+    color: #37474F;
+  }
+  .buyer-details p {
+    margin: 5px 0;
+  }
+  
+  .items-section {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .items-header {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .item-row:last-child {
+    border-bottom: none;
+  }
+  
+  .item-sl {
+    width: 5%;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .item-description {
+    width: 70%;
+  }
+  
+  .item-description strong {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .item-description p {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 5px 0 0;
+  }
+  
+  .item-total {
+    width: 25%;
+    text-align: right;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .total-section {
+    text-align: right;
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+  
+  .total-section p {
+    margin: 5px 0;
+  }
+  
+  .total-section h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #37474F;
+    margin-top: 10px;
+  }
+  
+  /* Buttons */
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .back-button{
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .submit-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
+    color: white;
+    cursor: pointer;
+    background-size: 200%; 
+  transition: background-position 0.5s ease; 
+  }
+  .back-button {
+    background-color: #b2bec3;
+  }
+  
+
+  .back-button:hover {
+    background-color: #636e72;
+  }
+  
+  .submit-button:hover {
+    background-position: right center; 
+}
+
+.invoice-logo {
+  position: relative;
+  display: block;
+  margin-left: 5px;
+  width: 20%; 
+  height: 45px; 
+  z-index: 1; 
+  background: white; 
+  padding: 5px; 
+}
+
+#invoice-content {
+  position: relative;
+  margin-top: 50px;
+}
+
+.invoice-header {
+  text-align: center;
+  margin-bottom: 20px; 
+  position: relative;
+}
+
+  
+@media (max-width: 768px) {
+  .invoice-container {
+      width: 90%; 
+      margin-left: 5%;
+  }
+
+  .invoice-title {
+      font-size: 1.5rem; 
+  }
+
+  .buyer-details {
+      font-size: 0.9rem;
+  }
+
+  .items-header {
+      font-size: 1rem;
+  }
+
+  .item-description {
+      width: 60%; 
+  }
+
+  .item-total {
+      width: 35%;
+  }
+
+  .button-container {
+      flex-direction: column; 
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .back-button,
+  .submit-button {
+      width: 100%; 
+  }
+
+  .invoice-logo {
+      width: 30%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .invoice-container {
+      width: 100%;
+      padding: 15px;
+  }
+
+  .invoice-title {
+      font-size: 1.25rem; 
+  }
+
+  .buyer-details {
+      font-size: 0.8rem;
+  }
+
+  .items-header {
+      font-size: 0.9rem;
+  }
+
+  .item-description {
+      width: 50%; 
+  }
+
+  .item-total {
+      width: 45%; 
+  }
+
+  .button-container {
+      flex-direction: column; 
+      gap: 10px;
+      justify-content: center;
+  }
+
+  .back-button,
+  .submit-button {
+      font-size: 0.9rem;
+      padding: 12px;
+  }
+
+  .invoice-logo {
+      width: 40%; 
+  }
+}

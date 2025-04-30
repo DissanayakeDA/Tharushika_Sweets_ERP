@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./GMNav.css";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 function GMNav() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
+  const [requestCount, setRequestCount] = useState(0);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -15,24 +17,26 @@ function GMNav() {
     setActiveLink(path);
   };
 
+  // Fetch the count of pending stock change requests
+  useEffect(() => {
+    const fetchRequestCount = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/stock-change-requests/pending"
+        );
+        if (response.data.success) {
+          setRequestCount(response.data.data.length);
+        }
+      } catch (error) {
+        console.error("Error fetching request count:", error);
+      }
+    };
+
+    fetchRequestCount();
+  }, []);
+
   return (
     <div>
-      <button className="profile-icon-btn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="currentColor"
-          className="bi bi-person-circle"
-          viewBox="0 0 16 16"
-        >
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-          <path
-            fillRule="evenodd"
-            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-          />
-        </svg>
-      </button>
       <div className={`sidenav-gm ${isNavOpen ? "open" : ""}`}>
         <ul>
           <li>
@@ -60,7 +64,7 @@ function GMNav() {
               <label className="nav-label">Dashboard</label>
             </Link>
           </li>
-          <hr className="nav-hr" />
+
           <li>
             <Link
               to="/addsuppliers"
@@ -87,37 +91,40 @@ function GMNav() {
               <label className="nav-label">Manage Supplier</label>
             </Link>
           </li>
-          <hr className="nav-hr" />
+
           <li>
             <Link
-              to="/GMviewrequests"
+              to="/all-stock-change-requests"
               className={`home-a ${
-                activeLink === "/GMviewrequests" ? "active" : ""
+                activeLink === "/all-stock-change-requests" ? "active" : ""
               }`}
-              onClick={() => handleLinkClick("/GMviewrequests")}
+              onClick={() => handleLinkClick("/all-stock-change-requests")}
             >
-              <button
-                className={`center-icon-btn ${
-                  activeLink === "/GMviewrequests" ? "active" : ""
-                }`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-bell-fill"
-                  viewBox="0 0 16 16"
+              <div className="icon-with-badge">
+                <button
+                  className={`center-icon-btn ${
+                    activeLink === "/all-stock-change-requests" ? "active" : ""
+                  }`}
                 >
-                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="currentColor"
+                    className="bi bi-bell-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                  </svg>
+                </button>
+                {requestCount > 0 && (
+                  <span className="request-count-badge">{requestCount}</span>
+                )}
+              </div>
               <label className="nav-label">Requests</label>
             </Link>
           </li>
-          <hr className="nav-hr" />
 
-          <hr className="nav-hr" />
           <li>
             <Link
               to="/GMviewreturns"
@@ -149,16 +156,46 @@ function GMNav() {
               <label className="nav-label">Returns</label>
             </Link>
           </li>
-          <hr className="nav-hr" />
+
           <li>
             <Link
-              to="/signout"
-              className={`home-a ${activeLink === "/signout" ? "active" : ""}`}
-              onClick={() => handleLinkClick("/signout")}
+              to="/Accessdashboard"
+              className={`home-a ${
+                activeLink === "/Accessdashboard" ? "active" : ""
+              }`}
+              onClick={() => handleLinkClick("/Accessdashboard")}
             >
               <button
                 className={`center-icon-btn ${
-                  activeLink === "/signout" ? "active" : ""
+                  activeLink === "/Accessdashboard" ? "active" : ""
+                }`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  className="bi bi-shield-lock-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24c.303-.143.662-.352 1.048-.625a11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 63 63 0 0 0-2.887-.869C9.843.266 8.69 0 8 0m0 5a1.5 1.5 0 0 0-1.5 1.5v2a1.5 1.5 0 0 0 3 0v-2A1.5 1.5 0 0 0 8 5m-1 1.5a1 1 0 1 1 2 0v2a1 1 0 1 1-2 0z"
+                  />
+                </svg>
+              </button>
+              <label className="nav-label">Access Control</label>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/login"
+              className={`home-a ${activeLink === "/login" ? "active" : ""}`}
+              onClick={() => handleLinkClick("/login")}
+            >
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/login" ? "active" : ""
                 }`}
               >
                 <svg

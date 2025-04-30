@@ -7,46 +7,56 @@ const hashPassword = (password) => {
 
 export const createUser = async (req, res) => {
   try {
-    const { 
-      employeeName, 
-      accessLevel, 
-      username, 
-      password, 
-      reenterPassword, 
-      nicNo, 
-      mobileNo, 
-      email 
+    const {
+      employeeName,
+      accessLevel,
+      username,
+      password,
+      reenterPassword,
+      nicNo,
+      mobileNo,
+      email,
     } = req.body;
 
     // Check if passwords match
     if (password !== reenterPassword) {
-      return res.status(400).json({ success: false, message: "Passwords do not match" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Passwords do not match" });
     }
 
     // Check for existing username, NIC, or email
-    const existingUser = await User.findOne({ $or: [{ username }, { nicNo }, { email }] });
+    const existingUser = await User.findOne({
+      $or: [{ username }, { nicNo }, { email }],
+    });
     if (existingUser) {
       if (existingUser.username === username) {
-        return res.status(400).json({ success: false, message: "Username already exists" });
+        return res
+          .status(400)
+          .json({ success: false, message: "Username already exists" });
       }
       if (existingUser.nicNo === nicNo) {
-        return res.status(400).json({ success: false, message: "NIC number already exists" });
+        return res
+          .status(400)
+          .json({ success: false, message: "NIC number already exists" });
       }
       if (existingUser.email === email) {
-        return res.status(400).json({ success: false, message: "Email already exists" });
+        return res
+          .status(400)
+          .json({ success: false, message: "Email already exists" });
       }
     }
 
     // Hash the password before saving
     const hashedPassword = hashPassword(password);
-    const user = new User({ 
-      employeeName, 
-      accessLevel, 
-      username, 
-      password: hashedPassword, 
-      nicNo, 
-      mobileNo, 
-      email 
+    const user = new User({
+      employeeName,
+      accessLevel,
+      username,
+      password: hashedPassword,
+      nicNo,
+      mobileNo,
+      email,
     });
     await user.save();
     res.status(201).json({ success: true, data: user });
@@ -72,9 +82,13 @@ export const deleteUser = async (req, res) => {
     const { id } = req.params;
     const user = await User.findByIdAndDelete(id);
     if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
-    res.status(200).json({ success: true, message: "User deleted successfully" });
+    res
+      .status(200)
+      .json({ success: true, message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
     res.status(500).json({ success: false, message: "Server Error" });

@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+.my-requests-container {
+  padding: 0;
+  background-color: #efefef;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.title-my-requests {
+  font-size: 28px;
+  font-weight: 400;
+  color: #37474f;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: 16%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.requests-table {
+  width: 80%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+
+.requests-table th,
+.requests-table td {
+  padding: 12px 15px;
+  border-bottom: 2px solid #ccc;
+}
+
+.requests-table th {
+  background-color: #efefef;
+  color: #4e4a4a;
+  text-align: center;
+}
+
+.requests-table td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.delete-btn {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.05);
+}
