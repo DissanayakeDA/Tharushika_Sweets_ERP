@@ -7,15 +7,14 @@ html {
   margin: 0;
   padding: 0;
   height: 100vh;
-  /* Ensures the navbar background spans full height */
 }
 
 /* Sidenav container */
 .sidenav-gm {
   width: 80px;
-  background-color: #ffff;
-  height: 65vh;
-  margin-top: 10%;
+  background-color: #ffffff;
+  height: 70vh;
+  margin-top: 9.5%;
   margin-left: 2%;
   padding: 20px;
   border-radius: 10px;
@@ -33,25 +32,51 @@ html {
 .sidenav-gm.open {
   transform: translateX(-260px);
 }
+
 /* Styling for buttons with icons */
 .center-icon-btn {
   display: flex;
-  justify-content: center; /* Center icon horizontally */
-  align-items: center; /* Center icon vertically */
+  justify-content: center;
+  align-items: center;
   color: #37474f;
-  width: 60px; /* Adjust size */
+  width: 60px;
   height: 60px;
-  background-color: #ffff;
+  background-color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 0 auto; /* Center within its container */
+  margin: 0 auto;
 }
+
+/* Request count badge */
+.icon-with-badge {
+  position: relative;
+  display: inline-block;
+}
+
+.request-count-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4d4f;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .nav-label {
   color: #37474f;
   font-weight: bold;
   font-size: small;
 }
+
 /* Positioning the profile icon */
 .profile-icon-btn {
   color: #37474f;
@@ -59,11 +84,11 @@ html {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  position: fixed; /* Fix the button's position relative to the viewport */
-  top: 15px; /* Adjust as needed for spacing from the top */
-  right: 20px; /* Adjust as needed for spacing from the right */
-  padding: 5px; /* Add some padding for better appearance */
-  z-index: 1000; /* Ensure it stays above other elements */
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  padding: 5px;
+  z-index: 1000;
 }
 
 /* Ensure the SVG is properly centered */
@@ -76,7 +101,7 @@ html {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 30px;
-  text-align: center; /* Center the logo text */
+  text-align: center;
 }
 
 /* Navigation items */
@@ -88,61 +113,36 @@ html {
 
 .sidenav-gm ul li {
   margin: 10px 0;
-  text-align: center; /* Center text below the icon */
+  text-align: center;
 }
 
 .sidenav-gm ul li a {
   text-decoration: none;
-  color: white;
+  color: #37474f;
   font-size: 16px;
-  display: block; /* Ensure full clickable area */
+  display: block;
 }
 
 .sidenav-gm ul hr {
   border: 0;
   height: 1px;
+  background-color: #37474f;
   opacity: 0.5;
   margin: 10px 0;
 }
-/* Navigation items */
-.sidenav-gm ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
-.sidenav-gm ul li {
-  margin: 10px 0;
-  text-align: center; /* Center text below the icon */
-}
-
-.sidenav-gm ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  display: block; /* Ensure full clickable area */
-}
-
-.sidenav-gm ul hr {
-  border: 0;
-  height: 1px;
-  background-color: white;
-  opacity: 0.5;
-  margin: 10px 0;
-}
 /* Ensure the page layout works well with the fixed navbar */
 main {
-  margin-left: 220px; /* Account for navbar width */
+  margin-left: 220px;
   padding: 20px;
 }
-/* Add this to your existing Nav.css */
 
 /* Shadow effect for active icon */
 .center-icon-btn.active {
-  background-color: rgba(154, 195, 221, 0.2); /* Light blue background */
-  border-radius: 50%; /* Circular background */
-  box-shadow: 0 0 15px rgba(154, 195, 221, 0.7); /* Blue shadow */
-  transition: all 0.3s ease-in-out; /* Smooth transition */
+  background-color: rgba(154, 195, 221, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(154, 195, 221, 0.7);
+  transition: all 0.3s ease-in-out;
 }
 
 /* Animation for the active icon */
@@ -157,49 +157,56 @@ main {
     box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
   }
 }
+
 .center-icon-btn:hover {
-  background-color: rgba(154, 195, 221, 0.2); /* Light blue background */
-  border-radius: 50%; /* Circular background */
-  box-shadow: 0 0 15px #9ac3dd; /* Blue shadow */
-  transition: all 0.3s ease-in-out; /* Smooth transition */
+  background-color: rgba(154, 195, 221, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 15px #9ac3dd;
+  transition: all 0.3s ease-in-out;
 }
+
 .center-icon-btn.active {
-  animation: shadowPulse 1.5s infinite; /* Apply the animation */
+  animation: shadowPulse 1.5s infinite;
 }
+
 /* Media Queries for Mobile Devices */
 @media (max-width: 768px) {
   .sidenav-gm {
-    transform: translateX(-220px); /* Hide sidenav by default */
+    transform: translateX(-220px);
   }
 
   .sidenav-gm.open {
-    transform: translateX(0); /* Show sidenav when open */
+    transform: translateX(0);
   }
 
-  /* Show the hamburger menu on small screens */
   .list-icon-btn {
-    display: block; /* Display hamburger icon */
+    display: block;
   }
 
-  /* Adjust navbar for mobile */
   .sidenav-gm {
-    width: 200px; /* Reduce navbar size */
+    width: 200px;
   }
 
-  /* When the sidenav is open, shift content */
   main {
-    margin-left: 0; /* Remove left margin when navbar is hidden */
+    margin-left: 0;
   }
 }
 
 /* Small screens (phone landscape) */
 @media (max-width: 480px) {
-  /* Adjust navbar size and font for smaller screens */
   .sidenav-gm {
     width: 180px;
   }
 
   .sidenav-gm ul li a {
     font-size: 14px;
+  }
+
+  .request-count-badge {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    top: -6px;
+    right: -6px;
   }
 }

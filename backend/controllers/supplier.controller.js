@@ -9,6 +9,7 @@ export const addSupplier = async (req, res) => {
     !supplier.supplier_name ||
     !supplier.supplier_address ||
     !supplier.supplier_phone ||
+    !supplier.supplier_country ||
     !supplier.supplier_email
   ) {
     return res
