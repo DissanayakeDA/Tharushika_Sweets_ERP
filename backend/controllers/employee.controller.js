@@ -1,4 +1,4 @@
-import Employee from "../models/Employee.Model.js"
+import Employee from "../models/Employee.Model.js";
 
 export const AddEmployee = async (req, res) => {
     const employee = req.body;
@@ -6,10 +6,10 @@ export const AddEmployee = async (req, res) => {
     // Check for all required fields
     if (!employee.name || !employee.mobileNo || !employee.position || 
         !employee.salary || !employee.bankAccountNo || !employee.bank || 
-        !employee.branch || !employee.nicNo || !employee.dateOfBirth) {
+        !employee.branch || !employee.nicNo || !employee.dateOfBirth || !employee.address) {
         return res.status(400).json({
             success: false, 
-            message: "Please provide all required fields: name, mobileNo, position, salary, bankAccountNo, bank, branch, nicNo, dateOfBirth"
+            message: "Please provide all required fields: name, mobileNo, position, salary, bankAccountNo, bank, branch, nicNo, dateOfBirth, address"
         });
     }
 

@@ -1,8 +1,7 @@
-// src/Component/ViewEmployees/ViewEmployees.jsx
 import React, { useState, useEffect } from "react";
 import HRNav from "../HRNav/HRNav";
 import axios from "axios";
-import "./ViewEmployee.css"; // Updated to match import
+import "./ViewEmployee.css";
 import HeadBar from "../HeadBar/HeadBar";
 import { useNavigate } from "react-router-dom";
 
@@ -14,8 +13,8 @@ function ViewEmployees() {
   const [error, setError] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [employeeToDelete, setEmployeeToDelete] = useState(null);
-  const [showDetailsPopup, setShowDetailsPopup] = useState(false); // State for details popup
-  const [selectedEmployee, setSelectedEmployee] = useState(null); // Track selected employee
+  const [showDetailsPopup, setShowDetailsPopup] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -87,8 +86,8 @@ function ViewEmployees() {
   };
 
   const handleNameClick = (employee) => {
-    setSelectedEmployee(employee); // Set the clicked employee
-    setShowDetailsPopup(true); // Show the popup
+    setSelectedEmployee(employee);
+    setShowDetailsPopup(true);
   };
 
   const closeDetailsPopup = () => {
@@ -125,13 +124,14 @@ function ViewEmployees() {
                   <th>Position</th>
                   <th>Salary</th>
                   <th>NIC No</th>
+                  <th>Address</th> {/* Added Address column */}
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredData.length === 0 ? (
                   <tr>
-                    <td colSpan="6" style={{ textAlign: "center" }}>
+                    <td colSpan="7" style={{ textAlign: "center" }}>
                       {searchTerm ? "No matching employees found" : "No employees available"}
                     </td>
                   </tr>
@@ -150,6 +150,7 @@ function ViewEmployees() {
                       <td>{employee.position}</td>
                       <td>{employee.salary}</td>
                       <td>{employee.nicNo}</td>
+                      <td>{employee.address}</td> {/* Added Address data */}
                       <td>
                         <div className="action-icons">
                           <button
@@ -211,6 +212,7 @@ function ViewEmployees() {
               <p><strong>Branch:</strong> {selectedEmployee.branch}</p>
               <p><strong>NIC No:</strong> {selectedEmployee.nicNo}</p>
               <p><strong>Date of Birth:</strong> {new Date(selectedEmployee.dateOfBirth).toLocaleDateString()}</p>
+              <p><strong>Address:</strong> {selectedEmployee.address}</p> {/* Added Address */}
             </div>
             <div className="modal-buttons">
               <button className="modal-btn cancel-btn" onClick={closeDetailsPopup}>

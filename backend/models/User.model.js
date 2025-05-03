@@ -32,6 +32,8 @@ const userSchema = new mongoose.Schema({
     unique: true, 
     match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ // Basic email format
   },
+  resetToken: { type: String },
+  resetTokenExpiry: { type: Date },
   createdAt: { type: Date, default: Date.now },
 });
 

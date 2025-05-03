@@ -1,155 +1,511 @@
-/* HRDashboard.css - Scoped styles with unique prefixes */
+/* Scope all styles to the dashboard content */
+.hrdashboard-content {
+  --primary-color: #4361ee;
+  --primary-light: #eaefff;
+  --primary-dark: #3a56d4;
+  --success-color: #10b981;
+  --success-light: #ecfdf5;
+  --warning-color: #f59e0b;
+  --warning-light: #fffbeb;
+  --danger-color: #ef4444;
+  --danger-light: #fef2f2;
+  --gray-100: #f9fafb;
+  --gray-200: #f3f4f6;
+  --gray-300: #e5e7eb;
+  --gray-400: #d1d5db;
+  --gray-500: #9ca3af;
+  --gray-600: #6b7280;
+  --gray-700: #4b5563;
+  --gray-800: #374151;
+  --gray-900: #1f2937;
+  --border-radius: 8px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
+  font-family: 'Inter', sans-serif;
+  color: var(--gray-800, #374151); /* Default text color with hex fallback */
+  background-color: var(--gray-100, #f9fafb); /* Light background */
+}
+
+/* Minimal styles for the home container to avoid affecting HRNav and HeadBar */
 .hrdashboard-home-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #DADADA;
 }
 
+/* Reset styles for HeadBar and HRNav to prevent any inheritance */
+.headbar-wrapper,
+.hrnav-wrapper {
+  all: unset;
+  display: contents; /* Allows children to render naturally */
+}
+
+/* Layout for sidebar and main content */
 .hrdashboard-layout {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
 }
 
+/* Sidebar container for HRNav, minimal styling */
 .hrdashboard-sidebar {
-  width: 100px;
-  min-height: calc(100vh - 60px); /* Adjust for typical HeadBar height */
-  background:#DADADA;
-  color: white;
+  width: 240px;
 }
 
+/* Main content area */
 .hrdashboard-main-content {
   flex-grow: 1;
-  padding: 20px;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* Reset margins and padding for dashboard content elements */
+.hrdashboard-content-wrapper,
+.hrdashboard-header,
+.hrdashboard-stats-grid,
+.hrdashboard-content-grid,
+.hrdashboard-graph-container,
+.hrdashboard-birthday-box {
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .hrdashboard-content-wrapper {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
+.hrdashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--gray-200, #f3f4f6);
+}
+
 .hrdashboard-title {
-  font-size: 1.8rem;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray-900, #1f2937); /* Darker for emphasis */
 }
 
-.hrdashboard-present-box {
-  background: white; 
+.hrdashboard-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--gray-600, #6b7280); /* Lighter for secondary text */
+}
+
+.hrdashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.hrdashboard-stat-card {
+  background: white;
+  border-radius: var(--border-radius, 8px);
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  color: #ffffff; 
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.hrdashboard-present-box h3 {
-  font-family: 'Arial', sans-serif; 
-  font-size: 1.3rem;
-  color: #2c3e50; 
-  margin: 0 0 10px 0;
-  font-weight: 600; 
+.hrdashboard-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-.hrdashboard-present-count {
-  font-family: 'Roboto', sans-serif; 
-  font-size: 1.6rem;
-  color: #2ecc71; 
-  margin: 10px 0;
-  font-weight: 700; 
+.hrdashboard-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
-.hrdashboard-error {
-  font-family: 'Arial', sans-serif;
-  font-size: 1rem;
-  color: #c0392b; 
-  margin: 10px 0;
+.hrdashboard-present .hrdashboard-stat-icon {
+  background-color: var(--success-light, #ecfdf5);
+  color: var(--success-color, #10b981);
+}
+
+.hrdashboard-absent .hrdashboard-stat-icon {
+  background-color: var(--danger-light, #fef2f2);
+  color: var(--danger-color, #ef4444);
+}
+
+.hrdashboard-total .hrdashboard-stat-icon {
+  background-color: var(--primary-light, #eaefff);
+  color: var(--primary-color, #4361ee);
+}
+
+.hrdashboard-birthdays .hrdashboard-stat-icon {
+  background-color: var(--warning-light, #fffbeb);
+  color: var(--warning-color, #f59e0b);
+}
+
+.hrdashboard-stat-content {
+  flex-grow: 1;
+}
+
+.hrdashboard-stat-content h3 {
+  font-size: 0.875rem;
   font-weight: 500;
+  color: var(--gray-600, #6b7280); /* Secondary text */
+  margin-bottom: 8px;
+}
+
+.hrdashboard-stat-numbers {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.hrdashboard-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray-900, #1f2937); /* Prominent text */
+}
+
+.hrdashboard-stat-label {
+  font-size: 0.875rem;
+  color: var(--gray-500, #9ca3af); /* Lighter secondary text */
+  margin-left: 4px;
+}
+
+.hrdashboard-stat-description {
+  font-size: 0.75rem;
+  color: var(--gray-500, #9ca3af); /* Lighter secondary text */
+}
+
+.hrdashboard-stat-percentage {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.hrdashboard-present .hrdashboard-stat-percentage {
+  color: var(--success-color, #10b981);
+}
+
+.hrdashboard-absent .hrdashboard-stat-percentage {
+  color: var(--danger-color, #ef4444);
+}
+
+.hrdashboard-progress-bar {
+  height: 4px;
+  background-color: var(--gray-100, #f9fafb);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.hrdashboard-present .hrdashboard-progress-fill {
+  height: 100%;
+  background-color: var(--success-color, #10b981);
+}
+
+.hrdashboard-absent .hrdashboard-progress-fill {
+  height: 100%;
+  background-color: var(--danger-color, #ef4444);
+}
+
+.hrdashboard-content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.hrdashboard-graph-container {
+  background: white;
+  border-radius: var(--border-radius, 8px);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hrdashboard-graph-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--gray-200, #f3f4f6);
+}
+
+.hrdashboard-graph-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-800, #374151); /* Consistent with default text */
 }
 
 .hrdashboard-graphs-wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
-  width: 100%;
+  padding: 20px;
+  gap: 40px;
 }
 
 .hrdashboard-graph {
   flex: 1;
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.hrdashboard-graph h3 {
-  font-size: 1.2rem;
-  color: #34495e;
+.hrdashboard-graph h4 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-700, #4b5563); /* Slightly lighter for subheadings */
   margin-bottom: 15px;
   text-align: center;
 }
 
 .hrdashboard-graph-bars {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-end;
   height: 200px;
-  background: #f9f9f9;
   border-radius: 6px;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .hrdashboard-bar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  width: 100%;
 }
 
 .hrdashboard-bar {
-  width: 30px;
+  width: 32px;
   border-radius: 4px 4px 0 0;
   position: relative;
   transition: height 0.3s ease-in-out;
 }
 
 .hrdashboard-present-bar {
-  background-color: orange; 
+  background-color: var(--success-color, #10b981);
 }
 
 .hrdashboard-absent-bar {
-  background-color: #e74c3c; 
+  background-color: var(--danger-color, #ef4444);
 }
 
 .hrdashboard-bar-value {
   position: absolute;
-  top: -20px;
+  top: -25px;
   width: 100%;
   text-align: center;
-  color: #34495e;
-  font-size: 0.9rem;
+  color: var(--gray-700, #4b5563); /* Consistent with graph subheadings */
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .hrdashboard-day-label {
-  font-size: 0.9rem;
-  color: #34495e;
+  font-size: 0.75rem;
+  color: var(--gray-600, #6b7280); /* Secondary text */
+  font-weight: 500;
+}
+
+.hrdashboard-birthday-tile {
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.hrdashboard-birthday-box {
+  background: white;
+  border-radius: var(--border-radius, 8px);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  height: 100%;
+}
+
+.hrdashboard-birthday-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--gray-200, #f3f4f6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-800, #374151); /* Consistent with default text */
+}
+
+.hrdashboard-birthday-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--gray-800, #374151);
+}
+
+.hrdashboard-birthday-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.hrdashboard-birthday-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--gray-200, #f3f4f6);
+  transition: background-color 0.2s;
+}
+
+.hrdashboard-birthday-item:hover {
+  background-color: var(--gray-100, #f9fafb);
+}
+
+.hrdashboard-birthday-item:last-child {
+  border-bottom: none;
+}
+
+.hrdashboard-birthday-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--primary-light, #eaefff);
+  color: var(--primary-color, #4361ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.hrdashboard-birthday-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.hrdashboard-birthday-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-800, #374151); /* Consistent with default text */
+  margin-bottom: 4px;
+}
+
+.hrdashboard-birthday-date {
+  font-size: 0.75rem;
+  color: var(--gray-600, #6b7280); /* Secondary text */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hrdashboard-birthday-days {
+  margin-left: 4px;
+  font-weight: 500;
+  color: var(--gray-600, #6b7280);
+}
+
+.hrdashboard-birthday-today {
+  color: var(--warning-color, #f59e0b);
+  font-weight: 600;
+}
+
+.hrdashboard-no-data {
+  padding: 20px;
+  text-align: center;
+  color: var(--gray-500, #9ca3af); /* Lighter secondary text */
+  font-size: 0.875rem;
+}
+
+.hrdashboard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  color: var(--gray-600, #6b7280); /* Secondary text */
+}
+
+.hrdashboard-loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--primary-light, #eaefff);
+  border-radius: 50%;
+  border-top-color: var(--primary-color, #4361ee);
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hrdashboard-error-container {
+  background-color: var(--danger-light, #fef2f2);
+  border-radius: var(--border-radius, 8px);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.hrdashboard-error {
+  color: var(--danger-color, #ef4444);
+  font-size: 0.875rem;
+  text-align: center;
 }
 
 /* Responsive design */
+@media (max-width: 1200px) {
+  .hrdashboard-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .hrdashboard-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hrdashboard-birthday-tile {
+    position: static;
+    margin-top: 20px;
+  }
+}
+
 @media (max-width: 768px) {
+  .hrdashboard-sidebar {
+    width: 80px;
+  }
+
+  .hrdashboard-main-content {
+    padding: 20px 15px;
+  }
+
   .hrdashboard-graphs-wrapper {
     flex-direction: column;
+    gap: 20px;
   }
 
   .hrdashboard-graph {
     width: 100%;
+  }
+
+  .hrdashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hrdashboard-stats-grid {
+    grid-template-columns: 1fr;
   }
 
   .hrdashboard-layout {

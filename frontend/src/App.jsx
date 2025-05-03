@@ -44,6 +44,8 @@ import ViewAttendance from "./Component/ViewAttendance/ViewAttendace";
 import CreateUser from "./Component/CreateUser/CreateUser";
 import AccessControlDashboard from "./Component/AccessControlDashboard/AccessControlDashboard";
 import Login from "./Component/Login/Login";
+import ForgotPassword from "./Component/ForgotPassword/ForgotPassword";
+import ResetPassword from "./Component/ResetPassword/ResetPassword";
 
 function App() {
   return (
@@ -87,11 +89,8 @@ function App() {
           <Route path="/create-user" element={<ProtectedRoute element={<CreateUser />} />} />
           <Route path="/Accessdashboard" element={<ProtectedRoute element={<AccessControlDashboard />} />} />
           <Route path="/login" element={<Login />} />
-
-
-
-          
-          
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </React.Fragment>
     </div>

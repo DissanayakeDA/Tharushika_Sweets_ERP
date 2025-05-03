@@ -1,5 +1,8 @@
-import express from "express";
 import dotenv from "dotenv";
+// Load environment variables first
+dotenv.config();
+
+import express from "express";
 import { connectDB } from "./config/db.js";
 import productRoutes from "./routes/product.route.js";
 import stockRoutes from "./routes/stock.route.js";
@@ -15,9 +18,6 @@ import employeeRoutes from "./routes/employee.route.js";
 import attendanceRoutes from "./routes/attendance.route.js";
 import userRoutes from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
-
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,7 +36,6 @@ app.use("/api/suppliers", supplierRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRouter);
-
 
 app.use(cors());
 

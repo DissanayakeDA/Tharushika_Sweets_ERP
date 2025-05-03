@@ -32,9 +32,11 @@ const AddEmployee = () => {
     branch: "",
     nicNo: "",
     dateOfBirth: "",
+    address: "",
   });
 
   const [errorMessages, setErrorMessages] = useState([]);
+  const [nicExists, setNicExists] = useState(false); // State to track NIC existence
 
   const sriLankanBanks = [
     "Amana Bank PLC",
@@ -83,6 +85,27 @@ const AddEmployee = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [errorMessages]);
+
+  // Check if NIC exists when nicNo changes
+  useEffect(() => {
+    const checkNicExists = async () => {
+      if (inputs.nicNo && /^[0-9]{9}[vV]$|^[0-9]{12}$/.test(inputs.nicNo)) {
+        try {
+          const response = await axios.get(
+            `http://localhost:5000/api/employee/check-nic/${inputs.nicNo}`
+          );
+          setNicExists(response.data.exists); 
+        } catch (error) {
+          console.error("Error checking NIC:", error);
+          setErrorMessages(["NIC already exists."]);
+        }
+      } else {
+        setNicExists(false); // Reset if NIC is invalid or empty
+      }
+    };
+
+    checkNicExists();
+  }, [inputs.nicNo]);
 
   const handleChange = (e) => {
     setInputs((prevState) => ({
@@ -145,7 +168,10 @@ const AddEmployee = () => {
       isValid = false;
     }
 
-    const bankAccountError = validateBankAccountNumber(inputs.bank, inputs.bankAccountNo);
+    const bankAccountError = validateBankAccountNumber(
+      inputs.bank,
+      inputs.bankAccountNo
+    );
     if (bankAccountError) {
       formErrors.bankAccountNo = true;
       messages.push(bankAccountError);
@@ -172,11 +198,21 @@ const AddEmployee = () => {
       formErrors.nicNo = true;
       messages.push("NIC must be 9 digits + 'v' or 12 digits.");
       isValid = false;
+    } else if (nicExists) {
+      formErrors.nicNo = true;
+      messages.push("This NIC number is already registered.");
+      isValid = false;
     }
 
     if (!inputs.dateOfBirth) {
       formErrors.dateOfBirth = true;
       messages.push("Date of birth is required.");
+      isValid = false;
+    }
+
+    if (!inputs.address) {
+      formErrors.address = true;
+      messages.push("Address is required.");
       isValid = false;
     }
 
@@ -212,19 +248,22 @@ const AddEmployee = () => {
       branch: String(inputs.branch),
       nicNo: String(inputs.nicNo),
       dateOfBirth: String(inputs.dateOfBirth),
+      address: String(inputs.address),
     });
     return response.data;
   };
 
   return (
     <>
-      <HeadBar /> {/* Moved outside the container */}
+      <HeadBar />
       <div className="form-container-buyers">
         <HRNav />
         <div className="form-content">
           <div className="form-box">
             <h2 className="form-title">Add New Employee</h2>
-            {errorMessages.length > 0 && <Alert messages={errorMessages} onDismiss={handleDismiss} />}
+            {errorMessages.length > 0 && (
+              <Alert messages={errorMessages} onDismiss={handleDismiss} />
+            )}
             <form onSubmit={handleSubmit}>
               <div className="form-section">
                 <h3 className="section-title">Personal Details</h3>
@@ -267,6 +306,16 @@ const AddEmployee = () => {
                     value={inputs.dateOfBirth}
                   />
                 </div>
+                <div className="form-group-buyers">
+                  <label>Address:</label>
+                  <textarea
+                    name="address"
+                    className="address-textarea"
+                    onChange={handleChange}
+                    value={inputs.address}
+                    placeholder="Enter Address"
+                  />
+                </div>
               </div>
               <div className="form-section">
                 <h3 className="section-title">Job Details</h3>
@@ -303,7 +352,7 @@ const AddEmployee = () => {
                     placeholder="Enter Bank Account Number"
                   />
                 </div>
-                <div className="form-group-buyers">
+                <div class54 className="form-group-buyers">
                   <label>Bank:</label>
                   <select
                     name="bank"
