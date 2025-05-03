@@ -12,13 +12,17 @@ export const login = async (req, res) => {
 
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(401).json({ success: false, message: "Invalid username or password" });
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid username or password" });
     }
 
     // Hash the entered password and compare with stored hash
     const hashedInputPassword = hashPassword(password);
     if (user.password !== hashedInputPassword) {
-      return res.status(401).json({ success: false, message: "Invalid username or password" });
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid username or password" });
     }
 
     res.status(200).json({

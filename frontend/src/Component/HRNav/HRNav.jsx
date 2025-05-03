@@ -58,15 +58,21 @@ function HRNav() {
         </div>
       )}
 
-      <div className={`sidenav ${isNavOpen ? "open" : ""}`}>
+      <div className={`sidenav-hr ${isNavOpen ? "open" : ""}`}>
         <ul>
           <li>
             <Link
               to="/hrdashboard"
-              className={`home-a ${activeLink === "/hrdashboard" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/hrdashboard" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/hrdashboard")}
             >
-              <button className={`center-icon-btn ${activeLink === "/hrdashboard" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/hrdashboard" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -85,10 +91,16 @@ function HRNav() {
           <li>
             <Link
               to="/addemployee"
-              className={`home-a ${activeLink === "/addemployee" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/addemployee" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/addemployee")}
             >
-              <button className={`center-icon-btn ${activeLink === "/addemployee" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/addemployee" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -111,10 +123,16 @@ function HRNav() {
           <li>
             <Link
               to="/viewemployees"
-              className={`home-a ${activeLink === "/viewemployees" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/viewemployees" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/viewemployees")}
             >
-              <button className={`center-icon-btn ${activeLink === "/viewemployees" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/viewemployees" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -137,10 +155,16 @@ function HRNav() {
           <li>
             <Link
               to="/addattendance"
-              className={`home-a ${activeLink === "/addattendance" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/addattendance" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/addattendance")}
             >
-              <button className={`center-icon-btn ${activeLink === "/addattendance" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/addattendance" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -159,10 +183,16 @@ function HRNav() {
           <li>
             <Link
               to="/viewattendance"
-              className={`home-a ${activeLink === "/viewattendance" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/viewattendance" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/viewattendance")}
             >
-              <button className={`center-icon-btn ${activeLink === "/viewattendance" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/viewattendance" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -184,10 +214,16 @@ function HRNav() {
           <li>
             <Link
               to="/Accessdashboard"
-              className={`home-a ${activeLink === "/Accessdashboard" ? "active" : ""}`}
+              className={`home-a ${
+                activeLink === "/Accessdashboard" ? "active" : ""
+              }`}
               onClick={() => handleLinkClick("/Accessdashboard")}
             >
-              <button className={`center-icon-btn ${activeLink === "/Accessdashboard" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/Accessdashboard" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -215,7 +251,11 @@ function HRNav() {
                 handleLogout();
               }}
             >
-              <button className={`center-icon-btn ${activeLink === "/signout" ? "active" : ""}`}>
+              <button
+                className={`center-icon-btn ${
+                  activeLink === "/signout" ? "active" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"

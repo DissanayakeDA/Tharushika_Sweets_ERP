@@ -42,98 +42,79 @@ function GMViewStock() {
     <div>
       <GMNav />
       <HeadBar />
-      <div className="view-stock-container">
-        <div className="header">
-          <h2 className="view-stock-title">View Stock</h2>
+      <div className="viewDB-buyers-container">
+        <div className="viewDB-header">
+          <h2 className="viewDB-buyer-title">View Stock</h2>
+        </div>
 
-          <label>Select Stock Type: </label>
+        <div className="viewDB-advanced-filters">
           <select
-          className="stock-select"
+            className="viewDB-filter-input"
             value={selection}
             onChange={(e) => setSelection(e.target.value)}
           >
             <option value="ingredients">Ingredients</option>
             <option value="products">Products</option>
           </select>
+        </div>
 
-          {loading && <p>Loading data...</p>}
-          {error && <p style={{ color: "red" }}>{error}</p>}
-          <div className="table-container">
-            <table className="view-stock-table">
-              <thead>
-                <tr>
-                  {selection === "ingredients" ? (
-                    <>
-                      <th>Supplier</th>
-                      <th>Invoice ID</th>
-                      <th>Ingredient Name</th>
-                      <th>Quantity</th>
-                      <th>Lot Price</th>
-                      <th>Action</th>
-                    </>
-                  ) : (
-                    <>
-                      <th>Product Name</th>
-                      <th>Quantity</th>
-                      <th>Price</th>
-                      <th>Action</th>
-                    </>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {data.length === 0 ? (
-                  <tr>
-                    <td colSpan="5" style={{ textAlign: "center" }}>
-                      No data available
-                    </td>
-                  </tr>
+        {loading && <div className="viewDB-loading">Loading data...</div>}
+        {error && <div className="viewDB-error">{error}</div>}
+
+        <div className="viewDB-table-container">
+          <table className="viewDB-buyers-table">
+            <thead>
+              <tr>
+                {selection === "ingredients" ? (
+                  <>
+                    <th>Supplier</th>
+                    <th>Invoice ID</th>
+                    <th>Ingredient Name</th>
+                    <th>Quantity</th>
+                    <th>Lot Price</th>
+                  </>
                 ) : (
-                  data.map((item, index) => (
-                    <tr key={index}>
-                      {selection === "ingredients" ? (
-                        <>
-                          <td>{item.supplier_name}</td>
-                          <td>{item.invoice_id}</td>
-                          <td>{item.ingredient_name}</td>
-                          <td>{item.ingredient_quantity}</td>
-                          <td>{item.lot_price}</td>
-                          <td>
-                            <div className="action-icons">
-                              <button className="action">
-                                <i className="bi bi-pencil-square"></i>
-                              </button>
-
-                              <button className="action">
-                                <i className="bi bi-trash"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </>
-                      ) : (
-                        <>
-                          <td>{item.product_name}</td>
-                          <td>{item.product_quantity}</td>
-                          <td>{item.product_price}</td>
-                          <td>
-                            <div className="action-icons">
-                              <button className="action">
-                                <i className="bi bi-pencil-square"></i>
-                              </button>
-
-                              <button className="action">
-                                <i className="bi bi-trash"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </>
-                      )}
-                    </tr>
-                  ))
+                  <>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                  </>
                 )}
-              </tbody>
-            </table>
-          </div>
+              </tr>
+            </thead>
+            <tbody>
+              {data.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan={selection === "ingredients" ? 6 : 4}
+                    style={{ textAlign: "center" }}
+                  >
+                    No data available
+                  </td>
+                </tr>
+              ) : (
+                data.map((item, index) => (
+                  <tr key={index}>
+                    {selection === "ingredients" ? (
+                      <>
+                        <td>{item.supplier_name}</td>
+                        <td>{item.invoice_id}</td>
+                        <td>{item.ingredient_name}</td>
+                        <td>{item.ingredient_quantity}</td>
+                        <td>{item.lot_price}</td>
+                      </>
+                    ) : (
+                      <>
+                        <td>{item.product_name}</td>
+                        <td>{item.product_quantity}</td>
+                        <td>{item.product_price}</td>
+                      </>
+                    )}
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
