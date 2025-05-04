@@ -6,11 +6,11 @@ import HeadBar from "../HeadBar/HeadBar";
 
 function Home() {
   return (
-    <div className="home-container">
+    <div className="home-container-st">
       <HeadBar />
       <Nav />
 
-      <div className="main-content">
+      <div className="main-content-st">
         <h2 className="dash-title">Stock Manager Dashboard</h2>
 
         <div className="dashboard-buttons">
@@ -49,7 +49,7 @@ function Home() {
             </div>
           </Link>
         </div>
-        <Link to="/viewReturns" className="dashboard-link">
+        <Link to="/viewReturns" className="dashboard-link-st">
           <div className="dashboard-btn-returns">
             <div className="dash-btn-icon-returns">
               <i className="bi bi-arrow-counterclockwise"></i>
@@ -57,7 +57,7 @@ function Home() {
             <label className="dash-btn-text-req">Returns</label>
           </div>
         </Link>
-        <Link to="/products" className="dashboard-link">
+        <Link to="/products" className="dashboard-link-st">
           <div className="dashboard-btn-returns">
             <div className="dash-btn-icon-returns">
               <i className="bi bi-inboxes-fill"></i>

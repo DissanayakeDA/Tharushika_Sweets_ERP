@@ -6,7 +6,9 @@ import "./SalesRequestForm.css";
 import { useNavigate } from "react-router-dom";
 
 function SalesRequestForm() {
-  const [rows, setRows] = useState([{ product_name: "", requested_quantity: 1 }]);
+  const [rows, setRows] = useState([
+    { product_name: "", requested_quantity: 1 },
+  ]);
   const [stocks, setStocks] = useState([]);
   const navigate = useNavigate();
   const isMounted = useRef(false);
@@ -118,7 +120,8 @@ function SalesRequestForm() {
           <ul>
             {stocks.map((stock, index) => (
               <li key={index}>
-                {stock.product_name} (Stock: {stock.product_quantity}, ID: {stock._id})
+                {stock.product_name} (Stock: {stock.product_quantity}, ID:{" "}
+                {stock._id})
               </li>
             ))}
           </ul>

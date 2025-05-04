@@ -124,7 +124,7 @@ const AddSupplier = () => {
         <div className="form-group-sup">
           <label>Supplier Phone</label>
           <input
-            type="number"
+            type="text"
             name="supplier_phone"
             onChange={handleChange}
             value={inputs.supplier_phone}

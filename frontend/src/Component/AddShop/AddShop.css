@@ -1,123 +1,456 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+/* AddShop.css - Enhanced version */
 
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: "Noto Sans", sans-serif;
-  box-sizing: border-box;
-}
-
-.add-shop-container {
-  display: block;
+/* Main container */
+.addshop-container {
   min-height: 100vh;
-  background-color: #efefef;
+  background-color: #f8f9fa;
+  font-family: 'Poppins', sans-serif;
 }
 
-.main-content {
-  flex: 2;
-  background-color: #efefef;
-  padding: 20px;
-  margin-left: 120px; /* Adjusted for SalesNav width */
-}
-
-.add-shop-title {
-  font-size: 28px;
-  font-weight: 400;
-  color: #37474f;
-  padding: 5px;
-  margin-top: 5px;
-  margin-left: 10%;
-  text-align: left;
-  margin-bottom: 20px;
-  font-family: "Noto Sans", sans-serif;
-}
-
-.add-shop-form {
+/* Content wrapper */
+.addshop-content-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-left: 10%;
-  margin-right: 20%;
-  background: #fff;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: calc(100vh - 120px); /* Adjust based on your HeadBar and Nav heights */
 }
 
-.form-group {
+/* Form card */
+.addshop-form-card {
+  width: 100%;
+  max-width: 680px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Form header */
+.addshop-form-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.addshop-form-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+
+.addshop-form-title:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #4776e6, #8e54e9);
+  border-radius: 2px;
+}
+
+/* Progress bar */
+.addshop-progress-bar-container {
+  margin-top: 2rem;
+}
+
+.addshop-progress-steps {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
-.form-group label {
-  color: #37474f;
-  font-weight: bold;
-  margin-bottom: 5px;
+.addshop-step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
 }
 
-.form-group input,
-.form-group textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  font-family: "Noto Sans", sans-serif;
-}
-
-.form-group textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.submit-btn {
-  background: #6ea5c5;
+.addshop-step.addshop-active {
+  background-color: #8e54e9;
   color: white;
-  padding: 12px 20px;
-  border: none;
+  box-shadow: 0 0 0 4px rgba(142, 84, 233, 0.2);
+}
+
+.addshop-step.addshop-completed {
+  background-color: #4776e6;
+  color: white;
+}
+
+.addshop-step-number, .addshop-step-check {
+  font-size: 0.85rem;
+}
+
+.addshop-progress-line {
+  height: 4px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  margin: 0 15px;
+  position: relative;
+  margin-top: -17px;
+}
+
+.addshop-progress-line-inner {
+  height: 100%;
+  background: linear-gradient(90deg, #4776e6, #8e54e9);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+/* Form step */
+.addshop-form-step-wrapper {
+  position: relative;
+  min-height: 300px;
+}
+
+.addshop-form-step-content {
+  margin-bottom: 2rem;
+}
+
+.addshop-step-title {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.addshop-step-title h3 {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.addshop-step-title p {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+/* Form group */
+.addshop-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.addshop-form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.addshop-required-star {
+  color: #e74c3c;
+  margin-left: 4px;
+}
+
+.addshop-input-container {
+  position: relative;
+}
+
+.addshop-input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  pointer-events: none;
+}
+
+.addshop-textarea-icon {
+  top: 16px;
+  transform: none;
+}
+
+.addshop-form-group input, 
+.addshop-form-group textarea {
+  width: 90%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid #ced4da;
   border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.addshop-form-group textarea {
+  resize: none;
+}
+
+.addshop-form-group input:focus, 
+.addshop-form-group textarea:focus {
+  outline: none;
+  border-color: #8e54e9;
+  box-shadow: 0 0 0 3px rgba(142, 84, 233, 0.15);
+  background-color: #fff;
+}
+
+.addshop-input-error {
+  border-color: #e74c3c !important;
+  background-color: #fff !important;
+}
+
+.addshop-input-valid {
+  border-color: #2ecc71 !important;
+  background-color: #fff !important;
+}
+
+.addshop-input-error:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15) !important;
+}
+
+.addshop-input-valid:focus {
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.15) !important;
+}
+
+/* Error message */
+.addshop-error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+/* Form actions */
+.addshop-form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+/* Buttons */
+.addshop-form button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-  width: 200px;
-  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
 }
 
-.submit-btn:hover {
-  background: #54b2e8;
-  transform: translateY(-2px);
+.addshop-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-.success-message {
-  color: #2e7d32;
+.addshop-btn-primary {
+  background: linear-gradient(90deg, #4776e6, #8e54e9);
+  color: white;
+  box-shadow: 0 4px 6px rgba(71, 118, 230, 0.2);
+}
+
+.addshop-btn-primary:hover:not(:disabled) {
+  box-shadow: 0 6px 10px rgba(71, 118, 230, 0.3);
+  transform: translateY(-1px);
+}
+
+.addshop-btn-secondary {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.addshop-btn-secondary:hover:not(:disabled) {
+  background-color: #dee2e6;
+}
+
+.addshop-btn-outlined {
+  border: 1px solid #ced4da;
+  background-color: transparent;
+  color: #6c757d;
+}
+
+.addshop-btn-outlined:hover:not(:disabled) {
+  background-color: #f8f9fa;
+}
+
+.addshop-btn-submit {
+  background: linear-gradient(90deg, #4776e6, #8e54e9);
+  color: white;
+  box-shadow: 0 4px 6px rgba(71, 118, 230, 0.2);
+  min-width: 120px;
+}
+
+.addshop-btn-submit:hover:not(:disabled) {
+  box-shadow: 0 6px 10px rgba(71, 118, 230, 0.3);
+  transform: translateY(-1px);
+}
+
+.addshop-final-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+/* Loading state */
+.addshop-loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: addshop-spin 1s ease-in-out infinite;
+}
+
+@keyframes addshop-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success message */
+.addshop-success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
   text-align: center;
-  margin-top: 10px;
 }
 
-.error-message {
-  color: #d32f2f;
-  text-align: center;
-  margin-top: 10px;
+.addshop-success-icon {
+  margin-bottom: 1.5rem;
 }
 
+.addshop-checkmark {
+  width: 80px;
+  height: 80px;
+}
+
+.addshop-checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  animation: addshop-stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.addshop-checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke-width: 3;
+  stroke: #7ac142;
+  animation: addshop-stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes addshop-stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.addshop-success-container h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.addshop-success-container p {
+  color: #6c757d;
+}
+
+.addshop-success-container button {
+  min-width: 200px;
+  padding: 12px 24px;
+  font-size: 1rem;
+}
+
+/* Animations */
+.addshop-shake {
+  animation: addshop-shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes addshop-shake {
+  10%, 90% {
+    transform: translateX(-1px);
+  }
+  20%, 80% {
+    transform: translateX(2px);
+  }
+  30%, 50%, 70% {
+    transform: translateX(-4px);
+  }
+  40%, 60% {
+    transform: translateX(4px);
+  }
+}
+
+/* Toast notifications */
+.addshop-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 250px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  color: #333;
+  font-size: 0.9rem;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.addshop-toast.addshop-show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.addshop-toast.addshop-success {
+  border-left: 4px solid #2ecc71;
+}
+
+.addshop-toast.addshop-error {
+  border-left: 4px solid #e74c3c;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
-  .add-shop-title {
-    font-size: 22px;
-    margin-left: 5%;
+  .addshop-content-wrapper {
+    padding: 1rem;
   }
-
-  .add-shop-form {
-    margin-left: 5%;
-    margin-right: 5%;
-    padding: 20px;
+  
+  .addshop-form-card {
+    padding: 1.5rem;
   }
-
-  .submit-btn {
-    width: 150px;
-    font-size: 16px;
+  
+  .addshop-form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
   }
-
-  .main-content {
+  
+  .addshop-btn-secondary, .addshop-btn-primary {
+    width: 100%;
+  }
+  
+  .addshop-final-buttons {
+    width: 100%;
     margin-left: 0;
+  }
+  
+  .addshop-btn-outlined, .addshop-btn-submit {
+    flex: 1;
   }
 }

@@ -1,215 +1,439 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+/* ===== COMMON STYLES ===== */
+:root {
+  --primary-color: #112e51;
+  --secondary-color: #0071bc;
+  --accent-color: #02bfe7;
+  --success-color: #2e8540;
+  --danger-color: #e31c3d;
+  --warning-color: #fdb81e;
+  --light-gray: #f1f1f1;
+  --medium-gray: #d6d7d9;
+  --dark-gray: #5b616b;
+  --text-color: #212121;
+  --white: #ffffff;
+  --border-radius: 4px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
 
-body, html {
+/* ===== MANAGE SHOPS PAGE STYLES ===== */
+.manageshops-container {
+  max-width: 1450px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.manageshops-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #e3f2fd;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.manageshops-title {
+  color: #1976d2;
+  font-size: 24px;
   margin: 0;
-  padding: 0;
-  font-family: "Noto Sans", sans-serif;
-  box-sizing: border-box;
+  font-weight: 600;
 }
 
-.manage-shops-container {
-  display: block;
-  min-height: 100vh;
-  background-color: #efefef;
+.manageshops-new-shop-btn {
+  background: linear-gradient(135deg, #b388ff 0%, #7c4dff 100%);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(124, 77, 255, 0.2);
 }
 
-.main-content {
-  flex: 2;
-  background-color: #efefef;
-  padding: 20px;
-  margin-left: 120px;
+.manageshops-new-shop-btn:hover {
+  background: linear-gradient(135deg, #a370ff 0%, #6b3dff 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(124, 77, 255, 0.3);
 }
 
-.manage-shops-title {
-  font-size: 28px;
-  font-weight: 400;
-  color: #37474f;
-  padding: 5px;
-  margin-top: 5px;
-  margin-left: 10%;
-  text-align: left;
-  margin-bottom: 20px;
+.manageshops-new-shop-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(124, 77, 255, 0.2);
 }
 
-.shops-list {
-  margin-left: 10%;
-  margin-right: 20%;
-}
-
-.shop-card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 18px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.shop-details p {
-  margin: 5px 0;
-  color: #37474f;
-}
-
-.shop-actions {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-.edit-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.edit-form input,
-.edit-form textarea {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.manageshops-new-shop-btn i {
   font-size: 16px;
 }
 
-.edit-form textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-.edit-actions {
+.manageshops-results-summary {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666;
 }
 
-.edit-btn,
-.delete-btn,
-.save-btn,
-.cancel-btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
+.manageshops-items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.manageshops-items-per-page select {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.manageshops-table-container {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.manageshops-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.manageshops-table th {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  text-align: left;
+  padding: 16px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #bbdefb;
+  position: sticky;
+  top: 0;
   cursor: pointer;
-  font-weight: bold;
+  user-select: none;
+  transition: all 0.2s ease;
 }
 
-.edit-btn {
-  background: #6ea5c5;
-  color: white;
+.manageshops-table th:hover {
+  background-color: #bbdefb;
 }
 
-.edit-btn:hover {
-  background: #54b2e8;
+.manageshops-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e9ecef;
+  color: #495057;
+  font-size: 14px;
+  line-height: 1.5;
+  vertical-align: middle;
 }
 
-.delete-btn {
-  background: #d32f2f;
-  color: white;
+.manageshops-table tbody tr {
+  transition: all 0.2s ease;
 }
 
-.delete-btn:hover {
-  background: #b71c1c;
+.manageshops-table tbody tr:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.save-btn {
-  background: #2e7d32;
-  color: white;
+.manageshops-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
-.save-btn:hover {
-  background: #1b5e20;
+/* Update table column widths */
+.manageshops-table th:nth-child(1),
+.manageshops-table td:nth-child(1) {
+  width: 18%; /* Buyer Name */
 }
-
-.cancel-btn {
-  background: #ccc;
-  color: #37474f;
+.manageshops-table th:nth-child(2),
+.manageshops-table td:nth-child(2) {
+  width: 18%; /* Shop Name */
 }
-
-.cancel-btn:hover {
-  background: #bbb;
+.manageshops-table th:nth-child(3),
+.manageshops-table td:nth-child(3) {
+  width: 15%; /* Contact */
 }
-
-.success-message {
-  color: #2e7d32;
+.manageshops-table th:nth-child(4),
+.manageshops-table td:nth-child(4) {
+  width: 15%; /* Email */
+}
+.manageshops-table th:nth-child(5),
+.manageshops-table td:nth-child(5) {
+  width: 28%; /* Address */
+}
+.manageshops-table th:nth-child(6),
+.manageshops-table td:nth-child(6) {
+  width: 6%; /* Actions */
   text-align: center;
-  margin: 10px 0;
 }
 
-.error-message {
+.manageshops-no-data {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 16px;
+  font-style: italic;
+}
+
+/* Enhanced pagination controls */
+.manageshops-pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.manageshops-pagination-controls button {
+  padding: 8px 16px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #495057;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.manageshops-pagination-controls button:hover:not(:disabled) {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  transform: translateY(-1px);
+}
+
+.manageshops-pagination-controls button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.manageshops-pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f8f9fa;
+}
+
+.manageshops-pagedetails {
+  color: #495057;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 16px;
+}
+
+/* Enhanced items per page selector */
+.manageshops-items-per-page select {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.manageshops-items-per-page select:hover {
+  border-color: #adb5bd;
+}
+
+.manageshops-items-per-page select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .manageshops-table th,
+  .manageshops-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  .manageshops-pagination-controls {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .manageshops-pagination-controls button {
+    padding: 6px 12px;
+    min-width: 60px;
+    font-size: 13px;
+  }
+
+  .manageshops-pagedetails {
+    padding: 0 8px;
+    font-size: 13px;
+  }
+}
+
+.add-shop-button {
+  background: linear-gradient(135deg, #b388ff 0%, #7c4dff 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(124, 77, 255, 0.2);
+}
+
+.add-shop-button:hover {
+  background: linear-gradient(135deg, #a370ff 0%, #6b3dff 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(124, 77, 255, 0.3);
+}
+
+.add-shop-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(124, 77, 255, 0.2);
+}
+
+.add-shop-button i {
+  font-size: 16px;
+}
+
+/* Status badge styles */
+.manageshops-status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.manageshops-status-badge.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.manageshops-status-badge.inactive {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.manageshops-status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.manageshops-search-container {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.manageshops-search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.manageshops-search-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.manageshops-search-input::placeholder {
+  color: #999;
+}
+
+/* Action buttons */
+.manageshops-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  min-width: 80px;
+}
+
+.manageshops-edit-btn,
+.manageshops-delete-btn {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.manageshops-edit-btn {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.manageshops-edit-btn:hover {
+  background-color: #bbdefb;
+  transform: translateY(-1px);
+}
+
+.manageshops-delete-btn {
+  background-color: #ffebee;
   color: #d32f2f;
-  text-align: center;
-  margin: 10px 0;
 }
 
-.delete-confirm-overlay {
+.manageshops-delete-btn:hover {
+  background-color: #ffcdd2;
+  transform: translateY(-1px);
+}
+
+/* Edit Modal */
+.manageshops-modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
-}
-
-.delete-confirm-box {
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  animation: slideIn 0.3s ease;
-}
-
-.delete-confirm-box h3 {
-  color: #d32f2f;
-  margin-bottom: 15px;
-}
-
-.delete-confirm-box p {
-  color: #37474f;
-  margin: 5px 0;
-}
-
-.confirm-buttons {
-  margin-top: 20px;
-  display: flex;
-  gap: 15px;
   justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
 }
 
-.confirm-delete-btn,
-.cancel-delete-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+.manageshops-modal-content {
+  background-color: white;
+  padding: 0;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  animation: modalSlideIn 0.3s ease-out;
 }
 
-.confirm-delete-btn {
-  background: #d32f2f;
-  color: white;
-}
-
-.confirm-delete-btn:hover {
-  background: #b71c1c;
-  transform: scale(1.05);
-}
-
-.cancel-delete-btn {
-  background: #6ea5c5;
-  color: white;
-}
-
-.cancel-delete-btn:hover {
-  background: #54b2e8;
-  transform: scale(1.05);
-}
-
-@keyframes slideIn {
+@keyframes modalSlideIn {
   from {
-    transform: translateY(-50px);
+    transform: translateY(-20px);
     opacity: 0;
   }
   to {
@@ -218,27 +442,175 @@ body, html {
   }
 }
 
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
+.manageshops-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+}
+
+.manageshops-modal-header h3 {
+  margin: 0;
+  color: #1976d2;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.manageshops-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.manageshops-modal-close:hover {
+  color: #dc3545;
+  transform: scale(1.1);
+}
+
+.manageshops-edit-form {
+  padding: 24px;
+}
+
+.manageshops-form-group {
+  margin-bottom: 20px;
+}
+
+.manageshops-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #495057;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.required {
+  color: #dc3545;
+  margin-left: 4px;
+}
+
+.manageshops-form-group input,
+.manageshops-form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.manageshops-form-group input:focus,
+.manageshops-form-group textarea:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.manageshops-form-group input.error,
+.manageshops-form-group textarea.error {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+.manageshops-form-group input.error:focus,
+.manageshops-form-group textarea.error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.error-message {
+  display: block;
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.manageshops-form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.manageshops-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.manageshops-cancel-btn,
+.manageshops-save-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.manageshops-cancel-btn {
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+.manageshops-cancel-btn:hover {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+}
+
+.manageshops-save-btn {
+  background-color: #1976d2;
+  color: white;
+}
+
+.manageshops-save-btn:hover {
+  background-color: #1565c0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(25, 118, 210, 0.2);
+}
+
+.manageshops-save-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 576px) {
+  .manageshops-modal-content {
+    width: 95%;
+    max-height: 95vh;
   }
 
-  .manage-shops-title {
-    font-size: 22px;
-    margin-left: 5%;
+  .manageshops-modal-header {
+    padding: 16px 20px;
   }
 
-  .shops-list {
-    margin-left: 5%;
-    margin-right: 5%;
+  .manageshops-edit-form {
+    padding: 20px;
   }
 
-  .shop-card {
-    padding: 15px;
+  .manageshops-form-group {
+    margin-bottom: 16px;
   }
 
-  .edit-form input,
-  .edit-form textarea {
-    font-size: 14px;
+  .manageshops-modal-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .manageshops-cancel-btn,
+  .manageshops-save-btn {
+    width: 100%;
   }
 }

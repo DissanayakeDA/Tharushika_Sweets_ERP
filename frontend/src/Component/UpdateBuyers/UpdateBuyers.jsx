@@ -13,7 +13,7 @@ function UpdateBuyers() {
 
   const [errors, setErrors] = useState({});
   const history = useNavigate();
-  const { id } = useParams(); 
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchHandler = async () => {
@@ -40,7 +40,8 @@ function UpdateBuyers() {
       formErrors.contact = "Contact number is required.";
       isValid = false;
     } else if (!/^\d{10}$/.test(inputs.contact)) {
-      formErrors.contact = "Contact number must be exactly 10 digits and contain only numbers.";
+      formErrors.contact =
+        "Contact number must be exactly 10 digits and contain only numbers.";
       isValid = false;
     }
 
@@ -77,20 +78,20 @@ function UpdateBuyers() {
     e.preventDefault();
 
     if (!validateForm()) {
-      return; 
+      return;
     }
 
     await sendRequest();
-    history("/viewbuyers"); 
+    history("/viewbuyers");
   };
 
   return (
-    <div className="form-container-buyers">
+    <div className="form-container-dbuyers">
       <Nav />
-      <h2 className="form-title">Update Buyers</h2>
+      <h2 className="form-title-dbuyers">Update Buyers</h2>
       <hr />
       <form onSubmit={handleSubmit}>
-        <div className="form-group-buyers">
+        <div className="form-group-dbuyers">
           <label>Buyer Name</label>
           <input
             type="text"
@@ -101,7 +102,7 @@ function UpdateBuyers() {
           />
           {errors.name && <span className="error">{errors.name}</span>}
         </div>
-        <div className="form-group-buyers">
+        <div className="form-group-dbuyers">
           <label>Buyer Contact</label>
           <input
             type="text"
@@ -113,8 +114,7 @@ function UpdateBuyers() {
           {errors.contact && <span className="error">{errors.contact}</span>}
         </div>
 
-
-          <div className="form-group-buyers">
+        <div className="form-group-dbuyers">
           <label>Address</label>
 
           <input
@@ -126,7 +126,7 @@ function UpdateBuyers() {
           />
           {errors.address && <span className="error">{errors.address}</span>}
         </div>
-        <button type="submit" className="save-btn">
+        <button type="submit" className="save-btn-dbuyers">
           Save
         </button>
       </form>

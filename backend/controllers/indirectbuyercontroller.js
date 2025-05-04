@@ -15,7 +15,7 @@ export const getIndirectBuyers=async(req,res) =>{
 export const createIndirectbuyer = async(req,res) =>{
     const indirectbuyer = req.body;
 
-    if (!indirectbuyer.buyername || !indirectbuyer.shopname || !indirectbuyer.contact || !indirectbuyer.address){
+    if (!indirectbuyer.buyername || !indirectbuyer.shopname || !indirectbuyer.email || !indirectbuyer.contact || !indirectbuyer.address){
         return res.status(400).json({success:false, message: "please provide all fields"})
     }
 

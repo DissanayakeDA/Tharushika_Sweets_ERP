@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -23,8 +24,8 @@ body, html {
 .sidenav {
   width: 80px;
   background-color: #ffff;
-  height: calc(100vh - 60px);
-  margin-top: 1cm;
+  height: 65vh;
+  margin-top: 7%;
   margin-left: 2%;
   padding: 20px;
   border-radius: 10px;
@@ -48,10 +49,10 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #37474F;
+  color: #37474f;
   width: 60px;
   height: 60px;
-  background-color: #FFFF;
+  background-color: #ffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -59,7 +60,7 @@ body, html {
 }
 
 .nav-label {
-  color: #37474F;
+  color: #37474f;
   font-weight: bold;
   font-size: small;
 }
@@ -164,7 +165,6 @@ main {
   .sidenav {
     width: 180px;
   }
-
 
   .sidenav ul li a {
     font-size: 14px;

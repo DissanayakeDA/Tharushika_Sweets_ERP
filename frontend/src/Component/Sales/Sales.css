@@ -5,21 +5,22 @@ html, body{
   background-color: #efefef;
 }
 
-.sales-container {
+.spsales-container {
   padding: 20px;
   background-color: #efefef;
   border-radius: 8px;
   font-family: "Noto Sans", sans-serif;
 }
 
-.sales-table {
+.spsales-table {
   width: 80%;
   border-collapse: collapse;
   text-align: center;
   margin-left: 15%;
   margin-top: 3%;
 }
-.sales-title {
+
+.spsales-title {
   font-size: 28px;
   font-weight: 400;
   color: #37474f;
@@ -29,21 +30,19 @@ html, body{
   margin-bottom: 20px;
   margin-left: 20%;
   font-family: "Noto Sans", sans-serif;
-
 }
 
-
-.sales-table th, .sales-table td {
+.spsales-table th, .spsales-table td {
   padding: 12px 15px;
   border-bottom: 2px solid #ccc;
 }
 
-.sales-table th {
+.spsales-table th {
   background-color: #efefef;
   color: #4e4a4a;
   text-align: center;
 }
-.sales-table td {
+.spsales-table td {
   font-size: 0.9rem;
   color: #555;
 }
@@ -124,4 +123,70 @@ html, body{
 .items-table th {
   background-color: #828282;
   color: #4e4a4a;
+}
+
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group label {
+  font-weight: 500;
+  color: #17304C;
+  white-space: nowrap;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px;
+}
+
+.date-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+.price-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100px;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.filter-select:focus,
+.search-input:focus,
+.date-input:focus,
+.price-input:focus {
+  outline: none;
+  border-color: #17304C;
+  box-shadow: 0 0 0 2px rgba(23, 48, 76, 0.1);
 }

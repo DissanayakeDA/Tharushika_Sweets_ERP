@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Nav/Nav";
 import { useNavigate } from "react-router-dom";
-import jsPDF from "jspdf"; 
-import html2canvas from "html2canvas"; 
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import "./ReturnInvoice.css";
 import axios from "axios";
 
 function ReturnInvoice() {
   const [invoiceData, setInvoiceData] = useState([]);
   const [totalBill, setTotalBill] = useState(0);
-  const [buyerId, setBuyerId] = useState(""); 
-  const [returnMethod, setReturnMethod] = useState(""); 
-  const [currentTime, setCurrentTime] = useState(new Date()); 
+  const [buyerId, setBuyerId] = useState("");
+  const [returnMethod, setReturnMethod] = useState("");
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch data from localStorage
-    setInvoiceData(JSON.parse(localStorage.getItem("SPreturninvoiceData")) || []);
-    setTotalBill(parseFloat(localStorage.getItem("SPreturntotalBill")) || 0);
-    setBuyerId(localStorage.getItem("SPreturnbuyerId") || "");
-    setReturnMethod(localStorage.getItem("SPreturnMethod") || ""); 
-    
+    setInvoiceData(JSON.parse(localStorage.getItem("returninvoiceData")) || []);
+    setTotalBill(parseFloat(localStorage.getItem("returntotalBill")) || 0);
+    setBuyerId(localStorage.getItem("returnbuyerId") || "");
+    setReturnMethod(localStorage.getItem("returnMethod") || "");
+
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
@@ -30,7 +30,7 @@ function ReturnInvoice() {
   }, []);
 
   const handleBack = () => {
-    navigate("/spreturns");
+    navigate("/directreturns");
   };
 
   const generatePDF = () => {
@@ -39,22 +39,22 @@ function ReturnInvoice() {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
 
-      const pdfWidth = 200; 
+      const pdfWidth = 200;
       const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-      const fileName = `ReturnInvoice_${buyerId}.pdf`; 
+      const fileName = `ReturnInvoice_${buyerId}.pdf`;
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save(fileName);
 
-      localStorage.setItem("SPrecentInvoice", fileName);
+      localStorage.setItem("recentInvoice", fileName);
       console.log("Stored File Name:", fileName);
     });
   };
 
   const handleSubmit = async () => {
     console.log("Starting handleSubmit");
-    generatePDF(); 
-  
+    generatePDF();
+
     const returnData = {
       buyerId,
       returnMethod,
@@ -66,29 +66,33 @@ function ReturnInvoice() {
       })),
       totalAmount: returnMethod === "issueMoney" ? totalBill : 0,
     };
-  
+
     console.log("Return Data:", returnData);
-  
+
     try {
-      const response = await axios.post("http://localhost:5000/api/returns/add", returnData);
+      const response = await axios.post(
+        "http://localhost:5000/api/returns/add",
+        returnData
+      );
       console.log("API Response:", response.data);
-  
+
       if (response.data.success) {
         console.log("Return recorded successfully");
-  
+
         localStorage.setItem("clearDataFlag", "true");
-  
+
         console.log("Navigating to /viewReturns");
         navigate("/viewReturns");
       } else {
         console.log("Error recording return");
       }
     } catch (error) {
-      console.error("Error submitting return:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error submitting return:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
-  
-  
 
   return (
     <div className="invoice-container">
@@ -133,7 +137,7 @@ function ReturnInvoice() {
           <p className="final-bill">
             <strong>SubTotal:</strong> ${totalBill.toFixed(2)}
           </p>
-          
+
           <h3 className="final-total">
             <strong>Total:</strong> ${totalBill.toFixed(2)}
           </h3>

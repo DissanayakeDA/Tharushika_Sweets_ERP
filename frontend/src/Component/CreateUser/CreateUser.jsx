@@ -26,7 +26,8 @@ function CreateUser() {
 
   const validateForm = () => {
     // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
     if (!passwordRegex.test(formData.password)) {
       return "Password must be at least 8 characters long and include one uppercase letter, one lowercase letter, one number, and one special character.";
     }
@@ -66,7 +67,10 @@ function CreateUser() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/users", formData);
+      const response = await axios.post(
+        "http://localhost:5000/api/users",
+        formData
+      );
       if (response.data.success) {
         navigate("/Accessdashboard");
       } else {
@@ -108,7 +112,9 @@ function CreateUser() {
             >
               <option value="">Select Access Level</option>
               <option value="Sales Management">Sales Management</option>
-              <option value="Production Management">Production Management</option>
+              <option value="Production Management">
+                Production Management
+              </option>
               <option value="Employee Management">Employee Management</option>
               <option value="Stock Management">Stock Management</option>
             </select>
@@ -182,7 +188,9 @@ function CreateUser() {
               className="text-input"
             />
           </div>
-          <button type="submit" className="submit-btn">Create User</button>
+          <button type="submit" className="submit-btn">
+            Create User
+          </button>
         </form>
       </div>
     </div>

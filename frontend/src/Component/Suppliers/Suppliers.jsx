@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Nav from "../Nav/Nav";
+import GMNav from "../GMNav/GMNav";
 import axios from "axios";
 import Supplier from "../Supplier/Supplier.jsx";
 import "../Supplier/Supplier.css";
@@ -80,7 +80,7 @@ function Suppliers() {
 
   return (
     <div>
-      <Nav />
+      <GMNav />
       <div className="buyers-container">
         <div className="header">
           <h2 className="buyer-title">Supplier List</h2>

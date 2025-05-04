@@ -19,7 +19,9 @@ function AllRequestsApproval() {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/sales-requests");
+      const response = await axios.get(
+        "http://localhost:5000/api/sales-requests"
+      );
       if (response.data.success) {
         setRequests(response.data.data);
       }
@@ -114,9 +116,7 @@ function AllRequestsApproval() {
 
       if (response.data.success) {
         setRequests(
-          requests.map((req) =>
-            req._id === id ? { ...req, status } : req
-          )
+          requests.map((req) => (req._id === id ? { ...req, status } : req))
         );
         alert(`Request ${status.toLowerCase()} successfully!`);
       }
@@ -162,13 +162,17 @@ function AllRequestsApproval() {
                   <>
                     <button
                       className="approve-btn"
-                      onClick={() => handleStatusUpdate(request._id, "Approved")}
+                      onClick={() =>
+                        handleStatusUpdate(request._id, "Approved")
+                      }
                     >
                       Approve
                     </button>
                     <button
                       className="reject-btn"
-                      onClick={() => handleStatusUpdate(request._id, "Rejected")}
+                      onClick={() =>
+                        handleStatusUpdate(request._id, "Rejected")
+                      }
                     >
                       Reject
                     </button>

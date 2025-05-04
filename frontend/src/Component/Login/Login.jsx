@@ -41,7 +41,7 @@ function Login() {
             navigate("/productiondashboard");
             break;
           case "Sales Management":
-            navigate("/supplydashboard");
+            navigate("/salesdashboard");
             break;
           case "Stock Management":
             navigate("/mainhome");

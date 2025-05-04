@@ -14,9 +14,7 @@ const AddBuyers = () => {
     address: "",
   });
 
-  
-  const [errors, setErrors] = useState({}); 
-
+  const [errors, setErrors] = useState({});
 
   // Handle input change
   const handleChange = (e) => {
@@ -34,20 +32,21 @@ const AddBuyers = () => {
     if (!inputs.name) {
       formErrors.name = "Buyer name is required.";
       isValid = false;
-    } 
+    }
 
-  if (!inputs.contact) {
-    formErrors.contact = "Contact number is required.";
-    isValid = false;
-  } else if (!/^\d{10}$/.test(inputs.contact)) {
-    formErrors.contact = "Contact number must be exactly 10 digits and contain only numbers.";
-    isValid = false;
-  }
+    if (!inputs.contact) {
+      formErrors.contact = "Contact number is required.";
+      isValid = false;
+    } else if (!/^\d{10}$/.test(inputs.contact)) {
+      formErrors.contact =
+        "Contact number must be exactly 10 digits and contain only numbers.";
+      isValid = false;
+    }
 
     if (!inputs.address) {
       formErrors.address = "Address is required.";
       isValid = false;
-    } 
+    }
 
     setErrors(formErrors);
     return isValid;
@@ -58,37 +57,34 @@ const AddBuyers = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      return; 
+      return;
     }
 
     console.log(inputs);
     await sendRequest();
 
-
-    history('/viewbuyers');  
-
+    history("/viewbuyers");
   };
 
   // Send request to backend
   const sendRequest = async () => {
-
-
-    await axios.post("http://localhost:5000/buyers", {
-      name: String(inputs.name),
-      contact: Number(inputs.contact),
-      address: String(inputs.address),
-    }).then(res => res.data);
-
+    await axios
+      .post("http://localhost:5000/buyers", {
+        name: String(inputs.name),
+        contact: Number(inputs.contact),
+        address: String(inputs.address),
+      })
+      .then((res) => res.data);
   };
 
   return (
-    <div className="form-container-buyers">
+    <div className="form-container-dbuyers">
       <HeadBar />
       <Nav />
-      <h2 className="form-title">Add Buyers</h2>
+      <h2 className="form-title-dbuyers">Add Buyers</h2>
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group-buyers">
+        <div className="form-group-dbuyers">
           <label>Buyer Name:</label>
           <input
             type="text"
@@ -99,7 +95,7 @@ const AddBuyers = () => {
           />
           {errors.name && <span className="error">{errors.name}</span>}
         </div>
-        <div className="form-group-buyers">
+        <div className="form-group-dbuyers">
           <label>Buyer Contact:</label>
           <input
             type="text"
@@ -111,8 +107,7 @@ const AddBuyers = () => {
           {errors.contact && <span className="error">{errors.contact}</span>}
         </div>
 
-        
-    <div className="form-group-buyers">
+        <div className="form-group-dbuyers">
           <label>Address</label>
 
           <input
@@ -124,7 +119,7 @@ const AddBuyers = () => {
           />
           {errors.address && <span className="error">{errors.address}</span>}
         </div>
-        <button type="submit" className="save-btn">
+        <button type="submit" className="save-btn-dbuyers">
           Submit
         </button>
       </form>

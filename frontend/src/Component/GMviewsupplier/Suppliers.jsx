@@ -38,8 +38,6 @@ function Suppliers() {
     });
   }, []);
 
-  
-
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
@@ -75,7 +73,7 @@ function Suppliers() {
   return (
     <div>
       <GMNav />
-      <HeadBar  />
+      <HeadBar />
       <div className="buyers-container">
         <div className="header">
           <h2 className="buyer-title">Supplier List</h2>
@@ -92,24 +90,21 @@ function Suppliers() {
             />
           </div>
 
-          <table className="buyers-table">
+          <table className="supplier-table">
             <thead>
               <tr>
-                
                 <th>Supplier ID</th>
                 <th>Supplier Name</th>
                 <th>Supplier Address</th>
                 <th>Supplier Phone</th>
                 <th>Supplier Email</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredSuppliers && filteredSuppliers.length > 0 ? (
                 filteredSuppliers.map((supplier, i) => (
-                  <Supplier
-                    key={i}
-                    supplier={supplier}
-                  />
+                  <Supplier key={i} supplier={supplier} />
                 ))
               ) : (
                 <tr>

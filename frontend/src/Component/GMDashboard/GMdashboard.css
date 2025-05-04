@@ -12,7 +12,7 @@ h2 {
 }
 
 /* Main container */
-.home-container {
+.home-container-gm {
   display: block;
   height: 100vh;
   background-color: #dadada;
@@ -26,10 +26,10 @@ h2 {
 }
 
 /* Main content styling */
-.main-content {
+.main-content-gm {
   flex: 2;
   background-color: #dadada; /* Set background to white */
-  padding: 10px;
+  padding: 0px;
 }
 .dash-title-GM {
   font-size: 28px;
@@ -86,7 +86,7 @@ h2 {
   flex-direction: column; /* Stack the icon and text vertically */
   align-items: center; /* Center the content horizontally */
   justify-content: center; /* Center the content vertically */
-  background: #54b2e8;
+  background: #6ea5c5;
   color: white;
   padding: 30px 20px;
   border-radius: 10px;
@@ -100,9 +100,8 @@ h2 {
   margin-left: 10%;
   margin-top: 2%;
 }
-.dashboard-link {
+.dashboard-link-emp {
   text-decoration: none;
-  width: 100%;
 }
 
 .dashboard-btn:hover {

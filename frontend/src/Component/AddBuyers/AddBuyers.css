@@ -8,7 +8,7 @@ body {
   color: #efefef;
 }
 
-.form-container-buyers {
+.form-container-dbuyers {
   margin-left: 0px; /* Adjust based on sidenav width */
   padding: 0px;
 
@@ -17,7 +17,7 @@ body {
   background-color: #efefef;
 }
 
-.form-title {
+.form-title-dbuyers {
   font-size: 28px;
   font-weight: 400;
   color: #37474f;
@@ -29,14 +29,14 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
-.form-group-buyers {
+.form-group-dbuyers {
   margin-bottom: 50px;
   align-items: center;
   margin-left: 33%;
   margin-top: 5%;
 }
 
-.form-group-buyers label {
+.form-group-dbuyers label {
   margin-top: 5%;
   display: block;
   font-size: 20px;
@@ -45,7 +45,7 @@ body {
   margin-bottom: 8px;
 }
 
-.form-group-buyers input {
+.form-group-dbuyers input {
   width: 50%;
   height: 20px;
   padding: 10px;
@@ -54,13 +54,13 @@ body {
   border-radius: 5px;
   background-color: #ffffff;
 }
-.form-group-buyers input:active {
+.form-group-dbuyers input:active {
   border: 2px solid #070707;
   border-radius: 5px;
   background-color: #ffffff;
 }
 
-.save-btn {
+.save-btn-dbuyers {
   background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
   color: white;
   padding: 10px 30px;
@@ -70,12 +70,12 @@ body {
   cursor: pointer;
   margin-left: 47%;
   margin-top: 10px;
-  background-size: 200%; 
-  transition: background-position 0.5s ease; 
+  background-size: 200%;
+  transition: background-position 0.5s ease;
 }
 
-.save-btn:hover {
-  background-position: right center; 
+.save-btn-dbuyers:hover {
+  background-position: right center;
 }
 .error {
   color: red;
@@ -83,51 +83,50 @@ body {
   margin-top: 5px;
 }
 
-
 @media (max-width: 768px) {
-  .form-container {
-    margin-left: 0; 
+  .form-container-dbuyers {
+    margin-left: 0;
     padding: 20px;
   }
 
-  .form-title {
+  .form-title-dbuyers {
     font-size: 24px;
-    margin-left: 0; 
+    margin-left: 0;
   }
 
-  .form-group {
-    margin-left: 0; 
+  .form-group-dbuyers {
+    margin-left: 0;
     width: 100%;
   }
 
-  .form-group label {
-    font-size: 14px; 
+  .form-group-dbuyers label {
+    font-size: 14px;
   }
 
-  .form-group input {
-    width: 100%; 
+  .form-group-dbuyers input {
+    width: 100%;
     padding: 8px;
     font-size: 14px;
   }
 
-  .save-btn {
-    margin-left: 0; 
-    width: 100%; 
+  .save-btn-dbuyers {
+    margin-left: 0;
+    width: 100%;
     padding: 12px;
     font-size: 16px;
   }
 }
 
 @media (max-width: 480px) {
-  .form-title {
+  .form-title-dbuyers {
     font-size: 20px;
   }
 
-  .form-group input {
-    font-size: 13px; 
+  .form-group-dbuyers input {
+    font-size: 13px;
   }
 
-  .save-btn {
-    font-size: 14px; 
+  .save-btn-dbuyers {
+    font-size: 14px;
   }
 }

@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import HeadBar from "../HeadBar/HeadBar";
 function GMDashboard() {
   return (
-    <div className="home-container">
+    <div className="home-container-gm">
       <HeadBar />
       <GMNav />
 
       {/* Main Content */}
-      <div className="main-content">
+      <div className="main-content-gm">
         <br />
         <h2 className="dash-title-GM">General Manager Dashboard</h2>
         {/* Dashboard Buttons */}
@@ -51,7 +51,7 @@ function GMDashboard() {
             </div>
           </Link>
         </div>
-        <Link to="/GMviewemployee" className="dashboard-link">
+        <Link to="/GMviewemployee" className="dashboard-link-emp">
           <div className="dashboard-btn-emp">
             <div className="dash-btn-icon">
               <i className="bi bi-person-vcard-fill"></i>
@@ -59,7 +59,7 @@ function GMDashboard() {
             <label className="dash-btn-text-req">Employees</label>
           </div>
         </Link>
-        <Link to="/GMviewsuppliers" className="dashboard-link">
+        <Link to="/viewsuppliers" className="dashboard-link-emp">
           <div className="dashboard-btn-emp">
             <div className="dash-btn-icon">
               <i className="bi bi-person-lines-fill"></i>

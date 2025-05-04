@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 import jsPDF from "jspdf"; 
 import HeadBar from "../HeadBar/HeadBar";
 
-function Sales() {
+function Spsales() {
   const [sales, setSales] = useState([]);
   const [filteredSales, setFilteredSales] = useState([]);
   const [selectedSale, setSelectedSale] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterOption, setFilterOption] = useState("default");
+  const [dateRange, setDateRange] = useState({ start: "", end: "" });
+  const [priceRange, setPriceRange] = useState({ min: "", max: "" });
 
   useEffect(() => {
     axios
@@ -53,20 +55,55 @@ function Sales() {
       );
     }
 
+    // Apply date range filter
+    if (dateRange.start && dateRange.end) {
+      updatedSales = updatedSales.filter((sale) => {
+        const saleDate = new Date(sale.date);
+        const startDate = new Date(dateRange.start);
+        const endDate = new Date(dateRange.end);
+        return saleDate >= startDate && saleDate <= endDate;
+      });
+    }
+
+    // Apply price range filter
+    if (priceRange.min !== "" && priceRange.max !== "") {
+      updatedSales = updatedSales.filter((sale) => {
+        return sale.totalAmount >= Number(priceRange.min) && 
+               sale.totalAmount <= Number(priceRange.max);
+      });
+    }
+
+    // Apply status filter
     if (filterOption !== "default") {
-      if (filterOption === "date-newest") {
-        updatedSales.sort((a, b) => new Date(b.date) - new Date(a.date));
-      } else if (filterOption === "date-oldest") {
-        updatedSales.sort((a, b) => new Date(a.date) - new Date(b.date));
-      } else if (filterOption === "price-low-high") {
-        updatedSales.sort((a, b) => a.totalAmount - b.totalAmount);
-      } else if (filterOption === "price-high-low") {
-        updatedSales.sort((a, b) => b.totalAmount - a.totalAmount);
+      switch (filterOption) {
+        case "date-newest":
+          updatedSales.sort((a, b) => new Date(b.date) - new Date(a.date));
+          break;
+        case "date-oldest":
+          updatedSales.sort((a, b) => new Date(a.date) - new Date(b.date));
+          break;
+        case "price-low-high":
+          updatedSales.sort((a, b) => a.totalAmount - b.totalAmount);
+          break;
+        case "price-high-low":
+          updatedSales.sort((a, b) => b.totalAmount - a.totalAmount);
+          break;
+        case "status-pending":
+          updatedSales = updatedSales.filter(sale => sale.status === "pending");
+          break;
+        case "status-completed":
+          updatedSales = updatedSales.filter(sale => sale.status === "completed");
+          break;
+        case "status-cancelled":
+          updatedSales = updatedSales.filter(sale => sale.status === "cancelled");
+          break;
+        default:
+          break;
       }
     }
 
     setFilteredSales(updatedSales);
-  }, [searchQuery, filterOption, sales]);
+  }, [searchQuery, filterOption, dateRange, priceRange, sales]);
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -106,35 +143,76 @@ function Sales() {
     <div>
       <Nav />
       <HeadBar />
-      <div className="sales-container">
+      <div className="spsales-container">
         <div className="header">
-          <h2 className="sales-title">Sales Records</h2>
+          <h2 className="spsales-title">SP Sales Records</h2>
         </div>
 
-        <div className="table-controls">
-          <input
-            type="search"
-            placeholder="Search Here"
-            className="search-input"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+        <div className="filters-container">
+          <div className="filter-group">
+            <input
+              type="search"
+              placeholder="Search Here"
+              className="search-input"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
 
-          <select
-            className="filter-select"
-            value={filterOption}
-            onChange={(e) => setFilterOption(e.target.value)}
-          >
-            <option value="default">Filter By</option>
-            <option value="date-newest">Date: Newest First</option>
-            <option value="date-oldest">Date: Oldest First</option>
-            <option value="price-low-high">Price: Low to High</option>
-            <option value="price-high-low">Price: High to Low</option>
-          </select>
+          <div className="filter-group">
+            <label>Date Range:</label>
+            <input
+              type="date"
+              value={dateRange.start}
+              onChange={(e) => setDateRange({ ...dateRange, start: e.target.value })}
+              className="date-input"
+            />
+            <input
+              type="date"
+              value={dateRange.end}
+              onChange={(e) => setDateRange({ ...dateRange, end: e.target.value })}
+              className="date-input"
+            />
+          </div>
+
+          <div className="filter-group">
+            <label>Price Range:</label>
+            <input
+              type="number"
+              placeholder="Min"
+              value={priceRange.min}
+              onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
+              className="price-input"
+            />
+            <input
+              type="number"
+              placeholder="Max"
+              value={priceRange.max}
+              onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
+              className="price-input"
+            />
+          </div>
+
+          <div className="filter-group">
+            <select
+              className="filter-select"
+              value={filterOption}
+              onChange={(e) => setFilterOption(e.target.value)}
+            >
+              <option value="default">Filter By</option>
+              <option value="date-newest">Date: Newest First</option>
+              <option value="date-oldest">Date: Oldest First</option>
+              <option value="price-low-high">Price: Low to High</option>
+              <option value="price-high-low">Price: High to Low</option>
+              <option value="status-pending">Status: Pending</option>
+              <option value="status-completed">Status: Completed</option>
+              <option value="status-cancelled">Status: Cancelled</option>
+            </select>
+          </div>
         </div>
 
         <div className="table-container">
-          <table className="sales-table">
+          <table className="spsales-table">
             <thead>
               <tr>
                 <th>Invoice ID</th>
@@ -217,4 +295,4 @@ function Sales() {
   );
 }
 
-export default Sales;
+export default Spsales;

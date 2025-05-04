@@ -1,25 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
-
-body, html {
-
+body,
+html {
   margin: 0;
   padding: 0;
+
   font-family: "Noto Sans", sans-serif;
   box-sizing: border-box;
 }
 
-
-.home-container {
+.home-container-st {
   display: block;
   height: 100vh;
-  background-color: #efefef;
+  background-color: #dadada;
 }
 
-.main-content {
+.main-content-st {
   flex: 2;
- background-color: #efefef; /* Set background to white */
+  background-color: #dadada; /* Set background to white */
   padding: 20px;
 }
 .dash-title {
@@ -33,7 +32,6 @@ body, html {
   margin-bottom: 20px;
   font-family: "Noto Sans", sans-serif;
 }
-  
 
 .dashboard-buttons {
   display: flex;
@@ -46,16 +44,13 @@ body, html {
 .dash-btn-text,
 .dash-btn-text-sales,
 .dash-btn-text-req {
-
-  
-  color: #37474F;
-  text-align: center; 
-  margin-top: 10px; 
+  color: #37474f;
+  text-align: center;
+  margin-top: 10px;
 }
 .dash-btn-icon {
-  color: #37474F;
-  font-size: 2.5rem; 
-
+  color: #37474f;
+  font-size: 2.5rem;
 }
 .dash-btn-icon-returns {
   color: #37474f;
@@ -83,10 +78,10 @@ body, html {
 .dashboard-btn-returns {
   display: flex;
 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
- background: #54b2e8;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #54b2e8;
 
   color: white;
   padding: 30px 20px;
@@ -104,6 +99,10 @@ body, html {
 .dashboard-link {
   text-decoration: none;
   width: 100%;
+}
+.dashboard-link-st {
+  text-decoration: none;
+  width: 300px;
 }
 
 .dashboard-btn:hover {
@@ -140,7 +139,7 @@ body, html {
   .dashboard-btn {
     padding: 20px 15px;
     font-size: 1rem;
-    width: 80%; 
+    width: 80%;
   }
 
   .dashboard-btn i {

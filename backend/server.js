@@ -126,26 +126,7 @@ app.post("/api/returns/add", async (req, res) => {
 });
 
 //indirectreturns
-
 app.use("/api/indirectreturns", indirectreturnRoutes);
-app.post("/api/indirectreturns/add", async (req, res) => {
-  try {
-    console.log("Received Data:", req.body); 
-    const { buyerId, items, totalAmount } = req.body;
-
-    if (!buyerId || !items || items.length === 0 || !totalAmount) {
-      return res.status(400).json({ success: false, message: "Missing data" });
-    }
-
-    const newReturn = { buyerId, items, totalAmount, date: new Date() };
-    const result = await db.collection("directreturns").insertOne(newReturn);
-
-    res.json({ success: true, insertedId: result.insertedId });
-  } catch (error) {
-    console.error("Database Error:", error);
-    res.status(500).json({ success: false, message: "Internal server error" });
-  }
-});
 
 
 app.listen(PORT, () => {
