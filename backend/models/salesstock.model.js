@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 const salesstockSchema = new mongoose.Schema(
@@ -14,7 +13,7 @@ const salesstockSchema = new mongoose.Schema(
     },
     sp_price: {
       type: Number,
-      required: false, 
+      required: false,
       default: 0,
     },
   },
@@ -26,4 +25,3 @@ const salesstockSchema = new mongoose.Schema(
 const SalesStock = mongoose.model("SalesStock", salesstockSchema);
 
 export default SalesStock;
-

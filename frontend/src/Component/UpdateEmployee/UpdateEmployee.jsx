@@ -27,7 +27,9 @@ const UpdateEmployee = () => {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/employee/${id}`);
+        const response = await axios.get(
+          `http://localhost:5000/api/employee/${id}`
+        );
         if (response.data.success) {
           const employee = response.data.data;
           setInputs({
@@ -39,14 +41,21 @@ const UpdateEmployee = () => {
             bank: employee.bank || "",
             branch: employee.branch || "",
             nicNo: employee.nicNo || "",
-            dateOfBirth: employee.dateOfBirth ? employee.dateOfBirth.split("T")[0] : "",
+            dateOfBirth: employee.dateOfBirth
+              ? employee.dateOfBirth.split("T")[0]
+              : "",
           });
         } else {
           setErrors({ fetch: "Failed to load employee data." });
         }
       } catch (error) {
-        console.error("Error fetching employee:", error.response?.data || error.message);
-        setErrors({ fetch: "Error fetching employee data. Please check the ID or server." });
+        console.error(
+          "Error fetching employee:",
+          error.response?.data || error.message
+        );
+        setErrors({
+          fetch: "Error fetching employee data. Please check the ID or server.",
+        });
       } finally {
         setLoading(false);
       }
@@ -112,15 +121,27 @@ const UpdateEmployee = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/employee/${id}`, inputs);
+      const response = await axios.put(
+        `http://localhost:5000/api/employee/${id}`,
+        inputs
+      );
       if (response.data.success) {
         navigate("/viewemployees");
       } else {
-        setErrors({ submit: response.data.message || "Failed to update employee." });
+        setErrors({
+          submit: response.data.message || "Failed to update employee.",
+        });
       }
     } catch (error) {
-      console.error("Error updating employee:", error.response?.data || error.message);
-      setErrors({ submit: error.response?.data?.message || "Error updating employee. Please try again." });
+      console.error(
+        "Error updating employee:",
+        error.response?.data || error.message
+      );
+      setErrors({
+        submit:
+          error.response?.data?.message ||
+          "Error updating employee. Please try again.",
+      });
     }
   };
 
@@ -128,7 +149,7 @@ const UpdateEmployee = () => {
 
   return (
     <>
-      <HeadBar /> {/* Moved outside the container */}
+      <HeadBar />
       <div className="form-container-buyers">
         <HRNav />
         <div className="form-content">
@@ -145,23 +166,50 @@ const UpdateEmployee = () => {
                 <h3 className="section-title">Personal Details</h3>
                 <div className="form-group-buyers">
                   <label>Employee Name:</label>
-                  <input type="text" name="name" onChange={handleChange} value={inputs.name} />
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={handleChange}
+                    value={inputs.name}
+                  />
                   {errors.name && <span className="error">{errors.name}</span>}
                 </div>
                 <div className="form-group-buyers">
                   <label>Mobile Number:</label>
-                  <input type="text" name="mobileNo" onChange={handleChange} value={inputs.mobileNo} />
-                  {errors.mobileNo && <span className="error">{errors.mobileNo}</span>}
+                  <input
+                    type="text"
+                    name="mobileNo"
+                    onChange={handleChange}
+                    value={inputs.mobileNo}
+                  />
+                  {errors.mobileNo && (
+                    <span className="error">{errors.mobileNo}</span>
+                  )}
                 </div>
                 <div className="form-group-buyers">
                   <label>NIC Number:</label>
-                  <input type="text" name="nicNo" onChange={handleChange} value={inputs.nicNo} />
-                  {errors.nicNo && <span className="error">{errors.nicNo}</span>}
+                  <input
+                    type="text"
+                    name="nicNo"
+                    onChange={handleChange}
+                    value={inputs.nicNo}
+                    disabled
+                  />
+                  {errors.nicNo && (
+                    <span className="error">{errors.nicNo}</span>
+                  )}
                 </div>
                 <div className="form-group-buyers">
                   <label>Date of Birth:</label>
-                  <input type="date" name="dateOfBirth" onChange={handleChange} value={inputs.dateOfBirth} />
-                  {errors.dateOfBirth && <span className="error">{errors.dateOfBirth}</span>}
+                  <input
+                    type="date"
+                    name="dateOfBirth"
+                    onChange={handleChange}
+                    value={inputs.dateOfBirth}
+                  />
+                  {errors.dateOfBirth && (
+                    <span className="error">{errors.dateOfBirth}</span>
+                  )}
                 </div>
               </div>
 
@@ -170,13 +218,27 @@ const UpdateEmployee = () => {
                 <h3 className="section-title">Job Details</h3>
                 <div className="form-group-buyers">
                   <label>Position:</label>
-                  <input type="text" name="position" onChange={handleChange} value={inputs.position} />
-                  {errors.position && <span className="error">{errors.position}</span>}
+                  <input
+                    type="text"
+                    name="position"
+                    onChange={handleChange}
+                    value={inputs.position}
+                  />
+                  {errors.position && (
+                    <span className="error">{errors.position}</span>
+                  )}
                 </div>
                 <div className="form-group-buyers">
                   <label>Salary:</label>
-                  <input type="number" name="salary" onChange={handleChange} value={inputs.salary} />
-                  {errors.salary && <span className="error">{errors.salary}</span>}
+                  <input
+                    type="number"
+                    name="salary"
+                    onChange={handleChange}
+                    value={inputs.salary}
+                  />
+                  {errors.salary && (
+                    <span className="error">{errors.salary}</span>
+                  )}
                 </div>
               </div>
 
@@ -185,24 +247,47 @@ const UpdateEmployee = () => {
                 <h3 className="section-title">Bank Details</h3>
                 <div className="form-group-buyers">
                   <label>Bank Account No:</label>
-                  <input type="text" name="bankAccountNo" onChange={handleChange} value={inputs.bankAccountNo} />
-                  {errors.bankAccountNo && <span className="error">{errors.bankAccountNo}</span>}
+                  <input
+                    type="text"
+                    name="bankAccountNo"
+                    onChange={handleChange}
+                    value={inputs.bankAccountNo}
+                  />
+                  {errors.bankAccountNo && (
+                    <span className="error">{errors.bankAccountNo}</span>
+                  )}
                 </div>
                 <div className="form-group-buyers">
                   <label>Bank:</label>
-                  <input type="text" name="bank" onChange={handleChange} value={inputs.bank} />
+                  <input
+                    type="text"
+                    name="bank"
+                    onChange={handleChange}
+                    value={inputs.bank}
+                  />
                   {errors.bank && <span className="error">{errors.bank}</span>}
                 </div>
                 <div className="form-group-buyers">
                   <label>Branch:</label>
-                  <input type="text" name="branch" onChange={handleChange} value={inputs.branch} />
-                  {errors.branch && <span className="error">{errors.branch}</span>}
+                  <input
+                    type="text"
+                    name="branch"
+                    onChange={handleChange}
+                    value={inputs.branch}
+                  />
+                  {errors.branch && (
+                    <span className="error">{errors.branch}</span>
+                  )}
                 </div>
               </div>
 
               {/* Submit Button */}
-              <button type="submit" className="save-btn">Update Employee</button>
-              {errors.submit && <span className="error submit-error">{errors.submit}</span>}
+              <button type="submit" className="save-btn">
+                Update Employee
+              </button>
+              {errors.submit && (
+                <span className="error submit-error">{errors.submit}</span>
+              )}
             </form>
           </div>
         </div>

@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+.pm-view-requests-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #DADADA;
+}
+
+.pm-view-requests-main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.pm-view-requests-content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pm-view-requests-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.pm-view-requests-table-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 50px;
+}
+
+.pm-view-requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pm-view-requests-table th,
+.pm-view-requests-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.pm-view-requests-table th {
+  background: #f4f4f4;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.pm-view-requests-table td {
+  color: #34495e;
+  font-size: 1rem;
+}
+
+.status-pending {
+  color: #f39c12;
+  font-weight: 500;
+}
+
+.status-approved {
+  color: #2ecc71;
+  font-weight: 500;
+}
+
+.status-rejected {
+  color: #c0392b;
+  font-weight: 500;
+}
+
+.pm-view-requests-error-message {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #c0392b;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.pm-view-requests-no-data {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #34495e;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.pm-view-requests-loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.pm-view-requests-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .pm-view-requests-table th,
+  .pm-view-requests-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .pm-view-requests-table-container {
+    margin-top: 20px;
+  }
+}

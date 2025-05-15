@@ -33,9 +33,6 @@ import GMemployee from "./Component/GMviewemployee/GMviewemployee";
 
 import GMproducts from "./Component/GMviewproducts/GMviewproducts";
 import GMreturns from "./Component/GMviewreturns/GMreturns";
-import AllRequestsApproval from "./Component/AllRequestsApproval/AllRequestsApproval";
-import SalesRequestForm from "./Component/SalesRequestForm/SalesRequestForm";
-import MyRequests from "./Component/MyRequests/MyRequests";
 import HRDashboard from "./Component/HRDashboard/HRDashboard";
 import AddEmployee from "./Component/AddEmployee/AddEmployee";
 import ViewEmployees from "./Component/ViewEmployee/ViewEmployee";
@@ -52,12 +49,23 @@ import SPIssueItem from "./Component/SPIssueItem/SPIssueItem";
 import SPReturns from "./Component/SPReturns/SPReturns";
 import SPSales from "./Component/SPSales/SPSales";
 import SPviewReturns from "./Component/SPviewReturns/SPviewReturns";
-import SPviewstock from "./Component/viewSalesStock/viewSalesStock";
+import ViewSalesStock from "./Component/viewSalesStock/viewSalesStock";
 import SPInvoice from "./Component/SPInvoice/SPInvoice";
 import SPReturnInvoice from "./Component/SPReturnInvoice/SPReturnInvoice";
 import AllStockRequestsApproval from "./Component/AllStockRequestsApproval/AllStockRequestsApproval";
 import MyStockChangeRequests from "./Component/SMRequests/MyStockChangeRequests";
 import StockChangeRequestForm from "./Component/StockChangeRequestForm/StockChangeRequestForm";
+import ForgotPassword from "./Component/ForgotPassword/ForgotPassword";
+import ResetPassword from "./Component/ResetPassword/ResetPassword";
+import SPViewProduct from "./Component/SPViewProduct/SPViewProduct";
+import PMDashboard from "./Component/PMDashboard/PMDashboard";
+import IngredientRequestForm from "./Component/IngredientRequestForm/IngredientRequestForm";
+import IngredientRequestsApproval from "./Component/IngredientRequestsApproval/IngredientRequestsApproval";
+import ViewIngredientRequests from "./Component/ViewIngredientRequests/ViewIngredientRequests";
+import PMViewProducts from "./Component/PMViewProducts/PMViewProducts";
+import SalesRequestApproval from "./Component/SalesRequestApproval/SalesRequestApproval";
+import ViewSalesRequests from "./Component/ViewSalesRequests/ViewSalesRequests";
+import StockRequestForm from "./Component/StockRequestForm/StockRequestForm";
 
 function App() {
   return (
@@ -72,6 +80,10 @@ function App() {
           <Route
             path="/addstock"
             element={<ProtectedRoute element={<AddStock />} />}
+          />
+          <Route
+            path="/pmdashboard"
+            element={<ProtectedRoute element={<PMDashboard />} />}
           />
           <Route
             path="/issueitems"
@@ -186,7 +198,10 @@ function App() {
             path="/Accessdashboard"
             element={<ProtectedRoute element={<AccessControlDashboard />} />}
           />
+
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
 
           <Route path="/addshops" element={<AddShop />} />
           <Route path="/manageshops" element={<ManageShops />} />
@@ -195,20 +210,18 @@ function App() {
           <Route path="/spsales" element={<SPSales />} />
           <Route path="/spviewreturns" element={<SPviewReturns />} />
           <Route path="/salesdashboard" element={<SalesDashboard />} />
-          <Route path="/sales-request" element={<SalesRequestForm />} />
-          <Route path="/my-requests" element={<MyRequests />} />
+          <Route path="/spviewproduct" element={<SPViewProduct />} />
+
           <Route path="/addsuppliers" element={<AddSuppliers />} />
-          <Route
-            path="/all-requests-approval"
-            element={<AllRequestsApproval />}
-          />
-          <Route path="/viewsalesstock" element={<SPviewstock />} />
+
+          <Route path="/viewsalesstock" element={<ViewSalesStock />} />
           <Route path="/spreturnInvoice" element={<SPReturnInvoice />} />
           <Route path="/spInvoice" element={<SPInvoice />} />
           <Route
             path="/all-stock-change-requests"
             element={<AllStockRequestsApproval />}
           />
+          <Route path="/sales-request" element={<StockRequestForm />} />
           <Route
             path="/mystock-change-requests"
             element={<MyStockChangeRequests />}
@@ -216,6 +229,32 @@ function App() {
           <Route
             path="/mystock-request/:stockId"
             element={<StockChangeRequestForm />}
+          />
+          <Route
+            path="/ingredient-request"
+            element={<ProtectedRoute element={<IngredientRequestForm />} />}
+          />
+          <Route
+            path="/ingredient-requests-approval"
+            element={
+              <ProtectedRoute element={<IngredientRequestsApproval />} />
+            }
+          />
+          <Route
+            path="/view-ingredient-requests"
+            element={<ProtectedRoute element={<ViewIngredientRequests />} />}
+          />
+          <Route
+            path="/pmviewproducts"
+            element={<ProtectedRoute element={<PMViewProducts />} />}
+          />
+          <Route
+            path="/sales-requests-approval"
+            element={<ProtectedRoute element={<SalesRequestApproval />} />}
+          />
+          <Route
+            path="/viewsalesrequests"
+            element={<ProtectedRoute element={<ViewSalesRequests />} />}
           />
         </Routes>
       </React.Fragment>

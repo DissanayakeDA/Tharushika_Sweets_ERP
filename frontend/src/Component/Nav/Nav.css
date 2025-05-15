@@ -1,19 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
-
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%; 
-  }
-  
-
-.sidenav {
+.stockNav-sidenav {
   width: 80px;
   background-color: #ffff;
-  height: 73vh;
-  margin-top: 8%;
+  height: 75vh;
+  margin-top: 9%;
   margin-left: 2%;
   padding: 20px;
   border-radius: 10px;
@@ -28,126 +26,92 @@ body, html {
   transform: translateX(0);
 }
 
-.sidenav.open {
+.stockNav-sidenav.stockNav-open {
   transform: translateX(-260px);
 }
-  .center-icon-btn {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    color: #37474F;
-    width: 60px; 
-    height: 60px;
-    background-color: #FFFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 auto; 
-  }
-  .nav-label{
-    color: #37474F;
-    font-weight: bold;
-    font-size: small;
-  }
 
-.profile-icon-btn {
+.stockNav-center-icon-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #37474f;
+  width: 70px;
+  height: 70px;
+  background-color: #ffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.stockNav-nav-label {
+  color: #37474f;
+  font-weight: bold;
+  font-size: small;
+}
+
+.stockNav-profile-icon-btn {
   color: #37474f;
   background-color: #efefef;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  position: fixed; 
+  position: fixed;
   top: 15px;
-  right: 20px; 
-  padding: 5px; 
-  z-index: 1000; 
+  right: 20px;
+  padding: 5px;
+  z-index: 1000;
 }
 
-/* Ensure the SVG is properly centered */
-.center-icon-btn svg {
+.stockNav-center-icon-btn svg {
   display: block;
 }
 
-
-  .center-icon-btn svg {
-    display: block;
-  }
-  
-
-
-
-.brand {
+.stockNav-brand {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 30px;
   text-align: center;
 }
 
-
-.sidenav ul {
+.stockNav-sidenav ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.sidenav ul li {
+.stockNav-sidenav ul li {
   margin: 10px 0;
-  text-align: center; 
+  text-align: center;
 }
 
-.sidenav ul li a {
+.stockNav-sidenav ul li a {
   text-decoration: none;
   color: white;
   font-size: 16px;
-  display: block; 
+  display: block;
 }
 
-.sidenav ul hr {
+.stockNav-sidenav ul hr {
   border: 0;
   height: 1px;
   opacity: 0.5;
   margin: 10px 0;
 }
 
-  .sidenav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .sidenav ul li {
-    margin: 10px 0;
-    text-align: center;
-  }
-  
-  .sidenav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    display: block; 
-  }
-  
-  .sidenav ul hr {
-    border: 0;
-    height: 1px;
-    background-color: white;
-    opacity: 0.5;
-    margin: 10px 0;
-  }
-
 main {
-  margin-left: 220px; 
+  margin-left: 220px;
   padding: 20px;
 }
 
-.center-icon-btn.active {
-  background-color: rgba(154, 195, 221, 0.2); 
-  border-radius: 50%; 
-  box-shadow: 0 0 15px rgba(154, 195, 221, 0.7); 
-  transition: all 0.3s ease-in-out; 
+.stockNav-center-icon-btn.stockNav-active {
+  background-color: rgba(154, 195, 221, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(154, 195, 221, 0.7);
+  transition: all 0.3s ease-in-out;
 }
 
-@keyframes shadowPulse {
+@keyframes stockNav-shadowPulse {
   0% {
     box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
   }
@@ -159,45 +123,45 @@ main {
   }
 }
 
-.center-icon-btn:hover{
-  background-color: rgba(154, 195, 221, 0.2); 
-  border-radius: 50%; 
-  box-shadow: 0 0 15px #9ac3dd; 
+.stockNav-center-icon-btn:hover {
+  background-color: rgba(154, 195, 221, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 15px #9ac3dd;
   transition: all 0.3s ease-in-out;
-
-
 }
-.center-icon-btn.active {
-  animation: shadowPulse 1.5s infinite; 
+
+.stockNav-center-icon-btn.stockNav-active {
+  animation: stockNav-shadowPulse 1.5s infinite;
 }
+
 @media (max-width: 768px) {
-  .sidenav {
-    transform: translateX(-220px); 
+  .stockNav-sidenav {
+    transform: translateX(-220px);
   }
 
-  .sidenav.open {
-    transform: translateX(0); 
+  .stockNav-sidenav.stockNav-open {
+    transform: translateX(0);
   }
 
-  .list-icon-btn {
-    display: block; 
+  .stockNav-list-icon-btn {
+    display: block;
   }
 
-  .sidenav {
-    width: 200px; 
+  .stockNav-sidenav {
+    width: 200px;
   }
 
   main {
-    margin-left: 0; 
+    margin-left: 0;
   }
 }
 
 @media (max-width: 480px) {
-  .sidenav {
+  .stockNav-sidenav {
     width: 180px;
   }
 
-  .sidenav ul li a {
+  .stockNav-sidenav ul li a {
     font-size: 14px;
   }
 }

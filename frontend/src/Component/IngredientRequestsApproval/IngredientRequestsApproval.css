@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+.ingredient-requests-approval-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #DADADA;
+}
+
+.ingredient-requests-approval-main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.ingredient-requests-approval-content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ingredient-requests-approval-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.ingredient-requests-approval-table-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 50px;
+}
+
+.ingredient-requests-approval-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Roboto', sans-serif;
+}
+
+.ingredient-requests-approval-table th,
+.ingredient-requests-approval-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ingredient-requests-approval-table th {
+  background: #f4f4f4;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.ingredient-requests-approval-table td {
+  color: #34495e;
+  font-size: 1rem;
+}
+
+.status-pending {
+  color: #f39c12;
+  font-weight: 500;
+}
+
+.status-approved {
+  color: #2ecc71;
+  font-weight: 500;
+}
+
+.status-rejected {
+  color: #c0392b;
+  font-weight: 500;
+}
+
+.ingredient-requests-approval-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ingredient-requests-approval-approve-btn,
+.ingredient-requests-approval-reject-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  flex: 0 1 auto;
+}
+
+.ingredient-requests-approval-approve-btn {
+  background: #2ecc71;
+  color: white;
+}
+
+.ingredient-requests-approval-approve-btn:hover {
+  background: #27ae60;
+}
+
+.ingredient-requests-approval-reject-btn {
+  background: #c0392b;
+  color: white;
+}
+
+.ingredient-requests-approval-reject-btn:hover {
+  background: #a93226;
+}
+
+.ingredient-requests-approval-error-message {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #c0392b;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.ingredient-requests-approval-success-message {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #2ecc71;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.ingredient-requests-approval-no-data {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #34495e;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.ingredient-requests-approval-loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.ingredient-requests-approval-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.request-type-dropdown {
+  appearance: none;
+  width: 250px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-family: 'Noto Sans', sans-serif;
+  color: #2c3e50;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.request-type-dropdown:hover {
+  border-color: #2ecc71;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.request-type-dropdown:focus {
+  outline: none;
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+}
+
+.request-type-dropdown::after {
+  content: '\25BC';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2c3e50;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .ingredient-requests-approval-table th,
+  .ingredient-requests-approval-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .ingredient-requests-approval-actions {
+    gap: 8px;
+  }
+
+  .ingredient-requests-approval-approve-btn,
+  .ingredient-requests-approval-reject-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .ingredient-requests-approval-table-container {
+    margin-top: 20px;
+  }
+
+  .request-type-dropdown {
+    width: 200px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}

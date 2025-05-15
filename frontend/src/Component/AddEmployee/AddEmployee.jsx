@@ -12,7 +12,9 @@ const Alert = ({ messages, onDismiss }) => (
       <span className="error-icon">⚠️</span>
       <div className="error-messages">
         {messages.map((message, index) => (
-          <p key={index} className="error-message">{message}</p>
+          <p key={index} className="error-message">
+            {message}
+          </p>
         ))}
       </div>
     </div>
@@ -32,9 +34,11 @@ const AddEmployee = () => {
     branch: "",
     nicNo: "",
     dateOfBirth: "",
+    address: "",
   });
 
   const [errorMessages, setErrorMessages] = useState([]);
+  const [nicExists, setNicExists] = useState(false);
 
   const sriLankanBanks = [
     "Amana Bank PLC",
@@ -66,12 +70,46 @@ const AddEmployee = () => {
 
   const handleDismiss = () => {
     setErrorMessages([]);
+    setNicExists(false);
   };
+
+  // Check NIC existence with a simple delay
+  useEffect(() => {
+    if (!inputs.nicNo || !/^[0-9]{9}[vV]$|^[0-9]{12}$/.test(inputs.nicNo)) {
+      setNicExists(false);
+      setErrorMessages((prev) =>
+        prev.filter((msg) => msg !== "NIC number already exists")
+      );
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/employee/check-nic/${inputs.nicNo}`
+        );
+        setNicExists(response.data.exists);
+        if (response.data.exists) {
+          setErrorMessages(["NIC number already exists"]);
+        } else {
+          setErrorMessages((prev) =>
+            prev.filter((msg) => msg !== "NIC number already exists")
+          );
+        }
+      } catch (error) {
+        console.error("NIC check error:", error.message);
+        setErrorMessages(["Error checking NIC. Please try again."]);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [inputs.nicNo]);
 
   useEffect(() => {
     const handleClickOutside = () => {
       if (errorMessages.length > 0) {
         setErrorMessages([]);
+        setNicExists(false);
       }
     };
 
@@ -85,9 +123,13 @@ const AddEmployee = () => {
   }, [errorMessages]);
 
   const handleChange = (e) => {
+    let value = e.target.value;
+    if (e.target.name === "nicNo") {
+      value = value.toUpperCase();
+    }
     setInputs((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     }));
   };
 
@@ -145,7 +187,10 @@ const AddEmployee = () => {
       isValid = false;
     }
 
-    const bankAccountError = validateBankAccountNumber(inputs.bank, inputs.bankAccountNo);
+    const bankAccountError = validateBankAccountNumber(
+      inputs.bank,
+      inputs.bankAccountNo
+    );
     if (bankAccountError) {
       formErrors.bankAccountNo = true;
       messages.push(bankAccountError);
@@ -174,13 +219,34 @@ const AddEmployee = () => {
       isValid = false;
     }
 
+    if (nicExists) {
+      formErrors.nicNo = true;
+      messages.push("NIC number already exists");
+      isValid = false;
+    }
+
     if (!inputs.dateOfBirth) {
       formErrors.dateOfBirth = true;
       messages.push("Date of birth is required.");
       isValid = false;
     }
 
-    setErrorMessages(messages);
+    if (!inputs.address) {
+      formErrors.address = true;
+      messages.push("Address is required.");
+      isValid = false;
+    }
+
+    setErrorMessages((prev) => {
+      const existingNicError = prev.includes("NIC number already exists");
+      if (existingNicError && !nicExists) {
+        return messages;
+      }
+      return [
+        ...prev.filter((msg) => msg !== "NIC number already exists"),
+        ...messages,
+      ];
+    });
     return isValid;
   };
 
@@ -196,8 +262,16 @@ const AddEmployee = () => {
       await sendRequest();
       history("/viewemployees");
     } catch (error) {
-      console.error("Error adding employee:", error);
-      setErrorMessages(["Failed to add employee. Please try again."]);
+      console.error("Error adding employee:", error.message);
+      if (
+        error.response &&
+        error.response.status === 400 &&
+        error.response.data.message.includes("Failed")
+      ) {
+        setErrorMessages([error.response.data.message]);
+      } else {
+        setErrorMessages(["NIC number already exists"]);
+      }
     }
   };
 
@@ -212,19 +286,22 @@ const AddEmployee = () => {
       branch: String(inputs.branch),
       nicNo: String(inputs.nicNo),
       dateOfBirth: String(inputs.dateOfBirth),
+      address: String(inputs.address),
     });
     return response.data;
   };
 
   return (
     <>
-      <HeadBar /> {/* Moved outside the container */}
+      <HeadBar />
       <div className="form-container-buyers">
         <HRNav />
         <div className="form-content">
           <div className="form-box">
             <h2 className="form-title">Add New Employee</h2>
-            {errorMessages.length > 0 && <Alert messages={errorMessages} onDismiss={handleDismiss} />}
+            {errorMessages.length > 0 && (
+              <Alert messages={errorMessages} onDismiss={handleDismiss} />
+            )}
             <form onSubmit={handleSubmit}>
               <div className="form-section">
                 <h3 className="section-title">Personal Details</h3>
@@ -256,6 +333,7 @@ const AddEmployee = () => {
                     onChange={handleChange}
                     value={inputs.nicNo}
                     placeholder="Enter NIC Number"
+                    className={nicExists ? "input-error" : ""}
                   />
                 </div>
                 <div className="form-group-buyers">
@@ -265,6 +343,16 @@ const AddEmployee = () => {
                     name="dateOfBirth"
                     onChange={handleChange}
                     value={inputs.dateOfBirth}
+                  />
+                </div>
+                <div className="form-group-buyers">
+                  <label>Address:</label>
+                  <textarea
+                    name="address"
+                    className="address-textarea"
+                    onChange={handleChange}
+                    value={inputs.address}
+                    placeholder="Enter Address"
                   />
                 </div>
               </div>
@@ -329,7 +417,7 @@ const AddEmployee = () => {
                   />
                 </div>
               </div>
-              <button type="submit" className="save-btn">
+              <button type="submit" className="save-btn" disabled={nicExists}>
                 Add Employee
               </button>
             </form>

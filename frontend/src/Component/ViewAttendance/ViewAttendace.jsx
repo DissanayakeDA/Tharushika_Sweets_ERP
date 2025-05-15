@@ -8,7 +8,11 @@ function ViewAttendance() {
   const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+  const [editMode, setEditMode] = useState(false);
+  const [editedAttendance, setEditedAttendance] = useState({});
 
   const fetchAttendance = async () => {
     setLoading(true);
@@ -32,7 +36,11 @@ function ViewAttendance() {
       if (error.code === "ECONNABORTED") {
         setError("Request timed out. Please check the server.");
       } else if (error.response) {
-        setError(`Server error: ${error.response.status} - ${error.response.data.message || "Unknown error"}`);
+        setError(
+          `Server error: ${error.response.status} - ${
+            error.response.data.message || "Unknown error"
+          }`
+        );
       } else if (error.request) {
         setError("No response from server. Check if the server is running.");
       } else {
@@ -50,6 +58,8 @@ function ViewAttendance() {
 
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
+    setEditMode(false); // Exit edit mode when changing date
+    setEditedAttendance({}); // Reset edited attendance
   };
 
   const filteredRecords = attendanceRecords.filter((record) => {
@@ -61,12 +71,66 @@ function ViewAttendance() {
     return recordDate === selectedDate;
   });
 
+  const handleEditToggle = () => {
+    if (!editMode && filteredRecords.length > 0) {
+      // Initialize editedAttendance with current records
+      const initialAttendance = {};
+      filteredRecords[0].records.forEach((record) => {
+        initialAttendance[record.employeeId._id] = record.status;
+      });
+      setEditedAttendance(initialAttendance);
+    }
+    setEditMode(!editMode);
+  };
+
+  const handleAttendanceChange = (employeeId, status) => {
+    setEditedAttendance((prev) => ({ ...prev, [employeeId]: status }));
+  };
+
+  const handleSaveChanges = async () => {
+    if (filteredRecords.length === 0) {
+      setError("No attendance record to edit for this date.");
+      return;
+    }
+
+    const attendanceData = {
+      date: selectedDate,
+      records: Object.keys(editedAttendance).map((employeeId) => ({
+        employeeId,
+        status: editedAttendance[employeeId],
+      })),
+    };
+
+    try {
+      setLoading(true);
+      const response = await axios.put(
+        "http://localhost:5000/api/attendance",
+        attendanceData
+      );
+      console.log("Update API Response:", response.data);
+      if (response.data.success) {
+        setEditMode(false);
+        setEditedAttendance({});
+        await fetchAttendance(); // Refresh records
+      } else {
+        setError(response.data.message || "Failed to update attendance.");
+      }
+    } catch (error) {
+      console.error("Error updating attendance:", error);
+      setError(error.response?.data?.message || "Error updating attendance.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const downloadPDF = () => {
     const printWindow = window.open("", "_blank");
     const docContent = `
       <html>
         <head>
-          <title>Employee Attendance - ${new Date(selectedDate).toLocaleDateString()}</title>
+          <title>Employee Attendance - ${new Date(
+            selectedDate
+          ).toLocaleDateString()}</title>
           <style>
             body { font-family: Arial, sans-serif; padding: 20px; }
             h1 { font-size: 24px; text-align: center; margin-bottom: 20px; }
@@ -80,7 +144,9 @@ function ViewAttendance() {
           </style>
         </head>
         <body>
-          <h1>Employee Attendance on ${new Date(selectedDate).toLocaleDateString()}</h1>
+          <h1>Employee Attendance on ${new Date(
+            selectedDate
+          ).toLocaleDateString()}</h1>
           ${
             filteredRecords.length === 0
               ? "<p class='no-data'>No attendance records for this date.</p>"
@@ -97,9 +163,12 @@ function ViewAttendance() {
                                 .filter((r) => r.status === "Present")
                                 .map(
                                   (r) =>
-                                    `<li>${r.employeeId?.name || "Unknown"} (${r.employeeId?.nicNo || "N/A"})</li>`
+                                    `<li>${r.employeeId?.name || "Unknown"} (${
+                                      r.employeeId?.nicNo || "N/A"
+                                    })</li>`
                                 )
-                                .join("") || "<li class='no-data'>No employees present</li>"
+                                .join("") ||
+                              "<li class='no-data'>No employees present</li>"
                             }
                           </ul>
                         </div>
@@ -111,9 +180,12 @@ function ViewAttendance() {
                                 .filter((r) => r.status === "Absent")
                                 .map(
                                   (r) =>
-                                    `<li>${r.employeeId?.name || "Unknown"} (${r.employeeId?.nicNo || "N/A"})</li>`
+                                    `<li>${r.employeeId?.name || "Unknown"} (${
+                                      r.employeeId?.nicNo || "N/A"
+                                    })</li>`
                                 )
-                                .join("") || "<li class='no-data'>No employees absent</li>"
+                                .join("") ||
+                              "<li class='no-data'>No employees absent</li>"
                             }
                           </ul>
                         </div>
@@ -137,7 +209,7 @@ function ViewAttendance() {
 
   return (
     <>
-      <HeadBar /> {/* Moved outside the container */}
+      <HeadBar />
       <div className="view-attendance-container">
         <HRNav />
         <div className="attendance-content">
@@ -155,12 +227,26 @@ function ViewAttendance() {
             <button onClick={downloadPDF} className="download-btn">
               Download PDF
             </button>
+            {filteredRecords.length > 0 && (
+              <button
+                onClick={handleEditToggle}
+                className="edit-btn"
+                disabled={loading}
+              >
+                {editMode ? "Cancel Edit" : "Edit Attendance"}
+              </button>
+            )}
           </div>
 
-          {loading && <p className="loading-text">Loading attendance data...</p>}
+          {loading && (
+            <p className="loading-text">Loading attendance data...</p>
+          )}
           {error && <p className="error-text">{error}</p>}
           {!loading && !error && filteredRecords.length === 0 && (
-            <p className="no-data">No attendance records for {new Date(selectedDate).toLocaleDateString()}</p>
+            <p className="no-data">
+              No attendance records for{" "}
+              {new Date(selectedDate).toLocaleDateString()}
+            </p>
           )}
           {!loading &&
             filteredRecords.map((record) => (
@@ -173,10 +259,58 @@ function ViewAttendance() {
                       .filter((r) => r.status === "Present")
                       .map((r) => (
                         <li key={r.employeeId?._id || r._id}>
-                          {r.employeeId?.name || "Unknown"} ({r.employeeId?.nicNo || "N/A"})
+                          {editMode ? (
+                            <div className="edit-attendance">
+                              <span>
+                                {r.employeeId?.name || "Unknown"} (
+                                {r.employeeId?.nicNo || "N/A"})
+                              </span>
+                              <div className="attendance-buttons">
+                                <button
+                                  type="button"
+                                  className={`status-btn ${
+                                    editedAttendance[r.employeeId._id] ===
+                                    "Present"
+                                      ? "present"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    handleAttendanceChange(
+                                      r.employeeId._id,
+                                      "Present"
+                                    )
+                                  }
+                                >
+                                  Present
+                                </button>
+                                <button
+                                  type="button"
+                                  className={`status-btn ${
+                                    editedAttendance[r.employeeId._id] ===
+                                    "Absent"
+                                      ? "absent"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    handleAttendanceChange(
+                                      r.employeeId._id,
+                                      "Absent"
+                                    )
+                                  }
+                                >
+                                  Absent
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            `${r.employeeId?.name || "Unknown"} (${
+                              r.employeeId?.nicNo || "N/A"
+                            })`
+                          )}
                         </li>
                       ))}
-                    {record.records.filter((r) => r.status === "Present").length === 0 && (
+                    {record.records.filter((r) => r.status === "Present")
+                      .length === 0 && (
                       <li className="no-data">No employees present</li>
                     )}
                   </ul>
@@ -188,14 +322,71 @@ function ViewAttendance() {
                       .filter((r) => r.status === "Absent")
                       .map((r) => (
                         <li key={r.employeeId?._id || r._id}>
-                          {r.employeeId?.name || "Unknown"} ({r.employeeId?.nicNo || "N/A"})
+                          {editMode ? (
+                            <div className="edit-attendance">
+                              <span>
+                                {r.employeeId?.name || "Unknown"} (
+                                {r.employeeId?.nicNo || "N/A"})
+                              </span>
+                              <div className="attendance-buttons">
+                                <button
+                                  type="button"
+                                  className={`status-btn ${
+                                    editedAttendance[r.employeeId._id] ===
+                                    "Present"
+                                      ? "present"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    handleAttendanceChange(
+                                      r.employeeId._id,
+                                      "Present"
+                                    )
+                                  }
+                                >
+                                  Present
+                                </button>
+                                <button
+                                  type="button"
+                                  className={`status-btn ${
+                                    editedAttendance[r.employeeId._id] ===
+                                    "Absent"
+                                      ? "absent"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    handleAttendanceChange(
+                                      r.employeeId._id,
+                                      "Absent"
+                                    )
+                                  }
+                                >
+                                  Absent
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            `${r.employeeId?.name || "Unknown"} (${
+                              r.employeeId?.nicNo || "N/A"
+                            })`
+                          )}
                         </li>
                       ))}
-                    {record.records.filter((r) => r.status === "Absent").length === 0 && (
+                    {record.records.filter((r) => r.status === "Absent")
+                      .length === 0 && (
                       <li className="no-data">No employees absent</li>
                     )}
                   </ul>
                 </div>
+                {editMode && (
+                  <button
+                    onClick={handleSaveChanges}
+                    className="save-btn"
+                    disabled={loading}
+                  >
+                    Save Changes
+                  </button>
+                )}
               </div>
             ))}
         </div>

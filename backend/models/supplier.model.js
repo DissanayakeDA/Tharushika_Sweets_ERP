@@ -10,6 +10,14 @@ const supplierSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    supplier_country: {
+      type: String,
+      required: true,
+    },
+    supplier_country: {
+      type: String,
+      required: true,
+    },
     supplier_phone: {
       type: String,
       required: true,

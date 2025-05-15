@@ -90,6 +90,7 @@ function Suppliers() {
       doc.text(`ID: ${supplier._id}`, 20, yOffset + 7);
       doc.text(`Name: ${supplier.supplier_name}`, 20, yOffset + 14);
       doc.text(`Address: ${supplier.supplier_address}`, 20, yOffset + 21);
+      doc.text(`Address: ${supplier.supplier_country}`, 20, yOffset + 28);
     });
 
     doc.save("Suppliers_Report.pdf");
@@ -144,6 +145,7 @@ function Suppliers() {
                 <th>Supplier ID</th>
                 <th>Supplier Name</th>
                 <th>Supplier Address</th>
+                <th>Supplier Country</th>
                 <th>Supplier Phone</th>
                 <th>Supplier Email</th>
                 <th>Action</th>

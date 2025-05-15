@@ -91,9 +91,9 @@ function GMDashboard() {
     return dates;
   };
 
-  // Fetch real counts for buyers, products, and suppliers on component mount
+  // Fetch initial data including counts and summary stats on component mount
   useEffect(() => {
-    const fetchCounts = async () => {
+    const fetchInitialData = async () => {
       try {
         const buyersRes = await axios.get("http://localhost:5000/buyers");
         const buyerCount =
@@ -123,212 +123,304 @@ function GMDashboard() {
         setSupplierCount(supplierCount);
 
         setEmployeeCount(48);
+
+        // Fetch summary stats
+        const summaryRes = await axios.get(
+          "http://localhost:5000/api/summary-stats"
+        );
+        if (summaryRes.data.success) {
+          setSummaryStats(summaryRes.data.stats);
+        } else {
+          setSummaryStats({
+            totalRevenue: 546800,
+            monthlySales: 78500,
+            yearlyGrowth: 12.5,
+            operatingMargin: 18.7,
+          });
+        }
       } catch (error) {
-        console.error("Error fetching counts:", error);
+        console.error("Error fetching initial data:", error);
         setBuyerCount(0);
         setProductCount(0);
         setSupplierCount(0);
         setEmployeeCount(48);
+        setSummaryStats({
+          totalRevenue: 546800,
+          monthlySales: 78500,
+          yearlyGrowth: 12.5,
+          operatingMargin: 18.7,
+        });
       }
     };
 
-    fetchCounts();
+    fetchInitialData();
   }, []);
+
+  // Function to fetch sales data for charts
+  const fetchSalesDataForCharts = async () => {
+    const { startDate, endDate } = getDateRange();
+    const dateLabels =
+      timeframe === "week"
+        ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        : getDatesInRange(startDate, endDate).map((date) =>
+            new Date(date).toLocaleDateString(
+              "en-US",
+              timeframe === "month"
+                ? { month: "short", day: "numeric" }
+                : { month: "short" }
+            )
+          );
+
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/sales?startDate=${startDate}&endDate=${endDate}`
+      );
+
+      if (response.data.success) {
+        const sales = response.data.sales || [];
+
+        // Sales Distribution Chart
+        const dateRangeArray = getDatesInRange(startDate, endDate);
+        const dailySales = {};
+        dateRangeArray.forEach((day) => {
+          dailySales[day] = 0;
+        });
+
+        sales.forEach((sale) => {
+          const saleDate = new Date(sale.date).toISOString().split("T")[0];
+          if (dailySales[saleDate] !== undefined) {
+            dailySales[saleDate] += sale.totalAmount;
+          }
+        });
+
+        const saleValues = Object.values(dailySales);
+        const totalSales = saleValues.reduce((sum, val) => sum + val, 0);
+        const dailyPercentages = saleValues.map((val) =>
+          totalSales > 0 ? (val / totalSales) * 100 : 0
+        );
+
+        setChartData({
+          labels: dateLabels,
+          datasets: [
+            {
+              label: `Sales Percentage (${timeframe})`,
+              data: dailyPercentages,
+              backgroundColor: dateLabels.map(
+                (_, i) =>
+                  `rgba(${75 + i * 20}, ${192 - i * 10}, ${192 - i * 5}, 0.6)`
+              ),
+              borderColor: dateLabels.map(
+                (_, i) =>
+                  `rgba(${75 + i * 20}, ${192 - i * 10}, ${192 - i * 5}, 1)`
+              ),
+              borderWidth: 1,
+            },
+          ],
+        });
+
+        // Top Selling Items Chart - Get actual product sales data
+        const itemSalesMap = {};
+
+        // Process sales data to extract items sold
+        sales.forEach((sale) => {
+          if (sale.items && Array.isArray(sale.items)) {
+            sale.items.forEach((item) => {
+              if (item.itemName) {
+                itemSalesMap[item.itemName] =
+                  (itemSalesMap[item.itemName] || 0) +
+                  Number(item.quantity || 0);
+              }
+            });
+          }
+        });
+
+        // If no real data found, fetch from a dedicated endpoint
+        if (Object.keys(itemSalesMap).length === 0) {
+          try {
+            const topProductsRes = await axios.get(
+              "http://localhost:5000/api/sales"
+            );
+            if (
+              topProductsRes.data.success &&
+              Array.isArray(topProductsRes.data.data)
+            ) {
+              topProductsRes.data.data.forEach((product) => {
+                itemSalesMap[product.productName] = product.salesCount;
+              });
+            }
+          } catch (topProductsError) {
+            console.error("Error fetching top products:", topProductsError);
+            // Fallback to demo data
+            itemSalesMap["Product A"] = 145;
+            itemSalesMap["Product B"] = 132;
+            itemSalesMap["Product C"] = 121;
+            itemSalesMap["Product D"] = 87;
+            itemSalesMap["Product E"] = 65;
+          }
+        }
+
+        const sortedItems = Object.entries(itemSalesMap)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 5);
+
+        // Set top selling items for both chart and details view
+        setTopSellingItems(sortedItems);
+
+        // Set the sales distribution data for the doughnut chart
+        setSalesDistribution({
+          labels: sortedItems.map((item) => item[0]),
+          datasets: [
+            {
+              label: "Units Sold",
+              data: sortedItems.map((item) => item[1]),
+              backgroundColor: sortedItems.map(
+                (_, i) =>
+                  `hsla(${(i * 360) / sortedItems.length}, 70%, 50%, 0.7)`
+              ),
+              borderColor: sortedItems.map(
+                (_, i) => `hsl(${(i * 360) / sortedItems.length}, 70%, 40%)`
+              ),
+              borderWidth: 1,
+            },
+          ],
+        });
+      } else {
+        // Handle API response with no success - use demo data
+        console.warn("API returned no success status, using demo data");
+        const demoItems = [
+          ["Product A", 145],
+          ["Product B", 132],
+          ["Product C", 121],
+          ["Product D", 87],
+          ["Product E", 65],
+        ];
+
+        setTopSellingItems(demoItems);
+        setSalesDistribution({
+          labels: demoItems.map((item) => item[0]),
+          datasets: [
+            {
+              data: demoItems.map((item) => item[1]),
+              backgroundColor: demoItems.map(
+                (_, i) => `hsla(${(i * 360) / demoItems.length}, 70%, 50%, 0.7)`
+              ),
+              borderColor: demoItems.map(
+                (_, i) => `hsl(${(i * 360) / demoItems.length}, 70%, 40%)`
+              ),
+              borderWidth: 1,
+            },
+          ],
+        });
+      }
+    } catch (error) {
+      console.error(`Error fetching ${timeframe} sales data:`, error);
+
+      // On error, use demo data
+      const demoItems = [
+        ["Product A", 145],
+        ["Product B", 132],
+        ["Product C", 121],
+        ["Product D", 87],
+        ["Product E", 65],
+      ];
+
+      setTopSellingItems(demoItems);
+      setSalesDistribution({
+        labels: demoItems.map((item) => item[0]),
+        datasets: [
+          {
+            data: demoItems.map((item) => item[1]),
+            backgroundColor: demoItems.map(
+              (_, i) => `hsla(${(i * 360) / demoItems.length}, 70%, 50%, 0.7)`
+            ),
+            borderColor: demoItems.map(
+              (_, i) => `hsl(${(i * 360) / demoItems.length}, 70%, 40%)`
+            ),
+            borderWidth: 1,
+          },
+        ],
+      });
+    }
+  };
+
+  // Function to fetch stock data
+  const fetchStockData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/stocks");
+      console.log("Stock API Response:", response.data);
+
+      if (response.data.success && Array.isArray(response.data.data)) {
+        const stockData = response.data.data;
+
+        if (stockData.length === 0) {
+          console.log("No stock data available");
+          setStockDistribution(null);
+        } else {
+          const labels = stockData
+            .slice(0, 8)
+            .map((item) => item.product_name || item.name || "Unknown");
+          const values = stockData.slice(0, 8).map((item) => {
+            const qty =
+              item.quantity ||
+              item.stock_quantity ||
+              item.product_quantity ||
+              0;
+            return Number(qty) || 0;
+          });
+          console.log("Stock Chart Labels:", labels);
+          console.log("Stock Chart Values:", values);
+
+          const hasValidData = values.some((val) => val > 0);
+          if (!hasValidData) {
+            console.log("No valid quantities found");
+            setStockDistribution(null);
+          } else {
+            setStockDistribution({
+              labels,
+              datasets: [
+                {
+                  data: values,
+                  backgroundColor: labels.map(
+                    (_, i) =>
+                      `hsla(${(i * 360) / labels.length}, 70%, 50%, 0.7)`
+                  ),
+                  borderColor: labels.map(
+                    (_, i) => `hsl(${(i * 360) / labels.length}, 70%, 40%)`
+                  ),
+                  borderWidth: 1,
+                },
+              ],
+            });
+          }
+        }
+      } else {
+        console.log("Invalid stock API response:", response.data);
+        setStockDistribution(null);
+      }
+    } catch (error) {
+      console.error("Error fetching stock data:", error);
+      setStockDistribution(null);
+    }
+  };
 
   // Fetch chart data based on timeframe
   useEffect(() => {
     setIsLoading(true);
 
-    const fetchSalesDataForCharts = async () => {
-      const { startDate, endDate } = getDateRange();
-      const dateLabels =
-        timeframe === "week"
-          ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-          : getDatesInRange(startDate, endDate).map((date) =>
-              new Date(date).toLocaleDateString(
-                "en-US",
-                timeframe === "month"
-                  ? { month: "short", day: "numeric" }
-                  : { month: "short" }
-              )
-            );
-
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/sales?startDate=${startDate}&endDate=${endDate}`
-        );
-
-        if (response.data.success) {
-          const sales = response.data.sales;
-
-          // Sales Distribution Chart
-          const dateRangeArray = getDatesInRange(startDate, endDate);
-          const dailySales = {};
-          dateRangeArray.forEach((day) => {
-            dailySales[day] = 0;
-          });
-
-          sales.forEach((sale) => {
-            const saleDate = new Date(sale.date).toISOString().split("T")[0];
-            if (dailySales[saleDate] !== undefined) {
-              dailySales[saleDate] += sale.totalAmount;
-            }
-          });
-
-          const saleValues = Object.values(dailySales);
-          const totalSales = saleValues.reduce((sum, val) => sum + val, 0);
-          const dailyPercentages = saleValues.map((val) =>
-            totalSales > 0 ? (val / totalSales) * 100 : 0
-          );
-
-          setChartData({
-            labels: dateLabels,
-            datasets: [
-              {
-                label: `Sales Percentage (${timeframe})`,
-                data: dailyPercentages,
-                backgroundColor: dateLabels.map(
-                  (_, i) =>
-                    `rgba(${75 + i * 20}, ${192 - i * 10}, ${192 - i * 5}, 0.6)`
-                ),
-                borderColor: dateLabels.map(
-                  (_, i) =>
-                    `rgba(${75 + i * 20}, ${192 - i * 10}, ${192 - i * 5}, 1)`
-                ),
-                borderWidth: 1,
-              },
-            ],
-          });
-
-          // Top Selling Items Chart
-          const itemSalesMap = {};
-          sales.forEach((sale) => {
-            if (Array.isArray(sale.items)) {
-              sale.items.forEach((item) => {
-                if (!itemSalesMap[item.itemName]) {
-                  itemSalesMap[item.itemName] = 0;
-                }
-                itemSalesMap[item.itemName] += item.quantity;
-              });
-            }
-          });
-
-          const sortedItems = Object.entries(itemSalesMap)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 5);
-
-          setTopSellingItems(sortedItems);
-
-          setSalesDistribution({
-            labels: sortedItems.map((item) => item[0]),
-            datasets: [
-              {
-                data: sortedItems.map((item) => item[1]),
-                backgroundColor: sortedItems.map(
-                  (_, i) =>
-                    `hsla(${(i * 360) / sortedItems.length}, 70%, 50%, 0.7)`
-                ),
-                borderColor: sortedItems.map(
-                  (_, i) => `hsl(${(i * 360) / sortedItems.length}, 70%, 40%)`
-                ),
-                borderWidth: 1,
-              },
-            ],
-          });
-        }
-      } catch (error) {
-        console.error(`Error fetching ${timeframe} sales data:`, error);
-        setChartData(null);
-        setSalesDistribution(null);
-        setTopSellingItems([]);
-      }
-    };
-
-    const fetchStockData = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/stocks");
-        console.log("Stock API Response:", response.data); // Debug the full response
-
-        if (response.data.success && Array.isArray(response.data.data)) {
-          const stockData = response.data.data;
-          console.log("Stock Data:", stockData); // Debug the stock data
-          if (stockData.length > 0) {
-            console.log("First Stock Item:", stockData[0]); // Log the first item
-          }
-
-          if (stockData.length === 0) {
-            console.log("No stock data available");
-            setStockDistribution(null);
-          } else {
-            const labels = stockData
-              .slice(0, 8)
-              .map((item) => item.product_name || item.name || "Unknown");
-            const values = stockData.slice(0, 8).map((item) => {
-              const qty =
-                item.quantity ||
-                item.stock_quantity ||
-                item.product_quantity ||
-                0;
-              return Number(qty) || 0; // Ensure it's a number
-            });
-            console.log("Stock Chart Labels:", labels); // Debug labels
-            console.log("Stock Chart Values:", values); // Debug values
-
-            const hasValidData = values.some((val) => val > 0);
-            if (!hasValidData) {
-              console.log("No valid quantities found");
-              setStockDistribution(null);
-            } else {
-              setStockDistribution({
-                labels,
-                datasets: [
-                  {
-                    data: values,
-                    backgroundColor: labels.map(
-                      (_, i) =>
-                        `hsla(${(i * 360) / labels.length}, 70%, 50%, 0.7)`
-                    ),
-                    borderColor: labels.map(
-                      (_, i) => `hsl(${(i * 360) / labels.length}, 70%, 40%)`
-                    ),
-                    borderWidth: 1,
-                  },
-                ],
-              });
-            }
-          }
-        } else {
-          console.log("Invalid stock API response:", response.data);
-          setStockDistribution(null);
-        }
-      } catch (error) {
-        console.error("Error fetching stock data:", error);
-        setStockDistribution(null);
-      }
-    };
-
     const loadData = async () => {
       await fetchSalesDataForCharts();
       await fetchStockData();
-
-      setSummaryStats({
-        totalRevenue: 546800,
-        monthlySales: 78500,
-        yearlyGrowth: 12.5,
-        operatingMargin: 18.7,
-      });
-
       setIsLoading(false);
     };
 
     loadData();
   }, [timeframe]);
 
-  // Format currency
+  // Format currency in LKR
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat("en-LK", {
       style: "currency",
-      currency: "USD",
+      currency: "LKR",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -580,103 +672,6 @@ function GMDashboard() {
                   <p>No sales data available</p>
                 </div>
               )}
-            </div>
-
-            {/* Top Selling Items Chart */}
-            <div className="chart-card compact">
-              <div className="chart-header">
-                <h3>Top Products</h3>
-                <div className="chart-actions">
-                  <button
-                    className="view-details-btn"
-                    onClick={toggleItemDetails}
-                  >
-                    {showItemDetails ? "Chart" : "Details"}
-                  </button>
-                </div>
-              </div>
-              <div className="chart-description">
-                Best performing products by unit sales
-              </div>
-              <div className="top-items-container">
-                {showItemDetails ? (
-                  <div className="top-items-table">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Rank</th>
-                          <th>Item</th>
-                          <th>Units</th>
-                          <th>%</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {topSellingItems.map((item, index) => {
-                          const totalSold = topSellingItems.reduce(
-                            (sum, i) => sum + i[1],
-                            0
-                          );
-                          const percentage =
-                            totalSold > 0 ? (item[1] / totalSold) * 100 : 0;
-                          return (
-                            <tr key={index} className="top-item">
-                              <td>{index + 1}</td>
-                              <td>{item[0]}</td>
-                              <td>{item[1]}</td>
-                              <td>{percentage.toFixed(1)}%</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  salesDistribution && (
-                    <div className="chart-container">
-                      <Doughnut
-                        data={salesDistribution}
-                        options={{
-                          responsive: true,
-                          maintainAspectRatio: false,
-                          plugins: {
-                            legend: {
-                              position: "right",
-                              labels: {
-                                boxWidth: 12,
-                                font: {
-                                  size: 10,
-                                },
-                              },
-                            },
-                            tooltip: {
-                              callbacks: {
-                                label: (context) => {
-                                  const totalValue =
-                                    context.dataset.data.reduce(
-                                      (a, b) => a + b,
-                                      0
-                                    );
-                                  const percentage =
-                                    totalValue > 0
-                                      ? (
-                                          (context.raw / totalValue) *
-                                          100
-                                        ).toFixed(1)
-                                      : 0;
-                                  return `${context.raw} units (${percentage}%)`;
-                                },
-                              },
-                            },
-                          },
-                          animation: {
-                            duration: 800,
-                          },
-                        }}
-                      />
-                    </div>
-                  )
-                )}
-              </div>
             </div>
 
             {/* Stock Distribution Chart */}

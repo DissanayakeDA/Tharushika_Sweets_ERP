@@ -1,19 +1,30 @@
+/* Container for layout only, minimal styles to avoid affecting HRNav and HeadBar */
 .add-attendance-container {
   background: #f5f6fa;
   min-height: 100vh;
-  padding: 0; /* Remove padding to allow HeadBar to stretch fully */
-  margin: 0; /* Ensure no margin pushes content inward */
+  padding: 0;
+  margin: 0;
 }
 
+/* Reset styles for HRNav and HeadBar to prevent inheritance */
+.hrnav-wrapper,
+.headbar-wrapper {
+  all: unset;
+  display: contents; /* Allows children to render naturally */
+}
+
+/* Main content area */
 .attendance-content {
   max-width: 800px;
-  margin: 80px auto 0; /* Add top margin to account for fixed HeadBar height */
+  margin: 80px auto 0;
   background: white;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif; /* Requires Inter font import */
 }
 
+/* Title */
 .attendance-title {
   font-size: 1.8rem;
   color: #2c3e50;
@@ -21,18 +32,22 @@
   margin-bottom: 20px;
 }
 
+/* Error message */
 .error-text {
   color: #e74c3c;
   text-align: center;
   margin-bottom: 15px;
+  font-size: 0.875rem;
 }
 
+/* Form styling */
 .attendance-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+/* Form group */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -49,12 +64,22 @@
   border: 1px solid #bdc3c7;
   border-radius: 6px;
   font-size: 1rem;
+  color: #34495e;
 }
 
+.date-input:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Employee list */
 .employee-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .employee-row {
@@ -71,6 +96,7 @@
   color: #34495e;
 }
 
+/* Attendance buttons */
 .attendance-buttons {
   display: flex;
   gap: 10px;
@@ -90,7 +116,7 @@
   color: white;
 }
 
-.status-btn.present:not(.present) {
+.status-btn:not(.present):not(.absent) {
   background-color: #ddd;
   color: #555;
 }
@@ -100,11 +126,13 @@
   color: white;
 }
 
-.status-btn.absent:not(.absent) {
-  background-color: #ddd;
-  color: #555;
+.status-btn:disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
 }
 
+/* Submit button */
 .submit-btn {
   background-color: #3498db;
   color: white;
@@ -116,21 +144,45 @@
   transition: background-color 0.2s;
 }
 
-.submit-btn:hover {
+.submit-btn:hover:not(:disabled) {
   background-color: #2980b9;
 }
 
-/* HeadBar Styles */
-.head-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* Full viewport width */
-  height: 60px;
-  background: #2c3e50;
-  color: white;
-  z-index: 1000;
-  margin: 0; /* Remove any margin */
-  padding: 0; /* Remove any padding */
-  box-sizing: border-box; /* Ensure padding doesn’t affect width */
+.submit-btn:disabled {
+  background-color: #bdc3c7;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .attendance-content {
+    padding: 20px;
+    margin: 60px auto 0;
+  }
+
+  .employee-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .attendance-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 576px) {
+  .attendance-title {
+    font-size: 1.5rem;
+  }
+
+  .submit-btn {
+    font-size: 1rem;
+  }
+
+  .date-input {
+    font-size: 0.875rem;
+  }
 }

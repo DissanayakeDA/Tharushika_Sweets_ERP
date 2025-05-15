@@ -89,9 +89,20 @@ function DirectBuyerReturns() {
   }, []);
 
   const handleBuyerIdChange = (e) => {
-    setBuyerId(e.target.value);
-    if (e.target.value) {
-      toast.info(`Selected buyer ID: ${e.target.value}`, { autoClose: 1500 });
+    const selectedBuyerId = e.target.value;
+    setBuyerId(selectedBuyerId);
+    if (selectedBuyerId) {
+      const selectedBuyer = buyers.find(
+        (buyer) => buyer._id === selectedBuyerId
+      );
+      toast.info(
+        `Selected buyer: ${
+          selectedBuyer?.name || "Unknown"
+        } (${selectedBuyerId})`,
+        {
+          autoClose: 1500,
+        }
+      );
     }
   };
 
@@ -257,7 +268,7 @@ function DirectBuyerReturns() {
         </div>
 
         <div className="dbreturns-buyer-container">
-          <label htmlFor="buyerId">Select Buyer ID: </label>
+          <label htmlFor="buyerId">Select Buyer: </label>
           <select
             id="buyerId"
             className="dbreturns-select-buyer"
@@ -265,10 +276,10 @@ function DirectBuyerReturns() {
             onChange={handleBuyerIdChange}
             required
           >
-            <option value="">Select Buyer ID</option>
+            <option value="">Select Buyer</option>
             {buyers.map((buyer) => (
               <option key={buyer._id} value={buyer._id}>
-                {buyer._id}
+                {buyer.name} ({buyer._id})
               </option>
             ))}
           </select>
@@ -476,7 +487,12 @@ function DirectBuyerReturns() {
               <p>Are you sure you want to proceed with this return?</p>
               <div className="dbreturns-confirmation-summary">
                 <p>Return Type: {selection}</p>
-                <p>Buyer ID: {buyerId}</p>
+                <p>
+                  Buyer:{" "}
+                  {buyers.find((buyer) => buyer._id === buyerId)?.name ||
+                    "Unknown"}{" "}
+                  ({buyerId})
+                </p>
                 <p>
                   Returning {rows.filter((r) => r.selectedItem).length} items
                 </p>

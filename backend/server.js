@@ -22,6 +22,7 @@ import salesRequestRoutes from "./routes/salesRequest.routes.js";
 import indirectbuyerRoutes from "./routes/indirectbuyer.route.js";
 import salesstockRoutes from "./routes/salesstock.route.js";
 import stockRequestRoutes from "./routes/stockChangeRequest.route.js";
+import ingredientRequestRoutes from "./routes/ingredientrequest.route.js";
 
 dotenv.config();
 
@@ -36,20 +37,19 @@ app.use(
 );
 app.use("/api/products", productRoutes);
 app.use("/api/production-requests", productionRequestRoutes);
-app.use("/api/sales-requests", salesRequestRoutes);
+//app.use("/api/sales-requests", salesRequestRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/stocks", stockRoutes);
-
 app.use("/api/salesstocks", salesstockRoutes);
-
 app.use("/api/ingredients", IngredientRoutes);
 app.use("/api/suppliers", supplierRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRouter);
-
 app.use("/api/indirectbuyers", indirectbuyerRoutes);
 app.use("/api/stock-change-requests", stockRequestRoutes);
+app.use("/api/ingredient-requests", ingredientRequestRoutes);
+app.use("/api/stock-requests", salesRequestRoutes);
 
 app.use(cors());
 
@@ -127,25 +127,6 @@ app.post("/api/returns/add", async (req, res) => {
 //indirectreturns
 
 app.use("/api/indirectreturns", indirectreturnRoutes);
-app.post("/api/indirectreturns/add", async (req, res) => {
-  try {
-    console.log("Received Data:", req.body);
-    const { buyerId, items, totalAmount } = req.body;
-
-    if (!buyerId || !items || items.length === 0 || !totalAmount) {
-      return res.status(400).json({ success: false, message: "Missing data" });
-    }
-
-    const newReturn = { buyerId, items, totalAmount, date: new Date() };
-    const result = await db.collection("directreturns").insertOne(newReturn);
-
-    res.json({ success: true, insertedId: result.insertedId });
-  } catch (error) {
-    console.error("Database Error:", error);
-    res.status(500).json({ success: false, message: "Internal server error" });
-  }
-});
-
 app.listen(PORT, () => {
   connectDB();
   console.log("Server is running on http://localhost:" + PORT);

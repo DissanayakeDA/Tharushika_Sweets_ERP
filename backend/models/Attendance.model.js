@@ -5,7 +5,11 @@ const attendanceSchema = new mongoose.Schema({
   date: { type: Date, required: true },
   records: [
     {
-      employeeId: { type: mongoose.Schema.Types.ObjectId, ref: "Employee", required: true },
+      employeeId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Employee",
+        required: true,
+      },
       status: { type: String, enum: ["Present", "Absent"], required: true },
     },
   ],

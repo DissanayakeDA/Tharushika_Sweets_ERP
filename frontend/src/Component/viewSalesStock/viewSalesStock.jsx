@@ -5,32 +5,45 @@ import "./ViewSalesStock.css";
 import axios from "axios";
 
 function ViewSalesStock() {
-  const [stockItems, setStockItems] = useState([]); // Ensure initial state is an array
-  const [loading, setLoading] = useState(true); // Use loading state
-  const [error, setError] = useState(null); // Use error state
-  // Removed unused 'data' state
+  const [stockItems, setStockItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Fetch stock data from the salesstock collection
-  useEffect(() => {
-    const fetchStockData = async () => {
-      try {
-        setLoading(true); // Set loading to true while fetching
-        setError(null); // Reset error state
-        const response = await axios.get("http://localhost:5000/api/salesstocks"); // Adjust endpoint as needed
-        if (response.data.success) {
-          setStockItems(response.data.salesstock || []); // Fallback to empty array if salesstock is undefined
-        } else {
-          setError("Failed to fetch stock data: " + response.data.message);
-        }
-      } catch (error) {
-        setError("Error fetching stock data: " + error.message);
-      } finally {
-        setLoading(false); // Set loading to false after fetch completes
+  const fetchStockData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await axios.get("http://localhost:5000/api/salesstocks");
+      console.log("API Response:", response.data);
+      if (response.data.success) {
+        setStockItems(response.data.data || []);
+      } else {
+        setError("Failed to fetch stock data: " + response.data.message);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching stock data:", error);
+      setError("Error fetching stock data: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchStockData();
   }, []);
+
+  const handleRefresh = () => {
+    fetchStockData();
+  };
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value.toLowerCase());
+  };
+
+  const filteredItems = stockItems.filter((item) =>
+    item.sp_name.toLowerCase().includes(searchQuery)
+  );
 
   return (
     <div>
@@ -38,15 +51,43 @@ function ViewSalesStock() {
       <HeadBar />
       <div className="view-stock-container">
         <div className="header">
-          <h2 className="view-stock-title">View Stock</h2>
+          <h2 className="view-stock-title">Available Stock</h2>
+          <div className="header-controls">
+            <div className="search-container">
+              <i className="bi bi-search search-icon"></i>
+              <input
+                type="text"
+                placeholder="Search by product name..."
+                value={searchQuery}
+                onChange={handleSearch}
+                className="search-input"
+              />
+            </div>
+            <button
+              onClick={handleRefresh}
+              className="refresh-button"
+              disabled={loading}
+            >
+              <i className="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+          </div>
         </div>
         <div className="table-container">
           {loading ? (
-            <p>Loading stock data...</p> // Show loading message
+            <div className="loading-message">
+              <i className="bi bi-arrow-repeat"></i> Loading stock data...
+            </div>
           ) : error ? (
-            <p className="error-message">{error}</p> // Show error message
-          ) : stockItems.length === 0 ? (
-            <p>No stock items available.</p> // Handle empty data case
+            <div className="error-message">
+              <i className="bi bi-exclamation-circle"></i> {error}
+            </div>
+          ) : filteredItems.length === 0 ? (
+            <div className="empty-message">
+              <i className="bi bi-inbox"></i>{" "}
+              {searchQuery
+                ? "No matching products found"
+                : "No stock items available."}
+            </div>
           ) : (
             <table className="view-stock-table">
               <thead>
@@ -57,11 +98,13 @@ function ViewSalesStock() {
                 </tr>
               </thead>
               <tbody>
-                {stockItems.map((item) => (
-                  <tr key={item._id || item.sp_name}> {/* Use _id if available, fallback to sp_name */}
+                {filteredItems.map((item) => (
+                  <tr key={item._id || item.sp_name}>
                     <td>{item.sp_name}</td>
                     <td>{item.sp_quantity}</td>
-                    <td>${item.sp_price.toFixed(2)}</td>
+                    <td className="price-cell">
+                      ${item.sp_price ? item.sp_price.toFixed(2) : "0.00"}
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -12,12 +12,14 @@ const AddBuyers = () => {
   const [success, setSuccess] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 2;
-  
+
   const [inputs, setInputs] = useState({
     name: "",
     contact: "",
     address: "",
     email: "",
+    country: "",
+    postalCode: "",
   });
 
   const [touched, setTouched] = useState({
@@ -25,19 +27,21 @@ const AddBuyers = () => {
     contact: false,
     address: false,
     email: false,
+    country: false,
+    postalCode: false,
   });
 
   const [errors, setErrors] = useState({});
-  
+
   // Handle input change with visual feedback
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     setInputs((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    
+
     // Validate the field as user types
     validateField(name, value);
   };
@@ -46,16 +50,16 @@ const AddBuyers = () => {
   const handleBlur = (e) => {
     setTouched({
       ...touched,
-      [e.target.name]: true
+      [e.target.name]: true,
     });
     validateField(e.target.name, e.target.value);
   };
 
   // Validate individual field
   const validateField = (field, value) => {
-    let newErrors = {...errors};
-    
-    switch(field) {
+    let newErrors = { ...errors };
+
+    switch (field) {
       case "name":
         if (!value.trim()) {
           newErrors.name = "Buyer name is required.";
@@ -88,10 +92,24 @@ const AddBuyers = () => {
           delete newErrors.email;
         }
         break;
+      case "postalCode":
+        if (!value.trim()) {
+          newErrors.postalCode = "postalCode is required.";
+        } else {
+          delete newErrors.postalCode;
+        }
+        break;
+      case "country":
+        if (!value.trim()) {
+          newErrors.country = "Country is required.";
+        } else {
+          delete newErrors.country;
+        }
+        break;
       default:
         break;
     }
-    
+
     setErrors(newErrors);
   };
 
@@ -103,8 +121,10 @@ const AddBuyers = () => {
       contact: true,
       address: true,
       email: true,
+      country: true,
+      postalCode: true,
     });
-    
+
     let formErrors = {};
     let isValid = true;
 
@@ -122,15 +142,27 @@ const AddBuyers = () => {
     }
 
     if (!inputs.address.trim()) {
-      formErrors.address = "Address is required.";  
+      formErrors.address = "Address is required.";
       isValid = false;
     }
-    
+
     if (!inputs.email.trim()) {
       formErrors.email = "Email is required.";
       isValid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputs.email)) {
       formErrors.email = "Please enter a valid email address.";
+      isValid = false;
+    }
+
+    if (!inputs.country.trim()) {
+      formErrors.country = "Country is required.";
+      isValid = false;
+    }
+    if (!inputs.postalCode) {
+      formErrors.postalCode = "Contact number is required.";
+      isValid = false;
+    } else if (!/^\d{6}$/.test(inputs.postalCode)) {
+      formErrors.postalCode = "Contact number must be exactly 10 digits.";
       isValid = false;
     }
 
@@ -141,40 +173,46 @@ const AddBuyers = () => {
   // Validate current step
   const validateStep = (step) => {
     let isValid = true;
-    
+
     if (step === 1) {
       // Step 1 validation (name and contact)
       if (!inputs.name.trim()) {
-        setErrors(prev => ({ ...prev, name: "Buyer name is required." }));
-        setTouched(prev => ({ ...prev, name: true }));
+        setErrors((prev) => ({ ...prev, name: "Buyer name is required." }));
+        setTouched((prev) => ({ ...prev, name: true }));
         isValid = false;
       }
-      
+
       if (!inputs.contact) {
-        setErrors(prev => ({ ...prev, contact: "Contact number is required." }));
-        setTouched(prev => ({ ...prev, contact: true }));
+        setErrors((prev) => ({
+          ...prev,
+          contact: "Contact number is required.",
+        }));
+        setTouched((prev) => ({ ...prev, contact: true }));
         isValid = false;
       } else if (!/^\d{10}$/.test(inputs.contact)) {
-        setErrors(prev => ({ ...prev, contact: "Contact number must be exactly 10 digits." }));
-        setTouched(prev => ({ ...prev, contact: true }));
+        setErrors((prev) => ({
+          ...prev,
+          contact: "Contact number must be exactly 10 digits.",
+        }));
+        setTouched((prev) => ({ ...prev, contact: true }));
         isValid = false;
       }
     }
-    
+
     return isValid;
   };
 
   // Handle next step
   const handleNextStep = () => {
     if (validateStep(currentStep)) {
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep((prev) => prev + 1);
     } else {
       // Shake animation for validation errors
-      const formElement = document.querySelector('.form-step-content');
+      const formElement = document.querySelector(".form-step-content");
       if (formElement) {
-        formElement.classList.add('shake');
+        formElement.classList.add("shake");
         setTimeout(() => {
-          formElement.classList.remove('shake');
+          formElement.classList.remove("shake");
         }, 500);
       }
     }
@@ -182,7 +220,7 @@ const AddBuyers = () => {
 
   // Handle previous step
   const handlePrevStep = () => {
-    setCurrentStep(prev => prev - 1);
+    setCurrentStep((prev) => prev - 1);
   };
 
   // Submit form
@@ -191,27 +229,26 @@ const AddBuyers = () => {
 
     if (!validateForm()) {
       // Shake the form if validation fails
-      const formElement = document.querySelector('.form-step-content');
+      const formElement = document.querySelector(".form-step-content");
       if (formElement) {
-        formElement.classList.add('shake');
+        formElement.classList.add("shake");
         setTimeout(() => {
-          formElement.classList.remove('shake');
+          formElement.classList.remove("shake");
         }, 500);
       }
       return;
     }
 
     setLoading(true);
-    
+
     try {
       await sendRequest();
       setSuccess(true);
-      
+
       // Show success message before redirecting
       setTimeout(() => {
         history("/viewbuyers");
       }, 2000);
-      
     } catch (error) {
       console.error("Error submitting form:", error);
       setLoading(false);
@@ -225,13 +262,13 @@ const AddBuyers = () => {
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
     toast.textContent = message;
-    
+
     document.body.appendChild(toast);
-    
+
     setTimeout(() => {
       toast.classList.add("show");
     }, 100);
-    
+
     setTimeout(() => {
       toast.classList.remove("show");
       setTimeout(() => {
@@ -248,6 +285,8 @@ const AddBuyers = () => {
         contact: Number(inputs.contact),
         address: String(inputs.address),
         email: String(inputs.email),
+        country: String(inputs.country),
+        postalCode: String(inputs.postalCode),
       })
       .then((res) => res.data);
   };
@@ -259,6 +298,8 @@ const AddBuyers = () => {
       contact: "",
       address: "",
       email: "",
+      country: "",
+      postalCode: "",
     });
     setErrors({});
     setTouched({
@@ -266,6 +307,8 @@ const AddBuyers = () => {
       contact: false,
       address: false,
       email: false,
+      country: false,
+      postalCode: false,
     });
     setCurrentStep(1);
   };
@@ -280,9 +323,9 @@ const AddBuyers = () => {
     <div className="add-buyers-container">
       <HeadBar />
       <Nav />
-      
+
       <div className="content-wrapper">
-        <motion.div 
+        <motion.div
           className="form-card"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -293,9 +336,11 @@ const AddBuyers = () => {
             <div className="progress-bar-container">
               <div className="progress-steps">
                 {Array.from({ length: totalSteps }, (_, i) => (
-                  <div 
-                    key={i} 
-                    className={`step ${i + 1 <= currentStep ? 'active' : ''} ${i + 1 < currentStep ? 'completed' : ''}`}
+                  <div
+                    key={i}
+                    className={`step ${i + 1 <= currentStep ? "active" : ""} ${
+                      i + 1 < currentStep ? "completed" : ""
+                    }`}
                   >
                     {i + 1 < currentStep ? (
                       <span className="step-check">✓</span>
@@ -306,25 +351,41 @@ const AddBuyers = () => {
                 ))}
               </div>
               <div className="progress-line">
-                <div 
-                  className="progress-line-inner" 
-                  style={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
+                <div
+                  className="progress-line-inner"
+                  style={{
+                    width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`,
+                  }}
                 ></div>
               </div>
             </div>
           </div>
-          
+
           {success ? (
-            <motion.div 
+            <motion.div
               className="success-container"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
               <div className="success-icon">
-                <svg className="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                  <circle className="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                  <path className="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                <svg
+                  className="checkmark"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 52 52"
+                >
+                  <circle
+                    className="checkmark-circle"
+                    cx="26"
+                    cy="26"
+                    r="25"
+                    fill="none"
+                  />
+                  <path
+                    className="checkmark-check"
+                    fill="none"
+                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  />
                 </svg>
               </div>
               <h3>Buyer Added Successfully!</h3>
@@ -333,7 +394,7 @@ const AddBuyers = () => {
           ) : (
             <form onSubmit={handleSubmit} className={loading ? "loading" : ""}>
               <div className="form-step-wrapper">
-                <motion.div 
+                <motion.div
                   className="form-step-content"
                   key={`step-${currentStep}`}
                   initial={{ opacity: 0, x: 20 }}
@@ -347,7 +408,7 @@ const AddBuyers = () => {
                         <h3>Basic Information</h3>
                         <p>Enter the buyer's name and contact information</p>
                       </div>
-                      
+
                       <div className="form-group">
                         <label htmlFor="name">
                           Buyer Name
@@ -369,7 +430,7 @@ const AddBuyers = () => {
                             <i className="fas fa-user"></i>
                           </div>
                           {touched.name && errors.name && (
-                            <motion.div 
+                            <motion.div
                               className="error-message"
                               initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -380,7 +441,7 @@ const AddBuyers = () => {
                           )}
                         </div>
                       </div>
-                      
+
                       <div className="form-group">
                         <label htmlFor="contact">
                           Contact Number
@@ -403,7 +464,7 @@ const AddBuyers = () => {
                             <i className="fas fa-phone"></i>
                           </div>
                           {touched.contact && errors.contact && (
-                            <motion.div 
+                            <motion.div
                               className="error-message"
                               initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -416,14 +477,14 @@ const AddBuyers = () => {
                       </div>
                     </>
                   )}
-                  
+
                   {currentStep === 2 && (
                     <>
                       <div className="step-title">
                         <h3>Additional Details</h3>
-                        <p>Enter the buyer's address and email</p>
+                        <p>Enter the buyer's address, country, and email</p>
                       </div>
-                      
+
                       <div className="form-group">
                         <label htmlFor="address">
                           Address
@@ -445,7 +506,7 @@ const AddBuyers = () => {
                             <i className="fas fa-map-marker-alt"></i>
                           </div>
                           {touched.address && errors.address && (
-                            <motion.div 
+                            <motion.div
                               className="error-message"
                               initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -456,7 +517,73 @@ const AddBuyers = () => {
                           )}
                         </div>
                       </div>
-                      
+
+                      <div className="form-group">
+                        <label htmlFor="country">
+                          Country
+                          <span className="required-star">*</span>
+                        </label>
+                        <div className="input-container">
+                          <input
+                            id="country"
+                            type="text"
+                            name="country"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={inputs.country}
+                            placeholder="Enter Country"
+                            className={getFieldClass("country")}
+                            disabled={loading}
+                          />
+                          <div className="input-icon">
+                            <i className="fas fa-globe"></i>
+                          </div>
+                          {touched.country && errors.country && (
+                            <motion.div
+                              className="error-message"
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              {errors.country}
+                            </motion.div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="Pos">
+                          Postal Code
+                          <span className="required-star">*</span>
+                        </label>
+                        <div className="input-container">
+                          <input
+                            id="postalCode"
+                            type="text"
+                            name="postalCode"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={inputs.postalCode}
+                            placeholder="Enter Postal Code"
+                            className={getFieldClass("postalCode")}
+                            disabled={loading}
+                          />
+                          <div className="input-icon">
+                            <i className="fas fa-globe"></i>
+                          </div>
+                          {touched.postalCode && errors.postalCode && (
+                            <motion.div
+                              className="error-message"
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              {errors.postalCode}
+                            </motion.div>
+                          )}
+                        </div>
+                      </div>
+
                       <div className="form-group">
                         <label htmlFor="email">
                           Email Address
@@ -478,7 +605,7 @@ const AddBuyers = () => {
                             <i className="fas fa-envelope"></i>
                           </div>
                           {touched.email && errors.email && (
-                            <motion.div 
+                            <motion.div
                               className="error-message"
                               initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -493,7 +620,7 @@ const AddBuyers = () => {
                   )}
                 </motion.div>
               </div>
-              
+
               <div className="form-actions">
                 {currentStep > 1 && (
                   <button
@@ -505,7 +632,7 @@ const AddBuyers = () => {
                     <i className="fas fa-arrow-left"></i> Back
                   </button>
                 )}
-                
+
                 {currentStep < totalSteps ? (
                   <button
                     type="button"
@@ -525,7 +652,7 @@ const AddBuyers = () => {
                     >
                       Reset
                     </button>
-                    
+
                     <button
                       type="submit"
                       className="btn-submit"
@@ -534,7 +661,9 @@ const AddBuyers = () => {
                       {loading ? (
                         <div className="loader"></div>
                       ) : (
-                        <>Submit <i className="fas fa-check"></i></>
+                        <>
+                          Submit <i className="fas fa-check"></i>
+                        </>
                       )}
                     </button>
                   </div>

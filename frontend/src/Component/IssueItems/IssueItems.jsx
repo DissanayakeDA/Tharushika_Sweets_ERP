@@ -86,12 +86,22 @@ function IssueItems() {
   }, []);
 
   const handleBuyerIdChange = (e) => {
-    setBuyerId(e.target.value);
-    if (e.target.value) {
-      toast.info(`Selected buyer ID: ${e.target.value}`, { autoClose: 1500 });
+    const selectedBuyerId = e.target.value;
+    setBuyerId(selectedBuyerId);
+    if (selectedBuyerId) {
+      const selectedBuyer = buyers.find(
+        (buyer) => buyer._id === selectedBuyerId
+      );
+      toast.info(
+        `Selected buyer: ${
+          selectedBuyer?.name || "Unknown"
+        } (${selectedBuyerId})`,
+        {
+          autoClose: 1500,
+        }
+      );
     }
   };
-
   const handleItemChange = (index, value) => {
     const item = stockItems.find((item) => item.product_name === value);
     const updatedRows = [...rows];
@@ -221,7 +231,7 @@ function IssueItems() {
           </h2>
 
           <div className="dbissue-buyer-container">
-            <label htmlFor="buyerId">Select Buyer ID: </label>
+            <label htmlFor="buyerId">Select Buyer: </label>
             <select
               id="buyerId"
               className="dbissue-select-buyer"
@@ -229,10 +239,10 @@ function IssueItems() {
               onChange={handleBuyerIdChange}
               required
             >
-              <option value="">Select Buyer ID</option>
+              <option value="">Select Buyer</option>
               {buyers.map((buyer) => (
                 <option key={buyer._id} value={buyer._id}>
-                  {buyer._id}
+                  {buyer.name} ({buyer._id})
                 </option>
               ))}
             </select>
@@ -463,8 +473,13 @@ function IssueItems() {
                     0
                   )}
                 </p>
-                <p>Total value: ${calculateTotalBill().toFixed(2)}</p>
-                <p>Buyer ID: {buyerId}</p>
+                <p>Total value: LKR {calculateTotalBill().toFixed(2)}</p>
+                <p>
+                  Buyer:{" "}
+                  {buyers.find((buyer) => buyer._id === buyerId)?.name ||
+                    "Unknown"}{" "}
+                  ({buyerId})
+                </p>
               </div>
 
               <div className="dbissue-confirmation-actions">

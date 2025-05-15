@@ -6,10 +6,10 @@ html {
   padding: 0;
   height: 100%;
 }
-/* Add this to HRNav.css */
+
 .username-display {
   position: fixed;
-  top: 50px; /* Below the profile icon */
+  top: 50px;
   right: 20px;
   background-color: #efefef;
   padding: 10px;
@@ -24,8 +24,8 @@ html {
 .sidenav-hr {
   width: 80px;
   background-color: #ffff;
-  height: 82vh;
-  margin-top: 2%;
+  height: calc(100vh - 60px);
+  margin-top: 1cm;
   margin-left: 2%;
   padding: 20px;
   border-radius: 10px;
@@ -37,12 +37,13 @@ html {
   left: 0;
   font-family: "Noto Sans", sans-serif;
   transition: transform 0.3s ease-in-out;
-  transform: translateX(0);
+  transform: translateX(-260px); /* Hidden by default */
   overflow-y: auto;
+  z-index: 999;
 }
 
 .sidenav-hr.open {
-  transform: translateX(-260px);
+  transform: translateX(0); /* Visible when open */
 }
 
 .center-icon-btn {
@@ -59,10 +60,74 @@ html {
   margin: 0 auto;
 }
 
+.center-icon-btn svg {
+  display: block;
+}
+
+.center-icon-btn:hover {
+  background-color: rgba(154, 195, 221, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 15px #9ac3dd;
+  transition: all 0.3s ease-in-out;
+}
+
+.center-icon-btn.active {
+  background-color: rgba(154, 195, 221, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(154, 195, 221, 0.7);
+  animation: shadowPulse 1.5s infinite;
+}
+
+@keyframes shadowPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(154, 195, 221, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
+  }
+}
+
 .nav-label {
   color: #37474f;
   font-weight: bold;
   font-size: small;
+  text-align: center;
+}
+
+.home-a {
+  text-decoration: none;
+  color: #37474f;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-a.active {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.sidenav-hr ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidenav-hr ul li {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.nav-hr {
+  border: 0;
+  height: 1px;
+  background-color: #37474f;
+  opacity: 0.5;
+  margin: 5px 0;
 }
 
 .profile-icon-btn {
@@ -78,90 +143,19 @@ html {
   z-index: 1000;
 }
 
-/* Ensure the SVG is properly centered */
-.center-icon-btn svg {
-  display: block;
-}
-
-.brand {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.sidenav-hr ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidenav-hr ul li {
-  margin: 5px 0; /* Reduced from 10px 0 to 5px 0 */
-  text-align: center;
-}
-
-.sidenav-hr ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  display: block;
-}
-
-.sidenav-hr ul hr {
-  border: 0;
-  height: 1px;
-  background-color: white;
-  opacity: 0.5;
-  margin: 5px 0; /* Reduced from 10px 0 to 5px 0 */
-}
-
 main {
-  margin-left: 220px;
+  margin-left: 0; /* Adjust based on whether sidebar is visible */
   padding: 20px;
-}
-
-.center-icon-btn.active {
-  background-color: rgba(154, 195, 221, 0.2);
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(154, 195, 221, 0.7);
-  transition: all 0.3s ease-in-out;
-}
-
-@keyframes shadowPulse {
-  0% {
-    box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(154, 195, 221, 0.9);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(154, 195, 221, 0.5);
-  }
-}
-
-.center-icon-btn:hover {
-  background-color: rgba(154, 195, 221, 0.2);
-  border-radius: 50%;
-  box-shadow: 0 0 15px #9ac3dd;
-  transition: all 0.3s ease-in-out;
-}
-
-.center-icon-btn.active {
-  animation: shadowPulse 1.5s infinite;
 }
 
 @media (max-width: 768px) {
   .sidenav-hr {
-    transform: translateX(-220px);
+    width: 200px;
+    transform: translateX(-220px); /* Hidden by default */
   }
 
   .sidenav-hr.open {
-    transform: translateX(0);
-  }
-
-  .sidenav-hr {
-    width: 200px;
+    transform: translateX(0); /* Visible when open */
   }
 
   main {
@@ -174,7 +168,7 @@ main {
     width: 180px;
   }
 
-  .sidenav-hr ul li a {
+  .home-a {
     font-size: 14px;
   }
 }

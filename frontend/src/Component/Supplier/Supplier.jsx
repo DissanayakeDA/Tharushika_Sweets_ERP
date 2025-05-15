@@ -10,6 +10,7 @@ function Supplier({ supplier, onDelete }) {
     supplier_address,
     supplier_phone,
     supplier_email,
+    sypplier_country,
   } = supplier;
 
   const deleteHandler = async () => {
@@ -29,6 +30,7 @@ function Supplier({ supplier, onDelete }) {
       <td>{_id}</td>
       <td>{supplier_name}</td>
       <td>{supplier_address}</td>
+      <td>{sypplier_country}</td>
       <td>{supplier_phone}</td>
       <td>{supplier_email}</td>
       <td>

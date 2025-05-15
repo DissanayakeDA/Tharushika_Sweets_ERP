@@ -8,6 +8,7 @@ export const addSupplier = async (req, res) => {
   if (
     !supplier.supplier_name ||
     !supplier.supplier_address ||
+    !supplier.supplier_country ||
     !supplier.supplier_phone ||
     !supplier.supplier_email
   ) {

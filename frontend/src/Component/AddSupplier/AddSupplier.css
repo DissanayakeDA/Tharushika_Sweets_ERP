@@ -161,8 +161,9 @@
   margin-left: 4px;
 }
 
-.input-container {
+.input-container-sup {
   position: relative;
+  width: 90%;
 }
 
 .input-icon {

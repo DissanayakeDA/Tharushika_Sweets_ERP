@@ -421,9 +421,6 @@ function Sales() {
             <button onClick={generatePDF} className="dbIssue-report-btn">
               Download PDF Report
             </button>
-            <button className="dbIssue-report-btn dbIssue-excel-btn">
-              Export Excel
-            </button>
           </div>
         </div>
 
@@ -500,9 +497,6 @@ function Sales() {
                     className="dbIssue-modal-btn dbIssue-cancel-btn"
                   >
                     Close
-                  </button>
-                  <button className="dbIssue-modal-btn dbIssue-print-btn">
-                    Print Invoice
                   </button>
                 </div>
               </div>

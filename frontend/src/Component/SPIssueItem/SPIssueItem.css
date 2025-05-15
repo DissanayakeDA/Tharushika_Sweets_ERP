@@ -1,272 +1,696 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+/* IndirectBuyerIssueItem.css */
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Noto Sans", sans-serif;
-  background-color: #efefef;
-  background-color: #efefef;
-}
-.issue-items-container-div {
-  margin: 0px;
-  padding: 0px;
-  background-color: #efefef;
-  border-radius: 8px;
-  font-family: "Noto Sans", sans-serif;
-}
-
-.title-issue {
-  font-size: 28px;
-  font-weight: 400;
-  color: #37474f;
-  padding: 5px;
-  margin-top: 10px;
-  margin-left: 10%;
-  text-align: left;
-  margin-bottom: 25px;
-  font-family: "Noto Sans", sans-serif;
-}
-
-.buyer-id-section {
-  width: 30%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  margin: 50px auto;
-  display: block;
-  background-color: #efefef;
-  margin-left: 10%;
-}
-
-.issue-items-table {
-  width: 80%;
-  border-collapse: collapse;
-  text-align: center;
-  margin-left: 15%;
-  margin-top: 3%;
-}
-
-.issue-items-table {
-  width: 80%;
-  border-collapse: collapse;
-  text-align: center;
-  margin-left: 15%;
-  margin-top: 3%;
-}
-
-.issue-items-table th,
-.issue-items-table td {
-  padding: 12px 15px;
-
-  border-bottom: 2px solid #ccc;
-}
-
-.issue-items-table th {
-  background-color: #efefef;
-  color: #4e4a4a;
-  text-align: center;
-}
-
-.issue-items-table td button {
-  margin: 0 5px;
-  padding: 5px 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
-.qty-input {
-  background-color: #efefef;
-}
-.issue-items-table select {
-  width: 100%;
-  padding: 5px;
-  font-size: 14px;
-  background-color: #efefef;
-}
-
-.issue-btn-container {
+.indirectissue-items-container {
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 5%;
-  margin-right: 5%;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  color: #333;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.add-row-btn {
-  background-color: #37474f;
+.indirectissue-items-content {
+  padding: 1.5rem;
+  margin: 0 auto;
+  width: 95%;
+  max-width: 1200px;
+  position: relative;
+}
 
-  color: white;
+/* Header Styling */
+.indirectissue-items-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e0e7ff;
+}
+
+.indirectissue-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  color: #3a4374;
+  margin: 0;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.indirectissue-title:hover {
+  color: #6366f1;
+}
+
+.indirectissue-header-icon {
+  margin-right: 10px;
+  color: #6366f1;
+  font-size: 1.5rem;
+}
+
+.indirectissue-buyer-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.indirectissue-buyer-container:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.indirectissue-buyer-container label {
+  font-weight: 500;
+  margin-right: 10px;
+  color: #555;
+}
+
+.indirectissue-select-buyer {
+  background-color: transparent;
   border: none;
-  border-radius: 50%;
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-
-  padding: 5px 10px;
-  margin-right: 15px;
-  transition: transform 0.2s ease;
-  transition: transform 0.2s ease;
-}
-
-.add-row-btn:hover {
-  transform: scale(1.1);
-}
-
-.remove-row-btn {
-  background-color: #37474f;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.remove-row-btn:hover {
-  transform: scale(1.1);
-}
-
-.id-input-issue {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #efefef;
-  cursor: pointer;
-  color: #37474f;
-  margin-left: 15%;
-}
-.checkout-btn {
-  background: linear-gradient(to right, #37474f, #3d5c6b, #37474f);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  outline: none;
+  color: #6366f1;
+  font-weight: 600;
   font-size: 1rem;
-  background-size: 200%;
-  transition: background-position 0.5s ease, transform 0.2s ease;
-  padding: 10px 20px;
-  font-family: "Noto Sans", sans-serif;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
 }
 
-.checkout-btn:hover {
-  background-position: right;
+.indirectissue-select-buyer:hover {
+  background-color: #f0f1fe;
+}
+
+.indirectissue-select-buyer:focus {
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+}
+
+/* Search Styling */
+.indirectissue-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  background-color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.indirectissue-search-input-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+}
+
+.indirectissue-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6366f1;
+  font-size: 1rem;
+}
+
+.indirectissue-search-input {
+  width: 100%;
+  padding: 10px 40px 10px 35px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.indirectissue-search-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.indirectissue-search-input::placeholder {
+  color: #a0aec0;
+}
+
+.indirectissue-clear-search {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #718096;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.indirectissue-clear-search:hover {
+  background-color: #f0f1fe;
+  color: #6366f1;
+}
+
+.indirectissue-items-count {
+  font-size: 0.9rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+/* Table Styling */
+.indirectissue-table-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.indirectissue-table-container:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.indirectissue-items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.indirectissue-items-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  text-align: left;
+  padding: 14px 20px;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.indirectissue-items-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f0f4f8;
+  vertical-align: middle;
+}
+
+.indirectissue-data-row {
+  transition: background-color 0.2s ease;
+}
+
+.indirectissue-data-row:hover {
+  background-color: #f8fafc;
+}
+
+.indirectissue-selected-row {
+  background-color: #f0f7ff;
+}
+
+.indirectissue-selected-row:hover {
+  background-color: #e6f0fd;
+}
+
+/* Form Controls */
+.indirectissue-select-item {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indirectissue-select-item:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.indirectissue-select-item option {
+  padding: 10px;
+}
+
+.indirectissue-stock-value {
+  font-weight: 500;
+}
+
+.indirectissue-stock-warning {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+.indirectissue-price-value {
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.indirectissue-total-value {
+  font-weight: 600;
+  color: #3182ce;
+}
+
+.indirectissue-quantity-control {
+  display: flex;
+  align-items: center;
+  max-width: 150px;
+}
+
+.indirectissue-quantity-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.indirectissue-decrease {
+  background-color: #fdf2f2;
+  color: #e53e3e;
+}
+
+.indirectissue-decrease:hover:not(:disabled) {
+  background-color: #fed7d7;
   transform: scale(1.05);
 }
 
-@media (max-width: 1024px) {
-  .title {
-    font-size: 24px;
-    margin-left: 10%;
+.indirectissue-increase {
+  background-color: #f0fff4;
+  color: #38a169;
+}
+
+.indirectissue-increase:hover:not(:disabled) {
+  background-color: #c6f6d5;
+  transform: scale(1.05);
+}
+
+.indirectissue-quantity-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.indirectissue-quantity-input {
+  width: 60px;
+  text-align: center;
+  padding: 5px;
+  margin: 0 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.indirectissue-quantity-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Footer and Total styling */
+.indirectissue-items-table tfoot {
+  background-color: #f8fafc;
+}
+
+.indirectissue-items-table tfoot td {
+  padding: 15px 20px;
+}
+
+.indirectissue-total-label {
+  text-align: right;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 1rem;
+}
+
+.indirectissue-grand-total {
+  font-weight: 700;
+  color: #3182ce;
+  font-size: 1.1rem;
+}
+
+/* Buttons */
+.indirectissue-remove-row-btn {
+  background-color: #fff5f5;
+  color: #e53e3e;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.indirectissue-remove-row-btn:hover {
+  background-color: #fed7d7;
+  transform: scale(1.05);
+}
+
+.indirectissue-button-container {
+  display: flex;
+  gap: 15px;
+  margin: 1.5rem 0;
+}
+
+.indirectissue-add-row-btn {
+  background-color: #f0f5ff;
+  color: #3182ce;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 2px 6px rgba(49, 130, 206, 0.15);
+  transition: all 0.2s ease;
+}
+
+.indirectissue-add-row-btn:hover {
+  background-color: #3182ce;
+  color: white;
+  transform: scale(1.05);
+}
+
+.indirectissue-checkout-btn {
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.25);
+  transition: all 0.3s ease;
+}
+
+.indirectissue-checkout-btn:hover:not(:disabled) {
+  background-color: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.35);
+}
+
+.indirectissue-checkout-btn.indirectissue-active {
+  background-color: #4f46e5;
+}
+
+.indirectissue-checkout-btn.indirectissue-disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+}
+
+.indirectissue-checkout-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Summary panel */
+.indirectissue-summary-panel {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-top: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #6366f1;
+}
+
+.indirectissue-summary-panel:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.indirectissue-summary-panel h3 {
+  margin-top: 0;
+  color: #3a4374;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.indirectissue-summary-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.indirectissue-summary-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: #4a5568;
+}
+
+.indirectissue-summary-content strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* Loading and Error states */
+.indirectissue-loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #6366f1;
+  font-size: 1.1rem;
+}
+
+.indirectissue-spin-icon {
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-
-  .hr-issue {
-    margin-left: 10%;
-  }
-
-  .buyer-id-section input {
-    width: 80%;
-  }
-
-  .issue-items-table {
-    width: 90%;
-    margin-left: 5%;
-  }
-
-  .issue-btn-container {
-    margin-top: 5%;
-    margin-right: 5%;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .add-row-btn,
-  .remove-row-btn {
-    width: 35px;
-
-    height: 35px;
-    font-size: 18px;
-  }
-
-  .checkout-btn {
-    font-size: 0.9rem;
-    padding: 8px 18px;
+  100% {
+    transform: rotate(360deg);
   }
 }
 
+.indirectissue-error-message {
+  background-color: #fff5f5;
+  color: #c53030;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid #e53e3e;
+  font-weight: 500;
+}
+
+/* Confirmation dialog */
+.indirectissue-confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.indirectissue-confirmation-dialog {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.indirectissue-confirmation-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #3a4374;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.indirectissue-confirmation-message {
+  color: #4a5568;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.indirectissue-confirmation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.indirectissue-cancel-btn {
+  background-color: #f1f5f9;
+  color: #64748b;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.indirectissue-cancel-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.indirectissue-confirm-btn {
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.indirectissue-confirm-btn:hover {
+  background-color: #4f46e5;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
-  .title {
-    font-size: 22px;
-    margin-left: 5%;
-  }
-
-  .buyer-id-section input {
-    width: 90%;
-  }
-
-  .issue-items-table {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .issue-items-table th,
-  .issue-items-table td {
-    font-size: 0.8rem;
-  }
-
-  .issue-btn-container {
+  .indirectissue-items-header {
     flex-direction: column;
+    align-items: flex-start;
     gap: 15px;
-    align-items: center;
   }
 
-  .add-row-btn,
-  .remove-row-btn {
-    font-size: 18px;
-    width: 35px;
-    height: 35px;
+  .indirectissue-buyer-container {
+    width: 100%;
   }
 
-  .checkout-btn {
-    font-size: 0.9rem;
-    padding: 8px 16px;
+  .indirectissue-search-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .indirectissue-search-input-wrapper {
+    width: 100%;
+    max-width: none;
+  }
+
+  .indirectissue-items-count {
+    margin-top: 5px;
+  }
+
+  .indirectissue-table-container {
+    overflow-x: auto;
+  }
+
+  .indirectissue-button-container {
+    justify-content: space-between;
+  }
+
+  .indirectissue-checkout-btn {
+    padding: 10px 16px;
+    font-size: 0.95rem;
+  }
+
+  .indirectissue-summary-content {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  .title {
-    font-size: 20px;
-    margin-left: 0;
+/* Print styles */
+@media print {
+  .indirectissue-items-container {
+    background-color: white;
   }
 
-  .buyer-id-section input {
-    width: 100%;
-    font-size: 0.8rem;
+  .indirectissue-table-container,
+  .indirectissue-summary-panel {
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
   }
 
-  .issue-items-table {
-    width: 100%;
-    margin-left: 0;
-    font-size: 0.75rem;
+  .indirectissue-add-row-btn,
+  .indirectissue-remove-row-btn,
+  .indirectissue-checkout-btn,
+  .indirectissue-clear-search,
+  .indirectissue-quantity-btn {
+    display: none;
   }
 
-  .issue-btn-container {
-    gap: 10px;
-    align-items: center;
+  .indirectissue-search-container {
+    display: none;
   }
+}
 
-  .add-row-btn,
-  .remove-row-btn {
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
-  }
+/* Transitions and animations */
+.indirectissue-row-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
 
-  .checkout-btn {
-    font-size: 0.85rem;
-    padding: 8px 14px;
-  }
+.indirectissue-row-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.indirectissue-row-exit {
+  opacity: 1;
+}
+
+.indirectissue-row-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Focus styles for accessibility */
+.indirectissue-select-buyer:focus-visible,
+.indirectissue-select-item:focus-visible,
+.indirectissue-quantity-input:focus-visible,
+.indirectissue-add-row-btn:focus-visible,
+.indirectissue-checkout-btn:focus-visible,
+.indirectissue-remove-row-btn:focus-visible,
+.indirectissue-quantity-btn:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 }
