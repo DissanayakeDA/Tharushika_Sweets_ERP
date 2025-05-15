@@ -1,118 +1,237 @@
-/* client/src/Component/ViewAttendance/ViewAttendance.css */
 .view-attendance-container {
-    background: #f0f4f8;
-    min-height: 100vh;
-    padding-top: 70px;
-  }
-  
-  .attendance-content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .attendance-title {
-    font-size: 2rem;
-    color: #2c3e50;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
+  background: #f0f4f8;
+  min-height: 100vh;
+  padding-top: 70px;
+  display: flex;
+}
+
+.attendance-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  flex: 1;
+}
+
+.attendance-title {
+  font-size: 2rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.date-picker {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.date-picker label {
+  font-size: 1.2rem;
+  color: #34495e;
+}
+
+.date-picker input[type="date"] {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.date-picker .download-btn {
+  padding: 8px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.date-picker .download-btn:hover {
+  background: #2980b9;
+}
+
+.date-picker .edit-btn {
+  padding: 8px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background: #e67e22;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.date-picker .edit-btn:hover {
+  background: #d35400;
+}
+
+.date-picker .edit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.attendance-day {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-day h3 {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+.attendance-section {
+  margin-bottom: 20px;
+}
+
+.attendance-section h4 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.attendance-list {
+  list-style: none;
+  padding: 0;
+}
+
+.attendance-list li {
+  padding: 8px;
+  font-size: 1rem;
+  color: #34495e;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.present-list li {
+  background: #e8f5e9;
+}
+
+.absent-list li {
+  background: #ffebee;
+}
+
+.no-data {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #3498db;
+}
+
+.error-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #e74c3c;
+}
+
+.save-btn {
+  display: block;
+  margin: 15px auto 0;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background: #2ecc71;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+  background: #27ae60;
+}
+
+.save-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.edit-attendance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.edit-attendance span {
+  flex: 1;
+  min-width: 150px;
+}
+
+.attendance-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.status-btn {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  min-width: 80px;
+  text-align: center;
+}
+
+.status-btn.present {
+  background: #2ecc71;
+  color: #fff;
+}
+
+.status-btn.absent {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.status-btn:not(.present):not(.absent) {
+  background: #ccc;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
   .date-picker {
-    text-align: center;
-    margin-bottom: 30px;
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .date-picker label {
-    font-size: 1.2rem;
-    color: #34495e;
-    margin-right: 10px;
-  }
-  
-  .date-picker input[type="date"] {
-    padding: 8px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .date-picker .download-btn {
-    margin-left: 15px;
-    padding: 8px 15px;
-    font-size: 1rem;
-    color: #fff;
-    background: #3498db;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .date-picker .download-btn:hover {
-    background: #2980b9;
-  }
-  
-  .attendance-day {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .attendance-day h3 {
-    font-size: 1.5rem;
-    color: #34495e;
-    margin-bottom: 15px;
-  }
-  
-  .attendance-section {
-    margin-bottom: 20px;
-  }
-  
-  .attendance-section h4 {
-    font-size: 1.2rem;
-    color: #2c3e50;
-    margin-bottom: 10px;
-  }
-  
-  .attendance-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .attendance-list li {
-    padding: 8px;
-    font-size: 1rem;
-    color: #34495e;
-  }
-  
-  .present-list li {
-    background: #e8f5e9;
-    border-radius: 5px;
+
+  .date-picker label,
+  .date-picker input[type="date"],
+  .date-picker .download-btn,
+  .date-picker .edit-btn {
+    width: 100%;
+    max-width: 300px;
     margin: 5px 0;
   }
-  
-  .absent-list li {
-    background: #ffebee;
-    border-radius: 5px;
-    margin: 5px 0;
+
+  .edit-attendance {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .no-data {
-    color: #7f8c8d;
-    font-style: italic;
+
+  .attendance-buttons {
+    width: 100%;
+    justify-content: space-between;
   }
-  
-  .loading-text {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #3498db;
+
+  .status-btn {
+    flex: 1;
   }
-  
-  .error-text {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #e74c3c;
-  }
+}

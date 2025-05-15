@@ -77,69 +77,110 @@ function AllStockRequestsApproval() {
     }
   };
 
-  return (
-    <div className="all-requests-container">
-      <HeadBar />
-      <GMNav />
-      <h2 className="title-all-requests">All Stock Change Requests</h2>
+  // Function to determine status badge color
+  const getStatusBadgeClass = (status) => {
+    switch (status) {
+      case "Approved":
+        return "status-badge approved";
+      case "Rejected":
+        return "status-badge rejected";
+      case "Pending":
+        return "status-badge pending";
+      default:
+        return "status-badge";
+    }
+  };
 
-      {loading ? (
-        <p>Loading requests...</p>
-      ) : (
-        <table className="requests-table">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th>Request Type</th>
-              <th>Proposed Value</th>
-              <th>Reason</th>
-              <th>Created By</th>
-              <th>Status</th>
-              <th>Created At</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {requests.map((request) => (
-              <tr key={request._id}>
-                <td>{request.product_name || "N/A"}</td>
-                <td>{request.request_type}</td>
-                <td>
-                  {request.request_type === "update"
-                    ? request.proposed_changes?.product_quantity ?? "N/A"
-                    : "N/A"}
-                </td>
-                <td>{request.reason}</td>
-                <td>{request.created_by}</td>
-                <td>{request.status}</td>
-                <td>{new Date(request.createdAt).toLocaleString()}</td>
-                <td>
-                  {request.status === "Pending" && (
-                    <>
-                      <button
-                        className="approve-btn"
-                        onClick={() =>
-                          handleStatusUpdate(request._id, "Approved")
-                        }
-                      >
-                        Approve
-                      </button>
-                      <button
-                        className="reject-btn"
-                        onClick={() =>
-                          handleStatusUpdate(request._id, "Rejected")
-                        }
-                      >
-                        Reject
-                      </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+  return (
+    <div>
+      <HeadBar />
+      <div className="allStockchange-all-requests-container">
+        <GMNav />
+        <h2 className="allStockchange-title-all-requests">
+          All Stock Change Requests
+        </h2>
+
+        {loading ? (
+          <div className="allStockchange-loading">
+            <div className="allStockchange-spinner"></div>
+            <p>Loading requests...</p>
+          </div>
+        ) : (
+          <div className="allStockchange-requests-table-container">
+            <table className="allStockchange-requests-table">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Request Type</th>
+                  <th>Proposed Value</th>
+                  <th>Reason</th>
+                  <th>Created By</th>
+                  <th>Status</th>
+                  <th>Created At</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {requests.length === 0 ? (
+                  <tr>
+                    <td colSpan="8" className="allStockchange-no-data">
+                      No pending requests found
+                    </td>
+                  </tr>
+                ) : (
+                  requests.map((request) => (
+                    <tr key={request._id}>
+                      <td>{request.product_name || "N/A"}</td>
+                      <td>
+                        <span
+                          className={`request-type ${request.request_type}`}
+                        >
+                          {request.request_type}
+                        </span>
+                      </td>
+                      <td>
+                        {request.request_type === "update"
+                          ? request.proposed_changes?.product_quantity ?? "N/A"
+                          : "N/A"}
+                      </td>
+                      <td className="reason-cell">{request.reason}</td>
+                      <td>{request.created_by}</td>
+                      <td>
+                        <span className={getStatusBadgeClass(request.status)}>
+                          {request.status}
+                        </span>
+                      </td>
+                      <td>{new Date(request.createdAt).toLocaleString()}</td>
+                      <td className="actions-cell">
+                        {request.status === "Pending" && (
+                          <div className="allStockchange-action-buttons">
+                            <button
+                              className="allStockchange-approve-btn"
+                              onClick={() =>
+                                handleStatusUpdate(request._id, "Approved")
+                              }
+                            >
+                              Approve
+                            </button>
+                            <button
+                              className="allStockchange-reject-btn"
+                              onClick={() =>
+                                handleStatusUpdate(request._id, "Rejected")
+                              }
+                            >
+                              Reject
+                            </button>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

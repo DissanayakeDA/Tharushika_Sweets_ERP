@@ -952,7 +952,11 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
+.dashboard-btn-st:nth-child(7) .dash-btn-icon-st i {
+  background: linear-gradient(135deg, #f0a314, #f4cb52);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 /* Interactive hover effects */
 .dashboard-btn-st::after {
   content: "";

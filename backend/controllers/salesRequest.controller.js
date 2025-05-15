@@ -97,13 +97,23 @@ export const deleteSalesRequest = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const deletedRequest = await SalesRequest.findByIdAndDelete(id);
-    if (!deletedRequest) {
+    const request = await SalesRequest.findById(id);
+
+    if (!request) {
       return res.status(404).json({
         success: false,
         message: "Sales request not found",
       });
     }
+
+    if (request.status !== "Pending") {
+      return res.status(400).json({
+        success: false,
+        message: "Only pending requests can be deleted",
+      });
+    }
+
+    await SalesRequest.findByIdAndDelete(id);
     res.status(200).json({
       success: true,
       message: "Sales request deleted successfully",
@@ -144,7 +154,9 @@ export const updateSalesRequestStatus = async (req, res) => {
 
     // If approved, reduce stock quantity
     if (status === "Approved") {
-      const stock = await Stock.findOne({ product_name: updatedRequest.product_name });
+      const stock = await Stock.findOne({
+        product_name: updatedRequest.product_name,
+      });
       if (stock) {
         stock.product_quantity -= updatedRequest.requested_quantity;
         await stock.save();

@@ -3,28 +3,21 @@ import "./HRNav.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function HRNav() {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [showUserName, setShowUserName] = useState(false); // State to toggle username display
+  const [showUserName, setShowUserName] = useState(false);
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
   const navigate = useNavigate();
 
-  // Get user data from sessionStorage
   const user = JSON.parse(sessionStorage.getItem("user")) || {};
-  const loggedInUserName = user.username || "Guest"; // Default to "Guest" if no user
-
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
-    setShowUserName(false); // Hide username when toggling nav
-  };
+  const loggedInUserName = user.username || "Guest";
 
   const handleProfileClick = () => {
-    setShowUserName(!showUserName); // Toggle username visibility
+    setShowUserName(!showUserName);
   };
 
   const handleLinkClick = (path) => {
     setActiveLink(path);
-    setShowUserName(false); // Hide username when clicking a link
+    setShowUserName(false);
   };
 
   const handleLogout = () => {
@@ -34,31 +27,13 @@ function HRNav() {
 
   return (
     <div>
-      <button className="profile-icon-btn" onClick={handleProfileClick}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="currentColor"
-          className="bi bi-person-circle"
-          viewBox="0 0 16 16"
-        >
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-          <path
-            fillRule="evenodd"
-            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-          />
-        </svg>
-      </button>
-
-      {/* Display username when showUserName is true */}
       {showUserName && (
         <div className="username-display">
           Logged in as: <strong>{loggedInUserName}</strong>
         </div>
       )}
 
-      <div className={`sidenav-hr ${isNavOpen ? "open" : ""}`}>
+      <div className="sidenav-hr open">
         <ul>
           <li>
             <Link
@@ -144,7 +119,7 @@ function HRNav() {
                   <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                   <path
                     fillRule="evenodd"
-                    d="M5.216 14A2.24 2.24 0 0 1 5 13c0-1.01.77-2.27 1.946-2.944.426-.233.85-.457 1.254-.68A3 3 0 0 1 8 8a3 3 0 0 1 0-6 3 3 0 0 1 .216 5.99c-.404.224-.828.447-1.254.68C5.77 9.27 5 10.99 5 13a2.24 2.24 0 0 1-.216 1z"
+                    d="M5.216 14A2.24 технологи 2.24 0 0 1 5 13c0-1.01.77-2.27 1.946-2.944.426-.233.85-.457 1.254-.68A3 3 0 0 1 8 8a3 3 0 0 1 0-6 3 3 0 0 1 .216 5.99c-.404.224-.828.447-1.254.68C5.77 9.27 5 10.99 5 13a2.24 2.24 0 0 1-.216 1z"
                   />
                 </svg>
               </button>
@@ -245,15 +220,15 @@ function HRNav() {
           <li>
             <Link
               to="/login"
-              className={`home-a ${activeLink === "/signout" ? "active" : ""}`}
+              className={`home-a ${activeLink === "/login" ? "active" : ""}`}
               onClick={() => {
-                handleLinkClick("/signout");
+                handleLinkClick("/login");
                 handleLogout();
               }}
             >
               <button
                 className={`center-icon-btn ${
-                  activeLink === "/signout" ? "active" : ""
+                  activeLink === "/login" ? "active" : ""
                 }`}
               >
                 <svg

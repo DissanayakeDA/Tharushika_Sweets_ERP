@@ -1,8 +1,7 @@
-// src/Component/ViewEmployees/ViewEmployees.jsx
 import React, { useState, useEffect } from "react";
 import HRNav from "../HRNav/HRNav";
 import axios from "axios";
-import "./ViewEmployee.css"; // Updated to match import
+import "./ViewEmployee.css";
 import HeadBar from "../HeadBar/HeadBar";
 import { useNavigate } from "react-router-dom";
 
@@ -14,8 +13,8 @@ function ViewEmployees() {
   const [error, setError] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [employeeToDelete, setEmployeeToDelete] = useState(null);
-  const [showDetailsPopup, setShowDetailsPopup] = useState(false); // State for details popup
-  const [selectedEmployee, setSelectedEmployee] = useState(null); // Track selected employee
+  const [showDetailsPopup, setShowDetailsPopup] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -65,7 +64,9 @@ function ViewEmployees() {
     if (!employeeToDelete) return;
 
     try {
-      const response = await axios.delete(`http://localhost:5000/api/employee/${employeeToDelete._id}`);
+      const response = await axios.delete(
+        `http://localhost:5000/api/employee/${employeeToDelete._id}`
+      );
       if (response.data.success) {
         fetchData();
         setError(null);
@@ -87,8 +88,8 @@ function ViewEmployees() {
   };
 
   const handleNameClick = (employee) => {
-    setSelectedEmployee(employee); // Set the clicked employee
-    setShowDetailsPopup(true); // Show the popup
+    setSelectedEmployee(employee);
+    setShowDetailsPopup(true);
   };
 
   const closeDetailsPopup = () => {
@@ -100,24 +101,24 @@ function ViewEmployees() {
     <div>
       <HRNav />
       <HeadBar />
-      <div className="view-stock-container">
-        <div className="header">
-          <h2 className="view-stock-title">View Employees</h2>
+      <div className="HRViewStockContainer">
+        <div className="HRHeader">
+          <h2 className="HRViewStockTitle">View Employees</h2>
 
-          <div className="search-container">
+          <div className="HRSearchContainer">
             <input
               type="text"
               placeholder="Search by name..."
               value={searchTerm}
               onChange={handleSearch}
-              className="search-input"
+              className="HRSearchInput"
             />
           </div>
 
           {loading && <p>Loading data...</p>}
           {error && <p style={{ color: "red" }}>{error}</p>}
-          <div className="table-container">
-            <table className="view-stock-table">
+          <div className="HRTableContainer">
+            <table className="HRViewStockTable">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -125,14 +126,17 @@ function ViewEmployees() {
                   <th>Position</th>
                   <th>Salary</th>
                   <th>NIC No</th>
+                  <th>Address</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredData.length === 0 ? (
                   <tr>
-                    <td colSpan="6" style={{ textAlign: "center" }}>
-                      {searchTerm ? "No matching employees found" : "No employees available"}
+                    <td colSpan="7" style={{ textAlign: "center" }}>
+                      {searchTerm
+                        ? "No matching employees found"
+                        : "No employees available"}
                     </td>
                   </tr>
                 ) : (
@@ -140,7 +144,7 @@ function ViewEmployees() {
                     <tr key={employee._id}>
                       <td>
                         <span
-                          className="employee-name"
+                          className="HREmployeeName"
                           onClick={() => handleNameClick(employee)}
                         >
                           {employee.name}
@@ -150,16 +154,17 @@ function ViewEmployees() {
                       <td>{employee.position}</td>
                       <td>{employee.salary}</td>
                       <td>{employee.nicNo}</td>
+                      <td>{employee.address}</td>
                       <td>
-                        <div className="action-icons">
+                        <div className="HRActionIcons">
                           <button
-                            className="action"
+                            className="HRAction"
                             onClick={() => handleEdit(employee._id)}
                           >
                             <i className="bi bi-pencil-square"></i>
                           </button>
                           <button
-                            className="action"
+                            className="HRAction"
                             onClick={() => handleDeleteClick(employee)}
                           >
                             <i className="bi bi-trash"></i>
@@ -177,18 +182,22 @@ function ViewEmployees() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="HRModalOverlay">
+          <div className="HRModalContent">
             <h3>Confirm Deletion</h3>
             <p>
               Are you sure you want to delete{" "}
-              <strong>{employeeToDelete?.name}</strong> (NIC: {employeeToDelete?.nicNo})?
+              <strong>{employeeToDelete?.name}</strong> (NIC:{" "}
+              {employeeToDelete?.nicNo})?
             </p>
-            <div className="modal-buttons">
-              <button className="modal-btn cancel-btn" onClick={cancelDelete}>
+            <div className="HRModalButtons">
+              <button className="HRModalBtn HRCancelBtn" onClick={cancelDelete}>
                 Cancel
               </button>
-              <button className="modal-btn delete-btn" onClick={confirmDelete}>
+              <button
+                className="HRModalBtn HRDeleteBtn"
+                onClick={confirmDelete}
+              >
                 Delete
               </button>
             </div>
@@ -198,22 +207,48 @@ function ViewEmployees() {
 
       {/* Employee Details Popup */}
       {showDetailsPopup && selectedEmployee && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="HRModalOverlay">
+          <div className="HRModalContent">
             <h3>Employee Details</h3>
-            <div className="employee-details">
-              <p><strong>Name:</strong> {selectedEmployee.name}</p>
-              <p><strong>Mobile No:</strong> {selectedEmployee.mobileNo}</p>
-              <p><strong>Position:</strong> {selectedEmployee.position}</p>
-              <p><strong>Salary:</strong> {selectedEmployee.salary}</p>
-              <p><strong>Bank Account No:</strong> {selectedEmployee.bankAccountNo}</p>
-              <p><strong>Bank:</strong> {selectedEmployee.bank}</p>
-              <p><strong>Branch:</strong> {selectedEmployee.branch}</p>
-              <p><strong>NIC No:</strong> {selectedEmployee.nicNo}</p>
-              <p><strong>Date of Birth:</strong> {new Date(selectedEmployee.dateOfBirth).toLocaleDateString()}</p>
+            <div className="HREmployeeDetails">
+              <p>
+                <strong>Name:</strong> {selectedEmployee.name}
+              </p>
+              <p>
+                <strong>Mobile No:</strong> {selectedEmployee.mobileNo}
+              </p>
+              <p>
+                <strong>Position:</strong> {selectedEmployee.position}
+              </p>
+              <p>
+                <strong>Salary:</strong> {selectedEmployee.salary}
+              </p>
+              <p>
+                <strong>Bank Account No:</strong>{" "}
+                {selectedEmployee.bankAccountNo}
+              </p>
+              <p>
+                <strong>Bank:</strong> {selectedEmployee.bank}
+              </p>
+              <p>
+                <strong>Branch:</strong> {selectedEmployee.branch}
+              </p>
+              <p>
+                <strong>NIC No:</strong> {selectedEmployee.nicNo}
+              </p>
+              <p>
+                <strong>Date of Birth:</strong>{" "}
+                {new Date(selectedEmployee.dateOfBirth).toLocaleDateString()}
+              </p>
+              <p>
+                <strong>Address:</strong> {selectedEmployee.address}
+              </p>
             </div>
-            <div className="modal-buttons">
-              <button className="modal-btn cancel-btn" onClick={closeDetailsPopup}>
+            <div className="HRModalButtons">
+              <button
+                className="HRModalBtn HRCancelBtn"
+                onClick={closeDetailsPopup}
+              >
                 Close
               </button>
             </div>

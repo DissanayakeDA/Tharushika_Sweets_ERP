@@ -66,7 +66,6 @@ export const createUser = async (req, res) => {
   }
 };
 
-// Keep getUsers and deleteUser unchanged
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();

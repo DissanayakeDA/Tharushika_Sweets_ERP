@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./AddSupplier.css";
-import Nav from "../Nav/Nav";
+import GMNav from "../GMNav/GMNav";
 import HeadBar from "../HeadBar/HeadBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -18,6 +18,7 @@ const AddSupplier = () => {
     supplier_address: "",
     supplier_phone: "",
     supplier_email: "",
+    supplier_country: "",
   });
 
   const [touched, setTouched] = useState({
@@ -25,6 +26,7 @@ const AddSupplier = () => {
     supplier_address: false,
     supplier_phone: false,
     supplier_email: false,
+    supplier_country: false,
   });
 
   const [errors, setErrors] = useState({});
@@ -106,6 +108,7 @@ const AddSupplier = () => {
       supplier_address: true,
       supplier_phone: true,
       supplier_email: true,
+      supplier_country: true,
     });
 
     let formErrors = {};
@@ -181,6 +184,35 @@ const AddSupplier = () => {
           supplier_phone: "Contact number must be exactly 10 digits.",
         }));
         setTouched((prev) => ({ ...prev, supplier_phone: true }));
+        isValid = false;
+      }
+    }
+
+    if (step === 2) {
+      if (!inputs.supplier_address.trim()) {
+        setErrors((prev) => ({
+          ...prev,
+          supplier_address: "Address is required.",
+        }));
+        setTouched((prev) => ({ ...prev, supplier_address: true }));
+        isValid = false;
+      }
+
+      if (!inputs.supplier_email.trim()) {
+        setErrors((prev) => ({
+          ...prev,
+          supplier_email: "Email is required.",
+        }));
+        setTouched((prev) => ({ ...prev, supplier_email: true }));
+        isValid = false;
+      } else if (
+        !/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(inputs.supplier_email)
+      ) {
+        setErrors((prev) => ({
+          ...prev,
+          supplier_email: "Invalid email address.",
+        }));
+        setTouched((prev) => ({ ...prev, supplier_email: true }));
         isValid = false;
       }
     }
@@ -267,6 +299,7 @@ const AddSupplier = () => {
         supplier_address: String(inputs.supplier_address),
         supplier_phone: String(inputs.supplier_phone),
         supplier_email: String(inputs.supplier_email),
+        supplier_country: String(inputs.supplier_country),
       })
       .then((res) => res.data);
   };
@@ -278,6 +311,7 @@ const AddSupplier = () => {
       supplier_address: "",
       supplier_phone: "",
       supplier_email: "",
+      supplier_country: "",
     });
     setErrors({});
     setTouched({
@@ -285,6 +319,7 @@ const AddSupplier = () => {
       supplier_address: false,
       supplier_phone: false,
       supplier_email: false,
+      supplier_country: false,
     });
     setCurrentStep(1);
   };
@@ -298,7 +333,7 @@ const AddSupplier = () => {
   return (
     <div className="add-buyers-container">
       <HeadBar />
-      <Nav />
+      <GMNav />
       <div className="content-wrapper">
         <motion.div
           className="form-card"
@@ -389,7 +424,7 @@ const AddSupplier = () => {
                           Supplier Name
                           <span className="required-star">*</span>
                         </label>
-                        <div className="input-container">
+                        <div className="input-container-sup">
                           <input
                             id="supplier_name"
                             type="text"
@@ -422,7 +457,7 @@ const AddSupplier = () => {
                           Contact Number
                           <span className="required-star">*</span>
                         </label>
-                        <div className="input-container">
+                        <div className="input-container-sup">
                           <input
                             id="supplier_phone"
                             type="tel"
@@ -457,7 +492,7 @@ const AddSupplier = () => {
                     <>
                       <div className="step-title">
                         <h3>Additional Details</h3>
-                        <p>Enter the supplier's address and email</p>
+                        <p>Enter the supplier's address, email, and country</p>
                       </div>
 
                       <div className="form-group">
@@ -465,7 +500,7 @@ const AddSupplier = () => {
                           Address
                           <span className="required-star">*</span>
                         </label>
-                        <div className="input-container">
+                        <div className="input-container-sup">
                           <textarea
                             id="supplier_address"
                             name="supplier_address"
@@ -501,7 +536,7 @@ const AddSupplier = () => {
                           Email Address
                           <span className="required-star">*</span>
                         </label>
-                        <div className="input-container">
+                        <div className="input-container-sup">
                           <input
                             id="supplier_email"
                             type="email"
@@ -526,6 +561,40 @@ const AddSupplier = () => {
                               {errors.supplier_email}
                             </motion.div>
                           )}
+                        </div>
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="supplier_country">
+                          Country
+                          <span className="required-star">*</span>
+                        </label>
+                        <div className="input-container-sup">
+                          <input
+                            id="supplier_country"
+                            type="text"
+                            name="supplier_country"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={inputs.supplier_country}
+                            placeholder="Enter Country"
+                            className={getFieldClass("supplier_country")}
+                            disabled={loading}
+                          />
+                          <div className="input-icon">
+                            <i className="fas fa-globe"></i>
+                          </div>
+                          {touched.supplier_country &&
+                            errors.supplier_country && (
+                              <motion.div
+                                className="error-message"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                {errors.supplier_country}
+                              </motion.div>
+                            )}
                         </div>
                       </div>
                     </>

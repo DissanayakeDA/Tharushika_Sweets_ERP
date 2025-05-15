@@ -1,0 +1,267 @@
+/* MyStockChangeRequests.css */
+
+/* Main container */
+.dbIssue-sales-container {
+  width: 95%;
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+.dbIssue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dbIssue-sales-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Advanced filters section */
+.dbIssue-advanced-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.dbIssue-search-container {
+  flex: 1;
+  min-width: 250px;
+}
+
+.dbIssue-search-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.dbIssue-filter-container {
+  display: flex;
+  gap: 15px;
+}
+
+.dbIssue-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dbIssue-reset-btn {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.dbIssue-reset-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Results summary */
+.dbIssue-results-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.dbIssue-items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dbIssue-items-per-page select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+/* Table styles */
+.dbIssue-table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.dbIssue-sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.dbIssue-sales-table th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 2px solid #ddd;
+}
+
+.dbIssue-sales-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+.dbIssue-sales-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dbIssue-sortable-header {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.dbIssue-sortable-header:hover {
+  background-color: #eaeaea;
+}
+
+.dbIssue-hovered-row {
+  background-color: #f9f9f9;
+}
+
+.dbIssue-no-results {
+  text-align: center;
+  padding: 30px;
+  color: #888;
+  font-style: italic;
+}
+
+/* Action buttons */
+.dbIssue-view-btn {
+  padding: 6px 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.dbIssue-view-btn:hover {
+  background-color: #c82333;
+}
+
+/* Pagination controls */
+.dbIssue-pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dbIssue-pagination-btn {
+  padding: 6px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.dbIssue-pagination-btn:hover:not(:disabled) {
+  background-color: #e9ecef;
+}
+
+.dbIssue-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dbIssue-page-numbers {
+  display: flex;
+  gap: 5px;
+}
+
+.dbIssue-page-number {
+  padding: 6px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.dbIssue-page-number:hover {
+  background-color: #e9ecef;
+}
+
+.dbIssue-page-number.dbIssue-active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .dbIssue-sales-container {
+    width: 98%;
+    padding: 15px;
+  }
+
+  .dbIssue-advanced-filters {
+    flex-direction: column;
+  }
+
+  .dbIssue-filter-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .dbIssue-results-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .dbIssue-pagination-controls {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 576px) {
+  .dbIssue-sales-title {
+    font-size: 1.5rem;
+  }
+
+  .dbIssue-table-container {
+    margin-bottom: 15px;
+  }
+
+  .dbIssue-sales-table th,
+  .dbIssue-sales-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+}

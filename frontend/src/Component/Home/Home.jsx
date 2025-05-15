@@ -571,7 +571,7 @@ function Home() {
               return saleDate === today;
             }
           );
-          setTodaySalesCount(todaySales.length); // Fixed: Use todaySales, not todayReturns
+          setTodaySalesCount(todaySales.length);
         } else {
           setTodaySalesCount(0);
         }
@@ -682,24 +682,7 @@ function Home() {
               <p>{summaryStats.totalSales}</p>
             </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="bi bi-cash"></i>
-            </div>
-            <div className="stat-info">
-              <h3>Revenue</h3>
-              <p>{formatCurrency(summaryStats.totalRevenue)}</p>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="bi bi-cart-check"></i>
-            </div>
-            <div className="stat-info">
-              <h3>Avg. Order</h3>
-              <p>{formatCurrency(summaryStats.averageOrderValue)}</p>
-            </div>
-          </div>
+
           <div className="stat-card">
             <div className="stat-icon">
               <i className="bi bi-arrow-return-left"></i>
@@ -712,7 +695,6 @@ function Home() {
         </div>
 
         {/* Navigation Cards */}
-
         <div className="dashboard-buttons-st">
           <Link to="/viewstock" className="dashboard-link-st">
             <div className="dashboard-btn-st">
@@ -801,6 +783,21 @@ function Home() {
               </div>
             </div>
           </Link>
+
+          <Link to="/mystock-change-requests" className="dashboard-link-st">
+            <div className="dashboard-btn-st">
+              <div className="dash-btn-icon-st">
+                <i className="bi bi-inboxes-fill"></i>
+              </div>
+              <div className="btn-content">
+                <label className="dash-btn-text-st">Change Requests</label>
+                <span className="btn-description">Check Request status</span>
+              </div>
+              <div className="btn-arrow">
+                <i className="bi bi-chevron-right"></i>
+              </div>
+            </div>
+          </Link>
         </div>
 
         {/* Loading indicator */}
@@ -872,100 +869,6 @@ function Home() {
                   <p>No sales data available</p>
                 </div>
               )}
-            </div>
-
-            {/* Top Selling Items Chart */}
-            <div className="chart-card compact">
-              <div className="chart-header">
-                <h3>Top Products</h3>
-                <div className="chart-actions">
-                  <button
-                    className="view-details-btn"
-                    onClick={toggleItemDetails}
-                  >
-                    {showItemDetails ? "Chart" : "Details"}
-                  </button>
-                </div>
-              </div>
-              <div className="chart-description">
-                Best performing products by unit sales
-              </div>
-              <div className="top-items-container">
-                {showItemDetails ? (
-                  <div className="top-items-table">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Rank</th>
-                          <th>Item</th>
-                          <th>Units</th>
-                          <th>%</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {topSellingItems.map((item, index) => {
-                          const totalSold = topSellingItems.reduce(
-                            (sum, i) => sum + i[1],
-                            0
-                          );
-                          const percentage =
-                            totalSold > 0 ? (item[1] / totalSold) * 100 : 0;
-                          return (
-                            <tr key={index} className="top-item">
-                              <td>{index + 1}</td>
-                              <td>{item[0]}</td>
-                              <td>{item[1]}</td>
-                              <td>{percentage.toFixed(1)}%</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  salesDistribution && (
-                    <Doughnut
-                      data={salesDistribution}
-                      options={{
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                          legend: {
-                            position: "right",
-                            labels: {
-                              boxWidth: 12,
-                              font: {
-                                size: 10,
-                              },
-                            },
-                          },
-                          tooltip: {
-                            callbacks: {
-                              label: (context) => {
-                                const totalValue = context.dataset.data.reduce(
-                                  (a, b) => a + b,
-                                  0
-                                );
-                                const percentage =
-                                  totalValue > 0
-                                    ? (
-                                        (context.raw / totalValue) *
-                                        100
-                                      ).toFixed(1)
-                                    : 0;
-                                return `${context.raw} units (${percentage}%)`;
-                              },
-                            },
-                          },
-                        },
-                        animation: {
-                          duration: 800,
-                        },
-                      }}
-                    />
-                  )
-                )}
-              </div>
             </div>
 
             {/* Stock Distribution Chart */}

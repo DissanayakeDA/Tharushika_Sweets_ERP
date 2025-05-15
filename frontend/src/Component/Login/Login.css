@@ -34,19 +34,19 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  overflow: hidden; /* Ensure the image doesn't spill out */
+  overflow: hidden;
 }
 
 .login-image {
-  width: 120%; /* Increase size to zoom in */
+  width: 120%;
   height: auto;
-  object-fit: cover; /* Changed from contain to cover for better zoom effect */
-  transform: scale(1.2); /* Additional zoom effect */
-  transform-origin: center; /* Zoom from center */
+  object-fit: cover;
+  transform: scale(1.2);
+  transform-origin: center;
 }
 
 .image-overlay {
-  display: none; /* Hide the overlay text */
+  display: none;
 }
 
 .login-form-container {
@@ -112,15 +112,14 @@ body {
 }
 
 .form-group-login label {
-  display: none; /* Hide labels */
+  display: none;
 }
 
 .input-wrapper-lg {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-/* Updated input icon styles to match the image */
 .input-icon {
   position: absolute;
   left: 0;
@@ -139,7 +138,6 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
 }
 
-/* Updated text input to match the image design */
 .text-input-login {
   width: 100%;
   padding: 12px 12px 12px 30px;
@@ -161,11 +159,29 @@ body {
 }
 
 .toggle-password-btn {
-  display: none; /* Hide password toggle */
+  display: none;
 }
 
 .remember-forgot-row {
-  display: none; /* Hide remember me and forgot password */
+  display: none;
+}
+
+.forgot-password-container {
+  text-align: right;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.forgot-password-link {
+  color: #4a9bdf;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.forgot-password-link:hover {
+  color: #3689c9;
+  text-decoration: underline;
 }
 
 .login-btn {
@@ -179,7 +195,7 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .login-btn:hover {
@@ -208,10 +224,9 @@ body {
 }
 
 .signup-option {
-  display: none; /* Hide signup option */
+  display: none;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .login-content {
     flex-direction: column;
@@ -228,7 +243,7 @@ body {
   }
 
   .login-image {
-    width: 140%; /* Even more zoom on mobile */
+    width: 140%;
     transform: scale(1.3);
   }
 
@@ -240,4 +255,41 @@ body {
   .login-title {
     text-align: center;
   }
+}
+/* Forgot Password Styling */
+.forgot-password {
+  text-align: right;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.forgot-password a {
+  color: #4a9bdf;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.forgot-password a:hover {
+  color: #3689c9;
+  text-decoration: underline;
+}
+
+/* You can add this animation for a subtle effect when hovering */
+@keyframes gentle-pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.forgot-password a:focus {
+  outline: none;
+  animation: gentle-pulse 1.5s infinite;
 }

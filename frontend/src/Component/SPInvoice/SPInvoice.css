@@ -1,259 +1,411 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-.invoice-container {
-    width: 60%;
-    margin-left: 27%;
-    margin-top: 0%;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: "Noto Sans", sans-serif;
+.spinvoice-container {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 2%;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  font-family: "Poppins", sans-serif;
+  color: #2d3748;
 }
-  
-  .invoice-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #37474F;
-    margin: 0 0 10px; 
+
+#spinvoice-content {
+  position: relative;
+  padding: 20px;
+  margin-top: 30px;
+  border: 1px solid #edf2f7;
+  border-radius: 10px;
+  background-color: #ffffff;
 }
-.final-bill{
-  color: rgb(46, 45, 45);
+
+/* Header Styles */
+.spinvoice-header {
+  position: relative;
+  margin-bottom: 40px;
 }
-.divider {
-  border: none;
-  height: 2px;
-  background: #37474F;
-  width: 100%;
+
+.spinvoice-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.spinvoice-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  letter-spacing: 2px;
   margin: 0;
-}
-  .buyer-details {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  .final-total{
-    color: #37474F;
-  }
-  .buyer-details p {
-    margin: 5px 0;
-  }
-  
-  .items-section {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-  
-  .items-header {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .item-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .item-row:last-child {
-    border-bottom: none;
-  }
-  
-  .item-sl {
-    width: 5%;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .item-description {
-    width: 70%;
-  }
-  
-  .item-description strong {
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  .item-description p {
-    font-size: 0.9rem;
-    color: #777;
-    margin: 5px 0 0;
-  }
-  
-  .item-total {
-    width: 25%;
-    text-align: right;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .total-section {
-    text-align: right;
-    font-size: 1.1rem;
-    margin-top: 20px;
-  }
-  
-  .total-section p {
-    margin: 5px 0;
-  }
-  
-  .total-section h3 {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #37474F;
-    margin-top: 10px;
-  }
-  
-  /* Buttons */
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .back-button{
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-  }
-  .submit-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    background: linear-gradient(to right, #37474F, #3d5c6b, #37474F);
-    color: white;
-    cursor: pointer;
-    background-size: 200%; 
-  transition: background-position 0.5s ease; 
-  }
-  .back-button {
-    background-color: #b2bec3;
-  }
-  
-
-  .back-button:hover {
-    background-color: #636e72;
-  }
-  
-  .submit-button:hover {
-    background-position: right center; 
+  text-transform: uppercase;
 }
 
-.invoice-logo {
+.spinvoice-number {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4a5568;
+  border: 2px solid #4a5568;
+  padding: 8px 15px;
+  border-radius: 6px;
+}
+
+.spinvoice-logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.spinvoice-logo {
+  height: 60px;
+  width: auto;
+  max-width: 25%;
+  object-fit: contain;
+}
+
+.spinvoice-divider-container {
   position: relative;
-  display: block;
-  margin-left: 5px;
-  width: 20%; 
-  height: 45px; 
-  z-index: 1; 
-  background: white; 
-  padding: 5px; 
+  height: 10px;
+  margin: 20px 0;
 }
 
-#invoice-content {
-  position: relative;
-  margin-top: 50px;
+.spinvoice-divider {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #23425d 0%, #17486b 100%);
+  border-radius: 2px;
 }
 
-.invoice-header {
+/* Info Section */
+.spinvoice-info-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.spinvoice-buyer-details,
+.spinvoice-date-details {
+  width: 40%;
+  padding: 15px;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.spinvoice-section-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #4a5568;
+  margin-top: 0;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+.spinvoice-buyer-id {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.spinvoice-date-details p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+
+.spinvoice-date-details span {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+/* Items Section */
+.spinvoice-items-section {
+  margin-bottom: 30px;
+  border: 1px solid #edf2f7;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.spinvoice-items-header {
+  display: flex;
+  background-color: #4a5568;
+  color: white;
+  padding: 12px 15px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.spinvoice-item-header-sl {
+  width: 5%;
   text-align: center;
-  margin-bottom: 20px; 
-  position: relative;
 }
 
-  
+.spinvoice-item-header-desc {
+  width: 40%;
+}
+
+.spinvoice-item-header-price,
+.spinvoice-item-header-qty,
+.spinvoice-item-header-total {
+  width: 18%;
+  text-align: right;
+}
+
+.spinvoice-item-row {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #edf2f7;
+  align-items: center;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.spinvoice-item-row:nth-child(even) {
+  background-color: #f7fafc;
+}
+
+.spinvoice-item-row:last-child {
+  border-bottom: none;
+}
+
+.spinvoice-item-row:hover {
+  background-color: #ebf8ff;
+}
+
+.spinvoice-item-sl {
+  width: 5%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.spinvoice-item-description {
+  width: 40%;
+  font-weight: 500;
+}
+
+.spinvoice-item-price,
+.spinvoice-item-qty,
+.spinvoice-item-total {
+  width: 18%;
+  text-align: right;
+}
+
+.spinvoice-item-total {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Total Section */
+.spinvoice-total-section {
+  width: 40%;
+  margin-left: auto;
+  border: 1px solid #edf2f7;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f7fafc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.spinvoice-total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.spinvoice-tax {
+  color: #718096;
+}
+
+.spinvoice-divider-sm {
+  height: 1px;
+  background-color: #cbd5e0;
+  margin: 15px 0;
+}
+
+.spinvoice-grand-total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2b6cb0;
+}
+
+/* Footer */
+.spinvoice-footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.spinvoice-footer-company {
+  font-weight: 600;
+  margin-top: 5px;
+  color: #4a5568;
+}
+
+/* Error Message */
+.spinvoice-error-message {
+  color: #e53e3e;
+  background-color: #fed7d7;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-size: 0.95rem;
+  border-left: 4px solid #e53e3e;
+}
+
+/* Buttons */
+.spinvoice-button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.spinvoice-back-button,
+.spinvoice-submit-button {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  font-family: "Poppins", sans-serif;
+}
+
+.spinvoice-back-button {
+  background-color: #edf2f7;
+  color: #4a5568;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.spinvoice-submit-button {
+  background: linear-gradient(135deg, #3182ce 0%, #4299e1 100%);
+  color: white;
+  box-shadow: 0 4px 6px rgba(49, 130, 206, 0.3);
+}
+
+.spinvoice-back-button:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.spinvoice-submit-button:hover {
+  background: linear-gradient(135deg, #2b6cb0 0%, #3182ce 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(49, 130, 206, 0.4);
+}
+
+.spinvoice-back-button:active,
+.spinvoice-submit-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .spinvoice-container {
+    width: 85%;
+    margin-left: 15%;
+  }
+}
+
 @media (max-width: 768px) {
-  .invoice-container {
-      width: 90%; 
-      margin-left: 5%;
+  .spinvoice-container {
+    width: 90%;
+    margin-left: 5%;
+    padding: 20px;
   }
 
-  .invoice-title {
-      font-size: 1.5rem; 
+  .spinvoice-title {
+    font-size: 1.8rem;
   }
 
-  .buyer-details {
-      font-size: 0.9rem;
+  .spinvoice-info-section {
+    flex-direction: column;
   }
 
-  .items-header {
-      font-size: 1rem;
+  .spinvoice-buyer-details,
+  .spinvoice-date-details {
+    width: 100%;
+    margin-bottom: 15px;
   }
 
-  .item-description {
-      width: 60%; 
+  .spinvoice-date-details {
+    margin-bottom: 0;
   }
 
-  .item-total {
-      width: 35%;
+  .spinvoice-items-header,
+  .spinvoice-item-row {
+    font-size: 0.85rem;
   }
 
-  .button-container {
-      flex-direction: column; 
-      gap: 10px;
-      justify-content: center;
-      align-items: center;
-  }
-
-  .back-button,
-  .submit-button {
-      width: 100%; 
-  }
-
-  .invoice-logo {
-      width: 30%; 
+  .spinvoice-total-section {
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .invoice-container {
-      width: 100%;
-      padding: 15px;
+  .spinvoice-container {
+    width: 100%;
+    margin-left: 0;
+    padding: 15px;
   }
 
-  .invoice-title {
-      font-size: 1.25rem; 
+  .spinvoice-header-top {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
 
-  .buyer-details {
-      font-size: 0.8rem;
+  .spinvoice-logo {
+    max-width: 50%;
   }
 
-  .items-header {
-      font-size: 0.9rem;
+  .spinvoice-title {
+    font-size: 1.5rem;
   }
 
-  .item-description {
-      width: 50%; 
+  .spinvoice-number {
+    font-size: 0.9rem;
   }
 
-  .item-total {
-      width: 45%; 
+  .spinvoice-items-header {
+    display: none;
   }
 
-  .button-container {
-      flex-direction: column; 
-      gap: 10px;
-      justify-content: center;
+  .spinvoice-item-row {
+    flex-direction: column;
+    padding: 15px 10px;
   }
 
-  .back-button,
-  .submit-button {
-      font-size: 0.9rem;
-      padding: 12px;
+  .spinvoice-item-sl,
+  .spinvoice-item-description,
+  .spinvoice-item-price,
+  .spinvoice-item-qty,
+  .spinvoice-item-total {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
   }
 
-  .invoice-logo {
-      width: 40%; 
+  .spinvoice-item-total {
+    text-align: right;
+    font-weight: 700;
+  }
+
+  .spinvoice-button-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .spinvoice-back-button,
+  .spinvoice-submit-button {
+    width: 100%;
   }
 }

@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+.stock-request-container {
+  padding: 0;
+  display: block;
+  height: 100vh;
+  background-color: #efefef;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.stock-request-main {
+  padding: 20px;
+  flex: 2;
+  background-color: #efefef;
+  margin-left: 120px;
+}
+
+.form-title {
+  font-size: 28px;
+  font-weight: 400;
+  color: #37474f;
+  padding: 5px;
+  margin-top: 20px;
+  margin-left: 10%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.stock-request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 16px;
+  color: #37474f;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group select,
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Noto Sans", sans-serif;
+  outline: none;
+}
+
+.form-group select:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #6ea5c5;
+  box-shadow: 0 0 5px rgba(110, 165, 197, 0.5);
+}
+
+.form-group select {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.stock-info {
+  font-size: 14px;
+  color: #37474f;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 14px;
+  text-align: center;
+}
+
+.success-message {
+  color: #388e3c;
+  font-size: 14px;
+  text-align: center;
+}
+
+.submit-btn {
+  background-color: #6ea5c5;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #fff;
+  color: #37474f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .stock-request-main {
+    margin-left: 0;
+  }
+
+  .form-title {
+    font-size: 22px;
+    margin-left: 5%;
+  }
+
+  .stock-request-form {
+    padding: 15px;
+    margin: 0 5%;
+  }
+}

@@ -4,7 +4,7 @@
 .add-buyers-container {
   min-height: 100vh;
   background-color: #f8f9fa;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Content wrapper */
@@ -13,7 +13,9 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  min-height: calc(100vh - 120px); /* Adjust based on your HeadBar and Nav heights */
+  min-height: calc(
+    100vh - 120px
+  ); /* Adjust based on your HeadBar and Nav heights */
 }
 
 /* Form card */
@@ -44,7 +46,7 @@
 }
 
 .form-title:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -8px;
   left: 50%;
@@ -92,7 +94,8 @@
   color: white;
 }
 
-.step-number, .step-check {
+.step-number,
+.step-check {
   font-size: 0.85rem;
 }
 
@@ -160,6 +163,7 @@
 
 .input-container {
   position: relative;
+  width: 90%;
 }
 
 .input-icon {
@@ -176,7 +180,8 @@
   transform: none;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.5rem;
   border: 1px solid #ced4da;
@@ -191,7 +196,8 @@ textarea {
   resize: none;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
   border-color: #8e54e9;
   box-shadow: 0 0 0 3px rgba(142, 84, 233, 0.15);
@@ -310,7 +316,9 @@ button:disabled {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Success message */
@@ -373,16 +381,21 @@ button:disabled {
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translateX(-1px);
   }
-  20%, 80% {
+  20%,
+  80% {
     transform: translateX(2px);
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translateX(-4px);
   }
-  40%, 60% {
+  40%,
+  60% {
     transform: translateX(4px);
   }
 }
@@ -423,33 +436,34 @@ button:disabled {
   .content-wrapper {
     padding: 1rem;
   }
-  
+
   .form-card {
     padding: 1.5rem;
   }
-  
+
   .form-actions {
     flex-direction: column;
     gap: 0.75rem;
   }
-  
-  .btn-secondary, .btn-primary {
+
+  .btn-secondary,
+  .btn-primary {
     width: 100%;
   }
-  
+
   .final-buttons {
     width: 100%;
     margin-left: 0;
   }
-  
-  .btn-outlined, .btn-submit {
+
+  .btn-outlined,
+  .btn-submit {
     flex: 1;
   }
 }
 
 /* Font Awesome icons placeholder styles - you'll need to include Font Awesome in your project */
 .fas {
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
-

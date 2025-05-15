@@ -1,0 +1,222 @@
+/* Import Noto Sans font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap");
+
+/* Main container */
+.allStockchange-all-requests-container {
+  max-width: 1500px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+/* Header section */
+.allStockchange-title-all-requests {
+  color: #17304c;
+  font-size: 24px;
+  margin: 20px 0;
+  font-weight: 600;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+/* Table container */
+.allStockchange-requests-table-container {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+/* Table styles */
+.allStockchange-requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.allStockchange-requests-table th {
+  background-color: #f8f9fa;
+  color: #17304c;
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 600;
+  border-bottom: 2px solid #e9ecef;
+  position: sticky;
+  top: 0;
+  font-size: 14px;
+}
+
+.allStockchange-requests-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e9ecef;
+  color: #17304c;
+  font-size: 14px;
+}
+
+/* Row hover effect */
+.allStockchange-requests-table tr {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.allStockchange-requests-table tr:hover {
+  background-color: #f9fbfd;
+}
+
+/* Button styles */
+.allStockchange-action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.allStockchange-approve-btn,
+.allStockchange-reject-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.allStockchange-approve-btn {
+  background-color: #217346;
+  color: white;
+}
+
+.allStockchange-approve-btn:hover {
+  background-color: #1e6e41;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.allStockchange-reject-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.allStockchange-reject-btn:hover {
+  background-color: #c82333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 80px;
+}
+
+.status-badge.approved {
+  background-color: rgba(33, 115, 70, 0.1);
+  color: #217346;
+  border: 1px solid rgba(33, 115, 70, 0.2);
+}
+
+.status-badge.rejected {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.status-badge.pending {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+/* Request type styles */
+.request-type {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.request-type.update {
+  background-color: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+}
+
+.request-type.add {
+  background-color: rgba(25, 135, 84, 0.1);
+  color: #198754;
+}
+
+.request-type.remove {
+  background-color: rgba(108, 117, 125, 0.1);
+  color: #6c757d;
+}
+
+/* Loading spinner */
+.allStockchange-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.allStockchange-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #17304c;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* No data message */
+.allStockchange-no-data {
+  text-align: center;
+  padding: 40px 0 !important;
+  color: #6c757d !important;
+  font-style: italic;
+}
+
+/* Reason cell with text wrapping */
+.reason-cell {
+  max-width: 200px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .allStockchange-requests-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .allStockchange-requests-table th,
+  .allStockchange-requests-table td {
+    min-width: 150px;
+  }
+
+  .allStockchange-action-buttons {
+    flex-direction: column;
+  }
+
+  .allStockchange-approve-btn,
+  .allStockchange-reject-btn {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+}

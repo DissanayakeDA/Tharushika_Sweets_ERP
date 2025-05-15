@@ -474,9 +474,6 @@ function ViewReturns() {
                   >
                     Close
                   </button>
-                  <button className="dbreturns-modal-btn dbreturns-print-btn">
-                    Print Return
-                  </button>
                 </div>
               </div>
             </div>
